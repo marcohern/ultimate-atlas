@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'
 
 import { UserService } from '../user.service';
+import { User } from '../user';
 
 @Component({
   selector: 'ua-user-detail',
@@ -10,6 +11,9 @@ import { UserService } from '../user.service';
 })
 export class UserDetailComponent implements OnInit {
 
+  user:User;
+  errorMessage:string;
+
   constructor(
         private _route:ActivatedRoute,
         private _userService:UserService,
@@ -17,6 +21,12 @@ export class UserDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    let id = +this._route.snapshot.params['id'];
+    this._userService.getUser(id)
+      .subscribe(
+        user => this.user = user,
+        error => this.errorMessage = <any>error
+      );
   }
 
 }

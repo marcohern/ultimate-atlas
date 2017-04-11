@@ -12,13 +12,22 @@ import { User } from './user';
 export class UserService {
 
   private _userListUrl = 'api/users/user-list.json';
+  
   constructor(private _http:Http) { }
 
   public getUsers(): Observable<User[]> {
-    console.log("UserService.getUsers");
     return this._http
       .get(this._userListUrl)
       .map((r:Response) => <User[]>r.json())
+      .do(data => console.log(data))
+      .catch(this.handleError);
+  }
+
+  public getUser(id: number): Observable<User> {
+    console.log("UserService.getUser " + id);
+    return this._http
+      .get(this._userListUrl)
+      .map((r:Response) => <User[]>r.json()[id-1])
       .do(data => console.log(data))
       .catch(this.handleError);
   }
