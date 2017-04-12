@@ -22,7 +22,7 @@ export class UserListComponent implements OnInit {
       .subscribe(
         users => this.users = users,
         error => this.errorMessage = <any>error
-      );;
+      );
   }
 
 }

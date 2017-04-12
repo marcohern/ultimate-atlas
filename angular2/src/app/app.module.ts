@@ -11,7 +11,9 @@ import { MenuComponent } from './menu/menu.component';
 
 import { UserModule } from './user/user.module';
 
-import { AuthService } from './auth.service';
+import { AuthService } from './auth/auth.service';
+import { LoginComponent } from './auth/login/login.component';
+import { RecoverPasswordComponent } from './auth/recover-password/recover-password.component';
 
 @NgModule({
   imports: [
@@ -25,7 +27,9 @@ import { AuthService } from './auth.service';
   declarations: [
     AppComponent,
     WelcomeComponent,
-    MenuComponent
+    MenuComponent,
+    LoginComponent,
+    RecoverPasswordComponent
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

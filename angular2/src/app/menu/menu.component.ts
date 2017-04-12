@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { AuthService } from '../auth.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'ua-menu',
@@ -11,22 +12,15 @@ export class MenuComponent implements OnInit {
 
   @Input() title:string;
 
-  constructor(private _auth:AuthService) { }
+  constructor(private _auth:AuthService, private _router:Router) { }
 
   ngOnInit() {
     
   }
 
-  public login() {
-    this._auth.login("autologin","12345");
-  }
-
-  public logout() {
+  logout() {
     this._auth.logout();
-  }
-
-  public authenticated():boolean {
-    return this._auth.authenticated();
+    this._router.navigate(['/welcome']);
   }
 
 }

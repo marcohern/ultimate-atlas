@@ -19,7 +19,7 @@ export class UserService {
     return this._http
       .get(this._userListUrl)
       .map((r:Response) => <User[]>r.json())
-      .do(data => console.log(data))
+      .do(data => console.log("UserService.getUsers",data))
       .catch(this.handleError);
   }
 
