@@ -26,7 +26,6 @@ export class UserListComponent implements OnInit {
   }
 
   deleteUser(index) {
-    console.log('UserListComponent.deleteUser', index);
     let user = this.users[index];
     this._userService.deleteUser(user.id).subscribe(
       () => this.users.splice(index, 1)

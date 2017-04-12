@@ -1,6 +1,7 @@
-<h2><span *ngIf="user">{{user.fname}} {{user.lname}}</span></h2>
 <div *ngIf="user">
-  <p><a class="btn btn-warning" [routerLink]="['/users']"><i class="glyphicon glyphicon-arrow-left"></i> Back</a></p>
+  <p>
+    <a class="btn btn-warning" [routerLink]="['/users']"><i class="glyphicon glyphicon-arrow-left"></i> Back</a>
+  </p>
   <div class="form-group">
     <label for="username">Username</label>
     <input type="text" class="form-control" name="username" [(ngModel)]="user.username"/>
@@ -25,4 +26,7 @@
       <option value="USER">User</option>
     </select>
   </div>
+  <p>
+    <button class="btn btn-primary btn-lg" (click)="saveUser()"><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>
+  </p>
 </div>

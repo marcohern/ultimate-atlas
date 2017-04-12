@@ -11,22 +11,39 @@ import { User } from '../user';
 })
 export class UserDetailComponent implements OnInit {
 
-  user:User;
+  user:User = {
+    id:0,
+    username: '',
+    fname:'',
+    lname:'',
+    email:'',
+    role:''
+  };
+
   errorMessage:string;
 
   constructor(
-        private _route:ActivatedRoute,
-        private _userService:UserService,
-        private _router:Router
+        private route:ActivatedRoute,
+        private userService:UserService,
+        private router:Router
   ) { }
 
   ngOnInit() {
-    let id = +this._route.snapshot.params['id'];
-    this._userService.getUser(id)
-      .subscribe(
-        user => this.user = user,
-        error => this.errorMessage = <any>error
-      );
+
+    let id = +this.route.snapshot.params['id'];
+    if (id) {
+      this.userService.getUser(id)
+        .subscribe(
+          user => this.user = user,
+          error => this.errorMessage = <any>error
+        );
+    }
+  }
+
+  saveUser() {
+    this.userService.saveUser(this.user).subscribe(
+      () => this.router.navigate(['/users'])
+    );
   }
 
 }

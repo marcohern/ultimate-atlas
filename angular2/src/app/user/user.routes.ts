@@ -9,6 +9,7 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 const routes: Routes = [
     { path: 'users'   , component: UserListComponent },
     { path: 'user/:id', component: UserDetailComponent },
+    { path: 'user/add', component: UserDetailComponent },
 ];
 
 @NgModule({
