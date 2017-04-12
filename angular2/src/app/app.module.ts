@@ -11,6 +11,8 @@ import { MenuComponent } from './menu/menu.component';
 
 import { UserModule } from './user/user.module';
 
+import { AuthService } from './auth.service';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -25,7 +27,7 @@ import { UserModule } from './user/user.module';
     WelcomeComponent,
     MenuComponent
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
