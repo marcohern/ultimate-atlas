@@ -26,8 +26,8 @@
     {
         "id": 4,
         "username": "ashumer",
-        "fname":"Aamy",
-        "lname":"Sumer",
+        "fname":"Amy",
+        "lname":"Shumer",
         "email":"ashumer@mail.com",
         "role":"ADMIN"
     },
