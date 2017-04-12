@@ -11,6 +11,7 @@ import { UserService } from './user.service';
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     UserRoutes
   ],
   declarations: [UserListComponent, UserDetailComponent],

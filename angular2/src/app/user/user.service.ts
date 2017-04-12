@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
+import { UserDeleteResponse } from './user-delete-response';
+
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch'
 import 'rxjs/add/operator/do'
@@ -12,6 +14,7 @@ import { User } from './user';
 export class UserService {
 
   private _userListUrl = 'api/users/user-list.json';
+  private _userDeleteUrl = 'api/users/user-delete.json';
   
   constructor(private _http:Http) { }
 
@@ -28,6 +31,15 @@ export class UserService {
     return this._http
       .get(this._userListUrl)
       .map((r:Response) => <User[]>r.json()[id-1])
+      .do(data => console.log(data))
+      .catch(this.handleError);
+  }
+
+  public deleteUser(id: number): Observable<UserDeleteResponse> {
+    console.log("UserService.deleteUser " + id);
+    return this._http
+      .get(this._userDeleteUrl)
+      .map((r:Response) => <UserDeleteResponse>r.json())
       .do(data => console.log(data))
       .catch(this.handleError);
   }
