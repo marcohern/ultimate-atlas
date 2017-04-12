@@ -14,6 +14,8 @@ import { UserModule } from './user/user.module';
 import { AuthService } from './auth/auth.service';
 import { LoginComponent } from './auth/login/login.component';
 import { RecoverPasswordComponent } from './auth/recover-password/recover-password.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { SignupDoneComponent } from './auth/signup-done/signup-done.component';
 
 @NgModule({
   imports: [
@@ -29,7 +31,9 @@ import { RecoverPasswordComponent } from './auth/recover-password/recover-passwo
     WelcomeComponent,
     MenuComponent,
     LoginComponent,
-    RecoverPasswordComponent
+    RecoverPasswordComponent,
+    SignupComponent,
+    SignupDoneComponent
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

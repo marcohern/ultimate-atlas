@@ -10,6 +10,11 @@
           <a class="btn btn-primary" [routerLink]="['/login']">Sign in</a>
         </p>
       </li>
+      <li *ngIf="!_auth.authenticated()">
+        <p class="navbar-btn">
+          <button class="btn btn-success" [routerLink]="['/signup']">Sign up</button>
+        </p>
+      </li>
       <li *ngIf="_auth.authenticated()">
         <a>{{_auth.getUser().username}}</a>
       </li>

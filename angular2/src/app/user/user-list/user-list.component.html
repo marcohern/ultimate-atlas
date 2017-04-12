@@ -15,8 +15,8 @@
       <td>{{user.email}}</td>
       <td>{{user.role}}</td>
       <td>
-        <a class="btn btn-primary" [routerLink]="['/user', user.id]">View</a>
-        <a class="btn btn-danger" (click)="deleteUser()">Delete</a>
+        <a class="btn btn-primary" [routerLink]="['/user', user.id]"><i class="glyphicon glyphicon-pencil"></i></a>
+        <a class="btn btn-danger" (click)="deleteUser()"><i class="glyphicon glyphicon-trash"></i></a>
       </td>
     </tr>
   </tbody>
