@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { MenuComponent } from './menu/menu.component';
 
-import { UserModule } from './user/user.module';
+import { UserModule } from './modules/user/user.module';
 
 import { AuthService } from './auth/auth.service';
 import { LoginComponent } from './auth/login/login.component';
