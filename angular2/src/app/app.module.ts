@@ -10,7 +10,6 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { MenuComponent } from './menu/menu.component';
 
 import { UserModule } from './user/user.module';
-import { CommModule } from './comm/comm.module';
 
 import { AuthService } from './auth/auth.service';
 import { LoginComponent } from './auth/login/login.component';
@@ -25,7 +24,6 @@ import { SignupDoneComponent } from './auth/signup-done/signup-done.component';
     HttpModule,
 
     UserModule,
-    CommModule,
     AppRoutes
   ],
   declarations: [
