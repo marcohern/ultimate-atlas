@@ -10,6 +10,7 @@
       "assets": [
         "assets",
         "favicon.png",
+        "ultimate-atlas.json",
         "api"
       ],
       "index": "index.html",

@@ -12,6 +12,7 @@ import { MenuComponent } from './menu/menu.component';
 import { UserModule } from './modules/user/user.module';
 
 import { AuthService } from './auth/auth.service';
+import { ConfigService } from './config.service';
 import { LoginComponent } from './auth/login/login.component';
 import { RecoverPasswordComponent } from './auth/recover-password/recover-password.component';
 import { SignupComponent } from './auth/signup/signup.component';
@@ -35,7 +36,7 @@ import { SignupDoneComponent } from './auth/signup-done/signup-done.component';
     SignupComponent,
     SignupDoneComponent
   ],
-  providers: [AuthService],
+  providers: [AuthService, ConfigService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
