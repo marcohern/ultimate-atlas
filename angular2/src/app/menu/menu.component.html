@@ -1,24 +1,24 @@
 <nav class="navbar navbar-default">
   <div class="container">
     <a class="navbar-brand" [routerLink]="['/welcome']">{{title}}</a>
-    <ul class="nav navbar-nav" *ngIf="_auth.authenticated()">
+    <ul class="nav navbar-nav" *ngIf="auth.isAuthenticated()">
       <li><a [routerLink]="['/users']">Users</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li>
-        <p class="navbar-btn" *ngIf="!_auth.authenticated()">
+      <li *ngIf="!auth.isAuthenticated()">
+        <p class="navbar-btn">
           <a class="btn btn-primary" [routerLink]="['/login']">Sign in</a>
         </p>
       </li>
-      <li *ngIf="!_auth.authenticated()">
+      <li *ngIf="!auth.isAuthenticated()">
         <p class="navbar-btn">
           <button class="btn btn-success" [routerLink]="['/signup']">Sign up</button>
         </p>
       </li>
-      <li *ngIf="_auth.authenticated()">
-        <a>{{_auth.getUser().username}}</a>
+      <li *ngIf="auth.isAuthenticated()">
+        <a>{{auth.getUser().username}}</a>
       </li>
-      <li *ngIf="_auth.authenticated()">
+      <li *ngIf="auth.isAuthenticated()">
         <p class="navbar-btn">
           <button class="btn btn-danger" (click)="logout()">Logout</button>
         </p>
