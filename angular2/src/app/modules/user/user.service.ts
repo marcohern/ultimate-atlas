@@ -13,9 +13,9 @@ import { User } from './user'
 @Injectable()
 export class UserService {
 
-  private userListUrl = 'api/users/user-list.json';
-  private userDeleteUrl = 'api/users/user-delete.json';
-  private userSaveUrl = 'api/users/user-add.json';
+  private userListUrl = 'tapi/users/user-list.json';
+  private userDeleteUrl = 'tapi/users/user-delete.json';
+  private userSaveUrl = 'tapi/users/user-add.json';
   
   constructor(
     private rs:RequestService

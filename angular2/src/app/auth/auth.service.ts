@@ -16,10 +16,11 @@ import 'rxjs/add/operator/map'
 @Injectable()
 export class AuthService {
 
-  private loginUrl = 'api/login.json';
-  private logoutUrl = 'api/logout.json';
-  private resetPasswordUrl = 'api/reset-password.json';
-  private signupUrl = 'api/signup.json';
+  private loginUrl = 'tapi/login.json';
+  private logoutUrl = 'tapi/logout.json';
+  private resetPasswordUrl = 'tapi/reset-password.json';
+  private signupUrl = 'tapi/signup.json';
+  
   private userStg = 'com.marcohern.ultimate-atlas.auth.user';
   private tokenStg = 'com.marcohern.ultimate-atlas.auth.user';
 
