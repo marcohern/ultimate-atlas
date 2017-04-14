@@ -12,7 +12,6 @@ import { User } from '../user';
 export class UserDetailComponent implements OnInit {
 
   user:User = {
-    id:0,
     username: '',
     fname:'',
     lname:'',
@@ -34,8 +33,7 @@ export class UserDetailComponent implements OnInit {
     if (id) {
       this.userService.getUser(id)
         .subscribe(
-          user => this.user = user,
-          error => this.errorMessage = <any>error
+          user => this.user = user
         );
     }
   }

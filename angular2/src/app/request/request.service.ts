@@ -74,11 +74,11 @@ export class RequestService {
   }
 
   public save(uri:string, body:any): Observable<any> {
-    let url = this.configService.mapUrl(uri);
-    return this.http
-      .get(url, { headers: this.buildHeaders() })
-      .do(data => console.log(data))
-      .catch(this.handleError);
+    if (body.id) {
+      return this.update(uri, body, body.id);
+    } else {
+      return this.create(uri, body);
+    }
   }
 
   public post(uri:string, body:any): Observable<any> {
