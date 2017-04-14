@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import {ConfigService} from './config.service'
+import {AuthService} from './auth/auth.service'
 import {Config} from './config'
 
 import { MenuComponent } from './menu/menu.component'
@@ -12,11 +13,12 @@ import { MenuComponent } from './menu/menu.component'
 export class AppComponent implements OnInit {
   title = 'Ultimate Atlas';
   
-  constructor(private configService:ConfigService) {
+  constructor(private configService:ConfigService, private auth:AuthService) {
   }
 
   ngOnInit() {
     let config:Config = this.configService.get();
+    this.auth.start();
     console.log("AppComponent.ngOnInit",config);
   }
 }

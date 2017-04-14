@@ -20,12 +20,24 @@ export class AuthService {
   private logoutUrl = 'api/logout.json';
   private resetPasswordUrl = 'api/reset-password.json';
   private signupUrl = 'api/signup.json';
+  private userStg = 'com.marcohern.ultimate-atlas.auth.user';
+  private tokenStg = 'com.marcohern.ultimate-atlas.auth.user';
 
   constructor(private _http:Http,
     private rs:RequestService) { }
 
   public authenticated:boolean = false;
   private user:LoginUser = null;
+
+  public start() {
+    let userJson = localStorage.getItem(this.userStg);
+    if (userJson) {
+      let token = localStorage.getItem(this.tokenStg);
+      this.authenticated = true;
+      this.user = <LoginUser> JSON.parse(userJson);
+      this.rs.setToken(userJson);
+    }
+  }
 
   public login(username:string, password:string):Observable<LoginResponse> {
     return this.rs.post(this.loginUrl, {username:username, password:password })
@@ -34,6 +46,9 @@ export class AuthService {
         this.user = loginResponse.user;
         this.authenticated = true;
         this.rs.setToken(loginResponse.token);
+
+        localStorage.setItem(this.tokenStg, loginResponse.token);
+        localStorage.setItem(this.userStg, JSON.stringify(loginResponse.user));
       });
   }
 
@@ -54,6 +69,9 @@ export class AuthService {
         this.rs.clearToken();
         this.authenticated = false;
         this.user = null;
+
+        localStorage.removeItem(this.tokenStg);
+        localStorage.removeItem(this.userStg);
       });
   }
 

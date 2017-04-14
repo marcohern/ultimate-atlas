@@ -44,8 +44,4 @@ export class UserService {
     return this.rs.save(this.userSaveUrl, user)
       .map((r:Response) => <UserSaveResponse>r.json());
   }
-
-  private handleError(error: Response) {
-    return Observable.throw(error.json().error || 'Server error');
-  }
 }
