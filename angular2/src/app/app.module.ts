@@ -11,7 +11,7 @@ import { MenuComponent } from './menu/menu.component'
 
 
 import { AuthService } from './auth/auth.service'
-import { RequestService } from './request/request.service'
+import { RequestService } from './request.service'
 import { ConfigService } from './config.service'
 import { LoginComponent } from './auth/login/login.component'
 import { RecoverPasswordComponent } from './auth/recover-password/recover-password.component'

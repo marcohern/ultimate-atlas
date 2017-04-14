@@ -6,7 +6,7 @@ import 'rxjs/add/operator/do'
 import 'rxjs/add/operator/map'
 
 import {Config} from './config'
-import {RequestService} from './request/request.service'
+import {RequestService} from './request.service'
 
 const CONFIG:Config = {
   name:"Ultimate Atlas",

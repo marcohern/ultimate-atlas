@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http'
-import { ConfigService } from '../config.service'
-import { Config } from '../config'
+import { ConfigService } from './config.service'
+import { Config } from './config'
 import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/operator/catch'
 import 'rxjs/add/operator/do'
