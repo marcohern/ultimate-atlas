@@ -45,20 +45,30 @@ class UserController extends Controller
      */
     public function store(Request $r)
     {
-        $user = DB::table('users')->insert(
-            'INSERT INTO users SET '.
-            '(username, fname, lname, email, gender, birth, role, created_at) '.
-            'VALUES (?,?,?,?,?,?,?,NOW())', [
-                $r->input('username'),
-                $r->input('fname'),
-                $r->input('lname'),
-                $r->input('email'),
-                $r->input('gender'),
-                $r->input('birth'),
-                $r->input('role')
-            ]
-        );
-        return $user;
+        $salt = $this->genSalt(48);
+        $pwd = Hash::make($salt.$r->input('username'));
+        $id = DB::table('users')->insertGetId([
+            'username' => $r->input('username'),
+            'fname' => $r->input('fname'),
+            'lname' => $r->input('lname'),
+            'email' => $r->input('email'),
+            'gender' => $r->input('gender'),
+            'birth' => $r->input('birth'),
+            'role' => $r->input('role'),
+
+            'password' => $pwd,
+            'salt' => $salt,
+
+            'created_at' => new \Datetime("now")
+        ]);
+         $user = DB::table('users')
+            ->select('*')
+            ->where('id', $id)->first();
+        return [
+            'affected' => 1,
+            'saved' => true,
+            'user' => $user
+        ];
     }
 
     /**
@@ -72,9 +82,8 @@ class UserController extends Controller
         
         $user = DB::table('users')
             ->select('*')
-            ->where('id', $id)
-            ->get();
-        return $user;
+            ->where('id', $id)->first();
+        return ['user' => $user];
     }
 
     /**
@@ -97,10 +106,6 @@ class UserController extends Controller
      */
     public function update(Request $r, $id)
     {
-        $user = DB::table('users')
-            ->select('*')
-            ->where('id', $id)
-            ->get();
         $affected = DB::update('UPDATE users SET '.
             'username = ?, '.
             'fname = ?, '.
@@ -108,7 +113,8 @@ class UserController extends Controller
             'email = ?, '.
             'gender = ?, '.
             'birth = ?, '.
-            'role = ? '.
+            'role = ?, '.
+            'updated_at = ? '.
             'WHERE id = ?', [
                 $r->input('username'),
                 $r->input('fname'),
@@ -117,12 +123,17 @@ class UserController extends Controller
                 $r->input('gender'),
                 $r->input('birth'),
                 $r->input('role'),
+                new \Datetime("now"),
                 $id
             ]
         );
+        $user = DB::table('users')
+            ->select('*')
+            ->where('id', $id)
+            ->first();
         return [
             'affected' => $affected,
-            'updated' => true,
+            'saved' => true,
             'user' => $user
         ];
     }
@@ -160,7 +171,7 @@ class UserController extends Controller
     }
 
     public function pwd($pwd='') {
-        $salt = $this->genSalt(32);
+        $salt = $this->genSalt(48);
         return [
             'password' => $pwd,
             'salt' => $salt,

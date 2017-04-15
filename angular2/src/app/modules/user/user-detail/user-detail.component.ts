@@ -35,14 +35,20 @@ export class UserDetailComponent implements OnInit {
     if (id) {
       this.userService.getUser(id)
         .subscribe(
-          user => this.user = user
+          user => { 
+            console.log("UserDetailComponent.ngOnInit R",user);
+            this.user = user;
+          }
         );
     }
   }
 
   saveUser() {
     this.userService.saveUser(this.user).subscribe(
-      () => this.router.navigate(['/users'])
+      () => {
+
+        this.router.navigate(['/users'])
+      }
     );
   }
 

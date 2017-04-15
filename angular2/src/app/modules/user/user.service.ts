@@ -13,7 +13,7 @@ import { User } from './user'
 @Injectable()
 export class UserService {
 
-  private userListUrl = 'tapi/users/user-list.json';
+  private usersUrl = 'api/users';
   private userDeleteUrl = 'tapi/users/user-delete.json';
   private userSaveUrl = 'tapi/users/user-add.json';
   
@@ -22,26 +22,24 @@ export class UserService {
   ) { }
 
   public getUsers(): Observable<User[]> {
-    console.log("UserService.getUsers");
-    return this.rs.get(this.userListUrl)
+    return this.rs.get(this.usersUrl)
       .map((r:Response) => <User[]>r.json());
   }
 
   public getUser(id: number): Observable<User> {
-    console.log("UserService.getUser", id);
-    return this.rs.getItem(this.userListUrl, id)
-      .map((r:Response) => <User>r.json()[id-1]);
+    return this.rs.getItem(this.usersUrl, id)
+      .map((r:Response) => <User>r.json().user);
   }
 
   public deleteUser(id: number): Observable<UserDeleteResponse> {
     console.log("UserService.deleteUser",id);
-    return this.rs.delete(this.userDeleteUrl, id)
+    return this.rs.delete(this.usersUrl, id)
       .map((r:Response) => <UserDeleteResponse>r.json());
   }
 
   public saveUser(user:User) {
     console.log("UserService.saveUser", user);
-    return this.rs.save(this.userSaveUrl, user)
+    return this.rs.save(this.usersUrl, user)
       .map((r:Response) => <UserSaveResponse>r.json());
   }
 }

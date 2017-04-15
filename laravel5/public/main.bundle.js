@@ -819,28 +819,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var UserService = (function () {
     function UserService(rs) {
         this.rs = rs;
-        this.userListUrl = 'tapi/users/user-list.json';
+        this.usersUrl = 'api/users';
         this.userDeleteUrl = 'tapi/users/user-delete.json';
         this.userSaveUrl = 'tapi/users/user-add.json';
     }
     UserService.prototype.getUsers = function () {
-        console.log("UserService.getUsers");
-        return this.rs.get(this.userListUrl)
+        return this.rs.get(this.usersUrl)
             .map(function (r) { return r.json(); });
     };
     UserService.prototype.getUser = function (id) {
-        console.log("UserService.getUser", id);
-        return this.rs.getItem(this.userListUrl, id)
-            .map(function (r) { return r.json()[id - 1]; });
+        return this.rs.getItem(this.usersUrl, id)
+            .map(function (r) { return r.json().user; });
     };
     UserService.prototype.deleteUser = function (id) {
         console.log("UserService.deleteUser", id);
-        return this.rs.delete(this.userDeleteUrl, id)
+        return this.rs.delete(this.usersUrl, id)
             .map(function (r) { return r.json(); });
     };
     UserService.prototype.saveUser = function (user) {
         console.log("UserService.saveUser", user);
-        return this.rs.save(this.userSaveUrl, user)
+        return this.rs.save(this.usersUrl, user)
             .map(function (r) { return r.json(); });
     };
     return UserService;
@@ -915,30 +913,30 @@ var RequestService = (function () {
             .catch(this.handleError);
     };
     RequestService.prototype.getItem = function (uri, id) {
-        var url = this.configService.mapUrl(uri);
+        var url = this.configService.mapUrl(uri) + '/' + id;
         return this.http
             .get(url, { headers: this.buildHeaders() })
             .do(function (data) { return console.log(data); })
             .catch(this.handleError);
     };
     RequestService.prototype.delete = function (uri, id) {
-        var url = this.configService.mapUrl(uri);
+        var url = this.configService.mapUrl(uri) + '/' + id;
         return this.http
-            .get(url, { headers: this.buildHeaders() })
+            .delete(url, { headers: this.buildHeaders() })
             .do(function (data) { return console.log(data); })
             .catch(this.handleError);
     };
     RequestService.prototype.create = function (uri, body) {
         var url = this.configService.mapUrl(uri);
         return this.http
-            .get(url, { headers: this.buildHeaders() })
+            .post(url, body, { headers: this.buildHeaders() })
             .do(function (data) { return console.log(data); })
             .catch(this.handleError);
     };
     RequestService.prototype.update = function (uri, body, id) {
-        var url = this.configService.mapUrl(uri);
+        var url = this.configService.mapUrl(uri) + '/' + id;
         return this.http
-            .get(url, { headers: this.buildHeaders() })
+            .put(url, body, { headers: this.buildHeaders() })
             .do(function (data) { return console.log(data); })
             .catch(this.handleError);
     };
@@ -1196,7 +1194,9 @@ var UserDetailComponent = (function () {
             fname: '',
             lname: '',
             email: '',
-            role: ''
+            role: '',
+            gender: 'X',
+            birth: null
         };
     }
     UserDetailComponent.prototype.ngOnInit = function () {
@@ -1204,12 +1204,17 @@ var UserDetailComponent = (function () {
         var id = +this.route.snapshot.params['id'];
         if (id) {
             this.userService.getUser(id)
-                .subscribe(function (user) { return _this.user = user; });
+                .subscribe(function (user) {
+                console.log("UserDetailComponent.ngOnInit R", user);
+                _this.user = user;
+            });
         }
     };
     UserDetailComponent.prototype.saveUser = function () {
         var _this = this;
-        this.userService.saveUser(this.user).subscribe(function () { return _this.router.navigate(['/users']); });
+        this.userService.saveUser(this.user).subscribe(function () {
+            _this.router.navigate(['/users']);
+        });
     };
     return UserDetailComponent;
 }());

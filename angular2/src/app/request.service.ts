@@ -42,7 +42,7 @@ export class RequestService {
   }
 
   public getItem(uri:string, id:number): Observable<any> {
-    let url = this.configService.mapUrl(uri);
+    let url = this.configService.mapUrl(uri) + '/' + id;
     return this.http
       .get(url, { headers: this.buildHeaders() })
       .do(data => console.log(data))
@@ -50,9 +50,9 @@ export class RequestService {
   }
 
   public delete(uri:string, id:number): Observable<any> {
-    let url = this.configService.mapUrl(uri);
+    let url = this.configService.mapUrl(uri) + '/' + id;
     return this.http
-      .get(url, { headers: this.buildHeaders() })
+      .delete(url, { headers: this.buildHeaders() })
       .do(data => console.log(data))
       .catch(this.handleError);
   }
@@ -60,15 +60,15 @@ export class RequestService {
   public create(uri:string, body:any): Observable<any> {
     let url = this.configService.mapUrl(uri);
     return this.http
-      .get(url, { headers: this.buildHeaders() })
+      .post(url, body, { headers: this.buildHeaders() })
       .do(data => console.log(data))
       .catch(this.handleError);
   }
 
   public update(uri:string, body:any, id:number): Observable<any> {
-    let url = this.configService.mapUrl(uri);
+    let url = this.configService.mapUrl(uri) + '/' + id;
     return this.http
-      .get(url, { headers: this.buildHeaders() })
+      .put(url, body, { headers: this.buildHeaders() })
       .do(data => console.log(data))
       .catch(this.handleError);
   }
