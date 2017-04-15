@@ -16,7 +16,9 @@ export class UserDetailComponent implements OnInit {
     fname:'',
     lname:'',
     email:'',
-    role:''
+    role:'',
+    gender:'X',
+    birth:null
   };
 
   errorMessage:string;

@@ -5,6 +5,8 @@ export interface IUser {
     fname:string;
     lname:string;
     email:string;
+    birth?:Date;
+    gender:string;
     role:string;
 }
 
@@ -13,5 +15,7 @@ export class User extends Record implements IUser {
     fname:string;
     lname:string;
     email:string;
+    birth?:Date;
+    gender:string;
     role:string;
 }

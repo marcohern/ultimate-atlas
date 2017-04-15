@@ -22,7 +22,7 @@ class UserController extends Controller
     {
         //
         $users = DB::table('users')
-            ->select('id','username','fname','lname', 'email','role')
+            ->select('*')
             ->get();
         return $users;
     }
@@ -34,7 +34,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -43,9 +43,22 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $r)
     {
-        //
+        $user = DB::table('users')->insert(
+            'INSERT INTO users SET '.
+            '(username, fname, lname, email, gender, birth, role, created_at) '.
+            'VALUES (?,?,?,?,?,?,?,NOW())', [
+                $r->input('username'),
+                $r->input('fname'),
+                $r->input('lname'),
+                $r->input('email'),
+                $r->input('gender'),
+                $r->input('birth'),
+                $r->input('role')
+            ]
+        );
+        return $user;
     }
 
     /**
@@ -58,7 +71,7 @@ class UserController extends Controller
     {
         
         $user = DB::table('users')
-            ->select('id','username','fname','lname', 'email','role')
+            ->select('*')
             ->where('id', $id)
             ->get();
         return $user;
@@ -82,9 +95,36 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $r, $id)
     {
-        //
+        $user = DB::table('users')
+            ->select('*')
+            ->where('id', $id)
+            ->get();
+        $affected = DB::update('UPDATE users SET '.
+            'username = ?, '.
+            'fname = ?, '.
+            'lname = ?, '.
+            'email = ?, '.
+            'gender = ?, '.
+            'birth = ?, '.
+            'role = ? '.
+            'WHERE id = ?', [
+                $r->input('username'),
+                $r->input('fname'),
+                $r->input('lname'),
+                $r->input('email'),
+                $r->input('gender'),
+                $r->input('birth'),
+                $r->input('role'),
+                $id
+            ]
+        );
+        return [
+            'affected' => $affected,
+            'updated' => true,
+            'user' => $user
+        ];
     }
 
     /**
@@ -95,7 +135,17 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = DB::table('users')
+            ->select('*')
+            ->where('id', $id)
+            ->get();
+        $deleted = DB::delete('DELETE FROM users WHERE id = ?',[$id]);
+
+        return [
+            'affected' => $deleted,
+            'deleted' => true,
+            'user' => $user
+        ];
     }
 
     private function genSalt($size) {
