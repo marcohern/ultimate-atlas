@@ -1,0 +1,58 @@
+[
+    {
+        "id": 1,
+        "username": "bhader",
+        "fname":"Bill",
+        "lname":"Hader",
+        "email":"bhader@mail.com",
+        "role":"ADMIN"
+    },
+    {
+        "id": 2,
+        "username": "farmisen",
+        "fname":"Fred",
+        "lname":"Armisen",
+        "email":"farmisen@mail.com",
+        "role":"ADMIN"
+    },
+    {
+        "id": 3,
+        "username": "srogen",
+        "fname":"Seth",
+        "lname":"Rogen",
+        "email":"srogen@mail.com",
+        "role":"ADMIN"
+    },
+    {
+        "id": 4,
+        "username": "ashumer",
+        "fname":"Amy",
+        "lname":"Shumer",
+        "email":"ashumer@mail.com",
+        "role":"ADMIN"
+    },
+    {
+        "id": 5,
+        "username": "jfranco",
+        "fname":"James",
+        "lname":"Franco",
+        "email":"jfranco@mail.com",
+        "role":"ADMIN"
+    },
+    {
+        "id": 6,
+        "username": "jsegel",
+        "fname":"Jason",
+        "lname":"Segel",
+        "email":"jsegel@mail.com",
+        "role":"ADMIN"
+    },
+    {
+        "id": 7,
+        "username": "jblack",
+        "fname":"Jack",
+        "lname":"Black",
+        "email":"jblack@mail.com",
+        "role":"ADMIN"
+    }
+]

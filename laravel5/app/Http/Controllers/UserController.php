@@ -18,12 +18,20 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $r)
     {
         //
-        $users = DB::table('users')
-            ->select('*')
-            ->get();
+        $q = $r->input('q','');
+        $lq = str_replace(" ", "%", $q);
+        $usersq= DB::table('users')
+            ->select(['id','username','lname','fname','role','email'])
+            ->latest()->take(100);
+        if (!empty($q)) {
+            $usersq->where('username', 'LIKE',  "%$q%")
+                ->orwhere('lname', 'LIKE', "%$q%")
+                ->orwhere('fname', 'LIKE', "%$q%");
+        }
+        $users = $usersq->get();
         return $users;
     }
 

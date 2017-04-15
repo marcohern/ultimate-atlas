@@ -1,0 +1,11 @@
+{
+    "updated":true,
+    "user":{
+        "id": 9999,
+        "username": "autologin",
+        "fname":"Auto",
+        "lname":"Login",
+        "email":"autologin@mail.com",
+        "role":"ADMIN"
+    }
+}

@@ -1,6 +1,18 @@
-<p>
-  <a class="btn btn-primary" [routerLink]="['/user/add']"><i class="glyphicon glyphicon-plus"></i> Add</a>
-</p>
+<form >
+  <div class="input-group">
+    <span class="input-group-btn">
+      <a class="btn btn-primary" [routerLink]="['/user/add']">
+        <i class="glyphicon glyphicon-plus"></i> Add
+      </a>
+    </span>
+    <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}" />
+    <span class="input-group-btn">
+      <button type="submit" class="btn btn-primary" (click)="searchUsers()">
+        <i class="glyphicon glyphicon-search"></i>
+      </button>
+    </span>
+  </div>
+</form>
 <table class="table">
   <thead>
     <tr>

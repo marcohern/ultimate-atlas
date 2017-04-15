@@ -6,12 +6,8 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li *ngIf="!auth.isAuthenticated()">
-        <p class="navbar-btn">
+        <p class="navbar-btn btn-group">
           <a class="btn btn-primary" [routerLink]="['/login']">Sign in</a>
-        </p>
-      </li>
-      <li *ngIf="!auth.isAuthenticated()">
-        <p class="navbar-btn">
           <button class="btn btn-success" [routerLink]="['/signup']">Sign up</button>
         </p>
       </li>

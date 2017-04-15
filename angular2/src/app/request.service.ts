@@ -41,6 +41,14 @@ export class RequestService {
       .catch(this.handleError);
   }
 
+  public query(uri:string, q:string=''): Observable<any> {
+    let url = this.configService.mapUrl(uri) + '?q=' + encodeURI(q);
+    return this.http
+      .get(url, { headers: this.buildHeaders() })
+      .do(data => console.log(data))
+      .catch(this.handleError);
+  }
+
   public getItem(uri:string, id:number): Observable<any> {
     let url = this.configService.mapUrl(uri) + '/' + id;
     return this.http

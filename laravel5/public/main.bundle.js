@@ -715,7 +715,7 @@ module.exports = "<div class=\"form-group\">\n  <label for=\"username\">Username
 /***/ 186:
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"container\">\n    <a class=\"navbar-brand\" [routerLink]=\"['/welcome']\">{{title}}</a>\n    <ul class=\"nav navbar-nav\" *ngIf=\"auth.isAuthenticated()\">\n      <li><a [routerLink]=\"['/users']\">Users</a></li>\n    </ul>\n    <ul class=\"nav navbar-nav navbar-right\">\n      <li *ngIf=\"!auth.isAuthenticated()\">\n        <p class=\"navbar-btn\">\n          <a class=\"btn btn-primary\" [routerLink]=\"['/login']\">Sign in</a>\n        </p>\n      </li>\n      <li *ngIf=\"!auth.isAuthenticated()\">\n        <p class=\"navbar-btn\">\n          <button class=\"btn btn-success\" [routerLink]=\"['/signup']\">Sign up</button>\n        </p>\n      </li>\n      <li *ngIf=\"auth.isAuthenticated()\">\n        <a>{{auth.getUser().username}}</a>\n      </li>\n      <li *ngIf=\"auth.isAuthenticated()\">\n        <p class=\"navbar-btn\">\n          <button class=\"btn btn-danger\" (click)=\"logout()\">Logout</button>\n        </p>\n      </li>\n    </ul>\n  </div>\n</nav>"
+module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"container\">\n    <a class=\"navbar-brand\" [routerLink]=\"['/welcome']\">{{title}}</a>\n    <ul class=\"nav navbar-nav\" *ngIf=\"auth.isAuthenticated()\">\n      <li><a [routerLink]=\"['/users']\">Users</a></li>\n    </ul>\n    <ul class=\"nav navbar-nav navbar-right\">\n      <li *ngIf=\"!auth.isAuthenticated()\">\n        <p class=\"navbar-btn btn-group\">\n          <a class=\"btn btn-primary\" [routerLink]=\"['/login']\">Sign in</a>\n          <button class=\"btn btn-success\" [routerLink]=\"['/signup']\">Sign up</button>\n        </p>\n      </li>\n      <li *ngIf=\"auth.isAuthenticated()\">\n        <a>{{auth.getUser().username}}</a>\n      </li>\n      <li *ngIf=\"auth.isAuthenticated()\">\n        <p class=\"navbar-btn\">\n          <button class=\"btn btn-danger\" (click)=\"logout()\">Logout</button>\n        </p>\n      </li>\n    </ul>\n  </div>\n</nav>"
 
 /***/ }),
 
@@ -729,7 +729,7 @@ module.exports = "<div>\n  <p>\n    <a class=\"btn btn-warning\" [routerLink]=\"
 /***/ 188:
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  <a class=\"btn btn-primary\" [routerLink]=\"['/user/add']\"><i class=\"glyphicon glyphicon-plus\"></i> Add</a>\n</p>\n<table class=\"table\">\n  <thead>\n    <tr>\n      <th>Username</th>\n      <th>Name</th>\n      <th>Email</th>\n      <th>Role</th>\n      <th>&nbsp;</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"let user of users; let i = index\">\n      <td>{{user.username}}</td>\n      <td>{{user.fname}} {{user.lname}}</td>\n      <td>{{user.email}}</td>\n      <td>{{user.role}}</td>\n      <td>\n        <a class=\"btn btn-primary\" [routerLink]=\"['/user', user.id]\"><i class=\"glyphicon glyphicon-pencil\"></i></a>\n        <a class=\"btn btn-danger\" (click)=\"deleteUser(i)\" ><i class=\"glyphicon glyphicon-trash\"></i></a>\n      </td>\n    </tr>\n  </tbody>\n</table>"
+module.exports = "<form >\n  <div class=\"input-group\">\n    <span class=\"input-group-btn\">\n      <a class=\"btn btn-primary\" [routerLink]=\"['/user/add']\">\n        <i class=\"glyphicon glyphicon-plus\"></i> Add\n      </a>\n    </span>\n    <input type=\"text\" class=\"form-control\" placeholder=\"Search...\" [(ngModel)]=\"searchText\" [ngModelOptions]=\"{standalone: true}\" />\n    <span class=\"input-group-btn\">\n      <button type=\"submit\" class=\"btn btn-primary\" (click)=\"searchUsers()\">\n        <i class=\"glyphicon glyphicon-search\"></i>\n      </button>\n    </span>\n  </div>\n</form>\n<table class=\"table\">\n  <thead>\n    <tr>\n      <th>Username</th>\n      <th>Name</th>\n      <th>Email</th>\n      <th>Role</th>\n      <th>&nbsp;</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"let user of users; let i = index\">\n      <td>{{user.username}}</td>\n      <td>{{user.fname}} {{user.lname}}</td>\n      <td>{{user.email}}</td>\n      <td>{{user.role}}</td>\n      <td>\n        <a class=\"btn btn-primary\" [routerLink]=\"['/user', user.id]\"><i class=\"glyphicon glyphicon-pencil\"></i></a>\n        <a class=\"btn btn-danger\" (click)=\"deleteUser(i)\" ><i class=\"glyphicon glyphicon-trash\"></i></a>\n      </td>\n    </tr>\n  </tbody>\n</table>"
 
 /***/ }),
 
@@ -823,8 +823,9 @@ var UserService = (function () {
         this.userDeleteUrl = 'tapi/users/user-delete.json';
         this.userSaveUrl = 'tapi/users/user-add.json';
     }
-    UserService.prototype.getUsers = function () {
-        return this.rs.get(this.usersUrl)
+    UserService.prototype.getUsers = function (query) {
+        if (query === void 0) { query = ''; }
+        return this.rs.query(this.usersUrl, query)
             .map(function (r) { return r.json(); });
     };
     UserService.prototype.getUser = function (id) {
@@ -907,6 +908,14 @@ var RequestService = (function () {
     };
     RequestService.prototype.get = function (uri) {
         var url = this.configService.mapUrl(uri);
+        return this.http
+            .get(url, { headers: this.buildHeaders() })
+            .do(function (data) { return console.log(data); })
+            .catch(this.handleError);
+    };
+    RequestService.prototype.query = function (uri, q) {
+        if (q === void 0) { q = ''; }
+        var url = this.configService.mapUrl(uri) + '?q=' + encodeURI(q);
         return this.http
             .get(url, { headers: this.buildHeaders() })
             .do(function (data) { return console.log(data); })
@@ -1251,18 +1260,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var UserListComponent = (function () {
-    function UserListComponent(_userService) {
-        this._userService = _userService;
+    function UserListComponent(userService) {
+        this.userService = userService;
+        this.searchText = '';
     }
     UserListComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this._userService.getUsers()
+        this.userService.getUsers()
             .subscribe(function (users) { return _this.users = users; }, function (error) { return _this.errorMessage = error; });
     };
     UserListComponent.prototype.deleteUser = function (index) {
         var _this = this;
         var user = this.users[index];
-        this._userService.deleteUser(user.id).subscribe(function () { return _this.users.splice(index, 1); });
+        this.userService.deleteUser(user.id).subscribe(function () { return _this.users.splice(index, 1); });
+    };
+    UserListComponent.prototype.searchUsers = function () {
+        var _this = this;
+        console.log("UserListComponent.searchUsers", this.searchText);
+        this.userService.getUsers(this.searchText).subscribe(function (users) { return _this.users = users; }, function (error) { return _this.errorMessage = error; });
     };
     return UserListComponent;
 }());

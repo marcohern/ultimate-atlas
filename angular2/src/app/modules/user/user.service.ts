@@ -21,8 +21,8 @@ export class UserService {
     private rs:RequestService
   ) { }
 
-  public getUsers(): Observable<User[]> {
-    return this.rs.get(this.usersUrl)
+  public getUsers(query:string=''): Observable<User[]> {
+    return this.rs.query(this.usersUrl,query)
       .map((r:Response) => <User[]>r.json());
   }
 
