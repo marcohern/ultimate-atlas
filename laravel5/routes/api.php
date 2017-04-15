@@ -17,7 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });*/
 
-Route::post('/generate_password','AccountController@generate_password');
-Route::post('/login','AccountController@login');
-
 Route::resource('users', 'UserController');
+Route::post('/generate_password','AccountController@generate_password');
+Route::post('/check_token','AccountController@check_token');
+Route::post('/login','AccountController@login');

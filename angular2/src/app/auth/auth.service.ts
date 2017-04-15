@@ -7,6 +7,7 @@ import { LoginResponse } from './login-response'
 import { LogoutResponse } from './logout-response'
 import { SendResetPasswordEmailResponse } from './send-reset-password-email-response'
 import { SignupResponse } from './signup-response'
+import { CheckTokenResponse } from './check-token-response'
 import {RequestService} from'../request.service'
 import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/operator/catch'
@@ -37,6 +38,12 @@ export class AuthService {
       this.authenticated = true;
       this.user = <LoginUser> JSON.parse(userJson);
       this.rs.setToken(userJson);
+
+      this.rs.post('/api/check_token', {token:token})
+        .map((r:Response) => <CheckTokenResponse>r.json())
+        .subscribe(checkTokenResponse => {
+          
+        });
     }
   }
 

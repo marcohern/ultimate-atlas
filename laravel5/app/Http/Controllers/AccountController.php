@@ -36,6 +36,11 @@ class AccountController extends Controller
         ];
     }
 
+    public function check_token(Request $r) {
+        $token = $r->input('token');
+        return [1,2,3];
+    }
+
     public function login(Request $r) {
         $errormsg = "Username or password invalid.";
         $username = $r->input('username');

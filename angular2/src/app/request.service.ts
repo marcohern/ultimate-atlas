@@ -92,7 +92,7 @@ export class RequestService {
   public post(uri:string, body:any): Observable<any> {
     let url = this.configService.mapUrl(uri);
     return this.http
-      .get(url, { headers: this.buildHeaders() })
+      .post(url, body, { headers: this.buildHeaders() })
       .do(data => console.log(data))
       .catch(this.handleError);
   }
