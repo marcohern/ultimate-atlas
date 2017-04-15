@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\Exceptions\UAException;
+use App\Exceptions\NotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -23,8 +25,7 @@ class UserController extends Controller
         //
         $q = $r->input('q','');
         $lq = str_replace(" ", "%", $q);
-        $usersq= DB::table('users')
-            ->select(['id','username','lname','fname','role','email'])
+        $usersq= User::select(['id','username','lname','fname','email'])
             ->latest()->take(100);
         if (!empty($q)) {
             $usersq->where('username', 'LIKE',  "%$q%")
@@ -45,6 +46,17 @@ class UserController extends Controller
         
     }
 
+    private function genSalt($size) {
+        $tpl = "abcdefghijlkmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#&%()[]{}!?";
+        $n = strlen($tpl);
+        $r = "";
+        for ($i=0; $i<$size; $i++) {
+            $index = rand(0, $n-1);
+            $r .= $tpl[$index];
+        }
+        return $r;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -55,7 +67,7 @@ class UserController extends Controller
     {
         $salt = $this->genSalt(48);
         $pwd = Hash::make($salt.$r->input('username'));
-        $id = DB::table('users')->insertGetId([
+        $id = User::insertGetId([
             'username' => $r->input('username'),
             'fname' => $r->input('fname'),
             'lname' => $r->input('lname'),
@@ -69,9 +81,7 @@ class UserController extends Controller
 
             'created_at' => new \Datetime("now")
         ]);
-         $user = DB::table('users')
-            ->select('*')
-            ->where('id', $id)->first();
+         $user = User::where('id', $id)->first();
         return [
             'affected' => 1,
             'saved' => true,
@@ -88,9 +98,8 @@ class UserController extends Controller
     public function show($id)
     {
         
-        $user = DB::table('users')
-            ->select('*')
-            ->where('id', $id)->first();
+        $user = User::where('id', $id)->first();
+         if (!$user) throw new NotFoundException('User not found');
         return ['user' => $user];
     }
 
@@ -114,31 +123,19 @@ class UserController extends Controller
      */
     public function update(Request $r, $id)
     {
-        $affected = DB::update('UPDATE users SET '.
-            'username = ?, '.
-            'fname = ?, '.
-            'lname = ?, '.
-            'email = ?, '.
-            'gender = ?, '.
-            'birth = ?, '.
-            'role = ?, '.
-            'updated_at = ? '.
-            'WHERE id = ?', [
-                $r->input('username'),
-                $r->input('fname'),
-                $r->input('lname'),
-                $r->input('email'),
-                $r->input('gender'),
-                $r->input('birth'),
-                $r->input('role'),
-                new \Datetime("now"),
-                $id
+        $affected = User::where('id', $id)
+            ->update([
+                'username' => $r->input('username'),
+                'fname' => $r->input('fname'),
+                'lname' => $r->input('lname'),
+                'email' => $r->input('email'),
+                'gender' => $r->input('gender'),
+                'birth' => $r->input('birth'),
+                'role' => $r->input('role'),
+                'updated_at' => new \Datetime("now")
             ]
         );
-        $user = DB::table('users')
-            ->select('*')
-            ->where('id', $id)
-            ->first();
+        $user = User::where('id', $id)->first();
         return [
             'affected' => $affected,
             'saved' => true,
@@ -154,36 +151,16 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = DB::table('users')
-            ->select('*')
-            ->where('id', $id)
-            ->get();
-        $deleted = DB::delete('DELETE FROM users WHERE id = ?',[$id]);
+        $col = 'username';
+        if (is_numeric($id)) $col = 'id';
+        $user = User::where($col, $id)->first();
+        if (!$user) throw new NotFoundException('User not found');
+        $deleted = User::where($col, $id)->delete();
 
         return [
             'affected' => $deleted,
             'deleted' => true,
             'user' => $user
-        ];
-    }
-
-    private function genSalt($size) {
-        $tpl = "abcdefghijlkmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#&%()[]{}!?";
-        $n = strlen($tpl);
-        $r = "";
-        for ($i=0; $i<$size; $i++) {
-            $index = rand(0, $n-1);
-            $r .= $tpl[$index];
-        }
-        return $r;
-    }
-
-    public function pwd($pwd='') {
-        $salt = $this->genSalt(48);
-        return [
-            'password' => $pwd,
-            'salt' => $salt,
-            'hashed' => Hash::make($pwd.$salt)
         ];
     }
 }

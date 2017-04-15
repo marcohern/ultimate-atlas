@@ -5,6 +5,8 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Log;
+use App\Exceptions\UnauthorizedException;
 
 class Handler extends ExceptionHandler
 {
@@ -20,6 +22,9 @@ class Handler extends ExceptionHandler
         \Illuminate\Database\Eloquent\ModelNotFoundException::class,
         \Illuminate\Session\TokenMismatchException::class,
         \Illuminate\Validation\ValidationException::class,
+
+        \App\Exceptions\UAException::class,
+        \App\Exceptions\UnauthorizedException::class,
     ];
 
     /**
@@ -35,6 +40,24 @@ class Handler extends ExceptionHandler
         parent::report($exception);
     }
 
+    private function renderJsonError($request, Exception $exception, $includeData=false) {
+        $code = (empty($exception->getCode())) ? 400 : $exception->getCode();
+        $error = [
+            'type' => get_class($exception),
+            'message' => $exception->getMessage(),
+            'code' => $code,
+        ];
+        $req = [
+            'url' => $request->fullUrl(),
+            'method' => $request->method()
+        ];
+
+        if ($includeData) {
+            $req['data'] = $request->all();
+        }
+        return response()->json(['error' => $error, 'request' => $req], $code);
+    }
+
     /**
      * Render an exception into an HTTP response.
      *
@@ -44,6 +67,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($request->expectsJson()) {
+            if ($exception instanceof UnauthorizedException)
+                return $this->renderJsonError($request, $exception);
+
+            return $this->renderJsonError($request, $exception, true);
+        }
         return parent::render($request, $exception);
     }
 
