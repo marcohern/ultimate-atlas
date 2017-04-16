@@ -69,27 +69,32 @@ class UserController extends Controller
     {
         $salt = $this->genSalt(48);
         $pwd = Hash::make($salt.$r->input('username'));
-        
-        $id = User::insertGetId([
-            'username' => $r->input('username'),
-            'fname' => $r->input('fname'),
-            'lname' => $r->input('lname'),
-            'email' => $r->input('email'),
-            'gender' => $r->input('gender'),
-            'birth' => $r->input('birth'),
-            'role' => $r->input('role'),
+        try {
+            $id = User::insertGetId([
+                'username' => $r->input('username'),
+                'fname' => $r->input('fname'),
+                'lname' => $r->input('lname'),
+                'email' => $r->input('email'),
+                'gender' => $r->input('gender'),
+                'birth' => $r->input('birth'),
+                'role' => $r->input('role'),
 
-            'password' => $pwd,
-            'salt' => $salt,
+                'password' => $pwd,
+                'salt' => $salt,
 
-            'created_at' => new \Datetime("now")
-        ]);
-        $user = User::where('id', $id)->first();
-        return [
-            'affected' => 1,
-            'saved' => true,
-            'user' => $user
-        ];
+                'created_at' => new \Datetime("now")
+            ]);
+            $user = User::where('id', $id)->first();
+            return [
+                'affected' => 1,
+                'saved' => true,
+                'user' => $user
+            ];
+        } catch (PDOException $ex) {
+            throw new BadRequestException("Error storing user", 400, $ex);
+        } catch (Exception $ex) {
+            throw new BadRequestException("Error storing user", 400, $ex);
+        }
     }
 
     /**
@@ -146,6 +151,8 @@ class UserController extends Controller
                 'user' => $user
             ];
         } catch (PDOException $ex) {
+            throw new BadRequestException("Error updating user", 400, $ex);
+        } catch (Exception $ex) {
             throw new BadRequestException("Error updating user", 400, $ex);
         }
     }
