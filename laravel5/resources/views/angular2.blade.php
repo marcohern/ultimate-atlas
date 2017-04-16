@@ -7,9 +7,25 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="favicon.png">
+  <style type="text/css">
+    #first_loader {
+      position: absolute;
+      font-size: 3em;
+      text-align: center;
+      color:#000;
+      top:50%;
+      left:50%;
+      margin-top: -40px;
+      margin-left: -252px;
+    }
+  </style>
 </head>
 <body>
-  <ultimate-atlas>Loading...</ultimate-atlas>
+  <ultimate-atlas>
+    <div id="first_loader">
+      <img src="assets/loaders/spinning-circles.svg" alt="Loading" width="80" />Loading Ultimate Atlas
+    </div>
+  </ultimate-atlas>
   <script type="text/javascript" src="inline.bundle.js"></script>
   <script type="text/javascript" src="polyfills.bundle.js"></script>
   <script type="text/javascript" src="styles.bundle.js"></script>

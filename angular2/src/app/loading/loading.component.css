@@ -1,0 +1,19 @@
+.loader {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    opacity: 0.75;
+    z-index: 999;
+}
+
+.loader > div {
+    position: relative;
+    left:50%;
+    top:50%;
+    margin: -64px 0 0 -64px;
+}
+
+.loader > div > img {
+    width:128px;
+}
