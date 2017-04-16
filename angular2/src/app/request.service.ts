@@ -11,7 +11,7 @@ import 'rxjs/add/operator/map'
 export class RequestService {
 
   private token:string = null;
-  public calling:boolean = false;
+  private calling:boolean = false;
 
   constructor(
     private http:Http,

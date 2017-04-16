@@ -6,8 +6,9 @@ import { AuthService } from '../auth.service';
 
 import { SignupRequest } from '../signup-request';
 
+
 @Component({
-  selector: 'app-signup',
+  selector: 'ua-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
@@ -23,10 +24,14 @@ export class SignupComponent implements OnInit {
 
   constructor(private auth:AuthService, private router:Router) { }
 
-  ngOnInit() {
+  public ngOnInit() {
   }
 
-  signupUser() {
+  private onUsernameChange() {
+    console.log("SignupComponent.onUsernameChange");
+  }
+
+  private signupUser() {
     var request:SignupRequest = {
       username: this.username,
       password: this.password,

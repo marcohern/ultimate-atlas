@@ -17,8 +17,9 @@ import { ConfigService } from './config.service'
 import { LoginComponent } from './auth/login/login.component'
 import { RecoverPasswordComponent } from './auth/recover-password/recover-password.component'
 import { SignupComponent } from './auth/signup/signup.component'
-import { SignupDoneComponent } from './auth/signup-done/signup-done.component';
+import { SignupDoneComponent } from './auth/signup-done/signup-done.component'
 import { LoadingComponent } from './loading/loading.component'
+import { EqualValidator } from './validators/equal.validator'
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { LoadingComponent } from './loading/loading.component'
     RecoverPasswordComponent,
     SignupComponent,
     SignupDoneComponent,
-    LoadingComponent
+    LoadingComponent,
+    EqualValidator
   ],
   providers: [
     RequestService,

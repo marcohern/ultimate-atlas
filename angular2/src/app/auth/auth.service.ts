@@ -93,7 +93,7 @@ export class AuthService {
   }
 
   public signup(user:SignupRequest): Observable<SignupResponse> {
-    return this.rs.post(this.signupUrl, {})
+    return this.rs.post('/signup', user)
       .map((r:Response) => <SignupResponse>r.json());
   }
 

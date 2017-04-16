@@ -448,8 +448,13 @@ UserRoutes = __decorate([
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
+// The file contents for the current environment will overwrite these during build.
+// The build system defaults to the dev environment which uses `environment.ts`, but if you do
+// `ng build --env=prod` then `environment.prod.ts` will be used instead.
+// The list of which env maps to which file can be found in `.angular-cli.json`.
+// The file contents for the current environment will overwrite these during build.
 var environment = {
-    production: true
+    production: false
 };
 //# sourceMappingURL=environment.js.map
 
@@ -549,7 +554,7 @@ var AuthService = (function () {
             .map(function (r) { return r.json(); });
     };
     AuthService.prototype.signup = function (user) {
-        return this.rs.post(this.signupUrl, {})
+        return this.rs.post('/signup', user)
             .map(function (r) { return r.json(); });
     };
     AuthService.prototype.logout = function () {
@@ -768,7 +773,7 @@ module.exports = "<ua-loading></ua-loading>\n<ua-menu title=\"{{title}}\"></ua-m
 /***/ 187:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-sm-4\"></div>\n  <div class=\"col-sm-4\">\n    <div class=\"panel panel-default panel-primary\">\n      <div class=\"panel-heading\">Login</div>\n      <div class=\"panel-body\">\n        <div class=\"form-group\">\n          <label for=\"username\">Username</label>\n          <input type=\"text\" [(ngModel)]=\"username\" class=\"form-control\" value=\"\">\n        </div>\n        <div  class=\"form-group\">\n          <label for=\"password\">Password</label>\n          <input type=\"password\" [(ngModel)]=\"password\" class=\"form-control\" value=\"\">\n        </div>\n        <div class=\"form-group\" *ngIf=\"loginFailed\">\n          <p style=\"color:red\">Login failed, check credentials and try again</p>\n        </div>\n        <div class=\"form-group\">\n          <button class=\"btn btn-primary\" (click)=\"login()\">Login</button>\n        </div>\n        <div class=\"form-group\">\n          <a [routerLink]=\"['/recover-password']\">Forgot Password?</a>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"col-sm-4\"></div>\n</div>"
+module.exports = "<div class=\"row\">\n  <div class=\"col-sm-3\"></div>\n  <div class=\"col-sm-6\">\n    <div class=\"panel panel-default panel-primary\">\n      <div class=\"panel-heading\">Login</div>\n      <div class=\"panel-body\">\n        <div class=\"form-group\">\n          <label for=\"username\">Username</label>\n          <input type=\"text\" [(ngModel)]=\"username\" class=\"form-control\" value=\"\">\n        </div>\n        <div  class=\"form-group\">\n          <label for=\"password\">Password</label>\n          <input type=\"password\" [(ngModel)]=\"password\" class=\"form-control\" value=\"\">\n        </div>\n        <div class=\"form-group\" *ngIf=\"loginFailed\">\n          <p style=\"color:red\">Login failed, check credentials and try again</p>\n        </div>\n        <div class=\"form-group\">\n          <button class=\"btn btn-primary\" (click)=\"login()\">Login</button>\n        </div>\n        <div class=\"form-group\">\n          <a [routerLink]=\"['/recover-password']\">Forgot Password?</a>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"col-sm-3\"></div>\n</div>"
 
 /***/ }),
 
@@ -789,14 +794,14 @@ module.exports = "<p>\n  signup-done works!\n</p>\n"
 /***/ 190:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"form-group\">\n  <label for=\"username\">Username</label>\n  <input type=\"text\" class=\"form-control\" name=\"username\" [(ngModel)]=\"username\" />\n</div>\n<div class=\"form-group\">\n  <label for=\"password\">Password</label>\n  <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"password\" />\n</div><div class=\"form-group\">\n  <label for=\"confirmPassword\">Password</label>\n  <input type=\"password\" class=\"form-control\" name=\"confirmPassword\" [(ngModel)]=\"confirmPassword\" />\n</div>\n<div class=\"form-group\">\n  <label for=\"fname\">First Name</label>\n  <input type=\"text\" class=\"form-control\" name=\"fname\" [(ngModel)]=\"fname\" />\n</div>\n<div class=\"form-group\">\n  <label for=\"lname\">Last Name</label>\n  <input type=\"text\" class=\"form-control\" name=\"lname\" [(ngModel)]=\"lname\" />\n</div>\n<div class=\"form-group\">\n  <label for=\"email\">Email</label>\n  <input type=\"text\" class=\"form-control\" name=\"email\" [(ngModel)]=\"email\" />\n</div>\n<div class=\"form-group\">\n  <label for=\"role\">Role</label>\n  <select class=\"form-control\" name=\"role\" [(ngModel)]=\"role\">\n    <option value=\"\">-- Select Role --</option>\n    <option value=\"ADMIN\">Admin</option>\n    <option value=\"USER\">User</option>\n  </select>\n</div>\n<div class=\"form-group\">\n  <button (click)=\"signupUser()\" class=\"btn btn-primary\"><i class=\"glyphicon glyphicon-plus\"></i>Sign up!</button>\n</div>"
+module.exports = "<form (ngSubmit)=\"signupUser()\" #signupForm=\"ngForm\">\n  <div class=\"form-group\">\n    <label for=\"username\">Username</label>\n    <input type=\"text\" class=\"form-control\" name=\"username\" required\n      [(ngModel)]=\"username\"  #vusername=\"ngModel\" (change)=\"onUsernameChange()\" />\n    <div [hidden]=\"vusername.valid || vusername.pristine\" class=\"alert alert-danger\">\n      Username is required\n    </div>\n  </div>\n  <div class=\"form-group\">\n    <label for=\"password\">Password</label>\n    <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"password\" required />\n  </div><div class=\"form-group\">\n    <label for=\"confirmPassword\">Password</label>\n    <input type=\"password\" class=\"form-control\" name=\"confirmPassword\" [(ngModel)]=\"confirmPassword\" required/>\n  </div>\n  <div class=\"form-group\">\n    <label for=\"fname\">First Name</label>\n    <input type=\"text\" class=\"form-control\" name=\"fname\" [(ngModel)]=\"fname\" required/>\n  </div>\n  <div class=\"form-group\">\n    <label for=\"lname\">Last Name</label>\n    <input type=\"text\" class=\"form-control\" name=\"lname\" [(ngModel)]=\"lname\" required/>\n  </div>\n  <div class=\"form-group\">\n    <label for=\"email\">Email</label>\n    <input type=\"email\" class=\"form-control\" name=\"email\" [(ngModel)]=\"email\" required/>\n  </div>\n  <div class=\"form-group\">\n    <label for=\"role\">Role</label>\n    <select class=\"form-control\" name=\"role\" [(ngModel)]=\"role\" required>\n      <option value=\"\">-- Select Role --</option>\n      <option value=\"ADMIN\">Admin</option>\n      <option value=\"USER\">User</option>\n    </select>\n  </div>\n  <div class=\"form-group\">\n    <button type=\"submit\" class=\"btn btn-primary btn-lg\" [disabled]=\"!signupForm.form.valid\">\n      <i class=\"glyphicon glyphicon-plus\"></i>Sign up!\n    </button>\n    <button type=\"button\" class=\"btn btn-warning btn-lg\" (click)=\"signupForm.reset()\">\n      <i class=\"glyphicon glyphicon-plus\"></i>Reset\n    </button>\n  </div>\n</form>"
 
 /***/ }),
 
 /***/ 191:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"loader\" *ngIf=\"rs.calling\">\n  <div>\n    {{rs.isCalling()}}\n    <img src=\"assets/loaders/spinning-circles.svg\" alt=\"Loading\" />\n  </div>\n</div>"
+module.exports = "<div class=\"loader\" *ngIf=\"rs.isCalling()\">\n  <div>\n    <img src=\"assets/loaders/spinning-circles.svg\" alt=\"Loading\" />\n  </div>\n</div>"
 
 /***/ }),
 
@@ -1261,6 +1266,9 @@ var SignupComponent = (function () {
     }
     SignupComponent.prototype.ngOnInit = function () {
     };
+    SignupComponent.prototype.onUsernameChange = function () {
+        console.log("SignupComponent.onUsernameChange");
+    };
     SignupComponent.prototype.signupUser = function () {
         var _this = this;
         var request = {
@@ -1277,7 +1285,7 @@ var SignupComponent = (function () {
 }());
 SignupComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Y" /* Component */])({
-        selector: 'app-signup',
+        selector: 'ua-signup',
         template: __webpack_require__(190),
         styles: [__webpack_require__(178)]
     }),

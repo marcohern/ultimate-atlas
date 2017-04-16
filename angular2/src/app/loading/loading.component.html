@@ -1,6 +1,5 @@
-<div class="loader" *ngIf="rs.calling">
+<div class="loader" *ngIf="rs.isCalling()">
   <div>
-    {{rs.isCalling()}}
     <img src="assets/loaders/spinning-circles.svg" alt="Loading" />
   </div>
 </div>
