@@ -6,6 +6,7 @@ use App\Exceptions\UnauthorizedException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use App\User;
 
 class AccountController extends Controller
 {
@@ -46,13 +47,11 @@ class AccountController extends Controller
         $username = $r->input('username');
         $password = $r->input('password');
 
-        $user = DB::table('users')
-            ->select(['username','password','salt','email'])
+        $user = User::select(['username','password','salt','email'])
             ->where('username', $username)->first();
 
         if (!$user) {
-            $user = DB::table('users')
-                ->select(['username','password','salt','email'])
+            $user =User::select(['username','password','salt','email'])
                 ->where('email', $username)->first();
             
             if (!$user) {
