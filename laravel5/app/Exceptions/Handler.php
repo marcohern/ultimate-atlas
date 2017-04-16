@@ -40,12 +40,34 @@ class Handler extends ExceptionHandler
         parent::report($exception);
     }
 
+    private function exceptionToJson(Exception $ex=null) {
+        if (!is_null($ex)) {
+            $error = [
+                'type' => get_class($ex),
+                'message' => $ex->getMessage(),
+                'code' => $ex->getCode(),
+                'inner' => $this->exceptionToJson($ex->getPrevious())
+            ];
+            //$error['inner'] = $this->exceptionToJson($ex->getPrevious());
+            
+            return $error;
+        }
+        return null;
+    }
+
     private function renderJsonError($request, Exception $exception, $includeData=false) {
         $code = (empty($exception->getCode())) ? 400 : $exception->getCode();
+        $errCode=0;
+        if ($code < 0 && $code > 999) {
+            $errCode = $code;
+            $code = 400;
+        }
         $error = [
             'type' => get_class($exception),
             'message' => $exception->getMessage(),
             'code' => $code,
+            'errCode' => $errCode,
+            'inner' => $this->exceptionToJson($exception->getPrevious())
         ];
         $req = [
             'url' => $request->fullUrl(),

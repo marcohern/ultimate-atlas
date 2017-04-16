@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Exceptions\UAException;
 use App\Exceptions\NotFoundException;
+use App\Exceptions\BadRequestException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use PDOException;
 
 class UserController extends Controller
 {
@@ -67,6 +69,7 @@ class UserController extends Controller
     {
         $salt = $this->genSalt(48);
         $pwd = Hash::make($salt.$r->input('username'));
+        
         $id = User::insertGetId([
             'username' => $r->input('username'),
             'fname' => $r->input('fname'),
@@ -81,7 +84,7 @@ class UserController extends Controller
 
             'created_at' => new \Datetime("now")
         ]);
-         $user = User::where('id', $id)->first();
+        $user = User::where('id', $id)->first();
         return [
             'affected' => 1,
             'saved' => true,
@@ -123,24 +126,28 @@ class UserController extends Controller
      */
     public function update(Request $r, $id)
     {
-        $affected = User::where('id', $id)
-            ->update([
-                'username' => $r->input('username'),
-                'fname' => $r->input('fname'),
-                'lname' => $r->input('lname'),
-                'email' => $r->input('email'),
-                'gender' => $r->input('gender'),
-                'birth' => $r->input('birth'),
-                'role' => $r->input('role'),
-                'updated_at' => new \Datetime("now")
-            ]
-        );
-        $user = User::where('id', $id)->first();
-        return [
-            'affected' => $affected,
-            'saved' => true,
-            'user' => $user
-        ];
+        try {
+            $affected = User::where('id', $id)
+                ->update([
+                    'username' => $r->input('username'),
+                    'fname' => $r->input('fname'),
+                    'lname' => $r->input('lname'),
+                    'email' => $r->input('email'),
+                    'gender' => $r->input('gender'),
+                    'birth' => $r->input('birth'),
+                    'role' => $r->input('role'),
+                    'updated_at' => new \Datetime("now")
+                ]
+            );
+            $user = User::where('id', $id)->first();
+            return [
+                'affected' => $affected,
+                'saved' => true,
+                'user' => $user
+            ];
+        } catch (PDOException $ex) {
+            throw new BadRequestException("Error updating user", 400, $ex);
+        }
     }
 
     /**
