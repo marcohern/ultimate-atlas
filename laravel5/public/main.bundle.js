@@ -402,8 +402,13 @@ UserRoutes = __decorate([
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
+// The file contents for the current environment will overwrite these during build.
+// The build system defaults to the dev environment which uses `environment.ts`, but if you do
+// `ng build --env=prod` then `environment.prod.ts` will be used instead.
+// The list of which env maps to which file can be found in `.angular-cli.json`.
+// The file contents for the current environment will overwrite these during build.
 var environment = {
-    production: true
+    production: false
 };
 //# sourceMappingURL=environment.js.map
 
@@ -442,39 +447,61 @@ var AuthService = (function () {
     function AuthService(_http, rs) {
         this._http = _http;
         this.rs = rs;
-        this.loginUrl = 'tapi/login.json';
         this.logoutUrl = 'tapi/logout.json';
         this.resetPasswordUrl = 'tapi/reset-password.json';
         this.signupUrl = 'tapi/signup.json';
         this.userStg = 'com.marcohern.ultimate-atlas.auth.user';
-        this.tokenStg = 'com.marcohern.ultimate-atlas.auth.user';
+        this.tokenStg = 'com.marcohern.ultimate-atlas.auth.token';
         this.authenticated = false;
         this.user = null;
+        this.token = null;
     }
+    AuthService.prototype.clearToken = function () {
+        console.log("AuthService.clearToken");
+        this.rs.clearToken();
+        this.authenticated = false;
+        this.user = null;
+        this.token = null;
+        localStorage.removeItem(this.tokenStg);
+        localStorage.removeItem(this.userStg);
+    };
+    AuthService.prototype.setToken = function (loginResponse) {
+        console.log("AuthService.setToken", loginResponse);
+        this.user = loginResponse.user;
+        this.token = loginResponse.token;
+        this.authenticated = true;
+        this.rs.setToken(loginResponse.token.token);
+        localStorage.setItem(this.tokenStg, JSON.stringify(loginResponse.token));
+        localStorage.setItem(this.userStg, JSON.stringify(loginResponse.user));
+    };
+    AuthService.prototype.updateToken = function (token) {
+        console.log("AuthService.updateToken", token);
+        this.token = token;
+        this.authenticated = true;
+        this.rs.setToken(this.token.token);
+    };
     AuthService.prototype.start = function () {
+        var _this = this;
+        console.log("AuthService.start");
         var userJson = localStorage.getItem(this.userStg);
-        if (userJson) {
-            var token = localStorage.getItem(this.tokenStg);
-            this.authenticated = true;
+        var tokenJson = localStorage.getItem(this.tokenStg);
+        if (userJson && tokenJson) {
             this.user = JSON.parse(userJson);
-            this.rs.setToken(userJson);
-            this.rs.post('/api/check_token', { token: token })
-                .map(function (r) { return r.json(); })
-                .subscribe(function (checkTokenResponse) {
-            });
+            var localToken = JSON.parse(tokenJson);
+            this.rs.post('/check_token', { token: localToken.token })
+                .map(function (r) { return r.json().token; })
+                .subscribe(function (remoteToken) { return _this.updateToken(remoteToken); }, function (error) { return _this.clearToken(); });
+        }
+        else {
+            this.clearToken();
         }
     };
     AuthService.prototype.login = function (username, password) {
         var _this = this;
-        return this.rs.post(this.loginUrl, { username: username, password: password })
+        console.log("AuthService.login", username, password);
+        return this.rs.post('/login', { username: username, password: password })
             .map(function (r) { return r.json(); })
-            .do(function (loginResponse) {
-            _this.user = loginResponse.user;
-            _this.authenticated = true;
-            _this.rs.setToken(loginResponse.token);
-            localStorage.setItem(_this.tokenStg, loginResponse.token);
-            localStorage.setItem(_this.userStg, JSON.stringify(loginResponse.user));
-        });
+            .do(function (loginResponse) { return _this.setToken(loginResponse); });
     };
     AuthService.prototype.sendResetPasswordEmail = function (email) {
         return this.rs.post(this.resetPasswordUrl, {})
@@ -486,14 +513,10 @@ var AuthService = (function () {
     };
     AuthService.prototype.logout = function () {
         var _this = this;
-        return this.rs.post(this.logoutUrl, {})
+        return this.rs.post('/logout', {})
             .map(function (r) { return r.json(); })
             .do(function (response) {
-            _this.rs.clearToken();
-            _this.authenticated = false;
-            _this.user = null;
-            localStorage.removeItem(_this.tokenStg);
-            localStorage.removeItem(_this.userStg);
+            _this.clearToken();
         });
     };
     AuthService.prototype.isAuthenticated = function () {
@@ -686,7 +709,7 @@ module.exports = "<ua-menu title=\"{{title}}\"></ua-menu>\n<div class=\"containe
 /***/ 182:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-sm-4\"></div>\n  <div class=\"col-sm-4\">\n    <div class=\"panel panel-default panel-primary\">\n      <div class=\"panel-heading\">Login</div>\n      <div class=\"panel-body\">\n        <div class=\"form-group\">\n          <label for=\"username\">Username</label>\n          <input type=\"text\" [(ngModel)]=\"username\" class=\"form-control\" value=\"\">\n        </div>\n        <div  class=\"form-group\">\n          <label for=\"password\">Password</label>\n          <input type=\"password\" [(ngModel)]=\"password\" class=\"form-control\" value=\"\">\n        </div>\n        <div class=\"form-group\">\n          <button class=\"btn btn-primary\" (click)=\"login()\">Login</button>\n        </div>\n        <div class=\"form-group\">\n          <br/>\n          <a [routerLink]=\"['/recover-password']\">Forgot Password?</a>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"col-sm-4\"></div>\n</div>"
+module.exports = "<div class=\"row\">\n  <div class=\"col-sm-4\"></div>\n  <div class=\"col-sm-4\">\n    <div class=\"panel panel-default panel-primary\">\n      <div class=\"panel-heading\">Login</div>\n      <div class=\"panel-body\">\n        <div class=\"form-group\">\n          <label for=\"username\">Username</label>\n          <input type=\"text\" [(ngModel)]=\"username\" class=\"form-control\" value=\"\">\n        </div>\n        <div  class=\"form-group\">\n          <label for=\"password\">Password</label>\n          <input type=\"password\" [(ngModel)]=\"password\" class=\"form-control\" value=\"\">\n        </div>\n        <div class=\"form-group\" *ngIf=\"loginFailed\">\n          <p style=\"color:red\">Login failed, check credentials and try again</p>\n        </div>\n        <div class=\"form-group\">\n          <button class=\"btn btn-primary\" (click)=\"login()\">Login</button>\n        </div>\n        <div class=\"form-group\">\n          <a [routerLink]=\"['/recover-password']\">Forgot Password?</a>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"col-sm-4\"></div>\n</div>"
 
 /***/ }),
 
@@ -714,7 +737,7 @@ module.exports = "<div class=\"form-group\">\n  <label for=\"username\">Username
 /***/ 186:
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"container\">\n    <a class=\"navbar-brand\" [routerLink]=\"['/welcome']\">{{title}}</a>\n    <ul class=\"nav navbar-nav\" *ngIf=\"auth.isAuthenticated()\">\n      <li><a [routerLink]=\"['/users']\">Users</a></li>\n    </ul>\n    <ul class=\"nav navbar-nav navbar-right\">\n      <li *ngIf=\"!auth.isAuthenticated()\">\n        <p class=\"navbar-btn btn-group\">\n          <a class=\"btn btn-primary\" [routerLink]=\"['/login']\">Sign in</a>\n          <button class=\"btn btn-success\" [routerLink]=\"['/signup']\">Sign up</button>\n        </p>\n      </li>\n      <li *ngIf=\"auth.isAuthenticated()\">\n        <a>{{auth.getUser().username}}</a>\n      </li>\n      <li *ngIf=\"auth.isAuthenticated()\">\n        <p class=\"navbar-btn\">\n          <button class=\"btn btn-danger\" (click)=\"logout()\">Logout</button>\n        </p>\n      </li>\n    </ul>\n  </div>\n</nav>"
+module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"container\">\n    <a class=\"navbar-brand\" [routerLink]=\"['/welcome']\">{{title}}</a>\n    <ul class=\"nav navbar-nav\" *ngIf=\"auth.isAuthenticated()\">\n      <li><a [routerLink]=\"['/users']\">Users</a></li>\n    </ul>\n    <ul class=\"nav navbar-nav navbar-right\">\n      <li *ngIf=\"!auth.isAuthenticated()\">\n        <p class=\"navbar-btn btn-group\">\n          <a class=\"btn btn-primary\" [routerLink]=\"['/login']\">Sign in</a>\n          <button class=\"btn btn-success\" [routerLink]=\"['/signup']\">Sign up</button>\n        </p>\n      </li>\n      <li *ngIf=\"auth.isAuthenticated()\">\n        <a>{{auth.getUser().fname}} {{auth.getUser().lname}}</a>\n      </li>\n      <li *ngIf=\"auth.isAuthenticated()\">\n        <p class=\"navbar-btn\">\n          <button class=\"btn btn-danger\" (click)=\"logout()\">Logout</button>\n        </p>\n      </li>\n    </ul>\n  </div>\n</nav>"
 
 /***/ }),
 
@@ -774,7 +797,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var CONFIG = {
     name: "Ultimate Atlas",
-    prefix: ""
+    prefix: "/api"
 };
 var ConfigService = (function () {
     function ConfigService() {
@@ -818,9 +841,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var UserService = (function () {
     function UserService(rs) {
         this.rs = rs;
-        this.usersUrl = 'api/users';
-        this.userDeleteUrl = 'tapi/users/user-delete.json';
-        this.userSaveUrl = 'tapi/users/user-add.json';
+        this.usersUrl = '/users';
     }
     UserService.prototype.getUsers = function (query) {
         if (query === void 0) { query = ''; }
@@ -1002,12 +1023,16 @@ var LoginComponent = (function () {
     function LoginComponent(_auth, _router) {
         this._auth = _auth;
         this._router = _router;
+        this.username = '';
+        this.password = '';
+        this.loginFailed = false;
     }
     LoginComponent.prototype.ngOnInit = function () {
     };
     LoginComponent.prototype.login = function () {
         var _this = this;
-        this._auth.login(this.username, this.password).subscribe(function () { return _this._router.navigate(['/welcome']); });
+        this.loginFailed = false;
+        this._auth.login(this.username, this.password).subscribe(function () { return _this._router.navigate(['/welcome']); }, function (error) { return _this.loginFailed = true; });
     };
     return LoginComponent;
 }());

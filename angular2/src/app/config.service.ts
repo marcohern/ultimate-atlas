@@ -10,7 +10,7 @@ import {RequestService} from './request.service'
 
 const CONFIG:Config = {
   name:"Ultimate Atlas",
-  prefix:""
+  prefix:"/api"
 }
 
 @Injectable()

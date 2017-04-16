@@ -12,7 +12,7 @@
         </p>
       </li>
       <li *ngIf="auth.isAuthenticated()">
-        <a>{{auth.getUser().username}}</a>
+        <a>{{auth.getUser().fname}} {{auth.getUser().lname}}</a>
       </li>
       <li *ngIf="auth.isAuthenticated()">
         <p class="navbar-btn">

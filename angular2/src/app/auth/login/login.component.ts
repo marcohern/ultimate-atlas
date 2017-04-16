@@ -9,8 +9,9 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  username:string;
-  password:string;
+  username:string = '';
+  password:string = '';
+  loginFailed:boolean = false;
 
   constructor(private _auth:AuthService, private _router:Router) { }
 
@@ -19,8 +20,10 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.loginFailed = false;
     this._auth.login(this.username, this.password).subscribe(
-      () => this._router.navigate(['/welcome'])
+      () => this._router.navigate(['/welcome']),
+      error => this.loginFailed = true
     );
   }
 

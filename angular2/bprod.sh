@@ -1,8 +1,8 @@
 rm -rf ../laravel5/public/tapi
-rm -f ../laravel5/favicon.png
-rm -f ../laravel5/*.js
-rm -f ../laravel5/glyphicons-*
-rm -f ../laravel5/*.json
+rm -f ../laravel5/public/favicon.png
+rm -f ../laravel5/public/*.js
+rm -f ../laravel5/public/glyphicons-*
+rm -f ../laravel5/public/*.json
 
 ng build --env=prod
 

@@ -21,3 +21,4 @@ Route::resource('users', 'UserController');
 Route::post('/generate_password','AccountController@generate_password');
 Route::post('/check_token','AccountController@check_token');
 Route::post('/login','AccountController@login');
+Route::post('/logout','AccountController@logout');
