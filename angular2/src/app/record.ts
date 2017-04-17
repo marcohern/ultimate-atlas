@@ -3,6 +3,7 @@ export interface IRecord {
 
     created_at?:Date;
     updated_at?:Date;
+    status:string;
 }
 
 export class Record implements IRecord {
@@ -10,4 +11,5 @@ export class Record implements IRecord {
 
     created_at?:Date;
     updated_at?:Date;
+    status:string;
 }

@@ -8,7 +8,6 @@ export interface IUser {
     birth?:Date;
     gender?:string;
     role?:string;
-    status:string;
 }
 
 export class User extends Record implements IUser {
@@ -19,5 +18,4 @@ export class User extends Record implements IUser {
     birth?:Date;
     gender?:string;
     role?:string;
-    status:string = 'ok';
 }
