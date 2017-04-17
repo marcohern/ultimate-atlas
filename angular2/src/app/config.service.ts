@@ -48,6 +48,6 @@ export class ConfigService {
         qr += key + '=' + encodeURI(value);
       });
     }
-    return environment.request.prefix + url + this.getPostfix(method); 
+    return environment.request.prefix + url + this.getPostfix(method) + qr;
   } 
 }

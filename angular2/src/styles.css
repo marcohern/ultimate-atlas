@@ -7,3 +7,7 @@ form.validatable .ng-valid.required  {
 form.validatable .ng-invalid:not(form)  {
   border-left: 5px solid #a94442; /* red */
 }
+
+.ua-record-row {
+  margin-top: 0.5em;
+}

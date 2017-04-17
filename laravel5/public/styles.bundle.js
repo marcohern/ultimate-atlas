@@ -330,7 +330,7 @@ exports = module.exports = __webpack_require__(5)();
 
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\r\nform.validatable .ng-valid,\r\nform.validatable .ng-valid[required],\r\nform.validatable .ng-valid.required  {\r\n  border-left: 5px solid #42A948; /* green */\r\n}\r\nform.validatable .ng-invalid:not(form)  {\r\n  border-left: 5px solid #a94442; /* red */\r\n}", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\r\nform.validatable .ng-valid,\r\nform.validatable .ng-valid[required],\r\nform.validatable .ng-valid.required  {\r\n  border-left: 5px solid #42A948; /* green */\r\n}\r\nform.validatable .ng-invalid:not(form)  {\r\n  border-left: 5px solid #a94442; /* red */\r\n}\r\n\r\n.ua-record-row {\r\n  margin-top: 0.5em;\r\n}", ""]);
 
 // exports
 

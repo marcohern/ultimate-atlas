@@ -252,6 +252,7 @@ var AuthorizedGuard = (function () {
         this.router = router;
     }
     AuthorizedGuard.prototype.canActivate = function (next, state) {
+        console.log("AuthorizedGuard.canActivate");
         if (this.auth.isAuthenticated())
             return true;
         this.router.navigate(['/login']);
@@ -670,7 +671,7 @@ exports = module.exports = __webpack_require__(5)();
 
 
 // module
-exports.push([module.i, ".loader {\r\n    position: absolute;\r\n    width: 100%;\r\n    height: 100%;\r\n    background-color: #fff;\r\n    opacity: 0.75;\r\n    z-index: 999;\r\n}\r\n\r\n.loader > div {\r\n    position: relative;\r\n    left:50%;\r\n    top:50%;\r\n    margin: -64px 0 0 -64px;\r\n}\r\n\r\n.loader > div > img {\r\n    width:128px;\r\n}", ""]);
+exports.push([module.i, ".loader {\r\n    position: fixed;\r\n    width: 100%;\r\n    height: 100%;\r\n    background-color: #fff;\r\n    opacity: 0.75;\r\n    z-index: 999;\r\n}\r\n\r\n.loader > div {\r\n    position: relative;\r\n    left:50%;\r\n    top:50%;\r\n    margin: -64px 0 0 -64px;\r\n}\r\n\r\n.loader > div > img {\r\n    width:128px;\r\n}", ""]);
 
 // exports
 
@@ -811,7 +812,7 @@ module.exports = "<div>\r\n  <p>\r\n    <a class=\"btn btn-warning\" [routerLink
 /***/ 197:
 /***/ (function(module, exports) {
 
-module.exports = "<form (ngSubmit)=\"searchUsers()\">\r\n  <div class=\"input-group\">\r\n    <span class=\"input-group-btn\">\r\n      <a class=\"btn btn-primary\" [routerLink]=\"['/user/add']\">\r\n        <i class=\"glyphicon glyphicon-plus\"></i> Add\r\n      </a>\r\n    </span>\r\n    <input type=\"text\" class=\"form-control\" placeholder=\"Search...\" [(ngModel)]=\"searchText\" [ngModelOptions]=\"{standalone: true}\" />\r\n    <span class=\"input-group-btn\">\r\n      <button type=\"submit\" class=\"btn btn-primary\">\r\n        <i class=\"glyphicon glyphicon-search\"></i>\r\n      </button>\r\n    </span>\r\n  </div>\r\n</form>\r\n<table class=\"table\">\r\n  <thead>\r\n    <tr>\r\n      <th>Username</th>\r\n      <th>Name</th>\r\n      <th>Email</th>\r\n      <th>&nbsp;</th>\r\n    </tr>\r\n  </thead>\r\n  <tbody>\r\n    <tr *ngFor=\"let user of users; let i = index\">\r\n      <td>{{user.username}}</td>\r\n      <td>{{user.fname}} {{user.lname}}</td>\r\n      <td>{{user.email}}</td>\r\n      <td>\r\n        <a class=\"btn btn-primary\" [routerLink]=\"['/user', user.id]\"><i class=\"glyphicon glyphicon-pencil\"></i></a>\r\n        <a class=\"btn btn-danger\" (click)=\"deleteUser(i)\" ><i class=\"glyphicon glyphicon-trash\"></i></a>\r\n      </td>\r\n    </tr>\r\n  </tbody>\r\n</table>"
+module.exports = "<form (ngSubmit)=\"searchUsers()\">\r\n  <div class=\"input-group\">\r\n    <span class=\"input-group-btn\">\r\n      <a class=\"btn btn-primary\" [routerLink]=\"['/user/add']\">\r\n        <i class=\"glyphicon glyphicon-plus\"></i> Add\r\n      </a>\r\n    </span>\r\n    <input type=\"text\" class=\"form-control\" placeholder=\"Search...\" [(ngModel)]=\"searchText\" [ngModelOptions]=\"{standalone: true}\" />\r\n    <span class=\"input-group-btn\">\r\n      <button type=\"submit\" class=\"btn btn-primary\">\r\n        <i class=\"glyphicon glyphicon-search\"></i>\r\n      </button>\r\n    </span>\r\n  </div>\r\n</form>\r\n<div class=\"ua-record-row\" *ngFor=\"let user of users; let i = index\" [@record]>\r\n  <div class=\"btn-group btn-group-lg\" role=\"group\">\r\n    <a class=\"btn btn-danger\" (click)=\"deleteUser(i)\"><i class=\"glyphicon glyphicon-trash\"></i></a>\r\n    <div class=\"btn btn-primary\" [routerLink]=\"['/user', user.id]\">\r\n      <i class=\"glyphicon glyphicon-pencil\"></i>\r\n      <span>{{user.fname}} {{user.lname}} ({{user.username}})</span>\r\n      <span>{{user.email}}</span>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -1045,7 +1046,7 @@ var ConfigService = (function () {
                 qr += key + '=' + encodeURI(value);
             });
         }
-        return __WEBPACK_IMPORTED_MODULE_4__environments_environment__["a" /* environment */].request.prefix + url + this.getPostfix(method);
+        return __WEBPACK_IMPORTED_MODULE_4__environments_environment__["a" /* environment */].request.prefix + url + this.getPostfix(method) + qr;
     };
     return ConfigService;
 }());
@@ -1454,7 +1455,22 @@ UserListComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_3" /* Component */])({
         selector: 'ua-user-list',
         template: __webpack_require__(197),
-        styles: [__webpack_require__(185)]
+        styles: [__webpack_require__(185)],
+        animations: [
+            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* trigger */])('record', [
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* state */])('void', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* style */])({
+                    opacity: 0.0,
+                    height: 0,
+                    marginTop: 0,
+                    marginBottom: 0,
+                    paddingTop: 0,
+                    paddingBottom: 0
+                })),
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_17" /* transition */])('* => void', [
+                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_18" /* animate */])('500ms ease-out')
+                ])
+            ])
+        ]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__user_service__["a" /* UserService */]) === "function" && _a || Object])
 ], UserListComponent);

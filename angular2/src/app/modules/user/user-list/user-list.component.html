@@ -13,24 +13,13 @@
     </span>
   </div>
 </form>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Username</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>&nbsp;</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let user of users; let i = index">
-      <td>{{user.username}}</td>
-      <td>{{user.fname}} {{user.lname}}</td>
-      <td>{{user.email}}</td>
-      <td>
-        <a class="btn btn-primary" [routerLink]="['/user', user.id]"><i class="glyphicon glyphicon-pencil"></i></a>
-        <a class="btn btn-danger" (click)="deleteUser(i)" ><i class="glyphicon glyphicon-trash"></i></a>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="ua-record-row" *ngFor="let user of users; let i = index" [@record]>
+  <div class="btn-group btn-group-lg" role="group">
+    <a class="btn btn-danger" (click)="deleteUser(i)"><i class="glyphicon glyphicon-trash"></i></a>
+    <div class="btn btn-primary" [routerLink]="['/user', user.id]">
+      <i class="glyphicon glyphicon-pencil"></i>
+      <span>{{user.fname}} {{user.lname}} ({{user.username}})</span>
+      <span>{{user.email}}</span>
+    </div>
+  </div>
+</div>
