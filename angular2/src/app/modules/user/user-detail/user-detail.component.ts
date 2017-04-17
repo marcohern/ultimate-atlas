@@ -18,7 +18,8 @@ export class UserDetailComponent implements OnInit {
     email:'',
     role:'',
     gender:'X',
-    birth:null
+    birth:null,
+    status: 'ok'
   };
 
   errorMessage:string;

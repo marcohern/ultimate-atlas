@@ -5,6 +5,7 @@
     Remove-Item -Recurse -Force "$prefix/assets"
     Remove-Item -Force "$prefix/favicon.png"
     Remove-Item -Force "$prefix/*.js"
+    Remove-Item -Force "$prefix/*.map"
     Remove-Item -Force "$prefix/glyphicons-*"
     Remove-Item -Force "$prefix/*.json"
 }
@@ -17,6 +18,7 @@ function Publish-UABuildFiles() {
     Copy-Item -Recurse "$prefix/assets"  $dest
     Copy-Item "$prefix/favicon.png"  $dest
     Copy-Item "$prefix/*.js"  $dest
+    Copy-Item "$prefix/*.map"  $dest
     Copy-Item "$prefix/glyphicons-*"  $dest
     Copy-Item "$prefix/*.json"  $dest
 }

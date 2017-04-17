@@ -14,7 +14,7 @@ import { User } from '../user';
   styleUrls: ['./user-list.component.css'],
   animations: [
     trigger('record', [
-      state('void', style({
+      state('gone', style({
         opacity:0.0,
         height:0,
         marginTop: 0,
@@ -22,7 +22,7 @@ import { User } from '../user';
         paddingTop: 0,
         paddingBottom: 0
       })),
-      transition('* => void', [
+      transition('* => gone', [
         animate('500ms ease-out')
       ])
     ])
@@ -47,7 +47,10 @@ export class UserListComponent implements OnInit {
   deleteUser(index) {
     let user = this.users[index];
     this.userService.deleteUser(user.id).subscribe(
-      () => this.users.splice(index, 1)
+      () => {
+        //this.users.splice(index, 1);
+        this.users[index].status = "gone";
+      }
     );
   }
 

@@ -812,7 +812,7 @@ module.exports = "<div>\r\n  <p>\r\n    <a class=\"btn btn-warning\" [routerLink
 /***/ 197:
 /***/ (function(module, exports) {
 
-module.exports = "<form (ngSubmit)=\"searchUsers()\">\r\n  <div class=\"input-group\">\r\n    <span class=\"input-group-btn\">\r\n      <a class=\"btn btn-primary\" [routerLink]=\"['/user/add']\">\r\n        <i class=\"glyphicon glyphicon-plus\"></i> Add\r\n      </a>\r\n    </span>\r\n    <input type=\"text\" class=\"form-control\" placeholder=\"Search...\" [(ngModel)]=\"searchText\" [ngModelOptions]=\"{standalone: true}\" />\r\n    <span class=\"input-group-btn\">\r\n      <button type=\"submit\" class=\"btn btn-primary\">\r\n        <i class=\"glyphicon glyphicon-search\"></i>\r\n      </button>\r\n    </span>\r\n  </div>\r\n</form>\r\n<div class=\"ua-record-row\" *ngFor=\"let user of users; let i = index\" [@record]>\r\n  <div class=\"btn-group btn-group-lg\" role=\"group\">\r\n    <a class=\"btn btn-danger\" (click)=\"deleteUser(i)\"><i class=\"glyphicon glyphicon-trash\"></i></a>\r\n    <div class=\"btn btn-primary\" [routerLink]=\"['/user', user.id]\">\r\n      <i class=\"glyphicon glyphicon-pencil\"></i>\r\n      <span>{{user.fname}} {{user.lname}} ({{user.username}})</span>\r\n      <span>{{user.email}}</span>\r\n    </div>\r\n  </div>\r\n</div>"
+module.exports = "<form (ngSubmit)=\"searchUsers()\">\r\n  <div class=\"input-group\">\r\n    <span class=\"input-group-btn\">\r\n      <a class=\"btn btn-primary\" [routerLink]=\"['/user/add']\">\r\n        <i class=\"glyphicon glyphicon-plus\"></i> Add\r\n      </a>\r\n    </span>\r\n    <input type=\"text\" class=\"form-control\" placeholder=\"Search...\" [(ngModel)]=\"searchText\" [ngModelOptions]=\"{standalone: true}\" />\r\n    <span class=\"input-group-btn\">\r\n      <button type=\"submit\" class=\"btn btn-primary\">\r\n        <i class=\"glyphicon glyphicon-search\"></i>\r\n      </button>\r\n    </span>\r\n  </div>\r\n</form>\r\n<div class=\"ua-record-row\" *ngFor=\"let user of users; let i = index\" [@record]=\"user.status\">\r\n  <div class=\"btn-group btn-group-lg\" role=\"group\">\r\n    <a class=\"btn btn-danger\" (click)=\"deleteUser(i)\"><i class=\"glyphicon glyphicon-trash\"></i></a>\r\n    <div class=\"btn btn-primary\" [routerLink]=\"['/user', user.id]\">\r\n      <i class=\"glyphicon glyphicon-pencil\"></i>\r\n      <span>{{user.fname}} {{user.lname}} ({{user.username}})</span>\r\n      <span>{{user.email}}</span>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -1375,7 +1375,8 @@ var UserDetailComponent = (function () {
             email: '',
             role: '',
             gender: 'X',
-            birth: null
+            birth: null,
+            status: 'ok'
         };
     }
     UserDetailComponent.prototype.ngOnInit = function () {
@@ -1442,7 +1443,10 @@ var UserListComponent = (function () {
     UserListComponent.prototype.deleteUser = function (index) {
         var _this = this;
         var user = this.users[index];
-        this.userService.deleteUser(user.id).subscribe(function () { return _this.users.splice(index, 1); });
+        this.userService.deleteUser(user.id).subscribe(function () {
+            //this.users.splice(index, 1);
+            _this.users[index].status = "gone";
+        });
     };
     UserListComponent.prototype.searchUsers = function () {
         var _this = this;
@@ -1458,7 +1462,7 @@ UserListComponent = __decorate([
         styles: [__webpack_require__(185)],
         animations: [
             __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* trigger */])('record', [
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* state */])('void', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* style */])({
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* state */])('gone', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* style */])({
                     opacity: 0.0,
                     height: 0,
                     marginTop: 0,
@@ -1466,7 +1470,7 @@ UserListComponent = __decorate([
                     paddingTop: 0,
                     paddingBottom: 0
                 })),
-                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_17" /* transition */])('* => void', [
+                __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_17" /* transition */])('* => gone', [
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_18" /* animate */])('500ms ease-out')
                 ])
             ])

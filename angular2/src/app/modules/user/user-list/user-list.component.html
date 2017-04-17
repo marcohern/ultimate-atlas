@@ -13,7 +13,7 @@
     </span>
   </div>
 </form>
-<div class="ua-record-row" *ngFor="let user of users; let i = index" [@record]>
+<div class="ua-record-row" *ngFor="let user of users; let i = index" [@record]="user.status">
   <div class="btn-group btn-group-lg" role="group">
     <a class="btn btn-danger" (click)="deleteUser(i)"><i class="glyphicon glyphicon-trash"></i></a>
     <div class="btn btn-primary" [routerLink]="['/user', user.id]">
