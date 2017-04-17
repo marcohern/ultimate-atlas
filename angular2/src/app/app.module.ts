@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { NgModule } from '@angular/core'
-import { FormsModule } from '@angular/forms'
+import { FormsModule,ReactiveFormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'
 import { UserModule } from './modules/user/user.module'
 import { AppRoutes } from './app.routes'
@@ -19,13 +19,16 @@ import { RecoverPasswordComponent } from './auth/recover-password/recover-passwo
 import { SignupComponent } from './auth/signup/signup.component'
 import { SignupDoneComponent } from './auth/signup-done/signup-done.component'
 import { LoadingComponent } from './loading/loading.component'
+
 import { EqualValidator } from './validators/equal.validator'
+import { UsernameUniqueValidator } from './validators/username-unique.validator'
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
 
     UserModule,
@@ -40,12 +43,17 @@ import { EqualValidator } from './validators/equal.validator'
     SignupComponent,
     SignupDoneComponent,
     LoadingComponent,
-    EqualValidator
+
+    EqualValidator,
+
+    UsernameUniqueValidator
   ],
   providers: [
     RequestService,
     AuthService,
-    ConfigService
+    ConfigService,
+    EqualValidator,
+    UsernameUniqueValidator
   ],
   bootstrap: [AppComponent]
 })

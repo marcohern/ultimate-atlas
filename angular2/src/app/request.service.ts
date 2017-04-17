@@ -45,20 +45,20 @@ export class RequestService {
       .catch(error => this.handleError(error));
   }
 
-  public query(uri:string, q:string=''): Observable<any> {
+  public post(uri:string, body:any): Observable<any> {
     this.calling = true;
-    let url = this.configService.mapUrl(uri) + '?q=' + encodeURI(q);
+    let url = this.configService.mapUrl(uri);
     return this.http
-      .get(url, { headers: this.buildHeaders() })
+      .post(url, body, { headers: this.buildHeaders() })
       .do(data => this.do(data))
       .catch(error => this.handleError(error));
   }
 
-  public getItem(uri:string, id:number): Observable<any> {
+  public put(uri:string, body:any): Observable<any> {
     this.calling = true;
-    let url = this.configService.mapUrl(uri) + '/' + id;
+    let url = this.configService.mapUrl(uri);
     return this.http
-      .get(url, { headers: this.buildHeaders() })
+      .put(url, body, { headers: this.buildHeaders() })
       .do(data => this.do(data))
       .catch(error => this.handleError(error));
   }
@@ -73,25 +73,27 @@ export class RequestService {
   }
 
   public create(uri:string, body:any): Observable<any> {
-    this.calling = true;
     let url = this.configService.mapUrl(uri);
-    return this.http
-      .post(url, body, { headers: this.buildHeaders() })
-      .do(data => this.do(data))
-      .catch(error => this.handleError(error));
+    return this.post(url, body);
   }
 
   public update(uri:string, body:any, id:number): Observable<any> {
-    this.calling = true;
     let url = this.configService.mapUrl(uri) + '/' + id;
-    return this.http
-      .put(url, body, { headers: this.buildHeaders() })
-      .do(data => this.do(data))
-      .catch(error => this.handleError(error));
+    return this.put(url, body);
+  }
+
+  public query(uri:string, q:string=''): Observable<any> {
+    let url = this.configService.mapUrl(uri);
+    if (q) url += '?q=' + encodeURI(q);
+    return this.get(url);
+  }
+
+  public getItem(uri:string, id:number): Observable<any> {
+    let url = this.configService.mapUrl(uri) + '/' + id;
+    return this.get(url);
   }
 
   public save(uri:string, body:any): Observable<any> {
-    this.calling = true;
     if (body.id) {
       return this.update(uri, body, body.id);
     } else {
@@ -99,25 +101,12 @@ export class RequestService {
     }
   }
 
-  public post(uri:string, body:any): Observable<any> {
-    this.calling = true;
-    console.log("RequestService.post calling", this.calling);
-    let url = this.configService.mapUrl(uri);
-    return this.http
-      .post(url, body, { headers: this.buildHeaders() })
-      .do(data => this.do(data))
-      .catch(error => this.handleError(error));
-  }
-
   private handleError(error: Response) {
-    console.log("RequestService.handleError", error);
     this.calling = false;
-    console.log("RequestService.handleError calling", this.calling);
     return Observable.throw(error.json().error || 'Server error');
   }
 
   private do(data) {
-    console.log("RequestService.do", data);
     this.calling = false;
   }
 
