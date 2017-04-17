@@ -29,6 +29,7 @@
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
+        "remdev": "environments/environment.remdev.ts",
         "prod": "environments/environment.prod.ts"
       }
     }

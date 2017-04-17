@@ -22,7 +22,7 @@ send_build_files() {
 
 build_files_dev() {
     echo "\033[1;33mBuilding for DEV \033[0m"
-    ng build
+    ng build --env=remdev
 }
 build_files_prod() {
     echo "\033[1;34mBuilding for PROD \033[0m"

@@ -1,4 +1,4 @@
-﻿function UA-DeleteBuildFiles() {
+﻿function Remove-UABuildFiles() {
     Write-Host "Deleting files in destination"
     $prefix = "..\laravel5\public"
     Remove-Item -Recurse -Force "$prefix/tapi"
@@ -9,7 +9,7 @@
     Remove-Item -Force "$prefix/*.json"
 }
 
-function UA-PublishBuildFiles() {
+function Publish-UABuildFiles() {
     Write-Host "Copying build files"
     $prefix = ".\dist"
     $dest = "..\laravel5\public"
@@ -21,12 +21,12 @@ function UA-PublishBuildFiles() {
     Copy-Item "$prefix/*.json"  $dest
 }
 
-function UA-BuildDev() {
+function Start-BuildDev() {
     Write-Host "Building for DEV"
-    ng build
+    ng build --env=remdev
 }
 
-function UA-BuildProd() {
+function Start-BuildProd() {
     Write-Host "Building for PROD"
     ng build --env=prod
 }

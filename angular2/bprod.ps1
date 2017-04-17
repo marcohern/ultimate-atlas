@@ -1,5 +1,5 @@
 ﻿. (".\functions.ps1")
 
-UA-DeleteBuildFiles
-UA-BuildProd
-UA-PublishBuildFiles
+Remove-UABuildFiles
+Start-BuildProd
+Publish-UABuildFiles
