@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http'
-import { ConfigService } from './config.service'
-import { Config } from './config'
+import { ConfigService, EthnicMethod } from './config.service'
 import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/operator/catch'
 import 'rxjs/add/operator/do'
@@ -15,7 +14,7 @@ export class RequestService {
 
   constructor(
     private http:Http,
-    private configService:ConfigService
+    private cs:ConfigService
   ) { 
     console.log("RequestService.constructor");
   }
@@ -36,61 +35,76 @@ export class RequestService {
     this.token = null;
   }
 
-  public get(uri:string): Observable<any> {
+  private _get(url:string): Observable<any> {
     this.calling = true;
-    let url = this.configService.mapUrl(uri);
     return this.http
       .get(url, { headers: this.buildHeaders() })
       .do(data => this.do(data))
       .catch(error => this.handleError(error));
   }
 
-  public post(uri:string, body:any): Observable<any> {
+  private _post(url:string, body:any): Observable<any> {
     this.calling = true;
-    let url = this.configService.mapUrl(uri);
     return this.http
       .post(url, body, { headers: this.buildHeaders() })
       .do(data => this.do(data))
       .catch(error => this.handleError(error));
   }
 
-  public put(uri:string, body:any): Observable<any> {
+  private _put(url:string, body:any): Observable<any> {
     this.calling = true;
-    let url = this.configService.mapUrl(uri);
     return this.http
       .put(url, body, { headers: this.buildHeaders() })
       .do(data => this.do(data))
       .catch(error => this.handleError(error));
   }
 
-  public delete(uri:string, id:number): Observable<any> {
+  private _delete(url:string): Observable<any> {
     this.calling = true;
-    let url = this.configService.mapUrl(uri) + '/' + id;
     return this.http
       .delete(url, { headers: this.buildHeaders() })
       .do(data => this.do(data))
       .catch(error => this.handleError(error));
   }
 
-  public create(uri:string, body:any): Observable<any> {
-    let url = this.configService.mapUrl(uri);
-    return this.post(url, body);
+  public get(uri:string, id:number): Observable<any> {
+    let url = this.cs.mapUrl(uri, EthnicMethod.Get, id, new Map<string, any>());
+    return this._get(url);
   }
 
-  public update(uri:string, body:any, id:number): Observable<any> {
-    let url = this.configService.mapUrl(uri) + '/' + id;
-    return this.put(url, body);
+  public post(uri:string, body:any): Observable<any> {
+    let url = this.cs.mapUrl(uri, EthnicMethod.Post, null, new Map<string, any>());
+    if (this.cs.get().request.mock)
+      return this._get(url);
+    return this._post(url, body);
   }
 
   public query(uri:string, q:string=''): Observable<any> {
-    let url = this.configService.mapUrl(uri);
-    if (q) url += '?q=' + encodeURI(q);
-    return this.get(url);
+    let url = this.cs.mapUrl(uri, EthnicMethod.Query, null, new Map<string, any>([
+      ['q', [q]]
+    ]));
+    return this._get(url);
   }
 
-  public getItem(uri:string, id:number): Observable<any> {
-    let url = this.configService.mapUrl(uri) + '/' + id;
-    return this.get(url);
+  public create(uri:string, body:any): Observable<any> {
+    let url = this.cs.mapUrl(uri, EthnicMethod.Create, null, new Map<string, any>());
+    if (this.cs.get().request.mock)
+      return this._get(url);
+    return this._post(url, body);
+  }
+
+  public update(uri:string, body:any, id:number): Observable<any> {
+    let url = this.cs.mapUrl(uri, EthnicMethod.Update, id, new Map<string, any>());
+    if (this.cs.get().request.mock)
+      return this._get(url);
+    return this._put(url, body);
+  }
+
+  public delete(uri:string, id:number): Observable<any> {
+    let url = this.cs.mapUrl(uri, EthnicMethod.Delete, id, new Map<string, any>());
+    if (this.cs.get().request.mock)
+      return this._get(url);
+    return this._delete(url);
   }
 
   public save(uri:string, body:any): Observable<any> {

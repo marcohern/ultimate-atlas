@@ -25,7 +25,7 @@ export class UserService {
   }
 
   public getUser(id: number): Observable<User> {
-    return this.rs.getItem(this.usersUrl, id)
+    return this.rs.get(this.usersUrl, id)
       .map((r:Response) => <User>r.json().user);
   }
 

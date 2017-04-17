@@ -1,6 +1,6 @@
 webpackJsonp([1,4],{
 
-/***/ 104:
+/***/ 105:
 /***/ (function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -9,20 +9,20 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 104;
+webpackEmptyContext.id = 105;
 
 
 /***/ }),
 
-/***/ 105:
+/***/ 106:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(77);
 
 
 
@@ -35,7 +35,7 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dyna
 
 /***/ }),
 
-/***/ 114:
+/***/ 115:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -82,20 +82,20 @@ var _a, _b;
 
 /***/ }),
 
-/***/ 115:
+/***/ 116:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_animations__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_animations__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_user_user_module__ = __webpack_require__(120);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_routes__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_user_user_module__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_routes__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__welcome_welcome_component__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__menu_menu_component__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__menu_menu_component__ = __webpack_require__(120);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__auth_auth_service__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__request_service__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__config_service__ = __webpack_require__(39);
@@ -103,7 +103,7 @@ var _a, _b;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__auth_recover_password_recover_password_component__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__auth_signup_signup_component__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__auth_signup_done_signup_done_component__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__loading_loading_component__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__loading_loading_component__ = __webpack_require__(119);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__validators_equal_validator__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__validators_username_unique_validator__ = __webpack_require__(75);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
@@ -176,7 +176,7 @@ AppModule = __decorate([
 
 /***/ }),
 
-/***/ 116:
+/***/ 117:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -226,7 +226,7 @@ AppRoutes = __decorate([
 
 /***/ }),
 
-/***/ 117:
+/***/ 118:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -269,7 +269,7 @@ var _a, _b;
 
 /***/ }),
 
-/***/ 118:
+/***/ 119:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -309,7 +309,7 @@ var _a;
 
 /***/ }),
 
-/***/ 119:
+/***/ 120:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -363,14 +363,14 @@ var _a, _b;
 
 /***/ }),
 
-/***/ 120:
+/***/ 121:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_routes__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_routes__ = __webpack_require__(122);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__user_list_user_list_component__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__user_detail_user_detail_component__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__user_service__ = __webpack_require__(40);
@@ -409,13 +409,13 @@ UserModule = __decorate([
 
 /***/ }),
 
-/***/ 121:
+/***/ 122:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_authorized_guard__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_authorized_guard__ = __webpack_require__(118);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_list_user_list_component__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__user_detail_user_detail_component__ = __webpack_require__(72);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserRoutes; });
@@ -452,23 +452,6 @@ UserRoutes = __decorate([
 
 /***/ }),
 
-/***/ 122:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
-// The file contents for the current environment will overwrite these during build.
-// The build system defaults to the dev environment which uses `environment.ts`, but if you do
-// `ng build --env=prod` then `environment.prod.ts` will be used instead.
-// The list of which env maps to which file can be found in `.angular-cli.json`.
-// The file contents for the current environment will overwrite these during build.
-var environment = {
-    production: false
-};
-//# sourceMappingURL=environment.js.map
-
-/***/ }),
-
 /***/ 14:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -502,9 +485,6 @@ var AuthService = (function () {
     function AuthService(_http, rs) {
         this._http = _http;
         this.rs = rs;
-        this.logoutUrl = 'tapi/logout.json';
-        this.resetPasswordUrl = 'tapi/reset-password.json';
-        this.signupUrl = 'tapi/signup.json';
         this.userStg = 'com.marcohern.ultimate-atlas.auth.user';
         this.tokenStg = 'com.marcohern.ultimate-atlas.auth.token';
         this.authenticated = false;
@@ -559,7 +539,7 @@ var AuthService = (function () {
             .do(function (loginResponse) { return _this.setToken(loginResponse); });
     };
     AuthService.prototype.sendResetPasswordEmail = function (email) {
-        return this.rs.post(this.resetPasswordUrl, {})
+        return this.rs.post('/reset-password', {})
             .map(function (r) { return r.json(); });
     };
     AuthService.prototype.signup = function (user) {
@@ -803,7 +783,7 @@ module.exports = "<p>\n  signup-done works!\n</p>\n"
 /***/ 193:
 /***/ (function(module, exports) {
 
-module.exports = "<form [formGroup]=\"signupForm\" *ngIf=\"active\" (ngSubmit)=\"signupUser(signupForm.value)\">\r\n  <div class=\"form-group\">\r\n    <label>Username</label>\r\n    <input type=\"text\" class=\"form-control\" name=\"username\"\r\n      formControlName=\"username\"/>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label>Password</label>\r\n    <input type=\"password\" class=\"form-control\" name=\"password\"\r\n      formControlName=\"password\"/>\r\n  </div><div class=\"form-group\">\r\n    <label>Confirm Password</label>\r\n    <input type=\"password\" class=\"form-control\" name=\"confirmPassword\"\r\n      formControlName=\"confirmPassword\"/>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label>First Name</label>\r\n    <input type=\"text\" class=\"form-control\" name=\"fname\"\r\n      formControlName=\"fname\"/>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label >Last Name</label>\r\n    <input type=\"text\" class=\"form-control\" name=\"lname\"\r\n      formControlName=\"lname\"/>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label>Email</label>\r\n    <input type=\"email\" class=\"form-control\" name=\"email\" \r\n      formControlName=\"email\"/>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label>Role</label>\r\n    <select class=\"form-control\" name=\"role\"\r\n      formControlName=\"role\">\r\n      <option value=\"\">-- Select Role --</option>\r\n      <option value=\"ADMIN\">Admin</option>\r\n      <option value=\"USER\">User</option>\r\n    </select>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <button type=\"submit\" class=\"btn btn-primary btn-lg\">\r\n      <i class=\"glyphicon glyphicon-plus\"></i>Sign up!\r\n    </button>\r\n    <button type=\"reset\" class=\"btn btn-warning btn-lg\">\r\n      <i class=\"glyphicon glyphicon-plus\"></i>Reset\r\n    </button>\r\n  </div>\r\n</form>"
+module.exports = "<form [formGroup]=\"signupForm\" *ngIf=\"active\" (ngSubmit)=\"signupUser(signupForm.value)\" class=\"validatable\">\r\n  <div class=\"form-group\">\r\n    <label>Username</label>\r\n    <input type=\"text\" class=\"form-control\" name=\"username\"\r\n      formControlName=\"username\"/>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label>Password</label>\r\n    <input type=\"password\" class=\"form-control\" name=\"password\"\r\n      formControlName=\"password\"/>\r\n  </div><div class=\"form-group\">\r\n    <label>Confirm Password</label>\r\n    <input type=\"password\" class=\"form-control\" name=\"confirmPassword\"\r\n      formControlName=\"confirmPassword\"/>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label>First Name</label>\r\n    <input type=\"text\" class=\"form-control\" name=\"fname\"\r\n      formControlName=\"fname\"/>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label >Last Name</label>\r\n    <input type=\"text\" class=\"form-control\" name=\"lname\"\r\n      formControlName=\"lname\"/>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label>Email</label>\r\n    <input type=\"email\" class=\"form-control\" name=\"email\" \r\n      formControlName=\"email\"/>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label>Role</label>\r\n    <select class=\"form-control\" name=\"role\"\r\n      formControlName=\"role\">\r\n      <option value=\"\">-- Select Role --</option>\r\n      <option value=\"ADMIN\">Admin</option>\r\n      <option value=\"USER\">User</option>\r\n    </select>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <button type=\"submit\" class=\"btn btn-primary btn-lg\">\r\n      <i class=\"glyphicon glyphicon-plus\"></i>Sign up!\r\n    </button>\r\n    <button type=\"reset\" class=\"btn btn-warning btn-lg\">\r\n      <i class=\"glyphicon glyphicon-plus\"></i>Reset\r\n    </button>\r\n  </div>\r\n</form>"
 
 /***/ }),
 
@@ -845,7 +825,7 @@ module.exports = "<div class=\"jumbotron\">\n  <h1>Welcome</h1>\n</div>"
 /***/ 232:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(105);
+module.exports = __webpack_require__(106);
 
 
 /***/ }),
@@ -883,9 +863,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var RequestService = (function () {
-    function RequestService(http, configService) {
+    function RequestService(http, cs) {
         this.http = http;
-        this.configService = configService;
+        this.cs = cs;
         this.token = null;
         this.calling = false;
         console.log("RequestService.constructor");
@@ -904,60 +884,72 @@ var RequestService = (function () {
     RequestService.prototype.clearToken = function () {
         this.token = null;
     };
-    RequestService.prototype.get = function (uri) {
+    RequestService.prototype._get = function (url) {
         var _this = this;
         this.calling = true;
-        var url = this.configService.mapUrl(uri);
         return this.http
             .get(url, { headers: this.buildHeaders() })
             .do(function (data) { return _this.do(data); })
             .catch(function (error) { return _this.handleError(error); });
     };
-    RequestService.prototype.post = function (uri, body) {
+    RequestService.prototype._post = function (url, body) {
         var _this = this;
         this.calling = true;
-        var url = this.configService.mapUrl(uri);
         return this.http
             .post(url, body, { headers: this.buildHeaders() })
             .do(function (data) { return _this.do(data); })
             .catch(function (error) { return _this.handleError(error); });
     };
-    RequestService.prototype.put = function (uri, body) {
+    RequestService.prototype._put = function (url, body) {
         var _this = this;
         this.calling = true;
-        var url = this.configService.mapUrl(uri);
         return this.http
             .put(url, body, { headers: this.buildHeaders() })
             .do(function (data) { return _this.do(data); })
             .catch(function (error) { return _this.handleError(error); });
     };
-    RequestService.prototype.delete = function (uri, id) {
+    RequestService.prototype._delete = function (url) {
         var _this = this;
         this.calling = true;
-        var url = this.configService.mapUrl(uri) + '/' + id;
         return this.http
             .delete(url, { headers: this.buildHeaders() })
             .do(function (data) { return _this.do(data); })
             .catch(function (error) { return _this.handleError(error); });
     };
-    RequestService.prototype.create = function (uri, body) {
-        var url = this.configService.mapUrl(uri);
-        return this.post(url, body);
+    RequestService.prototype.get = function (uri, id) {
+        var url = this.cs.mapUrl(uri, __WEBPACK_IMPORTED_MODULE_2__config_service__["b" /* EthnicMethod */].Get, id, new Map());
+        return this._get(url);
     };
-    RequestService.prototype.update = function (uri, body, id) {
-        var url = this.configService.mapUrl(uri) + '/' + id;
-        return this.put(url, body);
+    RequestService.prototype.post = function (uri, body) {
+        var url = this.cs.mapUrl(uri, __WEBPACK_IMPORTED_MODULE_2__config_service__["b" /* EthnicMethod */].Post, null, new Map());
+        if (this.cs.get().request.mock)
+            return this._get(url);
+        return this._post(url, body);
     };
     RequestService.prototype.query = function (uri, q) {
         if (q === void 0) { q = ''; }
-        var url = this.configService.mapUrl(uri);
-        if (q)
-            url += '?q=' + encodeURI(q);
-        return this.get(url);
+        var url = this.cs.mapUrl(uri, __WEBPACK_IMPORTED_MODULE_2__config_service__["b" /* EthnicMethod */].Query, null, new Map([
+            ['q', [q]]
+        ]));
+        return this._get(url);
     };
-    RequestService.prototype.getItem = function (uri, id) {
-        var url = this.configService.mapUrl(uri) + '/' + id;
-        return this.get(url);
+    RequestService.prototype.create = function (uri, body) {
+        var url = this.cs.mapUrl(uri, __WEBPACK_IMPORTED_MODULE_2__config_service__["b" /* EthnicMethod */].Create, null, new Map());
+        if (this.cs.get().request.mock)
+            return this._get(url);
+        return this._post(url, body);
+    };
+    RequestService.prototype.update = function (uri, body, id) {
+        var url = this.cs.mapUrl(uri, __WEBPACK_IMPORTED_MODULE_2__config_service__["b" /* EthnicMethod */].Update, id, new Map());
+        if (this.cs.get().request.mock)
+            return this._get(url);
+        return this._put(url, body);
+    };
+    RequestService.prototype.delete = function (uri, id) {
+        var url = this.cs.mapUrl(uri, __WEBPACK_IMPORTED_MODULE_2__config_service__["b" /* EthnicMethod */].Delete, id, new Map());
+        if (this.cs.get().request.mock)
+            return this._get(url);
+        return this._delete(url);
     };
     RequestService.prototype.save = function (uri, body) {
         if (body.id) {
@@ -998,6 +990,8 @@ var _a, _b;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_do___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_do__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__environments_environment__ = __webpack_require__(77);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return EthnicMethod; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConfigService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1012,17 +1006,47 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var CONFIG = {
-    name: "Ultimate Atlas",
-    prefix: "/api"
-};
+
+var EthnicMethod;
+(function (EthnicMethod) {
+    EthnicMethod[EthnicMethod["None"] = 0] = "None";
+    EthnicMethod[EthnicMethod["Get"] = 1] = "Get";
+    EthnicMethod[EthnicMethod["Post"] = 2] = "Post";
+    EthnicMethod[EthnicMethod["Query"] = 3] = "Query";
+    EthnicMethod[EthnicMethod["Create"] = 4] = "Create";
+    EthnicMethod[EthnicMethod["Update"] = 5] = "Update";
+    EthnicMethod[EthnicMethod["Delete"] = 6] = "Delete";
+})(EthnicMethod || (EthnicMethod = {}));
 var ConfigService = (function () {
     function ConfigService() {
     }
-    ConfigService.prototype.get = function () { return CONFIG; };
-    ConfigService.prototype.getName = function () { return CONFIG.name; };
-    ConfigService.prototype.getPrefix = function () { return CONFIG.prefix; };
-    ConfigService.prototype.mapUrl = function (url) { return CONFIG.prefix + url; };
+    ConfigService.prototype.get = function () { return __WEBPACK_IMPORTED_MODULE_4__environments_environment__["a" /* environment */]; };
+    ConfigService.prototype.getPrefix = function () { return __WEBPACK_IMPORTED_MODULE_4__environments_environment__["a" /* environment */].request.prefix; };
+    ConfigService.prototype.getPostfix = function (method) {
+        switch (method) {
+            case EthnicMethod.Get: return this.get().request.postfix.get;
+            case EthnicMethod.Post: return this.get().request.postfix.post;
+            case EthnicMethod.Query: return this.get().request.postfix.query;
+            case EthnicMethod.Create: return this.get().request.postfix.create;
+            case EthnicMethod.Update: return this.get().request.postfix.update;
+            case EthnicMethod.Delete: return this.get().request.postfix.delete;
+            default: return '';
+        }
+    };
+    ConfigService.prototype.mapUrl = function (uri, method, id, query) {
+        if (method === void 0) { method = EthnicMethod.None; }
+        var url = uri;
+        var qr = '';
+        if (!this.get().request.mock && id)
+            url += '/' + id;
+        if (query) {
+            query.forEach(function (value, key) {
+                qr += (qr == '') ? '?' : '&';
+                qr += key + '=' + encodeURI(value);
+            });
+        }
+        return __WEBPACK_IMPORTED_MODULE_4__environments_environment__["a" /* environment */].request.prefix + url + this.getPostfix(method);
+    };
     return ConfigService;
 }());
 ConfigService = __decorate([
@@ -1066,7 +1090,7 @@ var UserService = (function () {
             .map(function (r) { return r.json(); });
     };
     UserService.prototype.getUser = function (id) {
-        return this.rs.getItem(this.usersUrl, id)
+        return this.rs.get(this.usersUrl, id)
             .map(function (r) { return r.json().user; });
     };
     UserService.prototype.deleteUser = function (id) {
@@ -1592,6 +1616,30 @@ WelcomeComponent = __decorate([
 ], WelcomeComponent);
 
 //# sourceMappingURL=welcome.component.js.map
+
+/***/ }),
+
+/***/ 77:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
+var environment = {
+    production: true,
+    request: {
+        prefix: '/api',
+        mock: false,
+        postfix: {
+            get: '',
+            post: '',
+            query: '',
+            create: '',
+            update: '',
+            delete: ''
+        }
+    }
+};
+//# sourceMappingURL=environment.js.map
 
 /***/ })
 

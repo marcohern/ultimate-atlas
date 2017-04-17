@@ -16,10 +16,6 @@ import 'rxjs/add/operator/map'
 
 @Injectable()
 export class AuthService {
-
-  private logoutUrl = 'tapi/logout.json';
-  private resetPasswordUrl = 'tapi/reset-password.json';
-  private signupUrl = 'tapi/signup.json';
   
   private userStg = 'com.marcohern.ultimate-atlas.auth.user';
   private tokenStg = 'com.marcohern.ultimate-atlas.auth.token';
@@ -88,7 +84,7 @@ export class AuthService {
   }
 
   public sendResetPasswordEmail(email:string):Observable<SendResetPasswordEmailResponse> {
-    return this.rs.post(this.resetPasswordUrl, {})
+    return this.rs.post('/reset-password', {})
       .map((r:Response) => <SendResetPasswordEmailResponse>r.json());
   }
 

@@ -1,4 +1,4 @@
-<form [formGroup]="signupForm" *ngIf="active" (ngSubmit)="signupUser(signupForm.value)">
+<form [formGroup]="signupForm" *ngIf="active" (ngSubmit)="signupUser(signupForm.value)" class="validatable">
   <div class="form-group">
     <label>Username</label>
     <input type="text" class="form-control" name="username"

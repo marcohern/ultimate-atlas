@@ -1,0 +1,16 @@
+{
+  "user": {
+    "username": "autologin",
+    "email": "jcarmack@mail.com",
+    "fname": "Auto",
+    "lname": "Login"
+  },
+  "token": {
+    "id": 9999,
+    "token": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567",
+    "expires": "2025-01-01 00:00:00",
+    "expired": "false",
+    "created_at": "2017-04-17 17:40:02",
+    "updated_at": null
+  }
+}

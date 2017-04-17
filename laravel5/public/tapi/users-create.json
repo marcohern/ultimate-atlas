@@ -1,0 +1,16 @@
+{
+  "affected": 1,
+  "saved": true,
+  "user": {
+    "id": 9999,
+    "username": "createuser",
+    "fname": "Create",
+    "lname": "User",
+    "gender": "M",
+    "birth": "1980-10-15 00:00:00",
+    "email": "createuser@mail.com",
+    "role": "ADMIN",
+    "created_at": "2017-04-17 17:54:48",
+    "updated_at": null
+  }
+}

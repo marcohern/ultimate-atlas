@@ -4,5 +4,17 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  request: {
+    prefix:'/tapi',
+    mock:true,
+    postfix: {
+      get: '-get.json',
+      post: '-post.json',
+      query: '-query.json',
+      create: '-create.json',
+      update: '-update.json',
+      delete: '-delete.json'
+    }
+  }
 };
