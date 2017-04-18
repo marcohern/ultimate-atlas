@@ -24,8 +24,8 @@ function Publish-UABuildFiles() {
 }
 
 function Start-BuildDev() {
-    Write-Host "Building for DEV"
-    ng build --env=remdev
+    Write-Host "Building for TEST"
+    ng build --env=test
 }
 
 function Start-BuildProd() {

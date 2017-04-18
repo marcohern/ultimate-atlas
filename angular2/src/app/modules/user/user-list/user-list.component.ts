@@ -1,32 +1,16 @@
-import { 
-  Component, OnInit,
-  trigger, state, style, transition, animate
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { UserService } from '../user.service';
 
 import { User } from '../user';
+import { recordAnimation } from '../../../animations';
 
 @Component({
   moduleId: module.id,
   selector: 'ua-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css'],
-  animations: [
-    trigger('record', [
-      state('gone', style({
-        opacity:0.0,
-        height:0,
-        marginTop: 0,
-        marginBottom: 0,
-        paddingTop: 0,
-        paddingBottom: 0
-      })),
-      transition('* => gone', [
-        animate('500ms ease-out')
-      ])
-    ])
-  ]
+  animations: [ recordAnimation ]
 })
 export class UserListComponent implements OnInit {
 

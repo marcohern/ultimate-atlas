@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
+import { ConfigService } from '../config.service';
 
 @Component({
   selector: 'ua-menu',
@@ -13,7 +14,8 @@ export class MenuComponent implements OnInit {
 
   constructor(
     private auth:AuthService,
-    private router:Router) { }
+    private router:Router,
+    private cs:ConfigService) { }
 
   ngOnInit() {
     

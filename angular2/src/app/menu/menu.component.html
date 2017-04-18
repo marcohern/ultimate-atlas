@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default">
   <div class="container">
-    <a class="navbar-brand" [routerLink]="['/welcome']">{{title}}</a>
+    <a class="navbar-brand" [routerLink]="['/welcome']">{{title}} <sub>{{cs.get().env}}</sub></a>
     <ul class="nav navbar-nav" *ngIf="auth.isAuthenticated()">
       <li><a [routerLink]="['/users']">Users</a></li>
     </ul>

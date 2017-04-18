@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  env:'prod',
   request: {
     prefix:'/api',
     mock:false,
