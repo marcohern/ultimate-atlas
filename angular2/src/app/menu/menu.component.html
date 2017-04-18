@@ -2,7 +2,8 @@
   <div class="container">
     <a class="navbar-brand" [routerLink]="['/welcome']">{{title}} <sub>{{cs.get().env}}</sub></a>
     <ul class="nav navbar-nav" *ngIf="auth.isAuthenticated()">
-      <li><a [routerLink]="['/users']">Users</a></li>
+      <li *ngFor="let item of menu">
+        <a [routerLink]="item.route">{{item.label}}</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li *ngIf="!auth.isAuthenticated()">
