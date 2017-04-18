@@ -35,83 +35,83 @@ export class RequestService {
     this.token = null;
   }
 
-  private _get(url:string): Observable<any> {
-    this.calling = true;
+  private _get(url:string, loadscreen:boolean = true): Observable<any> {
+    if (loadscreen) this.calling = true;
     return this.http
       .get(url, { headers: this.buildHeaders() })
       .do(data => this.do(data))
       .catch(error => this.handleError(error));
   }
 
-  private _post(url:string, body:any): Observable<any> {
-    this.calling = true;
+  private _post(url:string, body:any, loadscreen:boolean = true): Observable<any> {
+    if (loadscreen) this.calling = true;
     return this.http
       .post(url, body, { headers: this.buildHeaders() })
       .do(data => this.do(data))
       .catch(error => this.handleError(error));
   }
 
-  private _put(url:string, body:any): Observable<any> {
-    this.calling = true;
+  private _put(url:string, body:any, loadscreen:boolean = true): Observable<any> {
+    if (loadscreen) this.calling = true;
     return this.http
       .put(url, body, { headers: this.buildHeaders() })
       .do(data => this.do(data))
       .catch(error => this.handleError(error));
   }
 
-  private _delete(url:string): Observable<any> {
-    this.calling = true;
+  private _delete(url:string, loadscreen:boolean = true): Observable<any> {
+    if (loadscreen) this.calling = true;
     return this.http
       .delete(url, { headers: this.buildHeaders() })
       .do(data => this.do(data))
       .catch(error => this.handleError(error));
   }
 
-  public get(uri:string, id:number): Observable<any> {
+  public get(uri:string, id:number, loadscreen:boolean = true): Observable<any> {
     let url = this.cs.mapUrl(uri, EthnicMethod.Get, id, new Map<string, any>());
-    return this._get(url);
+    return this._get(url, loadscreen);
   }
 
-  public post(uri:string, body:any): Observable<any> {
+  public post(uri:string, body:any, loadscreen:boolean = true): Observable<any> {
     let url = this.cs.mapUrl(uri, EthnicMethod.Post, null, new Map<string, any>());
     if (this.cs.get().request.mock)
-      return this._get(url);
-    return this._post(url, body);
+      return this._get(url, loadscreen);
+    return this._post(url, body, loadscreen);
   }
 
-  public query(uri:string, q:string=''): Observable<any> {
+  public query(uri:string, q:string='', loadscreen:boolean = true): Observable<any> {
     let url = this.cs.mapUrl(uri, EthnicMethod.Query, null, new Map<string, any>([
       ['q', [q]]
     ]));
-    return this._get(url);
+    return this._get(url, loadscreen);
   }
 
-  public create(uri:string, body:any): Observable<any> {
+  public create(uri:string, body:any, loadscreen:boolean = true): Observable<any> {
     let url = this.cs.mapUrl(uri, EthnicMethod.Create, null, new Map<string, any>());
     if (this.cs.get().request.mock)
-      return this._get(url);
-    return this._post(url, body);
+      return this._get(url, loadscreen);
+    return this._post(url, body, loadscreen);
   }
 
-  public update(uri:string, body:any, id:number): Observable<any> {
+  public update(uri:string, body:any, id:number, loadscreen:boolean = true): Observable<any> {
     let url = this.cs.mapUrl(uri, EthnicMethod.Update, id, new Map<string, any>());
     if (this.cs.get().request.mock)
-      return this._get(url);
-    return this._put(url, body);
+      return this._get(url, loadscreen);
+    return this._put(url, body, loadscreen);
   }
 
-  public delete(uri:string, id:number): Observable<any> {
+  public delete(uri:string, id:number, loadscreen:boolean = true): Observable<any> {
     let url = this.cs.mapUrl(uri, EthnicMethod.Delete, id, new Map<string, any>());
     if (this.cs.get().request.mock)
-      return this._get(url);
-    return this._delete(url);
+      return this._get(url, loadscreen);
+    return this._delete(url, loadscreen);
   }
 
-  public save(uri:string, body:any): Observable<any> {
+  public save(uri:string, body:any, loadscreen:boolean = true): Observable<any> {
     if (body.id) {
-      return this.update(uri, body, body.id);
+      return this.update(uri, body, body.id, loadscreen);
     } else {
-      return this.create(uri, body);
+      return this.create(uri, body, loadscreen);
     }
   }
 

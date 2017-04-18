@@ -1,0 +1,7 @@
+.ua-icon-loader {
+    background:url(/assets/loaders/bars.svg);
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    margin: 8px;
+    margin-right: 0;
+}

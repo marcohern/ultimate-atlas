@@ -18,7 +18,40 @@ import { SignupRequest } from '../signup-request';
 export class SignupComponent implements OnInit {
 
   signupForm: FormGroup;
+  usernameForm:FormGroup;
   active:boolean = false;
+  errors = {
+    username: '',
+    usernameWorking:false,
+    usernameValid:false,
+    password:'',
+    confirmPassword:'',
+    fname:'',
+    lname:'',
+    email:''
+  }
+
+  errorMessages = {
+    password:{
+      required: 'Password is required.'
+    },
+    confirmPassword: {
+      mustBeEqualTo: 'Password confirmation does not match.'
+    },
+    fname: {
+      required: 'First Name is required.'
+    },
+    lname: {
+      required: 'Last Name is required.'
+    },
+    email: {
+      required: 'Email is required.',
+      email: 'Email must have valid format.'
+    },
+    role: {
+      required: 'Role is required.'
+    }
+  }
 
   constructor(
     private auth:AuthService,
@@ -28,31 +61,60 @@ export class SignupComponent implements OnInit {
   }
 
   public ngOnInit() {
-    //console.log("SignupComponent.ngOnInit");
-    this.signupForm = this.fb.group({
+
+    console.log("SignupComponent.ngOnInit");
+    this.usernameForm = this.fb.group({
       username: ['', Validators.required, isUsenameUnique],
+    });
+
+    this.signupForm = this.fb.group({
+      usernameGroup: this.usernameForm,
       password: ['', Validators.required],
       confirmPassword:  ['', [
         Validators.required,
-        function (c) { return areEqual(c, "password")}
+        (c) => { return areEqual(c, "password")}
       ]],
       fname: ['', Validators.required],
       lname: ['', Validators.required],
       email: ['', [Validators.required,Validators.email]],
-      role:  ['', Validators.required]
+      role:  ['ADMIN', Validators.required]
     });
 
-    this.signupForm.valueChanges
-      .subscribe(data => this.onValueChanged(data));
-      this.active=true;
+    this.signupForm.valueChanges.subscribe(data => this.onValueChanged(data));
+    //this.usernameForm.statusChanges.subscribe(data => this.onUsernameChange(data));
+    this.usernameForm.statusChanges.subscribe(status => this.onUsernameStatusChange(status));
+
+    this.active=true;
   }
 
+  private checkIfDisplayErrorMessage(field:string) {
+    this.errors[field] = '';
+    const control = this.signupForm.get(field);
+    if (control && control.dirty && !control.valid) {
+      const messages = this.errorMessages[field];
+      for (const key in control.errors) {
+        this.errors[field] += messages[key] + ' ';
+      }
+    }
+  } 
+
   public onValueChanged(data) {
+    this.checkIfDisplayErrorMessage('password');
+    this.checkIfDisplayErrorMessage('confirmPassword');
+    this.checkIfDisplayErrorMessage('fname');
+    this.checkIfDisplayErrorMessage('lname');
+    this.checkIfDisplayErrorMessage('email');
+    this.errors.username = '';
+    this.errors.usernameValid = false;
     //console.log("SignupComponent.onValueChanged",data);
   }
 
-  private onUsernameChange() {
-    console.log("SignupComponent.onUsernameChange");
+  private onUsernameStatusChange(status:string) {
+    if (status == 'INVALID') {
+      this.errors.username = 'Username is required and must be unique.';
+    } else if (status == 'VALID') {
+      this.errors.usernameValid = true;
+    }
   }
 
   private signupUser(value:any) {

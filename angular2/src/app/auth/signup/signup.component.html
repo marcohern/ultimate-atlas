@@ -1,48 +1,65 @@
-<form [formGroup]="signupForm" *ngIf="active" (ngSubmit)="signupUser(signupForm.value)" class="validatable">
-  <div class="form-group">
-    <label>Username</label>
-    <input type="text" class="form-control" name="username"
-      formControlName="username"/>
+<form novalidate [formGroup]="signupForm" *ngIf="active" (ngSubmit)="signupUser(signupForm.value)">
+  <div [formGroup]="usernameForm">
+    <div class="form-group has-feedback validatable">
+      <label>Username</label>
+      <input type="text" class="form-control" name="username" formControlName="username"/>
+      <span class="glyphicon glyphicon-remove form-control-feedback"
+        aria-hidden="true"
+        style="color:darkred"
+        *ngIf="errors.username"></span>
+      <span class="glyphicon glyphicon-ok form-control-feedback"
+        aria-hidden="true"
+        style="color:darkgreen"
+        *ngIf="errors.usernameValid"></span>
+      <div class="alert alert-danger" *ngIf="errors.username">
+        {{errors.username}}
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <label>Password</label>
-    <input type="password" class="form-control" name="password"
-      formControlName="password"/>
-  </div><div class="form-group">
-    <label>Confirm Password</label>
-    <input type="password" class="form-control" name="confirmPassword"
-      formControlName="confirmPassword"/>
-  </div>
-  <div class="form-group">
-    <label>First Name</label>
-    <input type="text" class="form-control" name="fname"
-      formControlName="fname"/>
-  </div>
-  <div class="form-group">
-    <label >Last Name</label>
-    <input type="text" class="form-control" name="lname"
-      formControlName="lname"/>
-  </div>
-  <div class="form-group">
-    <label>Email</label>
-    <input type="email" class="form-control" name="email" 
-      formControlName="email"/>
-  </div>
-  <div class="form-group">
-    <label>Role</label>
-    <select class="form-control" name="role"
-      formControlName="role">
-      <option value="">-- Select Role --</option>
-      <option value="ADMIN">Admin</option>
-      <option value="USER">User</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <button type="submit" class="btn btn-primary btn-lg">
-      <i class="glyphicon glyphicon-plus"></i>Sign up!
-    </button>
-    <button type="reset" class="btn btn-warning btn-lg">
-      <i class="glyphicon glyphicon-plus"></i>Reset
-    </button>
+  <div class="validatable">
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" class="form-control" name="password" formControlName="password"/>
+      <div class="alert alert-danger" *ngIf="errors.password">
+        {{errors.password}}
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Confirm Password</label>
+      <input type="password" class="form-control" name="confirmPassword" formControlName="confirmPassword"/>
+      <div class="alert alert-danger" *ngIf="errors.confirmPassword">
+        {{errors.confirmPassword}}
+      </div>
+    </div>
+    <div class="form-group">
+      <label>First Name</label>
+      <input type="text" class="form-control" name="fname" formControlName="fname"/>
+      <div class="alert alert-danger" *ngIf="errors.fname">
+        {{errors.fname}}
+      </div>
+    </div>
+    <div class="form-group">
+      <label >Last Name</label>
+      <input type="text" class="form-control" name="lname" formControlName="lname"/>
+      <div class="alert alert-danger" *ngIf="errors.lname">
+        {{errors.lname}}
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" class="form-control" name="email" formControlName="email"/>
+      <div class="alert alert-danger" *ngIf="errors.email">
+        {{errors.email}}
+      </div>
+    </div>
+    <input type="hidden" name="role" formControlName="role"/>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary btn-lg" [disabled]="!signupForm.valid">
+        <i class="glyphicon glyphicon-plus"></i>Sign up!
+      </button>
+      <button type="reset" class="btn btn-warning btn-lg">
+        <i class="glyphicon glyphicon-plus"></i>Reset
+      </button>
+    </div>
   </div>
 </form>
