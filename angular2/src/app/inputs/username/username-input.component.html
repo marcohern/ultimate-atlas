@@ -8,10 +8,10 @@
     <div class="alert alert-danger" *ngIf="error">
       {{errorMessage}}
     </div>
-    <div class="alert alert-info" *ngIf="searching">
+    <div class="alert alert-info" *ngIf="validating">
       Checking if username exists.
     </div>
-    <div class="alert" *ngIf="(!searching && !error)" style="visibility:hidden">
+    <div class="alert" *ngIf="(!validating && !error)" style="visibility:hidden">
       Placeholder alert.
     </div>
   </div>
