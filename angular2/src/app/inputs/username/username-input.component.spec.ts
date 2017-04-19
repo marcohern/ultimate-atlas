@@ -1,5 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { FormsModule,ReactiveFormsModule } from '@angular/forms'
+import { HttpModule } from '@angular/http'
+
+import { RequestService } from '../../request.service'
+import { ConfigService } from '../../config.service'
+import { ValidatorService } from '../validator.service'
+
 import { UsernameInput } from './username-input.component';
 
 describe('UsernameInputComponent', () => {
@@ -8,7 +15,9 @@ describe('UsernameInputComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UsernameInput ]
+      imports: [ HttpModule, FormsModule, ReactiveFormsModule ],
+      declarations: [ UsernameInput ],
+      providers:[RequestService,ConfigService,ValidatorService]
     })
     .compileComponents();
   }));
