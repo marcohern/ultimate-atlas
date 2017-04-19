@@ -19,6 +19,8 @@ import { RequestService } from '../request.service'
 import { ConfigService } from '../config.service'
 import { AuthService } from '../auth/auth.service'
 
+import { By } from '@angular/platform-browser';
+
 import { MenuComponent } from './menu.component';
 
 describe('MenuComponent', () => {
@@ -47,5 +49,14 @@ describe('MenuComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have set title', () => {
+    component.title = "The Title";
+    fixture.detectChanges();
+    let de = fixture.debugElement.query(By.css('a.navbar-brand > span'));
+    let el = de.nativeElement;
+    
+    expect(el.textContent).toContain("The Title");
   });
 });

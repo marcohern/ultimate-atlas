@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { By } from '@angular/platform-browser';
 import { WelcomeComponent } from './welcome.component';
 
 describe('WelcomeComponent', () => {
@@ -21,5 +22,11 @@ describe('WelcomeComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have Welcome message', () => {
+    let de = fixture.debugElement.query(By.css('h1'));
+    let el = de.nativeElement;
+    expect(el.textContent).toContain("Welcome");
   });
 });
