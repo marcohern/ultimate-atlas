@@ -20,5 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::resource('users', 'UserController');
 Route::post('/generate_password','AccountController@generate_password');
 Route::post('/check_token','AccountController@check_token');
+Route::post('/check_username','ValidatorController@check_username');
+Route::post('/check_user_email','ValidatorController@check_user_email');
 Route::post('/login','AccountController@login');
 Route::post('/logout','AccountController@logout');

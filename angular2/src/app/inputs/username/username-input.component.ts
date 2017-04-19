@@ -1,29 +1,28 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-
 import { FormGroup, FormControl, FormBuilder, AbstractControl, Validators } from '@angular/forms'
-import { UsernameInputService } from './username-input.service'
-
+import { ValidatorService } from '../validator.service'
 import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/operator/first'
 
 var usernameInputIsUniqueTimeout:any;
 function usernameInputIsUnique(usernameInput:UsernameInput, c:AbstractControl, timeout:number): Observable<{[key : string] : any}>
 {
-  usernameInput.searching=true;
+  usernameInput.validating=true;
   return new Observable(observer => {
     clearTimeout(usernameInputIsUniqueTimeout);
     usernameInputIsUniqueTimeout = setTimeout(() => {
       
-      usernameInput.getUis().check(c.value)
+      usernameInput.getValidator().checkUsername(c.value)
         .subscribe(data => {
           
-          usernameInput.searching=false;
+          usernameInput.validating=false;
           if (data.usernameExists) observer.next({usernameUnique:false});
           else observer.next(null);
         },
         error => {
-          c.enable();
-          usernameInput.searching=false;
+          console.log("errir", error);
+          usernameInput.validating=false;
+          observer.next({usernameUniqueError:true});
         });
     }, timeout);
   });
@@ -36,8 +35,6 @@ function usernameInputIsUnique(usernameInput:UsernameInput, c:AbstractControl, t
 })
 export class UsernameInput implements OnInit {
 
-
-  
   @Output()
   groupCreated = new EventEmitter();
 
@@ -51,15 +48,18 @@ export class UsernameInput implements OnInit {
 
   success:boolean=false;
   error:boolean=false;
-  searching:boolean=false;
+  validating:boolean=false;
   
 
   messages = {
-    required: 'Usename is required',
-    usernameUnique: 'Username must be unique'
+    required: 'Usename is required.',
+    usernameUnique: 'Username must be unique.',
+    usernameUniqueError: 'An error has ocurred.'
   };
   
-  constructor(private fb:FormBuilder, private uis:UsernameInputService) { }
+  constructor(private fb:FormBuilder, private vs:ValidatorService) { 
+    
+  }
 
   public ngOnInit() {
     
@@ -75,7 +75,7 @@ export class UsernameInput implements OnInit {
     this.updateValidation("");
   }
 
-  public getUis() { return this.uis; }
+  public getValidator():ValidatorService { return this.vs; }
 
   private usernameInputIsUnique(c:AbstractControl): Observable<{[key : string] : any}> {
     return usernameInputIsUnique(this, c, 2000).first();

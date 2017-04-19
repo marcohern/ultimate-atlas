@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('angular2');
 });
+Route::get('/test', function () {
+    return view('angular2');
+});
 Route::get('/welcome', function () {
     return view('angular2');
 });

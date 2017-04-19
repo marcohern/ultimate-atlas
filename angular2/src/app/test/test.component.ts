@@ -23,4 +23,11 @@ export class TestComponent implements OnInit {
     console.log("TestComponent.onUsernameControlCreated",usernameInputControl )
   }
 
+  onUserEmailGroupCreated(userEmailInputGroup:FormControl) {
+    console.log("TestComponent.onUEmailGroupCreated",userEmailInputGroup )
+  }
+  onUserEmailControlCreated(userEmailInputControl:FormControl) {
+    console.log("TestComponent.onUserEmailControlCreated",userEmailInputControl )
+  }
+
 }

@@ -11,3 +11,14 @@
 .ua-record-row {
   margin-top: 0.5em;
 }
+
+.glyphicon.ua-icon {
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    margin: 8px;
+    margin-right: 0;
+}
+
+.glyphicon.ua-icon.ua-icon-bars {
+    background-image:url(/assets/loaders/bars.svg);
+}

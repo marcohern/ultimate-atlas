@@ -1,7 +1,7 @@
-<div [formGroup]="usernameInputGroup">
-  <div class="form-group has-feedback" [ngClass]="usernameClass">
-    <label>Username</label>
-    <input type="text" class="form-control" name="username" formControlName="username" />
+<div [formGroup]="userEmailInputGroup">
+  <div class="form-group has-feedback" [ngClass]="userEmailClass">
+    <label>Email</label>
+    <input type="text" class="form-control" name="email" formControlName="email" />
     <span *ngIf="error" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
     <span *ngIf="success" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
     <span *ngIf="validating" class="glyphicon ua-icon ua-icon-bars form-control-feedback" aria-hidden="true"></span>
@@ -9,9 +9,9 @@
       {{errorMessage}}
     </div>
     <div class="alert alert-info" *ngIf="searching">
-      Checking if username exists.
+      Checking if email is in use.
     </div>
-    <div class="alert" *ngIf="(!searching && !error)" style="visibility:hidden">
+    <div class="alert" *ngIf="(!validating && !error)" style="visibility:hidden">
       Placeholder alert.
     </div>
   </div>
