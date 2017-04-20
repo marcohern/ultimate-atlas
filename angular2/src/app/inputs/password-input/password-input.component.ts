@@ -66,11 +66,11 @@ export class PasswordInput implements OnInit {
 
     this.field.valueChanges.subscribe(data => this.onValueChange(data));
     this.confirmed.valueChanges.subscribe(data => this.onConfirmedChange(data));
-
   }
 
   private onValueChange(data) {
     this.checkIfDisplayErrorMessage('value');
+    this.confirmed.updateValueAndValidity();
   }
 
   private onConfirmedChange(data) {
@@ -99,6 +99,19 @@ export class PasswordInput implements OnInit {
     if (!this.group.get('value')) return null;
     let field1 = c.value;
     let field2 = this.group.get('value').value;
+    if (field1 == field2) {
+      return null;
+    } else {
+      return {unconfirmed:true};
+    }
+  }
+
+  private areEqualInverse(c:AbstractControl): { [key: string]: any } {
+    if (!c) return null;
+    if (!this.group) return null;
+    if (!this.group.get('confirmed')) return null;
+    let field1 = c.value;
+    let field2 = this.group.get('confirmed').value;
     if (field1 == field2) {
       return null;
     } else {
