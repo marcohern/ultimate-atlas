@@ -1,13 +1,14 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, AbstractControl, Validators } from '@angular/forms'
 import { ValidatorService } from './validator.service'
+import { Observable } from 'rxjs/Observable'
+import 'rxjs/add/operator/first'
 
 export interface IValidatableInput {
     
     success:boolean;
     error:boolean;
     validating:boolean;
-
 
     messages:any;
     errorMessage:string;
@@ -16,19 +17,28 @@ export interface IValidatableInput {
     control:FormControl;
     group:FormGroup;
 
-    getValidator():ValidatorService;
-
 }
 
-export class ValidatableInput {
-    private vs:ValidatorService;
+export abstract class ValidatableInput {
     private fb:FormBuilder;
 
-    @Output() groupCreated = new EventEmitter();
+    @Input() name:string = 'value';
+    @Input() label:string = '';
+    @Input() default:string = '';
 
-    @Output() controlCreated = new EventEmitter();
+    @Input("http-error-msg") httpErrorMsg :string = 'An error has occurred';
+    @Input("validating-msg") validatingMsg:string = 'Validating...';
+    @Input("required-msg")   requiredMsg  :string = '';
+
+    @Output()
+    groupCreated:EventEmitter<FormGroup> = new EventEmitter();
+
+    @Output()
+    controlCreated:EventEmitter<FormControl> = new EventEmitter();
 
     private callback:any;
+    private timeout:number = 2000;
+    private timeoutCallback:any;
 
     success:boolean;
     error:boolean;
@@ -38,30 +48,27 @@ export class ValidatableInput {
     group:FormGroup;
     groupClass:any;
 
-    messages:any;
+    messages={};
     errorMessage:string;
 
-    public getValidator():ValidatorService { return this.vs };
+    constructor() {}
 
-    protected construct(vs:ValidatorService, fb:FormBuilder) {
-        this.vs = vs;
-        this.fb = fb;
-    }
-
-    protected setMessages(messages) {
-        this.messages = messages;
-    }
-
-    protected init(name:string,value:any, validators, url:string, callback:any) {
-        this.control = this.fb.control(value, validators, this.validateCall.bind(this));
+    protected init(validators) {
+        this.control = new FormControl(this.default, validators, this.validateCall.bind(this));
         this.controlCreated.emit(this.control);
 
-        this.group = this.fb.group([]);
-        this.group.addControl(name, this.control);
+        this.group = new FormGroup({});
+        this.group.addControl(this.name, this.control);
         this.groupCreated.emit(this.group);
 
-        this.control.statusChanges.subscribe(status => this.updateValidation(status));
+        this.addMessage('required', this.requiredMsg);
+        this.addMessage('httpError',this.httpErrorMsg);
+        this.group.statusChanges.subscribe(status => this.updateValidation(status));
         this.updateValidation("");
+    }
+
+    protected addMessage(key:string, message:string) {
+        this.messages[key] = message;
     }
 
     protected updateValidation(status) {
@@ -71,23 +78,31 @@ export class ValidatableInput {
         this.success = false;
         this.errorMessage = '';
         if (this.control.dirty && this.control.invalid) {
-        this.error = true;
-        console.log(this.control.errors);
-        for (let key in this.control.errors) {
-            this.errorMessage += this.messages[key] + ' ';
-        }
-        this.groupClass.push('has-error');
+            this.error = true;
+            console.log(this.control.errors);
+            for (let key in this.control.errors) {
+                this.errorMessage += this.messages[key] + ' ';
+            }
+            this.groupClass.push('has-error');
         } else if (this.control.valid) {
             this.success = true;
             this.groupClass.push('has-success');
         }
     }
 
-    private validateCall(c:AbstractControl) {
-
+    private validateCall(c:AbstractControl): Observable<{[key : string] : any}> {
+        return this.validateMethod(this.control).first();
     }
 
-    private validate(c:AbstractControl) {
-
+    private validateMethod(c:AbstractControl): Observable<{[key : string] : any}> {
+        this.validating = true;
+        return new Observable(observer => {
+            clearTimeout(this.timeoutCallback);
+            this.timeoutCallback = setTimeout(() => {
+                this.validate(observer);
+            },this.timeout);
+        });
     }
+
+    public abstract validate(observer:any);
 }

@@ -17,19 +17,10 @@ export class TestComponent implements OnInit {
 
   onUsernameGroupCreated(usernameFormGroup:FormGroup) {
     this.testForm.addControl('username', usernameFormGroup);
-    //console.log("TestComponent.onUsernameGroupCreated",usernameFormGroup )
-  }
-
-  onUsernameControlCreated(usernameInputControl:FormControl) {
-    //console.log("TestComponent.onUsernameControlCreated",usernameInputControl )
   }
 
   onUserEmailGroupCreated(userEmailInputGroup:FormControl) {
     this.testForm.addControl('email', userEmailInputGroup);
-    //console.log("TestComponent.onUEmailGroupCreated",userEmailInputGroup )
-  }
-  onUserEmailControlCreated(userEmailInputControl:FormControl) {
-    //console.log("TestComponent.onUserEmailControlCreated",userEmailInputControl )
   }
 
   submit(values) {

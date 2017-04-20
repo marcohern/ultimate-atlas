@@ -4,15 +4,19 @@
 <form [formGroup]="testForm" (ngSubmit)="submit(testForm.value)">
   <div class="row">
     <div class="col-sm-3">
-      <ua-username-input 
-        (groupCreated)="onUsernameGroupCreated($event)"
-        (controlCreated)="onUsernameControlCreated($event)">
+      <ua-username-input label="Username"
+        required-msg="Username is required."
+        username-exists-msg="Username must be unique."
+        (groupCreated)="onUsernameGroupCreated($event)">
       </ua-username-input>
     </div>
     <div class="col-sm-3">
       <ua-user-email-input
-        (groupCreated)="onUserEmailGroupCreated($event)"
-        (controlCreated)="onUserEmailControlCreated($event)">
+        label="TheEmail"
+        required-msg="Email is required."
+        email-exists-msg="Email must be unique."
+        email-format-msg="Must be a valid Email."
+        (groupCreated)="onUserEmailGroupCreated($event)">
       </ua-user-email-input>
     </div>
     <div class="col-sm-3">
