@@ -21,32 +21,16 @@ export class SignupComponent implements OnInit {
   usernameForm:FormGroup;
   active:boolean = false;
   errors = {
-    username: '',
-    usernameWorking:false,
-    usernameValid:false,
-    password:'',
-    confirmPassword:'',
     fname:'',
-    lname:'',
-    email:''
+    lname:''
   }
 
   errorMessages = {
-    password:{
-      required: 'Password is required.'
-    },
-    confirmPassword: {
-      mustBeEqualTo: 'Password confirmation does not match.'
-    },
     fname: {
       required: 'First Name is required.'
     },
     lname: {
       required: 'Last Name is required.'
-    },
-    email: {
-      required: 'Email is required.',
-      email: 'Email must have valid format.'
     },
     role: {
       required: 'Role is required.'
@@ -63,28 +47,28 @@ export class SignupComponent implements OnInit {
   public ngOnInit() {
 
     console.log("SignupComponent.ngOnInit");
-    this.usernameForm = this.fb.group({
-      username: ['', Validators.required, isUsenameUnique],
-    });
 
     this.signupForm = this.fb.group({
-      usernameGroup: this.usernameForm,
-      password: ['', Validators.required],
-      confirmPassword:  ['', [
-        Validators.required,
-        (c) => { return areEqual(c, "password")}
-      ]],
       fname: ['', Validators.required],
       lname: ['', Validators.required],
-      email: ['', [Validators.required,Validators.email]],
       role:  ['ADMIN', Validators.required]
     });
 
     this.signupForm.valueChanges.subscribe(data => this.onValueChanged(data));
-    //this.usernameForm.statusChanges.subscribe(data => this.onUsernameChange(data));
-    this.usernameForm.statusChanges.subscribe(status => this.onUsernameStatusChange(status));
 
     this.active=true;
+  }
+
+  onUsernameGroup(username:FormGroup) {
+    this.signupForm.addControl('username', username);
+  }
+
+  onEmailGroup(email:FormGroup) {
+    this.signupForm.addControl('email', email);
+  }
+  
+  onPasswordGroup(password:FormGroup) {
+    this.signupForm.addControl('password',password);
   }
 
   private checkIfDisplayErrorMessage(field:string) {
@@ -103,18 +87,6 @@ export class SignupComponent implements OnInit {
     this.checkIfDisplayErrorMessage('confirmPassword');
     this.checkIfDisplayErrorMessage('fname');
     this.checkIfDisplayErrorMessage('lname');
-    this.checkIfDisplayErrorMessage('email');
-    this.errors.username = '';
-    this.errors.usernameValid = false;
-    //console.log("SignupComponent.onValueChanged",data);
-  }
-
-  private onUsernameStatusChange(status:string) {
-    if (status == 'INVALID') {
-      this.errors.username = 'Username is required and must be unique.';
-    } else if (status == 'VALID') {
-      this.errors.usernameValid = true;
-    }
   }
 
   private signupUser(value:any) {

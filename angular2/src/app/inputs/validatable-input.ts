@@ -23,7 +23,7 @@ export abstract class ValidatableInput {
     private fb:FormBuilder;
 
     @Input() name:string = 'value';
-    @Input() label:string = '';
+    @Input() label:string = 'Validatable Input';
     @Input() default:string = '';
 
     @Input("http-error-msg") httpErrorMsg :string = 'An error has occurred';

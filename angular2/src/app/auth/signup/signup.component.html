@@ -1,36 +1,20 @@
 <form novalidate [formGroup]="signupForm" *ngIf="active" (ngSubmit)="signupUser(signupForm.value)">
-  <div [formGroup]="usernameForm">
-    <div class="form-group has-feedback validatable">
-      <label>Username</label>
-      <input type="text" class="form-control" name="username" formControlName="username"/>
-      <span class="glyphicon glyphicon-remove form-control-feedback"
-        aria-hidden="true"
-        style="color:darkred"
-        *ngIf="errors.username"></span>
-      <span class="glyphicon glyphicon-ok form-control-feedback"
-        aria-hidden="true"
-        style="color:darkgreen"
-        *ngIf="errors.usernameValid"></span>
-      <div class="alert alert-danger" *ngIf="errors.username">
-        {{errors.username}}
-      </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <ua-username-input label="Username" (groupCreated)="onUsernameGroup($event)"></ua-username-input>
+    </div>
+    <div class="col-sm-8">
+      <ua-user-email-input label="Email" (groupCreated)="onEmailGroup($event)"></ua-user-email-input>
     </div>
   </div>
-  <div class="validatable">
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" class="form-control" name="password" formControlName="password"/>
-      <div class="alert alert-danger" *ngIf="errors.password">
-        {{errors.password}}
-      </div>
+  <div>
+  <div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+      <ua-password-input (groupCreated)="onPasswordGroup($event)"></ua-password-input>
     </div>
-    <div class="form-group">
-      <label>Confirm Password</label>
-      <input type="password" class="form-control" name="confirmPassword" formControlName="confirmPassword"/>
-      <div class="alert alert-danger" *ngIf="errors.confirmPassword">
-        {{errors.confirmPassword}}
-      </div>
-    </div>
+    <div class="col-sm-3"></div>
+  </div>
     <div class="form-group">
       <label>First Name</label>
       <input type="text" class="form-control" name="fname" formControlName="fname"/>
@@ -43,13 +27,6 @@
       <input type="text" class="form-control" name="lname" formControlName="lname"/>
       <div class="alert alert-danger" *ngIf="errors.lname">
         {{errors.lname}}
-      </div>
-    </div>
-    <div class="form-group">
-      <label>Email</label>
-      <input type="email" class="form-control" name="email" formControlName="email"/>
-      <div class="alert alert-danger" *ngIf="errors.email">
-        {{errors.email}}
       </div>
     </div>
     <input type="hidden" name="role" formControlName="role"/>
