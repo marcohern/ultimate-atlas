@@ -28,7 +28,7 @@ export abstract class ValidatableInput {
 
     @Input("http-error-msg") httpErrorMsg :string = 'An error has occurred';
     @Input("validating-msg") validatingMsg:string = 'Validating...';
-    @Input("required-msg")   requiredMsg  :string = '';
+    @Input("required-msg")   requiredMsg  :string = 'Required.';
 
     @Output()
     groupCreated:EventEmitter<FormGroup> = new EventEmitter();
@@ -72,7 +72,6 @@ export abstract class ValidatableInput {
     }
 
     protected updateValidation(status) {
-        console.log("ValidatableInput.updateValidation",status);
         this.groupClass = [];
         this.error = false;
         this.success = false;

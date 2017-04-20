@@ -12,14 +12,13 @@ import { ValidatorService } from '../validator.service'
 export class UsernameInput extends ValidatableInput implements OnInit {
 
   @Input("username-exists-msg")
-  usernameExistsMsg:string = '';
+  usernameExistsMsg:string = 'Allready in use.';
   
   constructor(private vs:ValidatorService) { super(); }
 
   public ngOnInit() {
     this.init(Validators.required);
     this.addMessage('usernameExists',this.usernameExistsMsg);
-    this.addMessage('httpError','An error has occurred');
   }
 
   public validate(observer) {

@@ -12,10 +12,10 @@ import { ValidatorService } from '../validator.service'
 export class UserEmailInput extends ValidatableInput implements OnInit {
 
   @Input("email-exists-msg")
-  emailExistsMsg:string = '';
+  emailExistsMsg:string = 'Allready in use.';
 
   @Input("email-format-msg")
-  emailFormatMsg:string = '';
+  emailFormatMsg:string = 'Must be valid.';
 
   constructor(private vs:ValidatorService) {
     super();
