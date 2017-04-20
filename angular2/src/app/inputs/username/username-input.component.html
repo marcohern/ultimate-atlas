@@ -1,7 +1,7 @@
 <div [formGroup]="usernameInputGroup">
   <div class="form-group has-feedback" [ngClass]="usernameClass">
     <label>Username</label>
-    <input type="text" class="form-control" name="username" formControlName="username" />
+    <input type="text" class="form-control" name="value" formControlName="value" />
     <span *ngIf="error" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
     <span *ngIf="success" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
     <span *ngIf="validating" class="glyphicon ua-icon ua-icon-bars form-control-feedback" aria-hidden="true"></span>

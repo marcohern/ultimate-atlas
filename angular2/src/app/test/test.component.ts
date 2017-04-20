@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 
 @Component({
@@ -16,18 +16,24 @@ export class TestComponent implements OnInit {
   }
 
   onUsernameGroupCreated(usernameFormGroup:FormGroup) {
-    console.log("TestComponent.onUsernameGroupCreated",usernameFormGroup )
+    this.testForm.addControl('username', usernameFormGroup);
+    //console.log("TestComponent.onUsernameGroupCreated",usernameFormGroup )
   }
 
   onUsernameControlCreated(usernameInputControl:FormControl) {
-    console.log("TestComponent.onUsernameControlCreated",usernameInputControl )
+    //console.log("TestComponent.onUsernameControlCreated",usernameInputControl )
   }
 
   onUserEmailGroupCreated(userEmailInputGroup:FormControl) {
-    console.log("TestComponent.onUEmailGroupCreated",userEmailInputGroup )
+    this.testForm.addControl('email', userEmailInputGroup);
+    //console.log("TestComponent.onUEmailGroupCreated",userEmailInputGroup )
   }
   onUserEmailControlCreated(userEmailInputControl:FormControl) {
-    console.log("TestComponent.onUserEmailControlCreated",userEmailInputControl )
+    //console.log("TestComponent.onUserEmailControlCreated",userEmailInputControl )
+  }
+
+  submit(values) {
+    console.log("TestComponent.submit",values);
   }
 
 }

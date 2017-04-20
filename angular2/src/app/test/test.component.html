@@ -1,13 +1,19 @@
 <p>
   test works!
 </p>
-<form>
+<form [formGroup]="testForm" (ngSubmit)="submit(testForm.value)">
   <div class="row">
     <div class="col-sm-3">
-      <ua-username-input (groupCreated)="onUsernameGroupCreated($event)" (controlCreated)="onUsernameControlCreated($event)"></ua-username-input>
+      <ua-username-input 
+        (groupCreated)="onUsernameGroupCreated($event)"
+        (controlCreated)="onUsernameControlCreated($event)">
+      </ua-username-input>
     </div>
     <div class="col-sm-3">
-      <ua-user-email-input (groupCreated)="onUserEmailGroupCreated($event)" (controlCreated)="onUserEmailControlCreated($event)"></ua-user-email-input>
+      <ua-user-email-input
+        (groupCreated)="onUserEmailGroupCreated($event)"
+        (controlCreated)="onUserEmailControlCreated($event)">
+      </ua-user-email-input>
     </div>
     <div class="col-sm-3">
       <div class="form-group has-success has-feedback">
@@ -46,5 +52,10 @@
         <span id="inputError2Status" class="sr-only">(error)</span>
       </div>
     </div>
+  </div>
+  <div>
+    <button type="submit" class="btn btn-success btn-lg" [disabled]="!testForm.valid">
+      <i class="glyphicon glyphicon-plus"></i>Submit
+    </button>
   </div>
 </form>

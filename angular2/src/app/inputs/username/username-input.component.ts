@@ -67,11 +67,11 @@ export class UsernameInput implements OnInit {
     this.controlCreated.emit(this.usernameInputControl);
 
     this.usernameInputGroup = this.fb.group({
-      username: this.usernameInputControl
+      value: this.usernameInputControl
     });
     this.groupCreated.emit(this.usernameInputGroup);
     
-    this.usernameInputGroup.statusChanges.subscribe(status => this.updateValidation(status));
+    this.usernameInputControl.statusChanges.subscribe(status => this.updateValidation(status));
     this.updateValidation("");
   }
 

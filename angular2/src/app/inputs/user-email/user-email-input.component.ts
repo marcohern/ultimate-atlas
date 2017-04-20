@@ -70,7 +70,7 @@ export class UserEmailInput implements OnInit {
     this.controlCreated.emit(this.userEmailInputControl);
 
     this.userEmailInputGroup = this.fb.group({
-      email: this.userEmailInputControl
+      value: this.userEmailInputControl
     });
     this.groupCreated.emit(this.userEmailInputGroup);
     
