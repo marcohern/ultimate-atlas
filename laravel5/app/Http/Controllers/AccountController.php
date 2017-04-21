@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Mail;
 use App\Exceptions\UnauthorizedException;
 use App\Exceptions\NotFoundException;
 use Illuminate\Http\Request;
@@ -47,6 +48,47 @@ class AccountController extends Controller
         return ['token' => $token];
     }
 
+    private function sendActivateSignupEmail(User $user) {
+        Mail::send('emails.signup_activate', ['user' => $user], function ($m) use ($user) {
+            $m->from('ua-auto@marcohern.com', 'Ultimate Atlas');
+            
+            $m->to($user->email, $user->fname.' '.$user->lname)->subject('Your Reminder!');
+        });
+    }
+
+    public function signup(Request $r) {
+        $salt = $this->genSalt(48);
+        $pwd = Hash::make($salt.$r->input('password'));
+
+        $atsource = $r->input('username').$r->input('email').$r->input('fname').$r->input('lname').$this->genSalt(256);
+        $at = Hash::make($atsource);
+
+        $id = User::insertGetId([
+            'username' => $r->input('username'),
+            'fname' => $r->input('fname'),
+            'lname' => $r->input('lname'),
+            'email' => $r->input('email'),
+            //'gender' => $r->input('gender'),
+            'birth' => $r->input('birth'),
+            'role' => $r->input('role'),
+
+            'password' => $pwd,
+            'salt' => $salt,
+            'activated' => 'FALSE',
+            'activated_token' => $at,
+
+            'created_at' => new \Datetime("now")
+        ]);
+
+        $user = User::where('id',$id)->first();
+
+        $this->sendActivateSignupEmail($user);
+
+        return [
+            'user' => $user
+        ];
+    }
+
     public function logout(Request $r) {
         $token = Token::where('token', $r->input('token'))
             ->where('expired', 'false')
@@ -63,7 +105,9 @@ class AccountController extends Controller
         $password = $r->input('password');
 
         $user = User::select(['username','password','salt','email','fname','lname'])
-            ->where('username', $username)->first();
+            ->where('username', $username)
+            ->where('activated', 'TRUE')
+            ->first();
 
         if (!$user) {
             $user =User::select(['username','password','salt','email'])

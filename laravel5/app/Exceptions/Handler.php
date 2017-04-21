@@ -58,7 +58,7 @@ class Handler extends ExceptionHandler
     private function renderJsonError($request, Exception $exception, $includeData=false) {
         $code = (empty($exception->getCode())) ? 400 : 0+$exception->getCode();
         $errCode=0;
-        if ($code < 0 || $code > 699) {
+        if ($code < 100 || $code > 699) {
             $errCode = $code;
             $code = 400;
         }

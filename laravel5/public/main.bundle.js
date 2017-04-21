@@ -319,7 +319,7 @@ var _a, _b;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_do___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_do__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__environments_environment__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__environments_environment__ = __webpack_require__(79);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return EthnicMethod; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConfigService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -524,8 +524,7 @@ var _a;
 /* 67 */,
 /* 68 */,
 /* 69 */,
-/* 70 */,
-/* 71 */
+/* 70 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -563,10 +562,10 @@ var LoginComponent = (function () {
     return LoginComponent;
 }());
 LoginComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Y" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Z" /* Component */])({
         selector: 'ua-login',
-        template: __webpack_require__(200),
-        styles: [__webpack_require__(185)]
+        template: __webpack_require__(205),
+        styles: [__webpack_require__(188)]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__auth_service__["a" /* AuthService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _b || Object])
 ], LoginComponent);
@@ -575,7 +574,7 @@ var _a, _b;
 //# sourceMappingURL=login.component.js.map
 
 /***/ }),
-/* 72 */
+/* 71 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -611,10 +610,10 @@ var RecoverPasswordComponent = (function () {
     return RecoverPasswordComponent;
 }());
 RecoverPasswordComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Y" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Z" /* Component */])({
         selector: 'app-recover-password',
-        template: __webpack_require__(201),
-        styles: [__webpack_require__(186)]
+        template: __webpack_require__(206),
+        styles: [__webpack_require__(189)]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__auth_service__["a" /* AuthService */]) === "function" && _a || Object])
 ], RecoverPasswordComponent);
@@ -623,7 +622,7 @@ var _a;
 //# sourceMappingURL=recover-password.component.js.map
 
 /***/ }),
-/* 73 */
+/* 72 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -647,10 +646,10 @@ var SignupDoneComponent = (function () {
     return SignupDoneComponent;
 }());
 SignupDoneComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Y" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Z" /* Component */])({
         selector: 'app-signup-done',
-        template: __webpack_require__(202),
-        styles: [__webpack_require__(187)]
+        template: __webpack_require__(207),
+        styles: [__webpack_require__(190)]
     }),
     __metadata("design:paramtypes", [])
 ], SignupDoneComponent);
@@ -658,16 +657,14 @@ SignupDoneComponent = __decorate([
 //# sourceMappingURL=signup-done.component.js.map
 
 /***/ }),
-/* 74 */
+/* 73 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__validators_equal_validator__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validators_username_unique_validator__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__auth_service__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth_service__ = __webpack_require__(15);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignupComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -682,127 +679,190 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
 var SignupComponent = (function () {
     function SignupComponent(auth, router, fb) {
         this.auth = auth;
         this.router = router;
         this.fb = fb;
         this.active = false;
-        this.errors = {
-            username: '',
-            usernameWorking: false,
-            usernameValid: false,
-            password: '',
-            confirmPassword: '',
-            fname: '',
-            lname: '',
-            email: ''
-        };
+        this.errors = {};
         this.errorMessages = {
-            password: {
-                required: 'Password is required.'
-            },
-            confirmPassword: {
-                mustBeEqualTo: 'Password confirmation does not match.'
-            },
-            fname: {
-                required: 'First Name is required.'
-            },
-            lname: {
-                required: 'Last Name is required.'
-            },
-            email: {
-                required: 'Email is required.',
-                email: 'Email must have valid format.'
-            },
             role: {
                 required: 'Role is required.'
             }
         };
     }
     SignupComponent.prototype.ngOnInit = function () {
-        var _this = this;
         console.log("SignupComponent.ngOnInit");
-        this.usernameForm = this.fb.group({
-            username: ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_3__validators_username_unique_validator__["b" /* isUsenameUnique */]],
-        });
         this.signupForm = this.fb.group({
-            usernameGroup: this.usernameForm,
-            password: ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].required],
-            confirmPassword: ['', [
-                    __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].required,
-                    function (c) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__validators_equal_validator__["b" /* areEqual */])(c, "password"); }
-                ]],
-            fname: ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].required],
-            lname: ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].required],
-            email: ['', [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].email]],
             role: ['ADMIN', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].required]
         });
-        this.signupForm.valueChanges.subscribe(function (data) { return _this.onValueChanged(data); });
-        //this.usernameForm.statusChanges.subscribe(data => this.onUsernameChange(data));
-        this.usernameForm.statusChanges.subscribe(function (status) { return _this.onUsernameStatusChange(status); });
         this.active = true;
     };
-    SignupComponent.prototype.checkIfDisplayErrorMessage = function (field) {
-        this.errors[field] = '';
-        var control = this.signupForm.get(field);
-        if (control && control.dirty && !control.valid) {
-            var messages = this.errorMessages[field];
-            for (var key in control.errors) {
-                this.errors[field] += messages[key] + ' ';
-            }
-        }
+    SignupComponent.prototype.onUsernameGroup = function (username) {
+        this.signupForm.addControl('username', username);
     };
-    SignupComponent.prototype.onValueChanged = function (data) {
-        this.checkIfDisplayErrorMessage('password');
-        this.checkIfDisplayErrorMessage('confirmPassword');
-        this.checkIfDisplayErrorMessage('fname');
-        this.checkIfDisplayErrorMessage('lname');
-        this.checkIfDisplayErrorMessage('email');
-        this.errors.username = '';
-        this.errors.usernameValid = false;
-        //console.log("SignupComponent.onValueChanged",data);
+    SignupComponent.prototype.onEmailGroup = function (email) {
+        this.signupForm.addControl('email', email);
     };
-    SignupComponent.prototype.onUsernameStatusChange = function (status) {
-        if (status == 'INVALID') {
-            this.errors.username = 'Username is required and must be unique.';
-        }
-        else if (status == 'VALID') {
-            this.errors.usernameValid = true;
-        }
+    SignupComponent.prototype.onPasswordGroup = function (password) {
+        this.signupForm.addControl('password', password);
     };
-    SignupComponent.prototype.signupUser = function (value) {
+    SignupComponent.prototype.onFirstNameGroup = function (fname) {
+        this.signupForm.addControl('fname', fname);
+    };
+    SignupComponent.prototype.onLastNameGroup = function (lname) {
+        this.signupForm.addControl('lname', lname);
+    };
+    SignupComponent.prototype.signupUser = function (data) {
+        var _this = this;
         console.log('Reactive Form Data: ');
-        console.log(value);
-        /*
-        var request:SignupRequest = {
-          username: this.username,
-          password: this.password,
-          fname: this.fname,
-          lname: this.lname,
-          email: this.email,
-          role: this.role
+        var request = {
+            username: data.username.value,
+            password: data.password.value,
+            fname: data.fname.value,
+            lname: data.lname.value,
+            email: data.email.value,
+            role: data.role
         };
-    
-        this.auth.signup(request).subscribe(
-          () => this.router.navigate(['/signup-done'])
-        );*/
+        console.log(request);
+        this.auth.signup(request).subscribe(function () { return _this.router.navigate(['/signup-done']); });
     };
     return SignupComponent;
 }());
 SignupComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Y" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Z" /* Component */])({
         selector: 'ua-signup',
-        template: __webpack_require__(203),
-        styles: [__webpack_require__(188)]
+        template: __webpack_require__(208),
+        styles: [__webpack_require__(191)]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_5__auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__auth_service__["a" /* AuthService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* FormBuilder */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__auth_service__["a" /* AuthService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* FormBuilder */]) === "function" && _c || Object])
 ], SignupComponent);
 
 var _a, _b, _c;
 //# sourceMappingURL=signup.component.js.map
+
+/***/ }),
+/* 74 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_first__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_first___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_first__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ValidatableInput; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var ValidatableInput = (function () {
+    function ValidatableInput() {
+        this.name = 'value';
+        this.label = 'Validatable Input';
+        this.default = '';
+        this.httpErrorMsg = 'An error has occurred';
+        this.validatingMsg = 'Validating...';
+        this.requiredMsg = 'Required.';
+        this.groupCreated = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* EventEmitter */]();
+        this.controlCreated = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* EventEmitter */]();
+        this.timeout = 2000;
+        this.messages = {};
+    }
+    ValidatableInput.prototype.init = function (validators) {
+        var _this = this;
+        this.control = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* FormControl */](this.default, validators, this.validateCall.bind(this));
+        this.controlCreated.emit(this.control);
+        this.group = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["e" /* FormGroup */]({});
+        this.group.addControl(this.name, this.control);
+        this.groupCreated.emit(this.group);
+        this.addMessage('required', this.requiredMsg);
+        this.addMessage('httpError', this.httpErrorMsg);
+        this.group.statusChanges.subscribe(function (status) { return _this.updateValidation(status); });
+        this.updateValidation("");
+    };
+    ValidatableInput.prototype.addMessage = function (key, message) {
+        this.messages[key] = message;
+    };
+    ValidatableInput.prototype.updateValidation = function (status) {
+        this.groupClass = [];
+        this.error = false;
+        this.success = false;
+        this.errorMessage = '';
+        if (this.control.dirty && this.control.invalid) {
+            this.error = true;
+            console.log(this.control.errors);
+            for (var key in this.control.errors) {
+                this.errorMessage += this.messages[key] + ' ';
+            }
+            this.groupClass.push('has-error');
+        }
+        else if (this.control.valid) {
+            this.success = true;
+            this.groupClass.push('has-success');
+        }
+    };
+    ValidatableInput.prototype.validateCall = function (c) {
+        return this.validateMethod(this.control).first();
+    };
+    ValidatableInput.prototype.validateMethod = function (c) {
+        var _this = this;
+        this.validating = true;
+        return new __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"](function (observer) {
+            clearTimeout(_this.timeoutCallback);
+            _this.timeoutCallback = setTimeout(function () {
+                _this.validate(observer);
+            }, _this.timeout);
+        });
+    };
+    return ValidatableInput;
+}());
+
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* Input */])(),
+    __metadata("design:type", String)
+], ValidatableInput.prototype, "name", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* Input */])(),
+    __metadata("design:type", String)
+], ValidatableInput.prototype, "label", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* Input */])(),
+    __metadata("design:type", String)
+], ValidatableInput.prototype, "default", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* Input */])("http-error-msg"),
+    __metadata("design:type", String)
+], ValidatableInput.prototype, "httpErrorMsg", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* Input */])("validating-msg"),
+    __metadata("design:type", String)
+], ValidatableInput.prototype, "validatingMsg", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* Input */])("required-msg"),
+    __metadata("design:type", String)
+], ValidatableInput.prototype, "requiredMsg", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Y" /* Output */])(),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* EventEmitter */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* EventEmitter */]) === "function" && _a || Object)
+], ValidatableInput.prototype, "groupCreated", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Y" /* Output */])(),
+    __metadata("design:type", typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* EventEmitter */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* EventEmitter */]) === "function" && _b || Object)
+], ValidatableInput.prototype, "controlCreated", void 0);
+var _a, _b;
+//# sourceMappingURL=validatable-input.js.map
 
 /***/ }),
 /* 75 */
@@ -861,10 +921,10 @@ var UserDetailComponent = (function () {
     return UserDetailComponent;
 }());
 UserDetailComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Y" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Z" /* Component */])({
         selector: 'ua-user-detail',
-        template: __webpack_require__(208),
-        styles: [__webpack_require__(193)]
+        template: __webpack_require__(215),
+        styles: [__webpack_require__(198)]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__user_service__["a" /* UserService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _c || Object])
 ], UserDetailComponent);
@@ -879,7 +939,7 @@ var _a, _b, _c;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__user_service__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__animations__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__animations__ = __webpack_require__(117);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserListComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -919,10 +979,10 @@ var UserListComponent = (function () {
     return UserListComponent;
 }());
 UserListComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Y" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Z" /* Component */])({
         selector: 'ua-user-list',
-        template: __webpack_require__(209),
-        styles: [__webpack_require__(194)],
+        template: __webpack_require__(216),
+        styles: [__webpack_require__(199)],
         animations: [__WEBPACK_IMPORTED_MODULE_2__animations__["a" /* recordAnimation */]]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__user_service__["a" /* UserService */]) === "function" && _a || Object])
@@ -937,7 +997,7 @@ var _a;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(7);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TestComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -958,26 +1018,23 @@ var TestComponent = (function () {
         this.testForm = this.fb.group({});
     };
     TestComponent.prototype.onUsernameGroupCreated = function (usernameFormGroup) {
-        console.log("TestComponent.onUsernameGroupCreated", usernameFormGroup);
-    };
-    TestComponent.prototype.onUsernameControlCreated = function (usernameInputControl) {
-        console.log("TestComponent.onUsernameControlCreated", usernameInputControl);
+        this.testForm.addControl('username', usernameFormGroup);
     };
     TestComponent.prototype.onUserEmailGroupCreated = function (userEmailInputGroup) {
-        console.log("TestComponent.onUEmailGroupCreated", userEmailInputGroup);
+        this.testForm.addControl('email', userEmailInputGroup);
     };
-    TestComponent.prototype.onUserEmailControlCreated = function (userEmailInputControl) {
-        console.log("TestComponent.onUserEmailControlCreated", userEmailInputControl);
+    TestComponent.prototype.submit = function (values) {
+        console.log("TestComponent.submit", values);
     };
     return TestComponent;
 }());
 TestComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Y" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Z" /* Component */])({
         selector: 'app-test',
-        template: __webpack_require__(210),
-        styles: [__webpack_require__(195)]
+        template: __webpack_require__(217),
+        styles: [__webpack_require__(200)]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* FormBuilder */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* FormBuilder */]) === "function" && _a || Object])
 ], TestComponent);
 
 var _a;
@@ -985,123 +1042,6 @@ var _a;
 
 /***/ }),
 /* 78 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(11);
-/* harmony export (immutable) */ __webpack_exports__["b"] = areEqual;
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EqualValidator; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
-
-
-function areEqual(c, mustBeEqualTo) {
-    //console.log("areEqual",c,mustBeEqualTo);
-    var v = c.value;
-    var e = c.root.get(mustBeEqualTo);
-    //console.log("areEqual ev",e,v);
-    if (e && v !== e.value) {
-        return {
-            mustBeEqualTo: false
-        };
-    }
-    return null;
-}
-var EqualValidator = EqualValidator_1 = (function () {
-    function EqualValidator(mustBeEqualTo) {
-        this.mustBeEqualTo = mustBeEqualTo;
-    }
-    EqualValidator.prototype.validate = function (c) {
-        return areEqual(c, this.mustBeEqualTo);
-    };
-    return EqualValidator;
-}());
-EqualValidator = EqualValidator_1 = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["H" /* Directive */])({
-        selector: '[mustBeEqualTo][formControlName],[mustBeEqualTo][formControl],[mustBeEqualTo][ngModel]',
-        providers: [
-            { provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* NG_VALIDATORS */], useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Z" /* forwardRef */])(function () { return EqualValidator_1; }), multi: true }
-        ]
-    }),
-    __param(0, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["S" /* Attribute */])('mustBeEqualTo')),
-    __metadata("design:paramtypes", [String])
-], EqualValidator);
-
-var EqualValidator_1;
-//# sourceMappingURL=equal.validator.js.map
-
-/***/ }),
-/* 79 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_first__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_first___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_first__);
-/* harmony export (immutable) */ __webpack_exports__["b"] = isUsenameUnique;
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UsernameUniqueValidator; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var timeout;
-function isUsenameUnique(c) {
-    //console.log("isUsenameUnique");
-    return new Promise(function (resolve) {
-        clearTimeout(timeout);
-        timeout = setTimeout(function () {
-            //console.log("isUsenameUnique R");
-            resolve(null);
-        }, 2000);
-    });
-}
-var UsernameUniqueValidator = UsernameUniqueValidator_1 = (function () {
-    function UsernameUniqueValidator() {
-        //console.log("UsernameUniqueValidator.constructor");
-    }
-    UsernameUniqueValidator.prototype.validate = function (c) {
-        //console.log("UsernameUniqueValidator.validate");
-        return isUsenameUnique(c);
-    };
-    return UsernameUniqueValidator;
-}());
-UsernameUniqueValidator = UsernameUniqueValidator_1 = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["H" /* Directive */])({
-        selector: '[usernameUnique][formControlName],[usernameUnique][formControl],[usernameUnique][ngModel]',
-        providers: [{
-                provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["e" /* NG_ASYNC_VALIDATORS */],
-                useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Z" /* forwardRef */])(function () { return UsernameUniqueValidator_1; }),
-                multi: true
-            }]
-    }),
-    __metadata("design:paramtypes", [])
-], UsernameUniqueValidator);
-
-var UsernameUniqueValidator_1;
-//# sourceMappingURL=username-unique.validator.js.map
-
-/***/ }),
-/* 80 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1125,10 +1065,10 @@ var WelcomeComponent = (function () {
     return WelcomeComponent;
 }());
 WelcomeComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Y" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Z" /* Component */])({
         selector: 'ua-welcome',
-        template: __webpack_require__(211),
-        styles: [__webpack_require__(196)]
+        template: __webpack_require__(218),
+        styles: [__webpack_require__(201)]
     }),
     __metadata("design:paramtypes", [])
 ], WelcomeComponent);
@@ -1136,14 +1076,14 @@ WelcomeComponent = __decorate([
 //# sourceMappingURL=welcome.component.js.map
 
 /***/ }),
-/* 81 */
+/* 79 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
 var environment = {
-    production: true,
-    env: 'prod',
+    production: false,
+    env: 'test',
     request: {
         prefix: '/api',
         mock: false,
@@ -1160,6 +1100,8 @@ var environment = {
 //# sourceMappingURL=environment.js.map
 
 /***/ }),
+/* 80 */,
+/* 81 */,
 /* 82 */,
 /* 83 */,
 /* 84 */,
@@ -1186,8 +1128,7 @@ var environment = {
 /* 105 */,
 /* 106 */,
 /* 107 */,
-/* 108 */,
-/* 109 */
+/* 108 */
 /***/ (function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -1196,19 +1137,19 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 109;
+webpackEmptyContext.id = 108;
 
 
 /***/ }),
-/* 110 */
+/* 109 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__(120);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(79);
 
 
 
@@ -1220,18 +1161,18 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dyna
 //# sourceMappingURL=main.js.map
 
 /***/ }),
+/* 110 */,
 /* 111 */,
 /* 112 */,
 /* 113 */,
 /* 114 */,
 /* 115 */,
 /* 116 */,
-/* 117 */,
-/* 118 */
+/* 117 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_animations__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_animations__ = __webpack_require__(69);
 /* unused harmony export appearAnimation */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return recordAnimation; });
 
@@ -1268,7 +1209,7 @@ var recordAnimation = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular
 //# sourceMappingURL=animations.js.map
 
 /***/ }),
-/* 119 */
+/* 118 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1302,10 +1243,10 @@ var AppComponent = (function () {
     return AppComponent;
 }());
 AppComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Y" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Z" /* Component */])({
         selector: 'ultimate-atlas',
-        template: __webpack_require__(199),
-        styles: [__webpack_require__(184)]
+        template: __webpack_require__(204),
+        styles: [__webpack_require__(187)]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__config_service__["a" /* ConfigService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__config_service__["a" /* ConfigService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__auth_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__auth_auth_service__["a" /* AuthService */]) === "function" && _b || Object])
 ], AppComponent);
@@ -1314,34 +1255,36 @@ var _a, _b;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
-/* 120 */
+/* 119 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser_animations__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser_animations__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_user_user_module__ = __webpack_require__(128);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_routes__ = __webpack_require__(121);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__welcome_welcome_component__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__menu_menu_component__ = __webpack_require__(127);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__auth_login_login_component__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__auth_recover_password_recover_password_component__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__auth_signup_signup_component__ = __webpack_require__(74);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__auth_signup_done_signup_done_component__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__loading_loading_component__ = __webpack_require__(125);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__validators_equal_validator__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__validators_username_unique_validator__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__inputs_username_username_input_component__ = __webpack_require__(124);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__inputs_user_email_user_email_input_component__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_user_user_module__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_routes__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__welcome_welcome_component__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__menu_menu_component__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__auth_login_login_component__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__auth_recover_password_recover_password_component__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__auth_signup_signup_component__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__auth_signup_done_signup_done_component__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__loading_loading_component__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__validators_equal_validator__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__validators_username_unique_validator__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__inputs_username_username_input_component__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__inputs_user_email_user_email_input_component__ = __webpack_require__(124);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__test_test_component__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__auth_auth_service__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__request_service__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__config_service__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__inputs_validator_service__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__inputs_password_input_password_input_component__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__inputs_name_input_name_input_component__ = __webpack_require__(122);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1349,6 +1292,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -1402,7 +1347,9 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_16__validators_username_unique_validator__["a" /* UsernameUniqueValidator */],
             __WEBPACK_IMPORTED_MODULE_17__inputs_username_username_input_component__["a" /* UsernameInput */],
             __WEBPACK_IMPORTED_MODULE_18__inputs_user_email_user_email_input_component__["a" /* UserEmailInput */],
-            __WEBPACK_IMPORTED_MODULE_19__test_test_component__["a" /* TestComponent */]
+            __WEBPACK_IMPORTED_MODULE_24__inputs_password_input_password_input_component__["a" /* PasswordInput */],
+            __WEBPACK_IMPORTED_MODULE_19__test_test_component__["a" /* TestComponent */],
+            __WEBPACK_IMPORTED_MODULE_25__inputs_name_input_name_input_component__["a" /* NameInput */]
         ],
         providers: [
             __WEBPACK_IMPORTED_MODULE_21__request_service__["a" /* RequestService */],
@@ -1419,17 +1366,17 @@ AppModule = __decorate([
 //# sourceMappingURL=app.module.js.map
 
 /***/ }),
-/* 121 */
+/* 120 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__welcome_welcome_component__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth_recover_password_recover_password_component__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__auth_login_login_component__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__auth_signup_signup_component__ = __webpack_require__(74);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__auth_signup_done_signup_done_component__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__welcome_welcome_component__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth_recover_password_recover_password_component__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__auth_login_login_component__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__auth_signup_signup_component__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__auth_signup_done_signup_done_component__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__test_test_component__ = __webpack_require__(77);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppRoutes; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1471,7 +1418,7 @@ AppRoutes = __decorate([
 //# sourceMappingURL=app.routes.js.map
 
 /***/ }),
-/* 122 */
+/* 121 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1514,18 +1461,13 @@ var _a, _b;
 //# sourceMappingURL=authorized.guard.js.map
 
 /***/ }),
-/* 123 */
+/* 122 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__validator_service__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_first__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_first___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_first__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserEmailInput; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(7);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NameInput; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1537,104 +1479,236 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
-
-
-var userEmailInputIsUniqueTimeout;
-function userEmailInputIsUnique(userEmailInput, c, timeout) {
-    userEmailInput.validating = true;
-    return new __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"](function (observer) {
-        console.log("userEmailInputIsUniqueTimeout start");
-        clearTimeout(userEmailInputIsUniqueTimeout);
-        userEmailInputIsUniqueTimeout = setTimeout(function () {
-            console.log("userEmailInputIsUniqueTimeout call");
-            userEmailInput.getValidator().checkUserEmail(c.value)
-                .subscribe(function (data) {
-                console.log("userEmailInputIsUniqueTimeout done");
-                userEmailInput.validating = false;
-                if (data.userEmailExists)
-                    observer.next({ userEmailUnique: false });
-                else
-                    observer.next(null);
-            }, function (error) {
-                console.log("userEmailInputIsUniqueTimeout error");
-                userEmailInput.validating = false;
-                observer.next({ usernameUniqueError: true });
-            });
-        }, timeout);
-    });
-}
-var UserEmailInput = (function () {
-    function UserEmailInput(fb, vs) {
-        this.fb = fb;
-        this.vs = vs;
-        this.success = false;
+var NameInput = (function () {
+    function NameInput() {
+        this.label = 'Input Text';
+        this.groupCreated = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* EventEmitter */];
+        this.fieldClass = [];
         this.error = false;
-        this.validating = false;
-        this.errorMessage = '';
-        this.groupCreated = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* EventEmitter */]();
-        this.controlCreated = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* EventEmitter */]();
-        this.messages = {
-            required: 'Email is required.',
-            email: 'Email must contain valid format',
-            userEmailUnique: 'Email must be unique.',
-            userEmailUniqueError: 'An error has ocurred.'
+        this.success = false;
+        this.errorMessages = {
+            value: {
+                required: 'Required.',
+                invalid: 'Must be valid'
+            }
         };
     }
-    UserEmailInput.prototype.ngOnInit = function () {
+    NameInput.prototype.ngOnInit = function () {
         var _this = this;
-        this.userEmailInputControl = this.fb.control('', [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].email], [this.userEmailInputIsUnique.bind(this)]);
-        this.controlCreated.emit(this.userEmailInputControl);
-        this.userEmailInputGroup = this.fb.group({
-            email: this.userEmailInputControl
+        console.log("NameInput.ngOnInit");
+        this.control = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* FormControl */]('', [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].required, this.isValidName.bind(this)]);
+        this.group = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["e" /* FormGroup */]({
+            value: this.control
         });
-        this.groupCreated.emit(this.userEmailInputGroup);
-        this.userEmailInputGroup.statusChanges.subscribe(function (status) { return _this.updateValidation(status); });
-        this.updateValidation("");
+        this.control.valueChanges.subscribe(function (data) { return _this.onValueChange(data); });
+        //this.control.statusChanges.subscribe(status => this.onStatusChange(status));
+        this.groupCreated.emit(this.group);
     };
-    UserEmailInput.prototype.userEmailInputIsUnique = function (c) {
-        return userEmailInputIsUnique(this, c, 2000).first();
+    NameInput.prototype.isValidName = function (c) {
+        var name = c.value;
+        if (name.match(/[0-9.]/))
+            return { invalid: true };
+        return null;
     };
-    UserEmailInput.prototype.getValidator = function () { return this.vs; };
-    UserEmailInput.prototype.updateValidation = function (status) {
-        this.userEmailClass = [];
+    NameInput.prototype.onValueChange = function (data) {
         this.error = false;
         this.success = false;
+        this.fieldClass = [];
         this.errorMessage = '';
-        if (this.userEmailInputControl.dirty && this.userEmailInputControl.invalid) {
+        if (this.control && this.control.dirty && this.control.invalid) {
             this.error = true;
-            console.log(this.userEmailInputControl.errors);
-            for (var key in this.userEmailInputControl.errors) {
-                this.errorMessage += this.messages[key] + ' ';
+            var messages = this.errorMessages.value;
+            for (var key in this.control.errors) {
+                this.errorMessage += messages[key] + ' ';
             }
-            this.userEmailClass.push('has-error');
+            this.fieldClass.push('has-error');
         }
-        else if (this.userEmailInputControl.valid) {
+        else if (this.control && this.control.valid) {
             this.success = true;
-            this.userEmailClass.push('has-success');
+            this.fieldClass.push('has-success');
         }
     };
-    return UserEmailInput;
+    NameInput.prototype.onStatusChange = function (status) {
+        this.error = false;
+        this.success = false;
+        if (status == 'INVALID') {
+            this.error = true;
+        }
+        else if (status == 'VALID') {
+            this.success = true;
+        }
+    };
+    return NameInput;
 }());
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_3" /* Output */])(),
-    __metadata("design:type", Object)
-], UserEmailInput.prototype, "groupCreated", void 0);
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* Input */])(),
+    __metadata("design:type", String)
+], NameInput.prototype, "label", void 0);
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_3" /* Output */])(),
-    __metadata("design:type", Object)
-], UserEmailInput.prototype, "controlCreated", void 0);
-UserEmailInput = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Y" /* Component */])({
-        selector: 'ua-user-email-input',
-        template: __webpack_require__(204),
-        styles: [__webpack_require__(189)]
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Y" /* Output */])(),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* EventEmitter */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* EventEmitter */]) === "function" && _a || Object)
+], NameInput.prototype, "groupCreated", void 0);
+NameInput = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Z" /* Component */])({
+        selector: 'ua-name-input',
+        template: __webpack_require__(209),
+        styles: [__webpack_require__(192)]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* FormBuilder */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__validator_service__["a" /* ValidatorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__validator_service__["a" /* ValidatorService */]) === "function" && _b || Object])
-], UserEmailInput);
+    __metadata("design:paramtypes", [])
+], NameInput);
 
-var _a, _b;
-//# sourceMappingURL=user-email-input.component.js.map
+var _a;
+//# sourceMappingURL=name-input.component.js.map
+
+/***/ }),
+/* 123 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(7);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PasswordInput; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var PasswordInput = (function () {
+    function PasswordInput() {
+        this.label = 'Password';
+        this.confirmLabel = 'Confirm Password';
+        this.requiredMsg = 'Required.';
+        this.confirmedRequiredMsg = 'Required.';
+        this.groupCreated = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* EventEmitter */]();
+        this.errorMessages = {
+            value: {
+                required: 'Required.',
+                unconfirmed: 'Must match below.'
+            },
+            confirmed: {
+                required: 'Required.',
+                unconfirmed: 'Must match password.'
+            }
+        };
+        this.pristine = {
+            value: true,
+            confirmed: true
+        };
+        this.errors = {
+            value: '',
+            confirmed: ''
+        };
+        this.classes = {
+            value: [],
+            confirmed: []
+        };
+    }
+    PasswordInput.prototype.ngOnInit = function () {
+        var _this = this;
+        this.field = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* FormControl */]('', [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].required]);
+        this.confirmed = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* FormControl */]('', [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].required, this.areEqual.bind(this)]);
+        this.group = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["e" /* FormGroup */]({});
+        this.group.addControl('value', this.field);
+        this.group.addControl('confirmed', this.confirmed);
+        this.groupCreated.emit(this.group);
+        this.field.valueChanges.subscribe(function (data) { return _this.onValueChange(data); });
+        this.confirmed.valueChanges.subscribe(function (data) { return _this.onConfirmedChange(data); });
+    };
+    PasswordInput.prototype.onValueChange = function (data) {
+        this.checkIfDisplayErrorMessage('value');
+        this.confirmed.updateValueAndValidity();
+    };
+    PasswordInput.prototype.onConfirmedChange = function (data) {
+        this.checkIfDisplayErrorMessage('confirmed');
+    };
+    PasswordInput.prototype.checkIfDisplayErrorMessage = function (field) {
+        this.errors[field] = '';
+        this.classes[field] = [];
+        var control = this.group.get(field);
+        if (control && control.dirty && !control.valid) {
+            this.classes[field].push('has-error');
+            var messages = this.errorMessages[field];
+            for (var key in control.errors) {
+                this.errors[field] += messages[key] + ' ';
+            }
+            this.pristine[field] = false;
+        }
+        else if (control && control.valid) {
+            this.classes[field].push('has-success');
+            this.pristine[field] = false;
+        }
+    };
+    PasswordInput.prototype.areEqual = function (c) {
+        if (!c)
+            return null;
+        if (!this.group)
+            return null;
+        if (!this.group.get('value'))
+            return null;
+        var field1 = c.value;
+        var field2 = this.group.get('value').value;
+        if (field1 == field2) {
+            return null;
+        }
+        else {
+            return { unconfirmed: true };
+        }
+    };
+    PasswordInput.prototype.areEqualInverse = function (c) {
+        if (!c)
+            return null;
+        if (!this.group)
+            return null;
+        if (!this.group.get('confirmed'))
+            return null;
+        var field1 = c.value;
+        var field2 = this.group.get('confirmed').value;
+        if (field1 == field2) {
+            return null;
+        }
+        else {
+            return { unconfirmed: true };
+        }
+    };
+    return PasswordInput;
+}());
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* Input */])(),
+    __metadata("design:type", String)
+], PasswordInput.prototype, "label", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* Input */])("confirm-label"),
+    __metadata("design:type", String)
+], PasswordInput.prototype, "confirmLabel", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* Input */])("required-msg"),
+    __metadata("design:type", String)
+], PasswordInput.prototype, "requiredMsg", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* Input */])("confirmed-required-msg"),
+    __metadata("design:type", String)
+], PasswordInput.prototype, "confirmedRequiredMsg", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Y" /* Output */])(),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* EventEmitter */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* EventEmitter */]) === "function" && _a || Object)
+], PasswordInput.prototype, "groupCreated", void 0);
+PasswordInput = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Z" /* Component */])({
+        selector: 'ua-password-input',
+        template: __webpack_require__(210),
+        styles: [__webpack_require__(193)]
+    }),
+    __metadata("design:paramtypes", [])
+], PasswordInput);
+
+var _a;
+//# sourceMappingURL=password-input.component.js.map
 
 /***/ }),
 /* 124 */
@@ -1642,13 +1716,20 @@ var _a, _b;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__validator_service__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_first__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_first___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_first__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UsernameInput; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__validatable_input__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validator_service__ = __webpack_require__(40);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserEmailInput; });
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1662,103 +1743,135 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-var usernameInputIsUniqueTimeout;
-function usernameInputIsUnique(usernameInput, c, timeout) {
-    usernameInput.validating = true;
-    return new __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"](function (observer) {
-        clearTimeout(usernameInputIsUniqueTimeout);
-        usernameInputIsUniqueTimeout = setTimeout(function () {
-            usernameInput.getValidator().checkUsername(c.value)
-                .subscribe(function (data) {
-                usernameInput.validating = false;
-                if (data.usernameExists)
-                    observer.next({ usernameUnique: false });
-                else
-                    observer.next(null);
-            }, function (error) {
-                console.log("errir", error);
-                usernameInput.validating = false;
-                observer.next({ usernameUniqueError: true });
-            });
-        }, timeout);
-    });
-}
-var UsernameInput = (function () {
-    function UsernameInput(fb, vs) {
-        this.fb = fb;
-        this.vs = vs;
-        this.groupCreated = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* EventEmitter */]();
-        this.controlCreated = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* EventEmitter */]();
-        this.errorMessage = '';
-        this.success = false;
-        this.error = false;
-        this.validating = false;
-        this.messages = {
-            required: 'Usename is required.',
-            usernameUnique: 'Username must be unique.',
-            usernameUniqueError: 'An error has ocurred.'
-        };
+var UserEmailInput = (function (_super) {
+    __extends(UserEmailInput, _super);
+    function UserEmailInput(vs) {
+        var _this = _super.call(this) || this;
+        _this.vs = vs;
+        _this.emailExistsMsg = 'Allready in use.';
+        _this.emailFormatMsg = 'Must be valid.';
+        return _this;
     }
-    UsernameInput.prototype.ngOnInit = function () {
+    UserEmailInput.prototype.ngOnInit = function () {
+        this.init([__WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].email]);
+        this.addMessage('emailExists', this.emailExistsMsg);
+        this.addMessage('email', this.emailFormatMsg);
+    };
+    UserEmailInput.prototype.validate = function (observer) {
         var _this = this;
-        this.usernameInputControl = this.fb.control('', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].required, this.usernameInputIsUnique.bind(this));
-        this.controlCreated.emit(this.usernameInputControl);
-        this.usernameInputGroup = this.fb.group({
-            username: this.usernameInputControl
+        return this.vs.checkUserEmail(this.control.value)
+            .subscribe(function (data) {
+            _this.validating = false;
+            if (data.userEmailExists)
+                observer.next({ emailExists: true });
+            else
+                observer.next(null);
+        }, function (error) {
+            _this.validating = false;
+            observer.next({ httpError: true });
         });
-        this.groupCreated.emit(this.usernameInputGroup);
-        this.usernameInputGroup.statusChanges.subscribe(function (status) { return _this.updateValidation(status); });
-        this.updateValidation("");
     };
-    UsernameInput.prototype.getValidator = function () { return this.vs; };
-    UsernameInput.prototype.usernameInputIsUnique = function (c) {
-        return usernameInputIsUnique(this, c, 2000).first();
-    };
-    UsernameInput.prototype.updateValidation = function (status) {
-        console.log("updateValidation", status);
-        this.usernameClass = [];
-        this.error = false;
-        this.success = false;
-        this.errorMessage = '';
-        if (this.usernameInputControl.dirty && this.usernameInputControl.invalid) {
-            this.error = true;
-            console.log(this.usernameInputControl.errors);
-            for (var key in this.usernameInputControl.errors) {
-                this.errorMessage += this.messages[key] + ' ';
-            }
-            //this.errorMessage = this.messages.required;
-            this.usernameClass.push('has-error');
-        }
-        else if (this.usernameInputControl.valid) {
-            this.success = true;
-            this.usernameClass.push('has-success');
-        }
-    };
-    return UsernameInput;
-}());
+    return UserEmailInput;
+}(__WEBPACK_IMPORTED_MODULE_2__validatable_input__["a" /* ValidatableInput */]));
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_3" /* Output */])(),
-    __metadata("design:type", Object)
-], UsernameInput.prototype, "groupCreated", void 0);
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* Input */])("email-exists-msg"),
+    __metadata("design:type", String)
+], UserEmailInput.prototype, "emailExistsMsg", void 0);
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_3" /* Output */])(),
-    __metadata("design:type", Object)
-], UsernameInput.prototype, "controlCreated", void 0);
-UsernameInput = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Y" /* Component */])({
-        selector: 'ua-username-input',
-        template: __webpack_require__(205),
-        styles: [__webpack_require__(190)],
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* Input */])("email-format-msg"),
+    __metadata("design:type", String)
+], UserEmailInput.prototype, "emailFormatMsg", void 0);
+UserEmailInput = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Z" /* Component */])({
+        selector: 'ua-user-email-input',
+        template: __webpack_require__(211),
+        styles: [__webpack_require__(194)]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* FormBuilder */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__validator_service__["a" /* ValidatorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__validator_service__["a" /* ValidatorService */]) === "function" && _b || Object])
-], UsernameInput);
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__validator_service__["a" /* ValidatorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__validator_service__["a" /* ValidatorService */]) === "function" && _a || Object])
+], UserEmailInput);
 
-var _a, _b;
-//# sourceMappingURL=username-input.component.js.map
+var _a;
+//# sourceMappingURL=user-email-input.component.js.map
 
 /***/ }),
 /* 125 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__validatable_input__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validator_service__ = __webpack_require__(40);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UsernameInput; });
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var UsernameInput = (function (_super) {
+    __extends(UsernameInput, _super);
+    function UsernameInput(vs) {
+        var _this = _super.call(this) || this;
+        _this.vs = vs;
+        _this.usernameExistsMsg = 'Allready in use.';
+        return _this;
+    }
+    UsernameInput.prototype.ngOnInit = function () {
+        this.init(__WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].required);
+        this.addMessage('usernameExists', this.usernameExistsMsg);
+    };
+    UsernameInput.prototype.validate = function (observer) {
+        var _this = this;
+        return this.vs.checkUsername(this.control.value)
+            .subscribe(function (data) {
+            _this.validating = false;
+            if (data.usernameExists)
+                observer.next({ usernameExists: true });
+            else
+                observer.next(null);
+        }, function (error) {
+            _this.validating = false;
+            observer.next({ httpError: true });
+        });
+    };
+    return UsernameInput;
+}(__WEBPACK_IMPORTED_MODULE_2__validatable_input__["a" /* ValidatableInput */]));
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* Input */])("username-exists-msg"),
+    __metadata("design:type", String)
+], UsernameInput.prototype, "usernameExistsMsg", void 0);
+UsernameInput = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Z" /* Component */])({
+        selector: 'ua-username-input',
+        template: __webpack_require__(212),
+        styles: [__webpack_require__(195)],
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__validator_service__["a" /* ValidatorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__validator_service__["a" /* ValidatorService */]) === "function" && _a || Object])
+], UsernameInput);
+
+var _a;
+//# sourceMappingURL=username-input.component.js.map
+
+/***/ }),
+/* 126 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1785,10 +1898,10 @@ var LoadingComponent = (function () {
     return LoadingComponent;
 }());
 LoadingComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Y" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Z" /* Component */])({
         selector: 'ua-loading',
-        template: __webpack_require__(206),
-        styles: [__webpack_require__(191)]
+        template: __webpack_require__(213),
+        styles: [__webpack_require__(196)]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__request_service__["a" /* RequestService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__request_service__["a" /* RequestService */]) === "function" && _a || Object])
 ], LoadingComponent);
@@ -1797,7 +1910,7 @@ var _a;
 //# sourceMappingURL=loading.component.js.map
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1808,7 +1921,7 @@ var menu = [
 //# sourceMappingURL=menu.js.map
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1816,7 +1929,7 @@ var menu = [
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_auth_service__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config_service__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__menu__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__menu__ = __webpack_require__(127);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MenuComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1855,10 +1968,10 @@ __decorate([
     __metadata("design:type", String)
 ], MenuComponent.prototype, "title", void 0);
 MenuComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Y" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Z" /* Component */])({
         selector: 'ua-menu',
-        template: __webpack_require__(207),
-        styles: [__webpack_require__(192)]
+        template: __webpack_require__(214),
+        styles: [__webpack_require__(197)]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__auth_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__auth_auth_service__["a" /* AuthService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__config_service__["a" /* ConfigService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__config_service__["a" /* ConfigService */]) === "function" && _c || Object])
 ], MenuComponent);
@@ -1867,14 +1980,14 @@ var _a, _b, _c;
 //# sourceMappingURL=menu.component.js.map
 
 /***/ }),
-/* 128 */
+/* 129 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_routes__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_routes__ = __webpack_require__(130);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__user_list_user_list_component__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__user_detail_user_detail_component__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__user_service__ = __webpack_require__(41);
@@ -1912,13 +2025,13 @@ UserModule = __decorate([
 //# sourceMappingURL=user.module.js.map
 
 /***/ }),
-/* 129 */
+/* 130 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_authorized_guard__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_authorized_guard__ = __webpack_require__(121);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_list_user_list_component__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__user_detail_user_detail_component__ = __webpack_require__(75);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserRoutes; });
@@ -1954,9 +2067,123 @@ UserRoutes = __decorate([
 //# sourceMappingURL=user.routes.js.map
 
 /***/ }),
-/* 130 */,
-/* 131 */,
-/* 132 */,
+/* 131 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(7);
+/* unused harmony export areEqual */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EqualValidator; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+function areEqual(c, mustBeEqualTo) {
+    //console.log("areEqual",c,mustBeEqualTo);
+    var v = c.value;
+    var e = c.root.get(mustBeEqualTo);
+    //console.log("areEqual ev",e,v);
+    if (e && v !== e.value) {
+        return {
+            mustBeEqualTo: false
+        };
+    }
+    return null;
+}
+var EqualValidator = EqualValidator_1 = (function () {
+    function EqualValidator(mustBeEqualTo) {
+        this.mustBeEqualTo = mustBeEqualTo;
+    }
+    EqualValidator.prototype.validate = function (c) {
+        return areEqual(c, this.mustBeEqualTo);
+    };
+    return EqualValidator;
+}());
+EqualValidator = EqualValidator_1 = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["H" /* Directive */])({
+        selector: '[mustBeEqualTo][formControlName],[mustBeEqualTo][formControl],[mustBeEqualTo][ngModel]',
+        providers: [
+            { provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* NG_VALIDATORS */], useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_0" /* forwardRef */])(function () { return EqualValidator_1; }), multi: true }
+        ]
+    }),
+    __param(0, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["S" /* Attribute */])('mustBeEqualTo')),
+    __metadata("design:paramtypes", [String])
+], EqualValidator);
+
+var EqualValidator_1;
+//# sourceMappingURL=equal.validator.js.map
+
+/***/ }),
+/* 132 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_first__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_first___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_first__);
+/* unused harmony export isUsenameUnique */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UsernameUniqueValidator; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var timeout;
+function isUsenameUnique(c) {
+    //console.log("isUsenameUnique");
+    return new Promise(function (resolve) {
+        clearTimeout(timeout);
+        timeout = setTimeout(function () {
+            //console.log("isUsenameUnique R");
+            resolve(null);
+        }, 2000);
+    });
+}
+var UsernameUniqueValidator = UsernameUniqueValidator_1 = (function () {
+    function UsernameUniqueValidator() {
+        //console.log("UsernameUniqueValidator.constructor");
+    }
+    UsernameUniqueValidator.prototype.validate = function (c) {
+        //console.log("UsernameUniqueValidator.validate");
+        return isUsenameUnique(c);
+    };
+    return UsernameUniqueValidator;
+}());
+UsernameUniqueValidator = UsernameUniqueValidator_1 = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["H" /* Directive */])({
+        selector: '[usernameUnique][formControlName],[usernameUnique][formControl],[usernameUnique][ngModel]',
+        providers: [{
+                provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* NG_ASYNC_VALIDATORS */],
+                useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_0" /* forwardRef */])(function () { return UsernameUniqueValidator_1; }),
+                multi: true
+            }]
+    }),
+    __metadata("design:paramtypes", [])
+], UsernameUniqueValidator);
+
+var UsernameUniqueValidator_1;
+//# sourceMappingURL=username-unique.validator.js.map
+
+/***/ }),
 /* 133 */,
 /* 134 */,
 /* 135 */,
@@ -2008,61 +2235,13 @@ UserRoutes = __decorate([
 /* 181 */,
 /* 182 */,
 /* 183 */,
-/* 184 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(4)();
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-/* 185 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(4)();
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-/* 186 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(4)();
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
+/* 184 */,
+/* 185 */,
+/* 186 */,
 /* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)();
+exports = module.exports = __webpack_require__(3)();
 // imports
 
 
@@ -2079,7 +2258,7 @@ module.exports = module.exports.toString();
 /* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)();
+exports = module.exports = __webpack_require__(3)();
 // imports
 
 
@@ -2096,7 +2275,7 @@ module.exports = module.exports.toString();
 /* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)();
+exports = module.exports = __webpack_require__(3)();
 // imports
 
 
@@ -2113,7 +2292,7 @@ module.exports = module.exports.toString();
 /* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)();
+exports = module.exports = __webpack_require__(3)();
 // imports
 
 
@@ -2130,12 +2309,12 @@ module.exports = module.exports.toString();
 /* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)();
+exports = module.exports = __webpack_require__(3)();
 // imports
 
 
 // module
-exports.push([module.i, ".loader {\r\n    position: fixed;\r\n    width: 100%;\r\n    height: 100%;\r\n    background-color: #fff;\r\n    opacity: 0.75;\r\n    z-index: 999;\r\n}\r\n\r\n.loader > div {\r\n    position: relative;\r\n    left:50%;\r\n    top:50%;\r\n    margin: -64px 0 0 -64px;\r\n}\r\n\r\n.loader > div > img {\r\n    width:128px;\r\n}", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -2147,7 +2326,7 @@ module.exports = module.exports.toString();
 /* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)();
+exports = module.exports = __webpack_require__(3)();
 // imports
 
 
@@ -2164,7 +2343,7 @@ module.exports = module.exports.toString();
 /* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)();
+exports = module.exports = __webpack_require__(3)();
 // imports
 
 
@@ -2181,7 +2360,7 @@ module.exports = module.exports.toString();
 /* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)();
+exports = module.exports = __webpack_require__(3)();
 // imports
 
 
@@ -2198,7 +2377,7 @@ module.exports = module.exports.toString();
 /* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)();
+exports = module.exports = __webpack_require__(3)();
 // imports
 
 
@@ -2215,7 +2394,24 @@ module.exports = module.exports.toString();
 /* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)();
+exports = module.exports = __webpack_require__(3)();
+// imports
+
+
+// module
+exports.push([module.i, ".loader {\r\n    position: fixed;\r\n    width: 100%;\r\n    height: 100%;\r\n    background-color: #fff;\r\n    opacity: 0.75;\r\n    z-index: 999;\r\n}\r\n\r\n.loader > div {\r\n    position: relative;\r\n    left:50%;\r\n    top:50%;\r\n    margin: -64px 0 0 -64px;\r\n}\r\n\r\n.loader > div > img {\r\n    width:128px;\r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+/* 197 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)();
 // imports
 
 
@@ -2229,93 +2425,166 @@ exports.push([module.i, "", ""]);
 module.exports = module.exports.toString();
 
 /***/ }),
-/* 197 */,
-/* 198 */,
+/* 198 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)();
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
 /* 199 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)();
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+/* 200 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)();
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+/* 201 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)();
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+/* 202 */,
+/* 203 */,
+/* 204 */
 /***/ (function(module, exports) {
 
 module.exports = "<ua-loading></ua-loading>\r\n<ua-menu title=\"{{title}}\"></ua-menu>\r\n<div class=\"container\">\r\n    <router-outlet></router-outlet>\r\n</div>"
 
 /***/ }),
-/* 200 */
+/* 205 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n  <div class=\"col-sm-3\"></div>\r\n  <div class=\"col-sm-6\">\r\n    <div class=\"panel panel-default panel-primary\">\r\n      <div class=\"panel-heading\">Login</div>\r\n      <div class=\"panel-body\">\r\n        <div class=\"form-group\">\r\n          <label for=\"username\">Username</label>\r\n          <input type=\"text\" [(ngModel)]=\"username\" class=\"form-control\" value=\"\">\r\n        </div>\r\n        <div  class=\"form-group\">\r\n          <label for=\"password\">Password</label>\r\n          <input type=\"password\" [(ngModel)]=\"password\" class=\"form-control\" value=\"\">\r\n        </div>\r\n        <div class=\"form-group\" *ngIf=\"loginFailed\">\r\n          <p style=\"color:red\">Login failed, check credentials and try again</p>\r\n        </div>\r\n        <div class=\"form-group\">\r\n          <button class=\"btn btn-primary\" (click)=\"login()\">Login</button>\r\n        </div>\r\n        <div class=\"form-group\">\r\n          <a [routerLink]=\"['/recover-password']\">Forgot Password?</a>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"col-sm-3\"></div>\r\n</div>"
 
 /***/ }),
-/* 201 */
+/* 206 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\n  <div class=\"col-sm-4\"></div>\n  <div class=\"col-sm-4\">\n    <div class=\"panel panel-default panel-primary\">\n      <div class=\"panel-heading\">Type your Email to reset your password</div>\n      <div class=\"panel-body\">\n        <div  class=\"form-group\">\n          <label for=\"email\">Email</label>\n          <input type=\"email\" [(ngModel)]=\"email\" class=\"form-control\" value=\"\">\n        </div>\n        <div  class=\"form-group\">\n          <button class=\"btn btn-primary\" (click)=\"sendResetPasswordEmail()\" [disabled]=\"sending\" *ngIf=\"!sent\">Reset Password</button>\n          <div *ngIf=\"sent\">\n            <p>Email sent! Click on the link in the email to reset your password.</p>\n            <a class=\"btn btn-primary\" [routerLink]=\"['/login']\">Sign In</a>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"col-sm-4\"></div>\n</div>"
 
 /***/ }),
-/* 202 */
-/***/ (function(module, exports) {
-
-module.exports = "<p>\n  signup-done works!\n</p>\n"
-
-/***/ }),
-/* 203 */
-/***/ (function(module, exports) {
-
-module.exports = "<form novalidate [formGroup]=\"signupForm\" *ngIf=\"active\" (ngSubmit)=\"signupUser(signupForm.value)\">\r\n  <div [formGroup]=\"usernameForm\">\r\n    <div class=\"form-group has-feedback validatable\">\r\n      <label>Username</label>\r\n      <input type=\"text\" class=\"form-control\" name=\"username\" formControlName=\"username\"/>\r\n      <span class=\"glyphicon glyphicon-remove form-control-feedback\"\r\n        aria-hidden=\"true\"\r\n        style=\"color:darkred\"\r\n        *ngIf=\"errors.username\"></span>\r\n      <span class=\"glyphicon glyphicon-ok form-control-feedback\"\r\n        aria-hidden=\"true\"\r\n        style=\"color:darkgreen\"\r\n        *ngIf=\"errors.usernameValid\"></span>\r\n      <div class=\"alert alert-danger\" *ngIf=\"errors.username\">\r\n        {{errors.username}}\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"validatable\">\r\n    <div class=\"form-group\">\r\n      <label>Password</label>\r\n      <input type=\"password\" class=\"form-control\" name=\"password\" formControlName=\"password\"/>\r\n      <div class=\"alert alert-danger\" *ngIf=\"errors.password\">\r\n        {{errors.password}}\r\n      </div>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label>Confirm Password</label>\r\n      <input type=\"password\" class=\"form-control\" name=\"confirmPassword\" formControlName=\"confirmPassword\"/>\r\n      <div class=\"alert alert-danger\" *ngIf=\"errors.confirmPassword\">\r\n        {{errors.confirmPassword}}\r\n      </div>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label>First Name</label>\r\n      <input type=\"text\" class=\"form-control\" name=\"fname\" formControlName=\"fname\"/>\r\n      <div class=\"alert alert-danger\" *ngIf=\"errors.fname\">\r\n        {{errors.fname}}\r\n      </div>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label >Last Name</label>\r\n      <input type=\"text\" class=\"form-control\" name=\"lname\" formControlName=\"lname\"/>\r\n      <div class=\"alert alert-danger\" *ngIf=\"errors.lname\">\r\n        {{errors.lname}}\r\n      </div>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label>Email</label>\r\n      <input type=\"email\" class=\"form-control\" name=\"email\" formControlName=\"email\"/>\r\n      <div class=\"alert alert-danger\" *ngIf=\"errors.email\">\r\n        {{errors.email}}\r\n      </div>\r\n    </div>\r\n    <input type=\"hidden\" name=\"role\" formControlName=\"role\"/>\r\n    <div class=\"form-group\">\r\n      <button type=\"submit\" class=\"btn btn-primary btn-lg\" [disabled]=\"!signupForm.valid\">\r\n        <i class=\"glyphicon glyphicon-plus\"></i>Sign up!\r\n      </button>\r\n      <button type=\"reset\" class=\"btn btn-warning btn-lg\">\r\n        <i class=\"glyphicon glyphicon-plus\"></i>Reset\r\n      </button>\r\n    </div>\r\n  </div>\r\n</form>"
-
-/***/ }),
-/* 204 */
-/***/ (function(module, exports) {
-
-module.exports = "<div [formGroup]=\"userEmailInputGroup\">\r\n  <div class=\"form-group has-feedback\" [ngClass]=\"userEmailClass\">\r\n    <label>Email</label>\r\n    <input type=\"text\" class=\"form-control\" name=\"email\" formControlName=\"email\" />\r\n    <span *ngIf=\"error\" class=\"glyphicon glyphicon-remove form-control-feedback\" aria-hidden=\"true\"></span>\r\n    <span *ngIf=\"success\" class=\"glyphicon glyphicon-ok form-control-feedback\" aria-hidden=\"true\"></span>\r\n    <span *ngIf=\"validating\" class=\"glyphicon ua-icon ua-icon-bars form-control-feedback\" aria-hidden=\"true\"></span>\r\n    <div class=\"alert alert-danger\" *ngIf=\"error\">\r\n      {{errorMessage}}\r\n    </div>\r\n    <div class=\"alert alert-info\" *ngIf=\"searching\">\r\n      Checking if email is in use.\r\n    </div>\r\n    <div class=\"alert\" *ngIf=\"(!validating && !error)\" style=\"visibility:hidden\">\r\n      Placeholder alert.\r\n    </div>\r\n  </div>\r\n</div>"
-
-/***/ }),
-/* 205 */
-/***/ (function(module, exports) {
-
-module.exports = "<div [formGroup]=\"usernameInputGroup\">\r\n  <div class=\"form-group has-feedback\" [ngClass]=\"usernameClass\">\r\n    <label>Username</label>\r\n    <input type=\"text\" class=\"form-control\" name=\"username\" formControlName=\"username\" />\r\n    <span *ngIf=\"error\" class=\"glyphicon glyphicon-remove form-control-feedback\" aria-hidden=\"true\"></span>\r\n    <span *ngIf=\"success\" class=\"glyphicon glyphicon-ok form-control-feedback\" aria-hidden=\"true\"></span>\r\n    <span *ngIf=\"validating\" class=\"glyphicon ua-icon ua-icon-bars form-control-feedback\" aria-hidden=\"true\"></span>\r\n    <div class=\"alert alert-danger\" *ngIf=\"error\">\r\n      {{errorMessage}}\r\n    </div>\r\n    <div class=\"alert alert-info\" *ngIf=\"validating\">\r\n      Checking if username exists.\r\n    </div>\r\n    <div class=\"alert\" *ngIf=\"(!validating && !error)\" style=\"visibility:hidden\">\r\n      Placeholder alert.\r\n    </div>\r\n  </div>\r\n</div>"
-
-/***/ }),
-/* 206 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"loader\" *ngIf=\"rs.isCalling()\">\r\n  <div>\r\n    <img src=\"assets/loaders/spinning-circles.svg\" alt=\"Loading\" />\r\n  </div>\r\n</div>"
-
-/***/ }),
 /* 207 */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default\">\r\n  <div class=\"container\">\r\n    <a class=\"navbar-brand\" [routerLink]=\"['/welcome']\"><span>{{title}}</span> <sub>{{cs.get().env}}</sub></a>\r\n    <ul class=\"nav navbar-nav\" *ngIf=\"auth.isAuthenticated()\">\r\n      <li *ngFor=\"let item of menu\">\r\n        <a [routerLink]=\"item.route\">{{item.label}}</a></li>\r\n    </ul>\r\n    <ul class=\"nav navbar-nav navbar-right\">\r\n      <li *ngIf=\"!auth.isAuthenticated()\">\r\n        <p class=\"navbar-btn btn-group\">\r\n          <a class=\"btn btn-primary\" [routerLink]=\"['/login']\">Sign in</a>\r\n          <button class=\"btn btn-success\" [routerLink]=\"['/signup']\">Sign up</button>\r\n        </p>\r\n      </li>\r\n      <li *ngIf=\"auth.isAuthenticated()\">\r\n        <a>{{auth.getUser().fname}} {{auth.getUser().lname}}</a>\r\n      </li>\r\n      <li *ngIf=\"auth.isAuthenticated()\">\r\n        <p class=\"navbar-btn\">\r\n          <button class=\"btn btn-danger\" (click)=\"logout()\">Logout</button>\r\n        </p>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</nav>"
+module.exports = "<div class=\"panel panel-primary\">\n  <div class=\"panel-heading\"><h2>Sign Up successfull!</h2></div>\n  <div class=\"panel-body\">\n    You will receive an email shortly with instructions to log in.\n  </div>\n</div>"
 
 /***/ }),
 /* 208 */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n  <p>\r\n    <a class=\"btn btn-warning\" [routerLink]=\"['/users']\"><i class=\"glyphicon glyphicon-arrow-left\"></i> Back</a>\r\n  </p>\r\n  <div class=\"form-group\">\r\n    <label for=\"username\">Username</label>\r\n    <input type=\"text\" class=\"form-control\" name=\"username\" [(ngModel)]=\"user.username\"/>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label for=\"fname\">First Name</label>\r\n    <input type=\"text\" class=\"form-control\" name=\"fname\" [(ngModel)]=\"user.fname\"/>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label for=\"lname\">Last Name</label>\r\n    <input type=\"text\" class=\"form-control\" name=\"lname\" [(ngModel)]=\"user.lname\"/>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label for=\"email\">Email</label>\r\n    <input type=\"text\" class=\"form-control\" name=\"email\" [(ngModel)]=\"user.email\"/>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label for=\"role\">Role</label>\r\n    <select name=\"role\" class=\"form-control\" [(ngModel)]=\"user.role\">\r\n      <option value=\"\">-- Select Role --</option>\r\n      <option value=\"ADMIN\">Admin</option>\r\n      <option value=\"USER\">User</option>\r\n    </select>\r\n  </div>\r\n  <p>\r\n    <button class=\"btn btn-primary btn-lg\" (click)=\"saveUser()\"><i class=\"glyphicon glyphicon-floppy-disk\"></i> Save</button>\r\n  </p>\r\n</div>"
+module.exports = "<div class=\"panel panel-primary\">\r\n  <div class=\"panel-heading\"><h2>Sign Up!</h2></div>\r\n  <div class=\"panel-body\">\r\n    <form novalidate [formGroup]=\"signupForm\" *ngIf=\"active\" (ngSubmit)=\"signupUser(signupForm.value)\">\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-4\">\r\n          <ua-username-input label=\"Username\" (groupCreated)=\"onUsernameGroup($event)\"></ua-username-input>\r\n        </div>\r\n        <div class=\"col-sm-8\">\r\n          <ua-user-email-input label=\"Email\" (groupCreated)=\"onEmailGroup($event)\"></ua-user-email-input>\r\n        </div>\r\n      </div>\r\n      <div>\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-4\">\r\n          <ua-password-input (groupCreated)=\"onPasswordGroup($event)\"></ua-password-input>\r\n        </div>\r\n        <div class=\"col-sm-8\"></div>\r\n      </div>\r\n        <ua-name-input (groupCreated)=\"onFirstNameGroup($event)\"></ua-name-input>\r\n        <ua-name-input (groupCreated)=\"onLastNameGroup($event)\"></ua-name-input>\r\n        <input type=\"hidden\" name=\"role\" formControlName=\"role\"/>\r\n        <div class=\"form-group\">\r\n          <button type=\"submit\" class=\"btn btn-primary btn-lg\" [disabled]=\"!signupForm.valid\">\r\n            <i class=\"glyphicon glyphicon-plus\"></i>Sign up!\r\n          </button>\r\n          <button type=\"reset\" class=\"btn btn-warning btn-lg\">\r\n            <i class=\"glyphicon glyphicon-plus\"></i>Reset\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </form>\r\n  </div>\r\n</div>"
 
 /***/ }),
 /* 209 */
 /***/ (function(module, exports) {
 
-module.exports = "<form (ngSubmit)=\"searchUsers()\">\r\n  <div class=\"input-group\">\r\n    <span class=\"input-group-btn\">\r\n      <a class=\"btn btn-primary\" [routerLink]=\"['/user/add']\">\r\n        <i class=\"glyphicon glyphicon-plus\"></i> Add\r\n      </a>\r\n    </span>\r\n    <input type=\"text\" class=\"form-control\" placeholder=\"Search...\" [(ngModel)]=\"searchText\" [ngModelOptions]=\"{standalone: true}\" />\r\n    <span class=\"input-group-btn\">\r\n      <button type=\"submit\" class=\"btn btn-primary\">\r\n        <i class=\"glyphicon glyphicon-search\"></i>\r\n      </button>\r\n    </span>\r\n  </div>\r\n</form>\r\n<div class=\"ua-record-row\" *ngFor=\"let user of users; let i = index\" [@record]=\"user.status\">\r\n  <div class=\"btn-group btn-group-lg\" role=\"group\">\r\n    <a class=\"btn btn-danger\" (click)=\"deleteUser(i)\"><i class=\"glyphicon glyphicon-trash\"></i></a>\r\n    <div class=\"btn btn-primary\" [routerLink]=\"['/user', user.id]\">\r\n      <i class=\"glyphicon glyphicon-pencil\"></i>\r\n      <span>{{user.fname}} {{user.lname}} ({{user.username}})</span>\r\n      <span>{{user.email}}</span>\r\n    </div>\r\n  </div>\r\n</div>"
+module.exports = "<div [formGroup]=\"group\" class=\"form-group has-feedback\" [ngClass]=\"fieldClass\">\n  <label>{{label}}</label>\n  <input type=\"text\" class=\"form-control\" name=\"value\" formControlName=\"value\" />\n  <span *ngIf=\"error\" class=\"glyphicon glyphicon-remove form-control-feedback\" aria-hidden=\"true\"></span>\n  <span *ngIf=\"success\" class=\"glyphicon glyphicon-ok form-control-feedback\" aria-hidden=\"true\"></span>\n  <div class=\"alert alert-danger\" *ngIf=\"errorMessage\">\n      {{errorMessage}}\n    </div>\n    <div class=\"alert\" *ngIf=\"!error\" style=\"visibility:hidden\">\n      Placeholder alert.\n    </div>\n</div>"
 
 /***/ }),
 /* 210 */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  test works!\r\n</p>\r\n<form>\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-3\">\r\n      <ua-username-input (groupCreated)=\"onUsernameGroupCreated($event)\" (controlCreated)=\"onUsernameControlCreated($event)\"></ua-username-input>\r\n    </div>\r\n    <div class=\"col-sm-3\">\r\n      <ua-user-email-input (groupCreated)=\"onUserEmailGroupCreated($event)\" (controlCreated)=\"onUserEmailControlCreated($event)\"></ua-user-email-input>\r\n    </div>\r\n    <div class=\"col-sm-3\">\r\n      <div class=\"form-group has-success has-feedback\">\r\n        <label class=\"control-label\" for=\"inputSuccess2\">Input with success</label>\r\n        <input type=\"text\" class=\"form-control\" id=\"inputSuccess2\" aria-describedby=\"inputSuccess2Status\">\r\n        <span class=\"glyphicon glyphicon-ok form-control-feedback\" aria-hidden=\"true\"></span>\r\n        <span id=\"inputSuccess2Status\" class=\"sr-only\">(success)</span>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-sm-3\">\r\n      <div class=\"form-group has-warning has-feedback\">\r\n        <label class=\"control-label\" for=\"inputWarning2\">Input with warning</label>\r\n        <input type=\"text\" class=\"form-control\" id=\"inputWarning2\" aria-describedby=\"inputWarning2Status\">\r\n        <span class=\"glyphicon glyphicon-warning-sign form-control-feedback\" aria-hidden=\"true\"></span>\r\n        <span id=\"inputWarning2Status\" class=\"sr-only\">(warning)</span>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-3\">\r\n      <div class=\"form-group has-success has-feedback\">\r\n        <label class=\"control-label\" for=\"inputGroupSuccess1\">Input group with success</label>\r\n        <div class=\"input-group\">\r\n          <span class=\"input-group-addon\">@</span>\r\n          <input type=\"text\" class=\"form-control\" id=\"inputGroupSuccess1\" aria-describedby=\"inputGroupSuccess1Status\">\r\n        </div>\r\n        <span class=\"glyphicon glyphicon-ok form-control-feedback\" aria-hidden=\"true\"></span>\r\n        <span id=\"inputGroupSuccess1Status\" class=\"sr-only\">(success)</span>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-sm-3\">\r\n      <div class=\"form-group has-error has-feedback\">\r\n        <label class=\"control-label\" for=\"inputError2\">Input with error</label>\r\n        <input type=\"text\" class=\"form-control\" id=\"inputError2\" aria-describedby=\"inputError2Status\">\r\n        <span class=\"glyphicon glyphicon-remove form-control-feedback\" aria-hidden=\"true\"></span>\r\n        <span id=\"inputError2Status\" class=\"sr-only\">(error)</span>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</form>"
+module.exports = "<div [formGroup]=\"group\">\n  <div class=\"form-group has-feedback\" [ngClass]=\"classes.value\">\n    <label>{{label}}</label>\n    <input type=\"password\" class=\"form-control\" name=\"value\" formControlName=\"value\"/>\n    <span *ngIf=\"errors.value\" class=\"glyphicon glyphicon-remove form-control-feedback\" aria-hidden=\"true\"></span>\n    <span *ngIf=\"!errors.value && !pristine.value\" class=\"glyphicon glyphicon-ok form-control-feedback\" aria-hidden=\"true\"></span>\n    <div class=\"alert alert-danger\" *ngIf=\"errors.value\">\n      {{errors.value}}\n    </div>\n    <div class=\"alert\" *ngIf=\"!errors.value\" style=\"visibility:hidden\">\n      Placeholder alert.\n    </div>\n  </div>\n  <div class=\"form-group has-feedback\" [ngClass]=\"classes.confirmed\">\n    <label>{{confirmLabel}}</label>\n    <input type=\"password\" class=\"form-control\" name=\"confirmed\" formControlName=\"confirmed\"/>\n    <span *ngIf=\"errors.confirmed\" class=\"glyphicon glyphicon-remove form-control-feedback\" aria-hidden=\"true\"></span>\n    <span *ngIf=\"!errors.confirmed && !pristine.confirmed\" class=\"glyphicon glyphicon-ok form-control-feedback\" aria-hidden=\"true\"></span>\n    <div class=\"alert alert-danger\" *ngIf=\"errors.confirmed\">\n      {{errors.confirmed}}\n    </div>\n    <div class=\"alert\" *ngIf=\"!errors.confirmed\" style=\"visibility:hidden\">\n      Placeholder alert.\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 /* 211 */
 /***/ (function(module, exports) {
 
+module.exports = "<div [formGroup]=\"group\" class=\"form-group has-feedback\" [ngClass]=\"groupClass\">\r\n  <label>{{label}}</label>\r\n  <input type=\"text\" class=\"form-control\" name=\"value\" formControlName=\"value\" />\r\n  <span *ngIf=\"error\" class=\"glyphicon glyphicon-remove form-control-feedback\" aria-hidden=\"true\"></span>\r\n  <span *ngIf=\"success\" class=\"glyphicon glyphicon-ok form-control-feedback\" aria-hidden=\"true\"></span>\r\n  <span *ngIf=\"validating\" class=\"glyphicon ua-icon ua-icon-bars form-control-feedback\" aria-hidden=\"true\"></span>\r\n  <div class=\"alert alert-danger\" *ngIf=\"error\">\r\n    {{errorMessage}}\r\n  </div>\r\n  <div class=\"alert alert-info\" *ngIf=\"validating\">\r\n    {{validatingMsg}}\r\n  </div>\r\n  <div class=\"alert\" *ngIf=\"(!validating && !error)\" style=\"visibility:hidden\">\r\n    Placeholder alert.\r\n  </div>\r\n</div>"
+
+/***/ }),
+/* 212 */
+/***/ (function(module, exports) {
+
+module.exports = "<div [formGroup]=\"group\" class=\"form-group has-feedback\" [ngClass]=\"groupClass\">\r\n  <label>{{label}}</label>\r\n  <input type=\"text\" class=\"form-control\" name=\"value\" formControlName=\"value\" />\r\n  <span *ngIf=\"error\" class=\"glyphicon glyphicon-remove form-control-feedback\" aria-hidden=\"true\"></span>\r\n  <span *ngIf=\"success\" class=\"glyphicon glyphicon-ok form-control-feedback\" aria-hidden=\"true\"></span>\r\n  <span *ngIf=\"validating\" class=\"glyphicon ua-icon ua-icon-bars form-control-feedback\" aria-hidden=\"true\"></span>\r\n  <div class=\"alert alert-danger\" *ngIf=\"error\">\r\n    {{errorMessage}}\r\n  </div>\r\n  <div class=\"alert alert-info\" *ngIf=\"validating\">\r\n    {{validatingMsg}}\r\n  </div>\r\n  <div class=\"alert\" *ngIf=\"(!validating && !error)\" style=\"visibility:hidden\">\r\n    Placeholder alert.\r\n  </div>\r\n</div>\r\n"
+
+/***/ }),
+/* 213 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"loader\" *ngIf=\"rs.isCalling()\">\r\n  <div>\r\n    <img src=\"assets/loaders/spinning-circles.svg\" alt=\"Loading\" />\r\n  </div>\r\n</div>"
+
+/***/ }),
+/* 214 */
+/***/ (function(module, exports) {
+
+module.exports = "<nav class=\"navbar navbar-default\">\r\n  <div class=\"container\">\r\n    <a class=\"navbar-brand\" [routerLink]=\"['/welcome']\"><span>{{title}}</span> <sub>{{cs.get().env}}</sub></a>\r\n    <ul class=\"nav navbar-nav\" *ngIf=\"auth.isAuthenticated()\">\r\n      <li *ngFor=\"let item of menu\">\r\n        <a [routerLink]=\"item.route\">{{item.label}}</a></li>\r\n    </ul>\r\n    <ul class=\"nav navbar-nav navbar-right\">\r\n      <li *ngIf=\"!auth.isAuthenticated()\">\r\n        <p class=\"navbar-btn btn-group\">\r\n          <a class=\"btn btn-primary\" [routerLink]=\"['/login']\">Sign in</a>\r\n          <button class=\"btn btn-success\" [routerLink]=\"['/signup']\">Sign up</button>\r\n        </p>\r\n      </li>\r\n      <li *ngIf=\"auth.isAuthenticated()\">\r\n        <a>{{auth.getUser().fname}} {{auth.getUser().lname}}</a>\r\n      </li>\r\n      <li *ngIf=\"auth.isAuthenticated()\">\r\n        <p class=\"navbar-btn\">\r\n          <button class=\"btn btn-danger\" (click)=\"logout()\">Logout</button>\r\n        </p>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</nav>"
+
+/***/ }),
+/* 215 */
+/***/ (function(module, exports) {
+
+module.exports = "<div>\r\n  <p>\r\n    <a class=\"btn btn-warning\" [routerLink]=\"['/users']\"><i class=\"glyphicon glyphicon-arrow-left\"></i> Back</a>\r\n  </p>\r\n  <div class=\"form-group\">\r\n    <label for=\"username\">Username</label>\r\n    <input type=\"text\" class=\"form-control\" name=\"username\" [(ngModel)]=\"user.username\"/>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label for=\"fname\">First Name</label>\r\n    <input type=\"text\" class=\"form-control\" name=\"fname\" [(ngModel)]=\"user.fname\"/>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label for=\"lname\">Last Name</label>\r\n    <input type=\"text\" class=\"form-control\" name=\"lname\" [(ngModel)]=\"user.lname\"/>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label for=\"email\">Email</label>\r\n    <input type=\"text\" class=\"form-control\" name=\"email\" [(ngModel)]=\"user.email\"/>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label for=\"role\">Role</label>\r\n    <select name=\"role\" class=\"form-control\" [(ngModel)]=\"user.role\">\r\n      <option value=\"\">-- Select Role --</option>\r\n      <option value=\"ADMIN\">Admin</option>\r\n      <option value=\"USER\">User</option>\r\n    </select>\r\n  </div>\r\n  <p>\r\n    <button class=\"btn btn-primary btn-lg\" (click)=\"saveUser()\"><i class=\"glyphicon glyphicon-floppy-disk\"></i> Save</button>\r\n  </p>\r\n</div>"
+
+/***/ }),
+/* 216 */
+/***/ (function(module, exports) {
+
+module.exports = "<form (ngSubmit)=\"searchUsers()\">\r\n  <div class=\"input-group\">\r\n    <span class=\"input-group-btn\">\r\n      <a class=\"btn btn-primary\" [routerLink]=\"['/user/add']\">\r\n        <i class=\"glyphicon glyphicon-plus\"></i> Add\r\n      </a>\r\n    </span>\r\n    <input type=\"text\" class=\"form-control\" placeholder=\"Search...\" [(ngModel)]=\"searchText\" [ngModelOptions]=\"{standalone: true}\" />\r\n    <span class=\"input-group-btn\">\r\n      <button type=\"submit\" class=\"btn btn-primary\">\r\n        <i class=\"glyphicon glyphicon-search\"></i>\r\n      </button>\r\n    </span>\r\n  </div>\r\n</form>\r\n<div class=\"ua-record-row\" *ngFor=\"let user of users; let i = index\" [@record]=\"user.status\">\r\n  <div class=\"btn-group btn-group-lg\" role=\"group\">\r\n    <a class=\"btn btn-danger\" (click)=\"deleteUser(i)\"><i class=\"glyphicon glyphicon-trash\"></i></a>\r\n    <div class=\"btn btn-primary\" [routerLink]=\"['/user', user.id]\">\r\n      <i class=\"glyphicon glyphicon-pencil\"></i>\r\n      <span>{{user.fname}} {{user.lname}} ({{user.username}})</span>\r\n      <span>{{user.email}}</span>\r\n    </div>\r\n  </div>\r\n</div>"
+
+/***/ }),
+/* 217 */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\r\n  test works!\r\n</p>\r\n<form [formGroup]=\"testForm\" (ngSubmit)=\"submit(testForm.value)\">\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-3\">\r\n      <ua-username-input label=\"Username\" (groupCreated)=\"onUsernameGroupCreated($event)\">\r\n      </ua-username-input>\r\n    </div>\r\n    <div class=\"col-sm-3\">\r\n      <ua-user-email-input label=\"TheEmail\" (groupCreated)=\"onUserEmailGroupCreated($event)\">\r\n      </ua-user-email-input>\r\n    </div>\r\n    <div class=\"col-sm-3\">\r\n      <ua-password-input></ua-password-input>\r\n    </div>\r\n    <div class=\"col-sm-3\">\r\n      <div class=\"form-group has-warning has-feedback\">\r\n        <label class=\"control-label\" for=\"inputWarning2\">Input with warning</label>\r\n        <input type=\"text\" class=\"form-control\" id=\"inputWarning2\" aria-describedby=\"inputWarning2Status\">\r\n        <span class=\"glyphicon glyphicon-warning-sign form-control-feedback\" aria-hidden=\"true\"></span>\r\n        <span id=\"inputWarning2Status\" class=\"sr-only\">(warning)</span>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-3\">\r\n      <div class=\"form-group has-success has-feedback\">\r\n        <label class=\"control-label\" for=\"inputGroupSuccess1\">Input group with success</label>\r\n        <div class=\"input-group\">\r\n          <span class=\"input-group-addon\">@</span>\r\n          <input type=\"text\" class=\"form-control\" id=\"inputGroupSuccess1\" aria-describedby=\"inputGroupSuccess1Status\">\r\n        </div>\r\n        <span class=\"glyphicon glyphicon-ok form-control-feedback\" aria-hidden=\"true\"></span>\r\n        <span id=\"inputGroupSuccess1Status\" class=\"sr-only\">(success)</span>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-sm-3\">\r\n      <div class=\"form-group has-error has-feedback\">\r\n        <label class=\"control-label\" for=\"inputError2\">Input with error</label>\r\n        <input type=\"text\" class=\"form-control\" id=\"inputError2\" aria-describedby=\"inputError2Status\">\r\n        <span class=\"glyphicon glyphicon-remove form-control-feedback\" aria-hidden=\"true\"></span>\r\n        <span id=\"inputError2Status\" class=\"sr-only\">(error)</span>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-sm-3\">\r\n      <div class=\"form-group has-success has-feedback\">\r\n        <label class=\"control-label\" for=\"inputSuccess2\">Input with success</label>\r\n        <input type=\"text\" class=\"form-control\" id=\"inputSuccess2\" aria-describedby=\"inputSuccess2Status\">\r\n        <span class=\"glyphicon glyphicon-ok form-control-feedback\" aria-hidden=\"true\"></span>\r\n        <span id=\"inputSuccess2Status\" class=\"sr-only\">(success)</span>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div>\r\n    <button type=\"submit\" class=\"btn btn-success btn-lg\" [disabled]=\"!testForm.valid\">\r\n      <i class=\"glyphicon glyphicon-plus\"></i>Submit\r\n    </button>\r\n  </div>\r\n</form>"
+
+/***/ }),
+/* 218 */
+/***/ (function(module, exports) {
+
 module.exports = "<div class=\"jumbotron\">\n  <h1>Welcome</h1>\n</div>"
 
 /***/ }),
-/* 212 */,
-/* 213 */,
-/* 214 */,
-/* 215 */,
-/* 216 */,
-/* 217 */,
-/* 218 */,
 /* 219 */,
 /* 220 */,
 /* 221 */,
@@ -2341,12 +2610,19 @@ module.exports = "<div class=\"jumbotron\">\n  <h1>Welcome</h1>\n</div>"
 /* 241 */,
 /* 242 */,
 /* 243 */,
-/* 244 */
+/* 244 */,
+/* 245 */,
+/* 246 */,
+/* 247 */,
+/* 248 */,
+/* 249 */,
+/* 250 */,
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(110);
+module.exports = __webpack_require__(109);
 
 
 /***/ })
-],[244]);
+],[251]);
 //# sourceMappingURL=main.bundle.js.map
