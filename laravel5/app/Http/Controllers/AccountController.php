@@ -50,7 +50,7 @@ class AccountController extends Controller
 
     private function sendActivateSignupEmail(User $user) {
         Mail::send('emails.signup_activate', ['user' => $user], function ($m) use ($user) {
-            $m->from('ua-auto@marcohern.com', 'Ultimate Atlas');
+            //$m->from('sender@marcohern.com', 'Ultimate Atlas');
             
             $m->to($user->email, $user->fname.' '.$user->lname)->subject('Your Reminder!');
         });
@@ -63,6 +63,8 @@ class AccountController extends Controller
         $atsource = $r->input('username').$r->input('email').$r->input('fname').$r->input('lname').$this->genSalt(256);
         $at = Hash::make($atsource);
 
+        $id = 1;
+        /*
         $id = User::insertGetId([
             'username' => $r->input('username'),
             'fname' => $r->input('fname'),
@@ -78,7 +80,7 @@ class AccountController extends Controller
             'activated_token' => $at,
 
             'created_at' => new \Datetime("now")
-        ]);
+        ]);*/
 
         $user = User::where('id',$id)->first();
 
