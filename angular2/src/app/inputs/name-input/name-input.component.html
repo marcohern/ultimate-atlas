@@ -1,0 +1,12 @@
+<div [formGroup]="group" class="form-group has-feedback" [ngClass]="fieldClass">
+  <label>{{label}}</label>
+  <input type="text" class="form-control" name="value" formControlName="value" />
+  <span *ngIf="error" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+  <span *ngIf="success" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+  <div class="alert alert-danger" *ngIf="errorMessage">
+      {{errorMessage}}
+    </div>
+    <div class="alert" *ngIf="!error" style="visibility:hidden">
+      Placeholder alert.
+    </div>
+</div>

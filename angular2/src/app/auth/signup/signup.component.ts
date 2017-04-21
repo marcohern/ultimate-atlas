@@ -21,17 +21,9 @@ export class SignupComponent implements OnInit {
   usernameForm:FormGroup;
   active:boolean = false;
   errors = {
-    fname:'',
-    lname:''
   }
 
   errorMessages = {
-    fname: {
-      required: 'First Name is required.'
-    },
-    lname: {
-      required: 'Last Name is required.'
-    },
     role: {
       required: 'Role is required.'
     }
@@ -45,16 +37,11 @@ export class SignupComponent implements OnInit {
   }
 
   public ngOnInit() {
-
     console.log("SignupComponent.ngOnInit");
 
     this.signupForm = this.fb.group({
-      fname: ['', Validators.required],
-      lname: ['', Validators.required],
       role:  ['ADMIN', Validators.required]
     });
-
-    this.signupForm.valueChanges.subscribe(data => this.onValueChanged(data));
 
     this.active=true;
   }
@@ -71,41 +58,30 @@ export class SignupComponent implements OnInit {
     this.signupForm.addControl('password',password);
   }
 
-  private checkIfDisplayErrorMessage(field:string) {
-    this.errors[field] = '';
-    const control = this.signupForm.get(field);
-    if (control && control.dirty && !control.valid) {
-      const messages = this.errorMessages[field];
-      for (const key in control.errors) {
-        this.errors[field] += messages[key] + ' ';
-      }
-    }
-  } 
-
-  public onValueChanged(data) {
-    this.checkIfDisplayErrorMessage('password');
-    this.checkIfDisplayErrorMessage('confirmPassword');
-    this.checkIfDisplayErrorMessage('fname');
-    this.checkIfDisplayErrorMessage('lname');
+  onFirstNameGroup(fname:FormGroup) {
+    this.signupForm.addControl('fname', fname);
   }
 
-  private signupUser(value:any) {
-    console.log('Reactive Form Data: ')
-    console.log(value);
+  onLastNameGroup(lname:FormGroup) {
+    this.signupForm.addControl('lname', lname);
+  }
 
-    /*
+  private signupUser(data:any) {
+    console.log('Reactive Form Data: ');
+
     var request:SignupRequest = {
-      username: this.username,
-      password: this.password,
-      fname: this.fname,
-      lname: this.lname,
-      email: this.email,
-      role: this.role
+      username: data.username.value,
+      password: data.password.value,
+      fname: data.fname.value,
+      lname: data.lname.value,
+      email: data.email.value,
+      role: data.role
     };
+    console.log(request);
 
     this.auth.signup(request).subscribe(
       () => this.router.navigate(['/signup-done'])
-    );*/
+    );
   }
 
 }

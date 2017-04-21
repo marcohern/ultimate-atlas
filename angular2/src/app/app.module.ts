@@ -25,7 +25,8 @@ import { AuthService } from './auth/auth.service'
 import { RequestService } from './request.service'
 import { ConfigService } from './config.service'
 import { ValidatorService } from './inputs/validator.service';
-import { PasswordInput } from './inputs/password-input/password-input.component'
+import { PasswordInput } from './inputs/password-input/password-input.component';
+import { NameInput } from './inputs/name-input/name-input.component'
 
 @NgModule({
   imports: [
@@ -55,7 +56,8 @@ import { PasswordInput } from './inputs/password-input/password-input.component'
     UsernameInput,
     UserEmailInput,
     PasswordInput,
-    TestComponent
+    TestComponent,
+    NameInput
   ],
   providers: [
     RequestService,

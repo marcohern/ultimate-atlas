@@ -1,42 +1,34 @@
-<form novalidate [formGroup]="signupForm" *ngIf="active" (ngSubmit)="signupUser(signupForm.value)">
-  <div class="row">
-    <div class="col-sm-4">
-      <ua-username-input label="Username" (groupCreated)="onUsernameGroup($event)"></ua-username-input>
-    </div>
-    <div class="col-sm-8">
-      <ua-user-email-input label="Email" (groupCreated)="onEmailGroup($event)"></ua-user-email-input>
-    </div>
-  </div>
-  <div>
-  <div class="row">
-    <div class="col-sm-3"></div>
-    <div class="col-sm-6">
-      <ua-password-input (groupCreated)="onPasswordGroup($event)"></ua-password-input>
-    </div>
-    <div class="col-sm-3"></div>
-  </div>
-    <div class="form-group">
-      <label>First Name</label>
-      <input type="text" class="form-control" name="fname" formControlName="fname"/>
-      <div class="alert alert-danger" *ngIf="errors.fname">
-        {{errors.fname}}
+<div class="panel panel-primary">
+  <div class="panel-heading"><h2>Sign Up!</h2></div>
+  <div class="panel-body">
+    <form novalidate [formGroup]="signupForm" *ngIf="active" (ngSubmit)="signupUser(signupForm.value)">
+      <div class="row">
+        <div class="col-sm-4">
+          <ua-username-input label="Username" (groupCreated)="onUsernameGroup($event)"></ua-username-input>
+        </div>
+        <div class="col-sm-8">
+          <ua-user-email-input label="Email" (groupCreated)="onEmailGroup($event)"></ua-user-email-input>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label >Last Name</label>
-      <input type="text" class="form-control" name="lname" formControlName="lname"/>
-      <div class="alert alert-danger" *ngIf="errors.lname">
-        {{errors.lname}}
+      <div>
+      <div class="row">
+        <div class="col-sm-4">
+          <ua-password-input (groupCreated)="onPasswordGroup($event)"></ua-password-input>
+        </div>
+        <div class="col-sm-8"></div>
       </div>
-    </div>
-    <input type="hidden" name="role" formControlName="role"/>
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary btn-lg" [disabled]="!signupForm.valid">
-        <i class="glyphicon glyphicon-plus"></i>Sign up!
-      </button>
-      <button type="reset" class="btn btn-warning btn-lg">
-        <i class="glyphicon glyphicon-plus"></i>Reset
-      </button>
-    </div>
+        <ua-name-input (groupCreated)="onFirstNameGroup($event)"></ua-name-input>
+        <ua-name-input (groupCreated)="onLastNameGroup($event)"></ua-name-input>
+        <input type="hidden" name="role" formControlName="role"/>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-lg" [disabled]="!signupForm.valid">
+            <i class="glyphicon glyphicon-plus"></i>Sign up!
+          </button>
+          <button type="reset" class="btn btn-warning btn-lg">
+            <i class="glyphicon glyphicon-plus"></i>Reset
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
-</form>
+</div>
