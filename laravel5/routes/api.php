@@ -18,6 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });*/
 
 Route::resource('users', 'UserController');
+Route::resource('daily_trans', 'Daily\DailyTransController');
+Route::resource('daily_cats', 'Daily\DailyCatsController');
 
 Route::post('/generate_password','AccountController@generate_password');
 Route::post('/check_token','AccountController@check_token');
