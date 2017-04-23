@@ -1,0 +1,27 @@
+.trans_negative {
+    color:darkred;
+}
+
+.trans_positive {
+    color:darkgreen;
+}
+
+.trans_transport {
+    color:blue;
+}
+
+.trans_food {
+    color:darkgreen;
+}
+
+.trans_purchases {
+    color:darkorange;
+}
+
+.trans_sortie {
+    color:darkmagenta;
+}
+
+.trans_other {
+    color:darkslategrey;
+}

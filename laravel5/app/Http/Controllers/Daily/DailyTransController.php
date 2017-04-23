@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Daily;
 
 use App\Exceptions\UAException;
 use App\Exceptions\NotFoundException;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -22,7 +23,17 @@ class DailyTransController extends Controller
     public function index()
     {
         //
-        $trans = DailyTrans::get();
+        $trans = DailyTrans::leftJoin('daily_cats', 'daily_trans.cat_id', '=','daily_cats.id')
+            ->select(
+                'daily_trans.*',
+                DB::raw('DATE(daily_trans.event_date) AS edate'),
+                DB::raw('TIME(daily_trans.event_date) AS etime'),
+                DB::raw('LEFT(daily_trans.event_date,7) AS emonth'),
+                DB::raw('YEAR(daily_trans.event_date) AS eyear'),
+                'daily_cats.name AS category',
+                'daily_cats.hypercat')
+            ->orderBy('event_date','DESC')->take(100)
+            ->get();
         return $trans;
     }
 

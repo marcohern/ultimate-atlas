@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FormsModule,ReactiveFormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'
-import { UserModule } from './modules/user/user.module'
 import { AppRoutes } from './app.routes'
 
 import { AppComponent } from './app.component'
@@ -28,6 +27,10 @@ import { ValidatorService } from './inputs/validator.service';
 import { PasswordInput } from './inputs/password-input/password-input.component';
 import { NameInput } from './inputs/name-input/name-input.component'
 
+
+import { UserModule } from './modules/user/user.module'
+import { DailyModule } from './modules/daily/daily.module'
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ import { NameInput } from './inputs/name-input/name-input.component'
     HttpModule,
 
     UserModule,
+    DailyModule,
     AppRoutes
   ],
   declarations: [

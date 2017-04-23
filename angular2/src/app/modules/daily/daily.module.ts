@@ -1,12 +1,18 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core'
+import { CommonModule,DatePipe } from '@angular/common'
+import { DailyRoutes } from './daily.routes' 
+
 import { TransListComponent } from './trans-list/trans-list.component';
 import { TransDetailComponent } from './trans-detail/trans-detail.component';
 
+import { DailyService } from './daily.service'
+
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    DailyRoutes
   ],
-  declarations: [TransListComponent, TransDetailComponent]
+  declarations: [TransListComponent, TransDetailComponent],
+  providers:[DailyService,DatePipe]
 })
 export class DailyModule { }

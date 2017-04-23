@@ -1,3 +1,13 @@
-<p>
-  trans-list works!
-</p>
+<div class="ua-record-row" *ngFor="let tran of trans; let i = index" [@record]="tran.status">
+  <div class="btn-group btn-group-lg" role="group">
+    <div *ngIf="group(i)"><h3>{{datestr(tran.edate)}}</h3></div>
+    <a class="btn btn-danger" (click)="deleteTrans(i)"><i class="glyphicon glyphicon-trash"></i></a>
+    <div class="btn btn-default" [routerLink]="['/daily/trans', tran.id]">
+      <i class="glyphicon glyphicon-pencil"></i>
+      <span>{{tran.etime}}</span>
+      <span [ngClass]="catClass(tran.hypercat)">{{tran.category}}</span>
+      <span [ngClass]="valueClass(tran.value)">( ${{tran.value | number:'1.2-2'}} )</span>
+      
+    </div>
+  </div>
+</div>
