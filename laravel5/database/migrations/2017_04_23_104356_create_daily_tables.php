@@ -43,6 +43,7 @@ class CreateDailyTables extends Migration
             $table->decimal('input', 20, 2)->default(0);
             $table->decimal('output', 20, 2)->default(0);
             $table->decimal('balance', 20, 2)->default(0);
+            $table->unique(['user_id','day','type']);
             $table->timestamps();
         });
     }
