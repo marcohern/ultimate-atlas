@@ -26,6 +26,7 @@ Route::post('/check_token','AccountController@check_token');
 Route::post('/signup','AccountController@signup');
 Route::post('/login','AccountController@login');
 Route::post('/logout','AccountController@logout');
+Route::get('/get_methods','AccountController@get_methods');
 
 Route::post('/check_username','ValidatorController@check_username');
 Route::post('/check_user_email','ValidatorController@check_user_email');

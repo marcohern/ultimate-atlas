@@ -8,6 +8,7 @@ use App\Exceptions\NotFoundException;
 use App\User;
 use App\Token;
 use App\Lib\Salt;
+use App\Lib\AutoRouter;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -51,10 +52,14 @@ class AccountController extends Controller
 
     private function sendActivateSignupEmail(User $user) {
         Mail::send('emails.signup_activate', ['user' => $user], function ($m) use ($user) {
-            //$m->from('sender@marcohern.com', 'Ultimate Atlas');
+            $m->from('sender@marcohern.com', 'Ultimate Atlas');
             
             $m->to($user->email, $user->fname.' '.$user->lname)->subject('Your Reminder!');
         });
+    }
+
+    public function get_methods() {
+        return ['methods' => AutoRouter::getMethods("App\\Http\\Controllers\\UserController")];
     }
 
     public function signup(Request $r) {

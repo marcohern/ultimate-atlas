@@ -168,4 +168,9 @@ class UserController extends Controller
             'user' => $user
         ];
     }
+
+    public function g_stuff() { return [1,2,3]; }
+    public function post_a() { return [1,2,3]; }
+    public function p_b() { return [1,2,3]; }
+    public function del_stuff() { return [1,2,3]; }
 }

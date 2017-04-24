@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'marcohern.com'),
+    'host' => env('MAIL_HOST', 'mail.marcohern.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT', 25),
+    'port' => env('MAIL_PORT', 465),
 
     /*
     |--------------------------------------------------------------------------
@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => env('marcoher'),
+    'username' => env('sender@marcohern.com'),
 
-    'password' => env('w97jVm2Z5y'),
+    'password' => env('#Z%wR3rX?l4J'),
 
     /*
     |--------------------------------------------------------------------------

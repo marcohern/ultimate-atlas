@@ -46,6 +46,7 @@ class Handler extends ExceptionHandler
                 'type' => get_class($ex),
                 'message' => $ex->getMessage(),
                 'code' => $ex->getCode(),
+                'trace' => $ex->getTrace(),
                 'inner' => $this->exceptionToJson($ex->getPrevious())
             ];
             //$error['inner'] = $this->exceptionToJson($ex->getPrevious());
@@ -67,6 +68,7 @@ class Handler extends ExceptionHandler
             'message' => $exception->getMessage(),
             'code' => $code,
             'errCode' => $errCode,
+            'trace' => $exception->getTrace(),
             'inner' => $this->exceptionToJson($exception->getPrevious())
         ];
         $req = [
