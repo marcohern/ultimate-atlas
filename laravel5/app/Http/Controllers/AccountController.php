@@ -5,32 +5,27 @@ namespace App\Http\Controllers;
 use Mail;
 use App\Exceptions\UnauthorizedException;
 use App\Exceptions\NotFoundException;
+use App\User;
+use App\Token;
+use App\Lib\Salt;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
-use App\User;
-use App\Token;
+
 
 class AccountController extends Controller
 {
+    private $ssp;
+
     public function __construct() {
         $this->middleware('api');
-    }
-
-    private function genSalt($size) {
-        $tpl = "abcdefghijlkmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#&%()[]{}!?";
-        $n = strlen($tpl);
-        $r = "";
-        for ($i=0; $i<$size; $i++) {
-            $index = rand(0, $n-1);
-            $r .= $tpl[$index];
-        }
-        return $r;
+        
     }
 
     public function generate_password(Request $r) {
         $uniqueid = Hash::make(uniqid('',true).str_random(48));
-        $salt = (empty($r->input('salt'))) ? $this->genSalt(48) : $r->input('salt');
+        $salt = (empty($r->input('salt'))) ? Salt::make(48) : $r->input('salt');
         $pwd = $r->input('pwd');
         return [
             'password' => $pwd,
@@ -45,6 +40,12 @@ class AccountController extends Controller
             ->where('expired', 'false')
             ->first();
         if (!$token) throw new NotFoundException("Token not found.");
+        else {
+            Token::where('id',$token->id)->update([
+                'expires' => (new \Datetime("now"))->add(new \DateInterval("P2D")),
+                'updated_at' => new \Datetime("now")
+            ]);
+        }
         return ['token' => $token];
     }
 
@@ -57,10 +58,14 @@ class AccountController extends Controller
     }
 
     public function signup(Request $r) {
-        $salt = $this->genSalt(48);
+        $salt = Salt::make(48);
         $pwd = Hash::make($salt.$r->input('password'));
 
-        $atsource = $r->input('username').$r->input('email').$r->input('fname').$r->input('lname').$this->genSalt(256);
+        $atsource = $r->input('username').
+            $r->input('email').
+            $r->input('fname').
+            $r->input('lname').
+            Salt::make(256);
         $at = Hash::make($atsource);
 
         $id = 1;

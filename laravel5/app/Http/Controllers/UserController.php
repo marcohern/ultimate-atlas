@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Lib\Salt;
 use App\Exceptions\UAException;
 use App\Exceptions\NotFoundException;
 use App\Exceptions\BadRequestException;
@@ -15,7 +16,7 @@ class UserController extends Controller
 
     public function __construct() {
         $this->middleware('api');
-        $this->middleware('secure');
+        //$this->middleware('secure');
     }
 
     /**
@@ -49,17 +50,6 @@ class UserController extends Controller
         
     }
 
-    private function genSalt($size) {
-        $tpl = "abcdefghijlkmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#&%()[]{}!?";
-        $n = strlen($tpl);
-        $r = "";
-        for ($i=0; $i<$size; $i++) {
-            $index = rand(0, $n-1);
-            $r .= $tpl[$index];
-        }
-        return $r;
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -68,7 +58,7 @@ class UserController extends Controller
      */
     public function store(Request $r)
     {
-        $salt = $this->genSalt(48);
+        $salt = Salt::make(48);
         $pwd = Hash::make($salt.$r->input('username'));
         try {
             $id = User::insertGetId([

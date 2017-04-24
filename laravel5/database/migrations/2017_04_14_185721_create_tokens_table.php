@@ -18,6 +18,8 @@ class CreateTokensTable extends Migration
             $table->string('token',60)->unique();
             $table->datetime('expires');
             $table->enum('expired',['true','false'])->default('false');
+            $table->string('user_agent')->default('');
+            $table->string('ip_address')->default('');
             $table->timestamps();
         });
     }

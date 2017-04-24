@@ -68,7 +68,7 @@ export class AuthService {
       this.rs.post('/check_token', {token:localToken.token})
         .map((r:Response) => <Token>r.json().token)
         .subscribe(
-          remoteToken => this.updateToken(remoteToken),
+          data => this.updateToken(data),
           error => this.clearToken()
         );
     } else {
