@@ -31,6 +31,13 @@ export class TransListComponent implements OnInit {
     })
   }
 
+  onAnimDone($event, i) {
+    if ($event.toState == 'gone') {
+      console.log("TransListComponent.onAnimDone",$event,i);
+      this.trans.splice(i,1);
+    }
+  }
+
   group(i) {
     if (i==0) return true;
     else if (this.trans[i].edate != this.trans[i-1].edate) {
