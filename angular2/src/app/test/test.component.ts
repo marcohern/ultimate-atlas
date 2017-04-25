@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
+import { ValidatorService } from '../inputs/validator.service'
+import { ErrorMessageService } from '../inputs/error-message.service'
 
 @Component({
   selector: 'app-test',
@@ -8,23 +10,35 @@ import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 })
 export class TestComponent implements OnInit {
 
-  private testForm:FormGroup;
-  constructor(private fb:FormBuilder) { }
+  constructor(
+    private fb:FormBuilder,
+    private vs:ValidatorService,
+    private ems:ErrorMessageService) {}
 
+  testForm:FormGroup;
   ngOnInit() {
-    this.testForm = this.fb.group({});
-  }
+    this.testForm = this.fb.group({
+      myinput: ['', [Validators.required], []],
+      myemail: ['', [Validators.required, Validators.email], []],
+    });
 
-  onUsernameGroupCreated(usernameFormGroup:FormGroup) {
-    this.testForm.addControl('username', usernameFormGroup);
-  }
+    this.ems.rig(this.testForm, {
+      myinput: {
+        required: 'Required.'
+      },
+      myemail: {
+        required: 'Required.',
+        email: 'Must have valid format.'
+      }
+    });
 
-  onUserEmailGroupCreated(userEmailInputGroup:FormControl) {
-    this.testForm.addControl('email', userEmailInputGroup);
+    this.ems.setValues(this.testForm, {
+      myinput: 'This is MyInput',
+      myemail: 'thisis@myemail.com'
+    });
   }
 
   submit(values) {
-    console.log("TestComponent.submit",values);
+    console.log(values);
   }
-
 }

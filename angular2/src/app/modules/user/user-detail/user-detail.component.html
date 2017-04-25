@@ -1,32 +1,15 @@
-<div>
+<form novalidate [formGroup]="userForm" (ngSubmit)="saveUser(userForm.value)">
   <p>
     <a class="btn btn-warning" [routerLink]="['/users']"><i class="glyphicon glyphicon-arrow-left"></i> Back</a>
   </p>
-  <div class="form-group">
-    <label for="username">Username</label>
-    <input type="text" class="form-control" name="username" [(ngModel)]="user.username"/>
-  </div>
-  <div class="form-group">
-    <label for="fname">First Name</label>
-    <input type="text" class="form-control" name="fname" [(ngModel)]="user.fname"/>
-  </div>
-  <div class="form-group">
-    <label for="lname">Last Name</label>
-    <input type="text" class="form-control" name="lname" [(ngModel)]="user.lname"/>
-  </div>
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input type="text" class="form-control" name="email" [(ngModel)]="user.email"/>
-  </div>
-  <div class="form-group">
-    <label for="role">Role</label>
-    <select name="role" class="form-control" [(ngModel)]="user.role">
-      <option value="">-- Select Role --</option>
-      <option value="ADMIN">Admin</option>
-      <option value="USER">User</option>
-    </select>
-  </div>
+  <ua-username-input label="Username" default="{{user.username}}" (groupCreated)="onUsername($event)"></ua-username-input>
+  <ua-name-input label="First Name" (groupCreated)="onFname($event)"></ua-name-input>
+  <ua-name-input label="Last Name" (groupCreated)="onLname($event)"></ua-name-input>
+  
+  <ua-user-email-input label="Email" (groupCreated)="onEmail($event)"></ua-user-email-input>
+  <input type="hidden" formControlName="role" />
+  
   <p>
-    <button class="btn btn-primary btn-lg" (click)="saveUser()"><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>
+    <button type="submit" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>
   </p>
-</div>
+</form>

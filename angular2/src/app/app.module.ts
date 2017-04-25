@@ -14,8 +14,6 @@ import { SignupComponent } from './auth/signup/signup.component'
 import { SignupDoneComponent } from './auth/signup-done/signup-done.component'
 import { LoadingComponent } from './loading/loading.component'
 
-import { EqualValidator } from './validators/equal.validator'
-import { UsernameUniqueValidator } from './validators/username-unique.validator'
 import { UsernameInput } from './inputs/username/username-input.component'
 import { UserEmailInput } from './inputs/user-email/user-email-input.component'
 import { TestComponent } from './test/test.component'
@@ -27,7 +25,7 @@ import { ValidatorService } from './inputs/validator.service';
 import { PasswordInput } from './inputs/password-input/password-input.component';
 import { NameInput } from './inputs/name-input/name-input.component'
 
-
+import { InputsModule } from './inputs/inputs.module'
 import { UserModule } from './modules/user/user.module'
 import { DailyModule } from './modules/daily/daily.module'
 
@@ -39,6 +37,7 @@ import { DailyModule } from './modules/daily/daily.module'
     ReactiveFormsModule,
     HttpModule,
 
+    InputsModule,
     UserModule,
     DailyModule,
     AppRoutes
@@ -53,23 +52,13 @@ import { DailyModule } from './modules/daily/daily.module'
     SignupDoneComponent,
     LoadingComponent,
 
-    EqualValidator,
-
-    UsernameUniqueValidator,
-
-    UsernameInput,
-    UserEmailInput,
-    PasswordInput,
     TestComponent,
-    NameInput
   ],
   providers: [
     RequestService,
     AuthService,
     ConfigService,
     ValidatorService,
-    EqualValidator,
-    UsernameUniqueValidator
   ],
   bootstrap: [AppComponent]
 })

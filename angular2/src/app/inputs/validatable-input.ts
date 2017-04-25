@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, AbstractControl, Validators } from '@angular/forms'
+import { ControlValueAccessor, FormGroup, FormControl, FormBuilder, AbstractControl, Validators } from '@angular/forms'
 import { ValidatorService } from './validator.service'
 import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/operator/first'
@@ -19,12 +19,12 @@ export interface IValidatableInput {
 
 }
 
-export abstract class ValidatableInput {
+export abstract class ValidatableInput implements ControlValueAccessor {
     private fb:FormBuilder;
 
     @Input() name:string = 'value';
     @Input() label:string = 'Validatable Input';
-    @Input() default:string = '';
+    @Input() default:any = '';
 
     @Input("http-error-msg") httpErrorMsg :string = 'An error has occurred';
     @Input("validating-msg") validatingMsg:string = 'Validating...';
@@ -53,7 +53,20 @@ export abstract class ValidatableInput {
 
     constructor() {}
 
+    public writeValue(value:any) {
+        console.log("ValidatableInput.writeValue",value);
+    }
+
+    public registerOnChange(fn:any) {
+        console.log("ValidatableInput.registerOnChange",fn);
+    }
+
+    public registerOnTouched(fn:any) {
+        console.log("ValidatableInput.registerOnTouched",fn);
+    }
+
     protected init(validators) {
+        console.log("ValidatableInput.init", this.default);
         this.control = new FormControl(this.default, validators, this.validateCall.bind(this));
         this.controlCreated.emit(this.control);
 
