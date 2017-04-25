@@ -14,6 +14,7 @@ export class UaInputBase implements OnInit, OnChanges, ControlValueAccessor {
 
   public error:boolean = false;
   public success:boolean = false;
+  public pending:boolean = false;
   public touched:boolean = false;
 
   public fieldClass:string[];
@@ -30,14 +31,18 @@ export class UaInputBase implements OnInit, OnChanges, ControlValueAccessor {
     this.status = status;
     this.error = false;
     this.success = false;
+    this.pending = false;
     this.fieldClass = [];
     this.messageClass = [];
     switch (this.status) {
       case 'VALID':
+        this.message = '';
         this.success = true;
         this.fieldClass.push('has-success');
         break;
       case 'PENDING':
+        this.message = 'Validating...';
+        this.pending = true;
         this.fieldClass.push('has-info');
         this.messageClass.push('alert-info');
         break;

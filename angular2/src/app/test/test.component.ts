@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
+import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl } from '@angular/forms'
 import { ValidatorService } from '../inputs/validator.service'
 import { ErrorMessageService } from '../inputs/error-message.service'
+import { Observable } from 'rxjs/Observable'
+import 'rxjs/add/operator/map'
 
 @Component({
   selector: 'app-test',
@@ -18,7 +20,7 @@ export class TestComponent implements OnInit {
   testForm:FormGroup;
   ngOnInit() {
     this.testForm = this.fb.group({
-      myinput: ['', [Validators.required], []],
+      myinput: ['', [Validators.required], [this.delayedValidatior.bind(this)]],
       myemail: ['', [Validators.required, Validators.email], []],
     });
 
@@ -33,9 +35,19 @@ export class TestComponent implements OnInit {
     });
 
     this.ems.setValues(this.testForm, {
-      myinput: 'This is MyInput',
+      myinput: '',
       myemail: 'thisis@myemail.com'
     });
+  }
+
+  timeout:any;
+  delayedValidatior(c:AbstractControl):Observable<{[key : string] : any}> {
+    return new Observable(observer => {
+      clearTimeout(this.timeout);
+      this.timeout = setTimeout(() => {
+        observer.next(null);
+      }, 3000);
+    }).first();
   }
 
   submit(values) {
