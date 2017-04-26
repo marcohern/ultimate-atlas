@@ -1,34 +1,58 @@
 <div class="panel panel-primary">
   <div class="panel-heading"><h2>Sign Up!</h2></div>
   <div class="panel-body">
-    <form novalidate [formGroup]="signupForm" *ngIf="active" (ngSubmit)="signupUser(signupForm.value)">
+    <form novalidate [formGroup]="signupForm" (ngSubmit)="signupUser(signupForm.value)">
       <div class="row">
         <div class="col-sm-4">
-          <ua-username-input label="Username" (groupCreated)="onUsernameGroup($event)"></ua-username-input>
+          <ua-input label="Username"
+            formControlName="username"
+            [status]="ems.status.username"
+            [message]="ems.message.username"></ua-input>
         </div>
         <div class="col-sm-8">
-          <ua-user-email-input label="Email" (groupCreated)="onEmailGroup($event)"></ua-user-email-input>
+          <ua-input label="Email"
+            formControlName="email"
+            [status]="ems.status.email"
+            [message]="ems.message.email"></ua-input>
+        </div>
+      </div>
+      <div claass="row">
+        <div class="col-sm-6">
+          <ua-input label="Password"
+            formControlName="password"
+            type="password"
+            [status]="ems.status.password"
+            [message]="ems.message.password"></ua-input>
+        </div>
+        <div class="col-sm-6">
+          <ua-input label="Confirm Password"
+            formControlName="confirmPassword"
+            type="password"
+            [status]="ems.status.confirmPassword"
+            [message]="ems.message.confirmPassword"></ua-input>
+        </div>
+      </div>
+      <div claass="row">
+        <div class="col-sm-6">
+          <ua-input label="First Name"
+            formControlName="fname"
+            [status]="ems.status.fname"
+            [message]="ems.message.fname"></ua-input>
+        </div>
+        <div class="col-sm-6">
+          <ua-input label="Last Name"
+            formControlName="lname"
+            [status]="ems.status.lname"
+            [message]="ems.message.lname"></ua-input>
         </div>
       </div>
       <div>
-      <div class="row">
-        <div class="col-sm-4">
-          <ua-password-input (groupCreated)="onPasswordGroup($event)"></ua-password-input>
-        </div>
-        <div class="col-sm-8"></div>
-      </div>
-        <ua-name-input (groupCreated)="onFirstNameGroup($event)"></ua-name-input>
-        <ua-name-input (groupCreated)="onLastNameGroup($event)"></ua-name-input>
-        <input type="hidden" name="role" formControlName="role"/>
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary btn-lg" [disabled]="!signupForm.valid">
-            <i class="glyphicon glyphicon-plus"></i>Sign up!
-          </button>
-          <button type="reset" class="btn btn-warning btn-lg">
-            <i class="glyphicon glyphicon-plus"></i>Reset
-          </button>
-        </div>
+        <button type="submit" class="btn btn-primary btn-lg" [disabled]="!signupForm.valid">
+          <i class="glyphicon glyphicon-save"></i> Save
+        </button>
       </div>
     </form>
+    <pre>{{signupForm.value | json}}</pre>
+    <pre>{{signupForm.status}}</pre>
   </div>
 </div>

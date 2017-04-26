@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormBuilder, AbstractControl, Validators } from '@angular/forms'
 
-import { Router } from '@angular/router';
+import { Router } from '@angular/router'
 
-import { AuthService } from '../auth.service';
+import { SignupRequest } from '../signup-request'
 
-import { SignupRequest } from '../signup-request';
+import { AuthService } from '../auth.service'
+import { ErrorMessageService } from '../../inputs/error-message.service'
+import { UaValidators } from '../../inputs/ua-validators'
 
 @Component({
   selector: 'ua-signup',
@@ -16,67 +18,56 @@ import { SignupRequest } from '../signup-request';
 export class SignupComponent implements OnInit {
 
   signupForm: FormGroup;
-  usernameForm:FormGroup;
   active:boolean = false;
-  errors = {
-  }
-
-  errorMessages = {
-    role: {
-      required: 'Role is required.'
-    }
-  }
 
   constructor(
     private auth:AuthService,
     private router:Router,
-    private fb:FormBuilder)
+    private ems:ErrorMessageService,
+    private uav:UaValidators)
   {
   }
 
   public ngOnInit() {
     console.log("SignupComponent.ngOnInit");
 
-    this.signupForm = this.fb.group({
-      role:  ['ADMIN', Validators.required]
+    this.signupForm = this.ems.build({
+      username: {
+        control:['',Validators.required,this.uav.usernameExists()],
+        messages:{required:'Required.', usernameExists:'Must be unique.'} 
+      },
+      email: {
+        control:['',Validators.required,this.uav.userEmailExists()],
+        messages:{required:'Required.', userEmailExists:'Must be unique.'}
+      },
+      password: {
+        control:['',Validators.required],
+        messages:{required:'Required.'}
+      },
+      confirmPassword: {
+        control:['',[Validators.required, this.uav.requiresConfirm("password")]],
+        messages:{required:'Required.', requiresConfirm:'Password Mismatch.'}
+      },
+      fname: {
+        control:['',Validators.required],
+        messages:{required:'Required.'} 
+      },
+      lname: {
+        control:['',Validators.required],
+        messages:{required:'Required.'} 
+      }
     });
+
+    this.signupForm.updateValueAndValidity();
 
     this.active=true;
   }
 
-  onUsernameGroup(username:FormGroup) {
-    this.signupForm.addControl('username', username);
-  }
-
-  onEmailGroup(email:FormGroup) {
-    this.signupForm.addControl('email', email);
-  }
-  
-  onPasswordGroup(password:FormGroup) {
-    this.signupForm.addControl('password',password);
-  }
-
-  onFirstNameGroup(fname:FormGroup) {
-    this.signupForm.addControl('fname', fname);
-  }
-
-  onLastNameGroup(lname:FormGroup) {
-    this.signupForm.addControl('lname', lname);
-  }
-
   private signupUser(data:any) {
-    console.log('Reactive Form Data: ');
 
-    var request:SignupRequest = {
-      username: data.username.value,
-      password: data.password.value,
-      fname: data.fname.value,
-      lname: data.lname.value,
-      email: data.email.value,
-      role: data.role
-    };
-    console.log(request);
-
+    var request:SignupRequest = <SignupRequest>data;
+    request.role = 'ADMIN';
+    
     this.auth.signup(request).subscribe(
       () => this.router.navigate(['/signup-done'])
     );

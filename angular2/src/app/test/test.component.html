@@ -31,7 +31,7 @@
     formControlName="confirmPassword"
     [status]="ems.status.confirmPassword"
     [message]="ems.message.confirmPassword"></ua-input>
-  <button type="submit" class="btn btn-primary" [disabled]="testForm.invalid">Save</button>
+  <button type="submit" class="btn btn-primary" [disabled]="!testForm.valid">Save</button>
 </form>
 <pre>{{ testForm.value | json }}</pre>
 <pre>{{ testForm.get('myinput').status }}</pre>

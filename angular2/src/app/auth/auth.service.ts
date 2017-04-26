@@ -28,7 +28,6 @@ export class AuthService {
     private rs:RequestService) { }
 
   public clearToken() {
-    console.log("AuthService.clearToken");
     this.rs.clearToken();
     this.authenticated = false;
     this.user = null;
@@ -39,7 +38,6 @@ export class AuthService {
   }
 
   private setToken(loginResponse:LoginResponse) {
-    console.log("AuthService.setToken", loginResponse);
     this.user = loginResponse.user;
     this.token = loginResponse.token;
     this.authenticated = true;

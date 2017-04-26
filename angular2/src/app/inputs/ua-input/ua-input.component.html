@@ -5,7 +5,7 @@
     (keyup)="onKeyUp($event)"/>
   <span *ngIf="error" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
   <span *ngIf="success" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-  <span *ngIf="false" class="glyphicon ua-icon ua-icon-bars form-control-feedback" aria-hidden="true"></span>
+  <span *ngIf="pending" class="glyphicon ua-icon ua-icon-bars form-control-feedback" aria-hidden="true"></span>
   <div class="alert" [ngClass]="messageClass">
     &nbsp;{{message}}
   </div>
