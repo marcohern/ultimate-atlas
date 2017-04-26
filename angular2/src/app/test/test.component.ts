@@ -23,6 +23,7 @@ export class TestComponent implements OnInit {
       myinput: ['', [Validators.required], [this.delayedValidatior.bind(this)]],
       myemail: ['', [Validators.required, Validators.email], []],
       mylist: ['', [Validators.required], []],
+      myquick: ['', [Validators.required], []],
     });
 
     this.ems.rig(this.testForm, {
@@ -35,13 +36,17 @@ export class TestComponent implements OnInit {
       },
       mylist: {
         required: 'Required.'
+      },
+      myquick: {
+        required: 'Required.',
       }
     });
 
     this.ems.setValues(this.testForm, {
       myinput: '',
       myemail: 'thisis@myemail.com',
-      mylist: ''
+      mylist: '',
+      myquick: ''
     });
   }
 

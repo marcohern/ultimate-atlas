@@ -9,7 +9,6 @@ export interface IOption {
 export class UaSelectBase extends UaInputBase {
 
     protected options:IOption[];
-    protected quicks:IOption[];
 
     constructor() { super() }
 
@@ -24,23 +23,7 @@ export class UaSelectBase extends UaInputBase {
             {value:4, text:"Four"},
             {value:5, text:"Five"},
         ];
-
-        this.quicks = [
-            {value:1, text:"1"},
-            {value:2, text:"2"},
-            {value:3, text:"3"}
-        ];
-    }
-
-    onQuick(index, q:IOption) {
-        this.value = q.value;
-        this.propagateChange(this.value);
     }
 
     change(changes) { super.change(changes); }
-
-    public load(options:any[], quicks:any[]) {
-        this.options = <IOption[]>options;
-        this.quicks = <IOption[]>quicks;
-    }
 }

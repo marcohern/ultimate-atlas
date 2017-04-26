@@ -18,12 +18,7 @@ export class UaSelect extends UaSelectBase implements OnInit, OnChanges {
 
   constructor() { super() }
 
-  ngOnInit() {
-    super.init();
-  }
-
-  ngOnChanges(changes) {
-    super.change(changes);
-  }
+  ngOnInit() { super.init(); }
+  ngOnChanges(changes) { super.change(changes); }
 
 }
