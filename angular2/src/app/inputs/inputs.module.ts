@@ -2,11 +2,6 @@ import { NgModule,forwardRef } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule,ReactiveFormsModule } from '@angular/forms'
 
-import { NameInput } from './name-input/name-input.component'
-import { PasswordInput } from './password-input/password-input.component'
-import { UserEmailInput } from './user-email/user-email-input.component'
-import { UsernameInput } from './username/username-input.component'
-
 import { ErrorMessageService } from './error-message.service'
 import { ValidatorService } from './validator.service'
 import { UaValidators } from './ua-validators'
@@ -21,14 +16,12 @@ import { UaQuickSelect } from './ua-quick-select/ua-quick-select.component'
         FormsModule,
         ReactiveFormsModule
     ],
-    declarations:[
-        NameInput, PasswordInput, UserEmailInput, UsernameInput, UaInput, UaSelect, UaQuickSelect
-    ],
+    declarations: [UaInput, UaSelect, UaQuickSelect],
     providers:[
         ValidatorService,
         ErrorMessageService,
         UaValidators
     ],
-    exports: [UsernameInput,UserEmailInput,PasswordInput,NameInput,UaInput,UaSelect,UaQuickSelect]
+    exports:      [UaInput, UaSelect, UaQuickSelect]
 })
 export class InputsModule {}

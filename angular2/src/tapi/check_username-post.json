@@ -1,4 +1,4 @@
 {
-    "usernameExists":false,
-    "usernameUnique":true
+    "usernameExists":true,
+    "usernameUnique":false
 }

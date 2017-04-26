@@ -54,8 +54,6 @@ export class ErrorMessageService {
             this.message[control_id] += this.errors[control_id][key] + ' ';
           else this.message[control_id] += "["+key+"]";
         }
-      } else {
-
       }
     }
   }

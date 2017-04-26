@@ -13,6 +13,7 @@ export class UaValidators {
         let timeout:any;
         return ((c:AbstractControl):Observable<ValidationErrors> => {
             return new Observable<ValidationErrors>(observer => {
+                console.log("usernameExists",except,c.value);
                 if (except == c.value) {
                     observer.next(null);
                 } else {
@@ -34,6 +35,7 @@ export class UaValidators {
         let timeout:any;
         return ((c:AbstractControl):Observable<ValidationErrors> => {
             return new Observable<ValidationErrors>(observer => {
+                console.log("userEmailExists",except,c.value);
                 if (except == c.value) {
                     observer.next(null);
                 } else {

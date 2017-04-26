@@ -1,9 +1,3 @@
-export interface IOption {
-
-    getValue():any;
-    getText():string;
-}
-
 export interface IRecord {
     id?:number;
 
