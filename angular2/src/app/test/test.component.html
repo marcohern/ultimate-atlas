@@ -13,10 +13,13 @@
   <ua-select label="My List"
     formControlName="mylist"
     [status]="ems.status.mylist"
+    [options]="mylistOptions"
     [message]="ems.message.mylist"></ua-select>
   <ua-quick-select label="My Quick Select"
     formControlName="myquick"
     [status]="ems.status.myquick"
+    [options]="mylistOptions"
+    [quicks]="myquickOptions"
     [message]="ems.message.myquick"></ua-quick-select>
   <button type="submit" class="btn btn-primary" [disabled]="testForm.invalid">Save</button>
 </form>

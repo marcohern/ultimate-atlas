@@ -10,22 +10,14 @@ export interface IQuick {
 
 export class UaQuickSelectBase extends UaSelectBase {
 
-    protected quicks:IQuick[];
+    @Input()
+    public quicks:IQuick[] = [];
 
     constructor() { super() }
 
     init() {
         super.init();
-        console.log("UaQuickSelectBase.init");
-
-        this.quicks = [
-            {value:1, text:"", glyph:"road"     , color:'primary'},
-            {value:2, text:"", glyph:"cutlery"  , color:'success'},
-            {value:3, text:"", glyph:"cutlery"  , color:'warning'},
-            {value:4, text:"", glyph:"cutlery"  , color:'danger'},
-            {value:5, text:"", glyph:"ice-lolly", color:'primary'},
-            {value:6, text:"", glyph:"glass"    , color:'warning'}
-        ];
+        //console.log("UaQuickSelectBase.init");
     }
 
     onQuick(index, q:IOption) {
