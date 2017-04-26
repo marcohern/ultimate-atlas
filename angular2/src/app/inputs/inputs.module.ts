@@ -16,12 +16,16 @@ import { UaQuickSelect } from './ua-quick-select/ua-quick-select.component'
         FormsModule,
         ReactiveFormsModule
     ],
-    declarations: [UaInput, UaSelect, UaQuickSelect],
+    declarations:[
+        UaInput, UaSelect, UaQuickSelect
+    ],
     providers:[
         ValidatorService,
         ErrorMessageService,
         UaValidators
     ],
-    exports:      [UaInput, UaSelect, UaQuickSelect]
+    exports:[
+        UaInput, UaSelect, UaQuickSelect
+    ]
 })
 export class InputsModule {}

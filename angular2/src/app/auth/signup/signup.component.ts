@@ -37,8 +37,8 @@ export class SignupComponent implements OnInit {
         messages:{required:'Required.', usernameExists:'Must be unique.'} 
       },
       email: {
-        control:['',Validators.required,this.uav.userEmailExists()],
-        messages:{required:'Required.', userEmailExists:'Must be unique.'}
+        control:['',[Validators.required,Validators.email],this.uav.userEmailExists()],
+        messages:{required:'Required.', email:'Must have valid format.', userEmailExists:'Must be unique.'}
       },
       password: {
         control:['',Validators.required],
@@ -57,8 +57,8 @@ export class SignupComponent implements OnInit {
         messages:{required:'Required.'} 
       }
     });
-
-    this.signupForm.updateValueAndValidity();
+    //this.ems.displayMessages(this.signupForm,{});
+    //this.signupForm.updateValueAndValidity();
 
     this.active=true;
   }

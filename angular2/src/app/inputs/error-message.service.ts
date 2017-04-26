@@ -49,6 +49,7 @@ export class ErrorMessageService {
       this.message[control_id] = '';
       let control = g.get(control_id);
       if (control.invalid && control.dirty) {
+        console.log("displayMessages",control_id);
         for (let key in control.errors) {
           if (this.errors[control_id] && this.errors[control_id][key])
             this.message[control_id] += this.errors[control_id][key] + ' ';

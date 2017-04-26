@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { AsyncValidatorFn, ValidationErrors, Validator, ValidatorFn, AbstractControl } from '@angular/forms';
 import { ValidatorService } from './validator.service'
 import { Observable } from 'rxjs/Observable'
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/first'
 
 @Injectable()
 export class UaValidators {
@@ -13,8 +13,7 @@ export class UaValidators {
         let timeout:any;
         return ((c:AbstractControl):Observable<ValidationErrors> => {
             return new Observable<ValidationErrors>(observer => {
-                console.log("usernameExists",except,c.value);
-                if (except == c.value) {
+                if (except && except == c.value) {
                     observer.next(null);
                 } else {
                     clearTimeout(timeout);

@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, ViewChild, OnChanges, SimpleChange } from '@angular/core';
-import { FormControl, ControlValueAccessor, Validator } from '@angular/forms';
+import { Component, Input, Output } from '@angular/core';
+import { FormControl, ControlValueAccessor } from '@angular/forms';
 
 export class UaInputBase implements ControlValueAccessor {
 
@@ -39,12 +39,12 @@ export class UaInputBase implements ControlValueAccessor {
     this.messageClass = [];
     switch (this.status) {
       case 'VALID':
-        this.message = '';
+        //this.message = '';
         this.success = true;
         this.fieldClass.push('has-success');
         break;
       case 'PENDING':
-        this.message = 'Validating...';
+        //this.message = 'Validating...';
         this.pending = true;
         this.fieldClass.push('has-info');
         this.messageClass.push('alert-info');
