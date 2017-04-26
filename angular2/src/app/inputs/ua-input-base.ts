@@ -57,9 +57,7 @@ export class UaInputBase implements ControlValueAccessor {
     }
   }
   
-  init() {
-    console.log("UaInputBase.init");
-  }
+  init() {}
 
   change(changes) {
     if (changes.status) {

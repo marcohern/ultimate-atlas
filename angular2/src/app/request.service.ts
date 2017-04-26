@@ -15,8 +15,7 @@ export class RequestService {
   constructor(
     private http:Http,
     private cs:ConfigService
-  ) { 
-    console.log("RequestService.constructor");
+  ) {
   }
   
   private buildHeaders():Headers {

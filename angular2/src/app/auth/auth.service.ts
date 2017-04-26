@@ -50,7 +50,6 @@ export class AuthService {
   }
 
   private updateToken(token:Token) {
-    console.log("AuthService.updateToken", token);
     this.token = token;
     this.authenticated = true;
     this.rs.setToken(this.token.token);
@@ -58,7 +57,6 @@ export class AuthService {
   }
 
   public start() {
-    console.log("AuthService.start");
     let userJson = localStorage.getItem(this.userStg);
     let tokenJson = localStorage.getItem(this.tokenStg);
     if (userJson && tokenJson) {
@@ -77,7 +75,6 @@ export class AuthService {
   }
 
   public login(username:string, password:string):Observable<LoginResponse> {
-    console.log("AuthService.login",username, password);
     return this.rs.post('/login', {username:username, password:password })
       .map((r:Response) => <LoginResponse>r.json())
       .do(loginResponse => this.setToken(loginResponse) );

@@ -20,6 +20,5 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     let config = this.configService.get();
     this.auth.start();
-    console.log("AppComponent.ngOnInit",config);
   }
 }
