@@ -1,8 +1,8 @@
-<div class="form-group has-feedback" [ngClass]="fieldClass">
+<div class="form-group" [ngClass]="fieldClass">
   <label>{{label}}</label>
   <div class="input-group">
     <span class="input-group-btn" *ngIf="quicks">
-      <button *ngFor="let q of quicks" type="button" class="btn btn-primary" (click)="onQuick($index, q)">
+      <button *ngFor="let q of quicks" type="button" class="btn btn-{{q.color}}" (click)="onQuick($index, q)">
         <i class="glyphicon glyphicon-{{ q.glyph }}"></i>
         <span class="ua-quick-select-button-text">{{ q.text }}</span>
       </button>

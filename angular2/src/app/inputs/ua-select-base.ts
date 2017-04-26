@@ -17,11 +17,12 @@ export class UaSelectBase extends UaInputBase {
         console.log("UaSelectBase.init");
 
         this.options = [
-            {value:1, text:"One"},
-            {value:2, text:"Two"},
-            {value:3, text:"Three"},
-            {value:4, text:"Four"},
-            {value:5, text:"Five"},
+            {value:1, text:"Bus/Metro"},
+            {value:2, text:"Breakfast"},
+            {value:3, text:"Lunch"},
+            {value:4, text:"Dinner"},
+            {value:5, text:"Snack"},
+            {value:6, text:"Beer"},
         ];
     }
 

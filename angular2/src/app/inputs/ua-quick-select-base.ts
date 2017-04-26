@@ -5,6 +5,7 @@ export interface IQuick {
     value:any;
     text:string;
     glyph:string;
+    color:string;
 }
 
 export class UaQuickSelectBase extends UaSelectBase {
@@ -18,9 +19,12 @@ export class UaQuickSelectBase extends UaSelectBase {
         console.log("UaQuickSelectBase.init");
 
         this.quicks = [
-            {value:1, text:"One"   , glyph:"ok"},
-            {value:3, text:"Three", glyph:"ok"},
-            {value:5, text:"Five" , glyph:"ok"}
+            {value:1, text:"", glyph:"road"     , color:'primary'},
+            {value:2, text:"", glyph:"cutlery"  , color:'success'},
+            {value:3, text:"", glyph:"cutlery"  , color:'warning'},
+            {value:4, text:"", glyph:"cutlery"  , color:'danger'},
+            {value:5, text:"", glyph:"ice-lolly", color:'primary'},
+            {value:6, text:"", glyph:"glass"    , color:'warning'}
         ];
     }
 
