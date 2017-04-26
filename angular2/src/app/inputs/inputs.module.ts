@@ -9,7 +9,8 @@ import { UsernameInput } from './username/username-input.component'
 
 import { ErrorMessageService } from './error-message.service'
 import { ValidatorService } from './validator.service'
-import { UaInput } from './ua-input/ua-input.component'
+import { UaInput } from './ua-input/ua-input.component';
+import { UaSelect } from './ua-select/ua-select.component'
 
 @NgModule({
     imports:[
@@ -18,12 +19,12 @@ import { UaInput } from './ua-input/ua-input.component'
         ReactiveFormsModule
     ],
     declarations:[
-        NameInput, PasswordInput, UserEmailInput, UsernameInput, UaInput
+        NameInput, PasswordInput, UserEmailInput, UsernameInput, UaInput, UaSelect
     ],
     providers:[
         ValidatorService,
         ErrorMessageService
     ],
-    exports: [UsernameInput,UserEmailInput,PasswordInput,NameInput,UaInput]
+    exports: [UsernameInput,UserEmailInput,PasswordInput,NameInput,UaInput,UaSelect]
 })
 export class InputsModule {}

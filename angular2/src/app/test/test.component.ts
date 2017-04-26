@@ -22,6 +22,7 @@ export class TestComponent implements OnInit {
     this.testForm = this.fb.group({
       myinput: ['', [Validators.required], [this.delayedValidatior.bind(this)]],
       myemail: ['', [Validators.required, Validators.email], []],
+      mylist: ['', [Validators.required], []],
     });
 
     this.ems.rig(this.testForm, {
@@ -31,12 +32,16 @@ export class TestComponent implements OnInit {
       myemail: {
         required: 'Required.',
         email: 'Must have valid format.'
+      },
+      mylist: {
+        required: 'Required.'
       }
     });
 
     this.ems.setValues(this.testForm, {
       myinput: '',
-      myemail: 'thisis@myemail.com'
+      myemail: 'thisis@myemail.com',
+      mylist: ''
     });
   }
 

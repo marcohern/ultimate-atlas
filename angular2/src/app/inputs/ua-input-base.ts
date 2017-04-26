@@ -1,7 +1,7 @@
 import { Component, OnInit, Input,ViewChild, OnChanges, SimpleChange } from '@angular/core';
 import { FormControl, ControlValueAccessor, Validator } from '@angular/forms';
 
-export class UaInputBase implements OnInit, OnChanges, ControlValueAccessor {
+export class UaInputBase implements ControlValueAccessor {
 
   @Input()
   public label:string = 'UA Input';
@@ -11,6 +11,9 @@ export class UaInputBase implements OnInit, OnChanges, ControlValueAccessor {
 
   @Input()
   public message:string = '';
+
+  @Input()
+  public type:string = 'text';
 
   public error:boolean = false;
   public success:boolean = false;
@@ -23,7 +26,7 @@ export class UaInputBase implements OnInit, OnChanges, ControlValueAccessor {
   public propagateChange:(_:any) => { }
   public propagateTouch: (_:any) => { }
 
-  value:any;
+  public value:any;
 
   constructor() { }
 
@@ -54,10 +57,11 @@ export class UaInputBase implements OnInit, OnChanges, ControlValueAccessor {
     }
   }
   
-  ngOnInit() {
+  init() {
+    console.log("UaInputBase.init");
   }
 
-  ngOnChanges(changes) {
+  change(changes) {
     if (changes.status) {
       this.updateStatus(changes.status.currentValue);
     }

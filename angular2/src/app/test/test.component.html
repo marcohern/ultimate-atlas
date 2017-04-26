@@ -10,6 +10,10 @@
     formControlName="myemail"
     [status]="ems.status.myemail"
     [message]="ems.message.myemail"></ua-input>
+  <ua-select label="My List"
+    formControlName="mylist"
+    [status]="ems.status.mylist"
+    [message]="ems.message.mylist"></ua-select>
   <button type="submit" class="btn btn-primary" [disabled]="testForm.invalid">Save</button>
 </form>
 <pre>{{ testForm.value | json }}</pre>

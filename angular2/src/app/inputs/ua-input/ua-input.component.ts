@@ -1,4 +1,4 @@
-import { Component, forwardRef } from '@angular/core';
+import { Component, forwardRef, OnInit, OnChanges } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { UaInputBase } from '../ua-input-base';
 
@@ -14,6 +14,11 @@ import { UaInputBase } from '../ua-input-base';
     }
   ]
 })
-export class UaInput extends UaInputBase {
+export class UaInput extends UaInputBase implements OnInit, OnChanges {
+
+  constructor() { super(); }
+
+  ngOnInit() { super.init(); }
+  ngOnChanges(changes) { super.change(changes); }
   
 }

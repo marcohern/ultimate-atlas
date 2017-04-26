@@ -1,6 +1,6 @@
 <div class="form-group has-feedback" [ngClass]="fieldClass">
   <label>{{label}}</label>
-  <input type="text" class="form-control"
+  <input type="{{type}}" class="form-control"
     [(ngModel)]="value"
     (keyup)="onKeyUp($event)"/>
   <span *ngIf="error" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>

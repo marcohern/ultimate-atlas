@@ -1,9 +1,16 @@
+export interface IOption {
+
+    getValue():any;
+    getText():string;
+}
+
 export interface IRecord {
     id?:number;
 
     created_at?:Date;
     updated_at?:Date;
     status:string;
+
 }
 
 export class Record implements IRecord {
