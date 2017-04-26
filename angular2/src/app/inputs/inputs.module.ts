@@ -9,6 +9,8 @@ import { UsernameInput } from './username/username-input.component'
 
 import { ErrorMessageService } from './error-message.service'
 import { ValidatorService } from './validator.service'
+import { UaValidators } from './ua-validators'
+
 import { UaInput } from './ua-input/ua-input.component';
 import { UaSelect } from './ua-select/ua-select.component';
 import { UaQuickSelect } from './ua-quick-select/ua-quick-select.component'
@@ -24,7 +26,8 @@ import { UaQuickSelect } from './ua-quick-select/ua-quick-select.component'
     ],
     providers:[
         ValidatorService,
-        ErrorMessageService
+        ErrorMessageService,
+        UaValidators
     ],
     exports: [UsernameInput,UserEmailInput,PasswordInput,NameInput,UaInput,UaSelect,UaQuickSelect]
 })

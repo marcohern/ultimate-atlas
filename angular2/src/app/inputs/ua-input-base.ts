@@ -1,4 +1,4 @@
-import { Component, OnInit, Input,ViewChild, OnChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit, Input, Output, ViewChild, OnChanges, SimpleChange } from '@angular/core';
 import { FormControl, ControlValueAccessor, Validator } from '@angular/forms';
 
 export class UaInputBase implements ControlValueAccessor {
@@ -72,7 +72,10 @@ export class UaInputBase implements ControlValueAccessor {
   public registerOnTouched(fn   :any) { this.propagateTouch  = fn; }
   
   protected onKeyUp($event) { 
-    if (!this.touched) this.propagateTouch($event);
+    if (!this.touched) {
+      this.propagateTouch($event);
+      this.touched = true;
+    }
     this.propagateChange(this.value); 
   }
 }

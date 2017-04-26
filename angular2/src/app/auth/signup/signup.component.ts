@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormBuilder, AbstractControl, Validators } from '@angular/forms'
-import { areEqual } from '../../validators/equal.validator'
-import { isUsenameUnique } from '../../validators/username-unique.validator'
 
 import { Router } from '@angular/router';
 

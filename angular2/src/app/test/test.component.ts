@@ -6,6 +6,7 @@ import { ValidatorService } from '../inputs/validator.service'
 import { ErrorMessageService } from '../inputs/error-message.service'
 import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/operator/map'
+import { UaValidators } from '../inputs/ua-validators'
 
 @Component({
   selector: 'app-test',
@@ -17,36 +18,42 @@ export class TestComponent implements OnInit {
   constructor(
     private fb:FormBuilder,
     private vs:ValidatorService,
-    private ems:ErrorMessageService) {}
+    private ems:ErrorMessageService,
+    private uav:UaValidators) {}
 
   testForm:FormGroup;
   mylistOptions:IOption[];
   myquickOptions:IQuick[];
 
   ngOnInit() {
-    this.testForm = this.fb.group({
-      myinput: ['', [Validators.required], [this.delayedValidatior.bind(this)]],
-      myemail: ['', [Validators.required, Validators.email], []],
-      mylist: ['', [Validators.required], []],
-      myquick: ['', [Validators.required], []],
-    });
-
-    this.ems.rig(this.testForm, {
-      myinput: {
-        required: 'Required.'
+    this.testForm = this.ems.build({
+      myinput:{ 
+        control:['', [Validators.required]],
+        messages: { required: 'Required.' }
       },
       myemail: {
-        required: 'Required.',
-        email: 'Must have valid format.'
+        control:['', [Validators.required, Validators.minLength(4), Validators.email]],
+        messages: { required: 'Required.', minlength:'Below minimum lenght (4).', email: 'Must have valid format.' },
       },
       mylist: {
-        required: 'Required.'
+        control:['', Validators.required],
+        messages: { required: 'Required.' }
       },
       myquick: {
-        required: 'Required.',
+        control:['', Validators.required],
+        messages: { required: 'Required.' }
+      },
+      password: {
+        control:['', [Validators.required ]],
+        messages: { required: 'Required.' }
+      },
+      confirmPassword: {
+        control:['', [Validators.required, this.uav.requiresConfirm("password")] ],
+        messages: { required: 'Required.', requiresConfirm:'Password mismatch.' }
       }
     });
-
+    
+    this.testForm.get('myinput').setAsyncValidators([this.uav.usernameExists("except",2000)]);
     this.mylistOptions = [
       {value:1, text:'Bus/Metro'},
       {value:2, text:'Breakfast'},
@@ -59,15 +66,17 @@ export class TestComponent implements OnInit {
     ];
 
     this.myquickOptions = [
-      {value:1, text:'', glyph:'road',color:'primary'},
-      {value:2, text:'', glyph:'cutlery',color:'success'},
-      {value:3, text:'', glyph:'cutlery',color:'warning'},
-      {value:4, text:'', glyph:'cutlery',color:'danger'},
-      {value:5, text:'', glyph:'ice-lolly',color:'primary'},
-      {value:6, text:'', glyph:'glass',color:'danger'},
-      {value:7, text:'', glyph:'credit-card',color:'primary'},
-      {value:8, text:'', glyph:'shopping-cart',color:'success'},
+      {value:1, text:'', glyph:'road'         , color:'primary'},
+      {value:2, text:'', glyph:'cutlery'      , color:'success'},
+      {value:3, text:'', glyph:'cutlery'      , color:'warning'},
+      {value:4, text:'', glyph:'cutlery'      , color:'danger'},
+      {value:5, text:'', glyph:'ice-lolly'    , color:'primary'},
+      {value:6, text:'', glyph:'glass'        , color:'danger'},
+      {value:7, text:'', glyph:'credit-card'  , color:'primary'},
+      {value:8, text:'', glyph:'shopping-cart', color:'success'},
     ];
+
+    this.testForm.get('password').valueChanges.subscribe((c) => this.notifyConfirmPassword());
 
     this.ems.setValues(this.testForm, {
       myinput: '',
@@ -77,15 +86,9 @@ export class TestComponent implements OnInit {
     });
   }
 
-  timeout:any;
-  delayedValidatior(c:AbstractControl):Observable<{[key : string] : any}> {
-    return new Observable(observer => {
-      clearTimeout(this.timeout);
-      this.timeout = setTimeout(() => {
-        observer.next(null);
-      }, 3000);
-    }).first();
-  }
+  notifyConfirmPassword() {
+    this.testForm.get('confirmPassword').updateValueAndValidity();
+  }  
 
   submit(values) {
     console.log(values);
