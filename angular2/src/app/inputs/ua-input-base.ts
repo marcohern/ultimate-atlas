@@ -39,12 +39,10 @@ export class UaInputBase implements ControlValueAccessor {
     this.messageClass = [];
     switch (this.status) {
       case 'VALID':
-        //this.message = '';
         this.success = true;
         this.fieldClass.push('has-success');
         break;
       case 'PENDING':
-        //this.message = 'Validating...';
         this.pending = true;
         this.fieldClass.push('has-info');
         this.messageClass.push('alert-info');
@@ -70,10 +68,6 @@ export class UaInputBase implements ControlValueAccessor {
   public registerOnTouched(fn   :any) { this.propagateTouch  = fn; }
   
   protected onKeyUp($event) { 
-    if (!this.touched) {
-      this.propagateTouch($event);
-      this.touched = true;
-    }
     this.propagateChange(this.value); 
   }
 }
