@@ -9,5 +9,6 @@
         <p>User: <b>{{$user->username}}</b></p>
         <p>Email: <b>{{$user->email}}</b></p>
         <p>Name: <b>{{$user->fname}} {{$user->lname}}</b></p>
+        Click <a href="{{ URL::to('/') }}/login">here</a> to login.
     </div>
 </div>

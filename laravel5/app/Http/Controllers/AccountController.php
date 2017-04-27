@@ -8,6 +8,7 @@ use App\Exceptions\NotFoundException;
 use App\User;
 use App\Token;
 use App\Lib\Salt;
+use App\Lib\UrlToken;
 use App\Lib\AutoRouter;
 use App\Mail\SignupActivate;
 use App\Mail\SignupActivated;
@@ -54,7 +55,7 @@ class AccountController extends Controller
             'activated_token' => null,
             'activated' => 'TRUE',
             
-            //'updated_at' => new \Datetime("now")
+            'updated_at' => new \Datetime("now")
         ]);
         $user = User::where('id', $user->id)->first();
         Mail::to($user->email)->send(new SignupActivated($user));
@@ -70,12 +71,7 @@ class AccountController extends Controller
         $salt = Salt::make(48);
         $pwd = Hash::make($r->input('password').$salt);
 
-        $atsource = $r->input('username').
-            $r->input('email').
-            $r->input('fname').
-            $r->input('lname').
-            Salt::make(256);
-        $at = Hash::make($atsource);
+        $at = UrlToken::make(60);
         
         $id = User::insertGetId([
             'username' => $r->input('username'),
@@ -91,7 +87,7 @@ class AccountController extends Controller
             'activated' => 'FALSE',
             'activated_token' => $at,
 
-            //'created_at' => new \Datetime("now")
+            'created_at' => new \Datetime("now")
         ]);
 
         $user = User::where('id',$id)->first();

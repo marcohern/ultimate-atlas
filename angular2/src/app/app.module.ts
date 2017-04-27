@@ -23,7 +23,8 @@ import { ValidatorService } from './inputs/validator.service'
 
 import { InputsModule } from './inputs/inputs.module'
 import { UserModule } from './modules/user/user.module'
-import { DailyModule } from './modules/daily/daily.module'
+import { DailyModule } from './modules/daily/daily.module';
+import { ActivateComponent } from './auth/activate/activate.component'
 
 @NgModule({
   imports: [
@@ -49,6 +50,8 @@ import { DailyModule } from './modules/daily/daily.module'
     LoadingComponent,
 
     TestComponent,
+
+    ActivateComponent,
   ],
   providers: [
     RequestService,

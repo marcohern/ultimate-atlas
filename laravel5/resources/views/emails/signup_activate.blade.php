@@ -9,8 +9,8 @@
         <p>Email: <b>{{$user->email}}</b></p>
         <p>Name: <b>{{$user->fname}} {{$user->lname}}</b></p>
         <p>Click on the following link to activate your account.</p>
-        <a href="http://ultimate-atlas.marcohern.com/activate/{{$user->activated_token}}">
-            http://ultimate-atlas.marcohern.com/activate/{{$user->activated_token}}
+        <a href="{{ URL::to('/') }}/activate/{{$user->activated_token}}">
+            {{ URL::to('/') }}/activate/{{$user->activated_token}}
         </a>
     </div>
 </div>

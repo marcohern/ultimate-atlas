@@ -5,6 +5,7 @@ import { SignupRequest } from './signup-request'
 import { LoginUser } from './login-user'
 import { LoginResponse } from './login-response'
 import { LogoutResponse } from './logout-response'
+import { ActivateResponse } from './activate-response'
 import { Token } from './token'
 import { SendResetPasswordEmailResponse } from './send-reset-password-email-response'
 import { SignupResponse } from './signup-response'
@@ -70,6 +71,12 @@ export class AuthService {
     } else {
       this.clearToken();
     }
+  }
+  
+
+  public activate(token:string) {
+    return this.rs.post('/activate',{token:token},false)
+      .map((r:Response) => <ActivateResponse>r.json());
   }
 
   public login(username:string, password:string):Observable<LoginResponse> {
