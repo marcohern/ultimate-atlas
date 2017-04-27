@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'mail.marcohern.com'),
+    'host' => env('MAIL_HOST', 'smtp.mailtrap.io'),
 
     /*
     |--------------------------------------------------------------------------
@@ -57,7 +57,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'sender@marcohern.com'),
-        'name' => env('MAIL_FROM_NAME', 'Sender'),
+        'name' => env('MAIL_FROM_NAME', 'Ultimate Atlas'),
     ],
 
     /*
@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => env('sender@marcohern.com'),
+    'username' => env('MAIL_USERNAME','10ea4226b0bc83'),
 
-    'password' => env('#Z%wR3rX?l4J'),
+    'password' => env('MAIL_PASSWORD','be58ab3a9fb4c2'),
 
     /*
     |--------------------------------------------------------------------------
@@ -118,6 +118,6 @@ return [
         'paths' => [
             resource_path('views/vendor/mail'),
         ],
-    ],
+    ]
 
 ];

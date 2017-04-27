@@ -96,8 +96,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        
-        $user = User::where('id', $id)->first();
+        $col = 'username';
+        if (is_numeric($id)) $col = 'id';
+        $user = User::where($col, $id)->first();
          if (!$user) throw new NotFoundException('User not found');
         return ['user' => $user];
     }

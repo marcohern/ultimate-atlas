@@ -67,6 +67,7 @@ export class SignupComponent implements OnInit {
 
     var request:SignupRequest = <SignupRequest>data;
     request.role = 'ADMIN';
+    request.gender = 'M';
     
     this.auth.signup(request).subscribe(
       () => this.router.navigate(['/signup-done'])

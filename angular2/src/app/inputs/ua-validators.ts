@@ -40,7 +40,7 @@ export class UaValidators {
                     clearTimeout(timeout);
                     timeout = setTimeout(() => {
                         this.vs.checkUserEmail(c.value).subscribe(data => {
-                            if (data.userEmailExists) observer.next({usernameExists:true});
+                            if (data.userEmailExists) observer.next({userEmailExists:true});
                             else observer.next(null);
                         }, error => {
                             observer.next({serverError:true});

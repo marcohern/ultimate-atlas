@@ -9,6 +9,8 @@ use App\User;
 use App\Token;
 use App\Lib\Salt;
 use App\Lib\AutoRouter;
+use App\Mail\SignupActivate;
+use App\Mail\SignupActivated;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -22,18 +24,6 @@ class AccountController extends Controller
     public function __construct() {
         $this->middleware('api');
         
-    }
-
-    public function generate_password(Request $r) {
-        $uniqueid = Hash::make(uniqid('',true).str_random(48));
-        $salt = (empty($r->input('salt'))) ? Salt::make(48) : $r->input('salt');
-        $pwd = $r->input('pwd');
-        return [
-            'password' => $pwd,
-            'salt' => $salt,
-            'hashed' => Hash::make($pwd.$salt),
-            'uniqueid' => $uniqueid
-        ];
     }
 
     public function check_token(Request $r) {
@@ -50,21 +40,35 @@ class AccountController extends Controller
         return ['token' => $token];
     }
 
-    private function sendActivateSignupEmail(User $user) {
-        Mail::send('emails.signup_activate', ['user' => $user], function ($m) use ($user) {
-            $m->from('sender@marcohern.com', 'Ultimate Atlas');
-            
-            $m->to($user->email, $user->fname.' '.$user->lname)->subject('Your Reminder!');
-        });
-    }
-
     public function get_methods() {
         return ['methods' => AutoRouter::getMethods("App\\Http\\Controllers\\UserController")];
     }
 
+    public function activate(Request $r) {
+        $token = $r->input('token');
+        $user = User::where('activated_token',$token)->select('id')->first();
+
+        if (!$user) throw new NotFoundException("Token invalid.");
+
+        $affected = User::where('id',$user->id)->update([
+            'activated_token' => null,
+            'activated' => 'TRUE',
+            
+            //'updated_at' => new \Datetime("now")
+        ]);
+        $user = User::where('id', $user->id)->first();
+        Mail::to($user->email)->send(new SignupActivated($user));
+
+        return [
+            'affected' => $affected,
+            'activated' => true,
+            'user' => $user
+        ];
+    }
+
     public function signup(Request $r) {
         $salt = Salt::make(48);
-        $pwd = Hash::make($salt.$r->input('password'));
+        $pwd = Hash::make($r->input('password').$salt);
 
         $atsource = $r->input('username').
             $r->input('email').
@@ -72,15 +76,13 @@ class AccountController extends Controller
             $r->input('lname').
             Salt::make(256);
         $at = Hash::make($atsource);
-
-        $id = 1;
-        /*
+        
         $id = User::insertGetId([
             'username' => $r->input('username'),
             'fname' => $r->input('fname'),
             'lname' => $r->input('lname'),
             'email' => $r->input('email'),
-            //'gender' => $r->input('gender'),
+            'gender' => $r->input('gender'),
             'birth' => $r->input('birth'),
             'role' => $r->input('role'),
 
@@ -89,12 +91,12 @@ class AccountController extends Controller
             'activated' => 'FALSE',
             'activated_token' => $at,
 
-            'created_at' => new \Datetime("now")
-        ]);*/
+            //'created_at' => new \Datetime("now")
+        ]);
 
         $user = User::where('id',$id)->first();
 
-        $this->sendActivateSignupEmail($user);
+        Mail::to($user->email)->send(new SignupActivate($user));
 
         return [
             'user' => $user
@@ -112,7 +114,7 @@ class AccountController extends Controller
     }
 
     public function login(Request $r) {
-        $errormsg = "Username or password invalid.";
+        $errormsg = "Username or password invalid. Your account may require activation, check your email.";
         $username = $r->input('username');
         $password = $r->input('password');
 

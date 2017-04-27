@@ -4,5 +4,6 @@ export interface SignupRequest {
     fname:string;
     lname:string;
     email:string;
+    gender:string;
     role:string;
 }
