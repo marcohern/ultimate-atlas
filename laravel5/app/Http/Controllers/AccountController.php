@@ -7,11 +7,13 @@ use App\Exceptions\UnauthorizedException;
 use App\Exceptions\NotFoundException;
 use App\User;
 use App\Token;
+use App\PasswordReset;
 use App\Lib\Salt;
 use App\Lib\UrlToken;
 use App\Lib\AutoRouter;
 use App\Mail\SignupActivate;
 use App\Mail\SignupActivated;
+use App\Mail\RecoverPassword;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -141,5 +143,26 @@ class AccountController extends Controller
         } else {
             throw new UnauthorizedException($errormsg);
         }
+    }
+
+    public function reset_password(Request $r) {
+        $token = UrlToken::make(60);
+        $email = $r->input('email');
+        PasswordReset::insert([
+            'email' => $email,
+            'token' => $token,
+            'created_at' => new \Datetime("now")
+        ]);
+
+        $pr = PasswordReset::where('email',$email)->first();
+
+        
+        Mail::to($pr->email)->send(new RecoverPassword($pr));
+
+        return [
+            'affected' => 1,
+            'created' => true,
+            'password_reset' => $pr
+        ];
     }
 }

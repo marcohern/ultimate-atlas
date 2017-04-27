@@ -52,7 +52,6 @@ export class AuthService {
     this.token = token;
     this.authenticated = true;
     this.rs.setToken(this.token.token);
-
   }
 
   public start() {
@@ -86,7 +85,7 @@ export class AuthService {
   }
 
   public sendResetPasswordEmail(email:string):Observable<SendResetPasswordEmailResponse> {
-    return this.rs.post('/reset-password', {})
+    return this.rs.post('/reset-password', {email:email})
       .map((r:Response) => <SendResetPasswordEmailResponse>r.json());
   }
 

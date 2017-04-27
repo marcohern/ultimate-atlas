@@ -86,7 +86,7 @@ var AuthService = (function () {
             .do(function (loginResponse) { return _this.setToken(loginResponse); });
     };
     AuthService.prototype.sendResetPasswordEmail = function (email) {
-        return this.rs.post('/reset-password', {})
+        return this.rs.post('/reset-password', { email: email })
             .map(function (r) { return r.json(); });
     };
     AuthService.prototype.signup = function (user) {

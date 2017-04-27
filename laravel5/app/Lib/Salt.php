@@ -4,7 +4,7 @@ namespace App\Lib;
 
 class Salt
 {
-    private static $tpl = "abcdefghijlkmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#&%()[]{}!?";
+    private static $tpl = "abcdefghijlkmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#&%()[]{}!?_-.,";
 
     public static function make($length=16) {
         $n = strlen(self::$tpl);
