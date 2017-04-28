@@ -32,7 +32,6 @@ export class ErrorMessageService {
   public rig(g:FormGroup, messages) {
     this.errors = {};
     this.message = {};
-    //g.valueChanges.subscribe(data => this.displayMessages(g));
 
     for (let control_id in messages) {
       let control = g.get(control_id);

@@ -18,6 +18,9 @@ export class ActivateComponent implements OnInit {
     let token = this.route.snapshot.params['token'];
     this.as.activate(token).subscribe(data => {
       this.router.navigate(['/login']);
+    },
+    error =>{
+      this.router.navigate(['/welcome']);
     });
   }
 
