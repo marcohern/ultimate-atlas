@@ -1,12 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl } from '@angular/forms'
-import { IOption } from '../inputs/ua-select-base'
-import { IQuick } from '../inputs/ua-quick-select-base'
-import { ValidatorService } from '../inputs/validator.service'
-import { ErrorMessageService } from '../inputs/error-message.service'
+import { IOption } from '../modules/inputs/ua-select-base'
+import { IQuick } from '../modules/inputs/ua-quick-select-base'
+import { ValidatorService } from '../modules/inputs/validator.service'
+import { ErrorMessageService } from '../modules/inputs/error-message.service'
 import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/operator/map'
-import { UaValidators } from '../inputs/ua-validators'
+import { UaValidators } from '../modules/inputs/ua-validators'
 
 @Component({
   selector: 'app-test',

@@ -7,8 +7,8 @@ import { Router } from '@angular/router'
 import { SignupRequest } from '../signup-request'
 
 import { AuthService } from '../auth.service'
-import { ErrorMessageService } from '../../inputs/error-message.service'
-import { UaValidators } from '../../inputs/ua-validators'
+import { ErrorMessageService } from '../../modules/inputs/error-message.service'
+import { UaValidators } from '../../modules/inputs/ua-validators'
 
 @Component({
   selector: 'ua-signup',

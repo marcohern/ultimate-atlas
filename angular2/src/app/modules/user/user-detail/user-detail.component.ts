@@ -3,8 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { FormGroup, FormBuilder, AbstractControl, Validators } from '@angular/forms'
 
 import { UserService } from '../user.service';
-import { UaValidators } from '../../../inputs/ua-validators'
-import { ErrorMessageService } from '../../../inputs/error-message.service';
+import { UaValidators } from '../../inputs/ua-validators'
+import { ErrorMessageService } from '../../inputs/error-message.service';
 import { User } from '../user';
 
 @Component({

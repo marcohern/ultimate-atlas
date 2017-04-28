@@ -19,9 +19,8 @@ import { TestComponent } from './test/test.component'
 import { AuthService } from './auth/auth.service'
 import { RequestService } from './request.service'
 import { ConfigService } from './config.service'
-import { ValidatorService } from './inputs/validator.service'
 
-import { InputsModule } from './inputs/inputs.module'
+import { InputsModule } from './modules/inputs/inputs.module'
 import { UserModule } from './modules/user/user.module'
 import { DailyModule } from './modules/daily/daily.module';
 import { ActivateComponent } from './auth/activate/activate.component'
@@ -57,7 +56,6 @@ import { ActivateComponent } from './auth/activate/activate.component'
     RequestService,
     AuthService,
     ConfigService,
-    ValidatorService,
   ],
   bootstrap: [AppComponent]
 })

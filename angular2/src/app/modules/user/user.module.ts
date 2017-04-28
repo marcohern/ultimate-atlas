@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { InputsModule } from '../../inputs/inputs.module'
+import { InputsModule } from '../inputs/inputs.module'
 
 import { UserRoutes } from './user.routes'
 import { UserListComponent } from './user-list/user-list.component'
