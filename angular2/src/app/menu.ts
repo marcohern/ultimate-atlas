@@ -10,17 +10,11 @@ export const menu = {
     },
     buttons: {
         unauthenticated: [
-            {
-                label:'Sign in',
-                route:['/login'],
-                color:'primary'
-            },
-            {
-                label:'Sign up',
-                route:['/signup'],
-                color:'success'
-            }
+            { label:'Sign in', route:['/login'] , color:'primary' },
+            { label:'Sign up', route:['/signup'], color:'success' }
         ],
-        private: []
+        private: [
+            { label:'Invite', route:['/invite'] , color:'primary' },
+        ]
     }
 };
