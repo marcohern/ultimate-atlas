@@ -23,6 +23,7 @@ import { DailyModule } from './modules/daily/daily.module'
 
 @NgModule({
   imports: [
+    //Basic Modules
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -31,9 +32,13 @@ import { DailyModule } from './modules/daily/daily.module'
 
     InputsModule,
     AuthModule,
-    AuthSignupModule,
-    UserModule,
-    DailyModule,
+
+    //Plugable Modules
+    AuthSignupModule, //Allow users to sign up by them selves
+    UserModule,       //User management
+    DailyModule,      //Daily transactions module
+
+    //App Routes
     AppRoutes
   ],
   declarations: [

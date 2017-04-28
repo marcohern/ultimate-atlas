@@ -1,6 +1,9 @@
 <nav class="navbar navbar-default">
   <div class="container">
-    <a class="navbar-brand" [routerLink]="['/welcome']"><span>{{title}}</span> <sub>{{cs.get().env}}</sub></a>
+    <a class="navbar-brand" [routerLink]="['/welcome']">
+      <span>{{title}}</span>
+      <sub *ngIf="cs.get().env">{{cs.get().env}}</sub>
+    </a>
     <ul class="nav navbar-nav">
       <li *ngFor="let item of menu.links.public">
         <a [routerLink]="item.route">{{item.label}}</a>
