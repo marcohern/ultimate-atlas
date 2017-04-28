@@ -4,9 +4,9 @@ import { FormGroup, Validators } from '@angular/forms'
 
 import { Router } from '@angular/router'
 
-import { SignupRequest } from '../signup-request'
+import { SignupRequest } from '../../auth/signup-request'
 
-import { AuthService } from '../auth.service'
+import { AuthService } from '../../auth/auth.service'
 import { ErrorMessageService } from '../../inputs/error-message.service'
 import { UaValidators } from '../../inputs/ua-validators'
 
@@ -70,7 +70,7 @@ export class SignupComponent implements OnInit {
     request.gender = 'M';
     
     this.auth.signup(request).subscribe(
-      () => this.router.navigate(['/signup-done'])
+      () => this.router.navigate(['/signup/done'])
     );
   }
 

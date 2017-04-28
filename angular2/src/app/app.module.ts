@@ -15,6 +15,7 @@ import { RequestService } from './request.service'
 import { ConfigService } from './config.service'
 
 import { AuthModule } from './modules/auth/auth.module'
+import { AuthSignupModule } from './modules/auth-signup/auth-signup.module'
 import { InputsModule } from './modules/inputs/inputs.module'
 import { UserModule } from './modules/user/user.module'
 import { DailyModule } from './modules/daily/daily.module'
@@ -30,6 +31,7 @@ import { DailyModule } from './modules/daily/daily.module'
 
     InputsModule,
     AuthModule,
+    AuthSignupModule,
     UserModule,
     DailyModule,
     AppRoutes
