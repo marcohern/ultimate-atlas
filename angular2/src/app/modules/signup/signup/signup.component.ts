@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 
 import { FormGroup, Validators } from '@angular/forms'
 
 import { Router } from '@angular/router'
 
-import { SignupRequest } from '../../auth/signup-request'
+import { SignupRequest } from '../signup-request'
 
-import { AuthService } from '../../auth/auth.service'
+import { SignupService } from '../signup.service'
 import { ErrorMessageService } from '../../inputs/error-message.service'
 import { UaValidators } from '../../inputs/ua-validators'
 
@@ -21,7 +21,7 @@ export class SignupComponent implements OnInit {
   active:boolean = false;
 
   constructor(
-    private auth:AuthService,
+    private ss:SignupService,
     private router:Router,
     private ems:ErrorMessageService,
     private uav:UaValidators)
@@ -69,7 +69,7 @@ export class SignupComponent implements OnInit {
     request.role = 'ADMIN';
     request.gender = 'M';
     
-    this.auth.signup(request).subscribe(
+    this.ss.signup(request).subscribe(
       () => this.router.navigate(['/signup/done'])
     );
   }

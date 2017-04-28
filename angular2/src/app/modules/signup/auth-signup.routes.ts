@@ -6,6 +6,8 @@ import { SignupComponent          } from './signup/signup.component'
 import { SignupDoneComponent      } from './signup-done/signup-done.component'
 import { ActivateComponent        } from './activate/activate.component'
 
+import { SignupService } from './signup.service'
+
 const routes: Routes = [
     { path: 'signup'          , component: SignupComponent          },
     { path: 'signup/done'     , component: SignupDoneComponent      },
@@ -15,7 +17,7 @@ const routes: Routes = [
 @NgModule({
     imports: [ RouterModule.forChild(routes) ],
     exports: [ RouterModule ],
-    providers: []
+    providers: [ SignupService ]
 })
 export class AuthSignupRoutes {
 

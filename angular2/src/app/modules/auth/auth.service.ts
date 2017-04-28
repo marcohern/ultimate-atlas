@@ -1,14 +1,11 @@
 import { Injectable } from '@angular/core'
 import { Http, Response, Headers, RequestOptions } from '@angular/http'
-import { SignupRequest } from './signup-request'
 
 import { LoginUser } from './login-user'
 import { LoginResponse } from './login-response'
 import { LogoutResponse } from './logout-response'
-import { ActivateResponse } from './activate-response'
 import { Token } from './token'
 import { SendResetPasswordEmailResponse } from './send-reset-password-email-response'
-import { SignupResponse } from './signup-response'
 import {RequestService} from'../../request.service'
 import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/operator/catch'
@@ -25,7 +22,7 @@ export class AuthService {
   private user:LoginUser = null;
   private token:Token = null;
 
-  constructor(private _http:Http,
+  constructor(
     private rs:RequestService) { }
 
   public clearToken() {
@@ -71,12 +68,6 @@ export class AuthService {
       this.clearToken();
     }
   }
-  
-
-  public activate(token:string) {
-    return this.rs.post('/activate',{token:token},false)
-      .map((r:Response) => <ActivateResponse>r.json());
-  }
 
   public login(username:string, password:string):Observable<LoginResponse> {
     return this.rs.post('/login', {username:username, password:password })
@@ -87,11 +78,6 @@ export class AuthService {
   public sendResetPasswordEmail(email:string):Observable<SendResetPasswordEmailResponse> {
     return this.rs.post('/reset-password', {email:email})
       .map((r:Response) => <SendResetPasswordEmailResponse>r.json());
-  }
-
-  public signup(user:SignupRequest): Observable<SignupResponse> {
-    return this.rs.post('/signup', user)
-      .map((r:Response) => <SignupResponse>r.json());
   }
 
   public logout() {

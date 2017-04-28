@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import {ActivatedRoute, Router} from '@angular/router'
-import { AuthService } from  '../../auth/auth.service'
+import { SignupService } from  '../signup.service'
 
 @Component({
   selector: 'app-activate',
@@ -10,13 +10,13 @@ import { AuthService } from  '../../auth/auth.service'
 export class ActivateComponent implements OnInit {
 
   constructor(
-    private as:AuthService,
+    private ss:SignupService,
     private route:ActivatedRoute,
     private router:Router) { }
 
   ngOnInit() {
     let token = this.route.snapshot.params['token'];
-    this.as.activate(token).subscribe(data => {
+    this.ss.activate(token).subscribe(data => {
       this.router.navigate(['/login']);
     },
     error =>{
