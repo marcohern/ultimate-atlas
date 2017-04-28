@@ -14,7 +14,7 @@ import { TestComponent } from './test/test.component'
 import { RequestService } from './request.service'
 import { ConfigService } from './config.service'
 
-import { AuthModule } from './auth/auth.module'
+import { AuthModule } from './modules/auth/auth.module'
 import { InputsModule } from './modules/inputs/inputs.module'
 import { UserModule } from './modules/user/user.module'
 import { DailyModule } from './modules/daily/daily.module'
