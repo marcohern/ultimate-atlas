@@ -70,7 +70,7 @@ export class SignupComponent implements OnInit {
     request.gender = 'M';
     
     this.ss.signup(request).subscribe(
-      () => this.router.navigate(['/signup/done'])
+      data => this.router.navigate(['/signup/done'])
     );
   }
 

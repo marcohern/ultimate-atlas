@@ -18,7 +18,7 @@ export class SignupService {
       .map((r:Response) => <SignupResponse>r.json());
   }
   
-  public activate(token:string):Observable<ActivateResponse> {
+  public activate(token:string): Observable<ActivateResponse> {
     return this.rs.post('/activate',{token:token},false)
       .map((r:Response) => <ActivateResponse>r.json());
   }
