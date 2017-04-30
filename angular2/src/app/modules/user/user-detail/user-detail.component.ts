@@ -8,6 +8,7 @@ import { ErrorMessageService } from '../../inputs/error-message.service';
 import { User } from '../user';
 
 @Component({
+  moduleId: module.id,
   selector: 'ua-user-detail',
   templateUrl: './user-detail.component.html',
   styleUrls: ['./user-detail.component.css']

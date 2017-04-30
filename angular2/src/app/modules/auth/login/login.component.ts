@@ -4,6 +4,7 @@ import { Router } from '@angular/router'
 import { AuthService } from '../auth.service'
 
 @Component({
+  moduleId: module.id,
   selector: 'ua-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']

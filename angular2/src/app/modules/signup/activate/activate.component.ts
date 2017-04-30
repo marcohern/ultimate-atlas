@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router'
 import { SignupService } from  '../signup.service'
 
 @Component({
+  moduleId: module.id,
   selector: 'app-activate',
   templateUrl: './activate.component.html',
   styleUrls: ['./activate.component.css']

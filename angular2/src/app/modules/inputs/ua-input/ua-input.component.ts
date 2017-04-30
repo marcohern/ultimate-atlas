@@ -3,6 +3,7 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { UaInputBase } from '../ua-input-base';
 
 @Component({
+  moduleId: module.id,
   selector: 'ua-input',
   templateUrl: './ua-input.component.html',
   styleUrls: ['./ua-input.component.css'],

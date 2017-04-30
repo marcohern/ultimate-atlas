@@ -3,6 +3,7 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { UaSelectBase } from '../ua-select-base';
 
 @Component({
+  moduleId: module.id,
   selector: 'ua-select',
   templateUrl: './ua-select.component.html',
   styleUrls: ['./ua-select.component.css'],

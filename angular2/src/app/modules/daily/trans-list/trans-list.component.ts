@@ -7,6 +7,7 @@ import { DailyService } from '../daily.service'
 import { recordAnimation } from '../../../animations';
 
 @Component({
+  moduleId: module.id,
   selector: 'app-trans-list',
   templateUrl: './trans-list.component.html',
   styleUrls: ['./trans-list.component.css'],

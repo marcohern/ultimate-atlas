@@ -11,6 +11,7 @@ import { ErrorMessageService } from '../../inputs/error-message.service'
 import { UaValidators } from '../../inputs/ua-validators'
 
 @Component({
+  moduleId: module.id,
   selector: 'ua-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']

@@ -7,6 +7,7 @@ import { DailyCat } from '../daily-cat'
 import { DailyService } from '../daily.service'
 
 @Component({
+  moduleId: module.id,
   selector: 'app-trans-detail',
   templateUrl: './trans-detail.component.html',
   styleUrls: ['./trans-detail.component.css']

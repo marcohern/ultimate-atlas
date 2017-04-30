@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService} from '../auth.service';
 
 @Component({
+  moduleId: module.id,
   selector: 'app-recover-password',
   templateUrl: './recover-password.component.html',
   styleUrls: ['./recover-password.component.css']
