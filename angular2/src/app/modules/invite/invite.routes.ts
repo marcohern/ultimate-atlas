@@ -10,8 +10,8 @@ import { AuthorizedGuard } from '../auth/authorized.guard';
 
 const routes: Routes = [
     { path: 'invite', component: InviteComponent },
-    { path: 'invite/done',  component: InviteDoneComponent },
-    { path: 'invite/set-password',  component: InviteSetpwdComponent },
+    { path: 'invited',  component: InviteDoneComponent },
+    { path: 'invite/:token',  component: InviteSetpwdComponent },
 ];
 
 @NgModule({

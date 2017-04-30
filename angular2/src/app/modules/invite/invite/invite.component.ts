@@ -50,7 +50,7 @@ export class InviteComponent implements OnInit {
     let user:InviteUser = <InviteUser>value;
     
     this.is.inviteUser(user).subscribe(data => {
-      this.router.navigate(['/invite/done']);
+      this.router.navigate(['/invited']);
     });
   }
 
