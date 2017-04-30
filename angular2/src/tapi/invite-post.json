@@ -1,0 +1,13 @@
+{
+    "affected": 1,
+    "invited": true,
+    "user": {
+        "id": 9999,
+        "username": "autologin",
+        "password": "123456",
+        "fname":"Auto",
+        "lname":"Login",
+        "email":"autologin@mail.com",
+        "role":"ADMIN"
+    }
+}

@@ -1,18 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthModule } from '../auth/auth.module';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { InputsModule } from '../inputs/inputs.module';
 import { InviteRoutes } from './invite.routes';
 
 import { InviteComponent } from './invite/invite.component';
 import { InviteDoneComponent } from './invite-done/invite-done.component';
 import { InviteSetpwdComponent } from './invite-setpwd/invite-setpwd.component';
 
+import { InviteService } from './invite.service';
+
 @NgModule({
   imports: [
     CommonModule,
-    AuthModule,
+    FormsModule,
+    ReactiveFormsModule,
+    InputsModule,
     InviteRoutes
   ],
-  declarations: [InviteComponent, InviteDoneComponent, InviteSetpwdComponent]
+  declarations: [InviteComponent, InviteDoneComponent, InviteSetpwdComponent],
+  providers: [InviteService]
 })
 export class InviteModule { }

@@ -1,3 +1,43 @@
-<p>
-  invite works!
-</p>
+<div class="panel panel-primary">
+  <div class="panel-heading"><h2>Invite!</h2></div>
+  <div class="panel-body">
+    <p>Create a user and an email will be sent to that user to set his password and be allowed to login.</p>
+    <form novalidate [formGroup]="inviteForm" (ngSubmit)="inviteUser(inviteForm.value)">
+      <div class="row">
+        <div class="col-sm-4">
+          <ua-input label="Username"
+            formControlName="username"
+            [status]="ems.status.username"
+            [message]="ems.message.username"></ua-input>
+        </div>
+        <div class="col-sm-8">
+          <ua-input label="Email"
+            formControlName="email"
+            [status]="ems.status.email"
+            [message]="ems.message.email"></ua-input>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <ua-input label="First Name"
+            formControlName="fname"
+            [status]="ems.status.fname"
+            [message]="ems.message.fname"></ua-input>
+        </div>
+        <div class="col-sm-6">
+          <ua-input label="Last Name"
+            formControlName="lname"
+            [status]="ems.status.lname"
+            [message]="ems.message.lname"></ua-input>
+        </div>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary btn-lg" [disabled]="!inviteForm.valid">
+          <i class="glyphicon glyphicon-save"></i> Invite!
+        </button>
+      </div>
+    </form>
+    <!--pre>{{signupForm.value | json}}</pre!-->
+    <!--pre>{{signupForm.status}}</pre!-->
+  </div>
+</div>
