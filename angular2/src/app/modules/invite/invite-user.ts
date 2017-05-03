@@ -3,4 +3,5 @@ export interface InviteUser {
     email:string;
     fname:string;
     lname:string;
+    password:string;
 }

@@ -394,7 +394,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n.validatable .ng-valid,\n.validatable .ng-valid[required],\n.validatable .ng-valid.required  {\n  border-left: 5px solid #42A948; /* green */\n}\n.validatable .ng-invalid:not(form)  {\n  border-left: 5px solid #a94442; /* red */\n}\n\n.ua-record-row {\n  margin-top: 0.5em;\n}\n\n.glyphicon.ua-icon {\n    background-size: 16px 16px;\n    background-repeat: no-repeat;\n    margin: 8px;\n    margin-right: 0;\n}\n\n.glyphicon.ua-icon.ua-icon-bars {\n    background-image:url(/assets/loaders/bars.svg);\n}", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\r\n.validatable .ng-valid,\r\n.validatable .ng-valid[required],\r\n.validatable .ng-valid.required  {\r\n  border-left: 5px solid #42A948; /* green */\r\n}\r\n.validatable .ng-invalid:not(form)  {\r\n  border-left: 5px solid #a94442; /* red */\r\n}\r\n\r\n.ua-record-row {\r\n  margin-top: 0.5em;\r\n}\r\n\r\n.glyphicon.ua-icon {\r\n    background-size: 16px 16px;\r\n    background-repeat: no-repeat;\r\n    margin: 8px;\r\n    margin-right: 0;\r\n}\r\n\r\n.glyphicon.ua-icon.ua-icon-bars {\r\n    background-image:url(/assets/loaders/bars.svg);\r\n}", ""]);
 
 // exports
 
