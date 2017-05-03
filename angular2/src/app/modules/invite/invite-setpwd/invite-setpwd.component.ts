@@ -31,11 +31,11 @@ export class InviteSetpwdComponent implements OnInit {
 
     this.invitePwdForm = this.ems.build({
       password: {
-        control: ['', Validators.required],
+        control: ['', Validators.required ],
         messages: {required:'Password required.'}
       },
-      confirm: {
-        control: ['', Validators.required, this.uav.requiresConfirm('password')],
+      confirmPassword: {
+        control: ['', [Validators.required, this.uav.requiresConfirm('password')] ],
         messages: {required:'Confirm Password required.', requiresConfirm: 'Password mismatch.'}
       }
     });
@@ -44,12 +44,10 @@ export class InviteSetpwdComponent implements OnInit {
   setPassword(value) {
 
     console.log(value);
-    /*
     this.is.setPassword(this.token, value.password)
       .subscribe(data => {
         this.router.navigate(['/login']);
       });
-      */
   }
 
 }

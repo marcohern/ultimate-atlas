@@ -820,7 +820,7 @@ var InviteService = (function () {
             .map(function (r) { return r.json().user; });
     };
     InviteService.prototype.setPassword = function (token, password) {
-        return this.rs.post('/invite/get_user', { token: token, password: password })
+        return this.rs.post('/invite/set_password', { token: token, password: password })
             .map(function (r) { return r.json(); });
     };
     return InviteService;
@@ -1577,20 +1577,19 @@ var InviteSetpwdComponent = (function () {
                 control: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required],
                 messages: { required: 'Password required.' }
             },
-            confirm: {
-                control: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required, this.uav.requiresConfirm('password')],
+            confirmPassword: {
+                control: ['', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* Validators */].required, this.uav.requiresConfirm('password')]],
                 messages: { required: 'Confirm Password required.', requiresConfirm: 'Password mismatch.' }
             }
         });
     };
     InviteSetpwdComponent.prototype.setPassword = function (value) {
+        var _this = this;
         console.log(value);
-        /*
         this.is.setPassword(this.token, value.password)
-          .subscribe(data => {
-            this.router.navigate(['/login']);
-          });
-          */
+            .subscribe(function (data) {
+            _this.router.navigate(['/login']);
+        });
     };
     return InviteSetpwdComponent;
 }());
@@ -3691,7 +3690,7 @@ module.exports = "<div class=\"panel panel-primary\">\r\n  <div class=\"panel-he
 /* 243 */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n  <div class=\"col-sm-3\"></div>\r\n  <div class=\"col-sm-6\">\r\n    <div class=\"panel panel-default panel-primary\">\r\n      <div class=\"panel-heading\">\r\n        <h2>Invitation</h2>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <div>\r\n          <div>Set your password</div> <br/> \r\n        </div>\r\n        <form [formGroup]=\"invitePwdForm\" novalidate (ngSubmit)=\"setPassword(invitePwdForm.value)\">\r\n          <ua-input label=\"Password\" type=\"password\" formGroupName=\"password\"\r\n            [status]=\"ems.status.password\"\r\n            [message]=\"ems.message.password\"></ua-input>\r\n          <ua-input label=\"Confirm Password\" type=\"password\" formGroupName=\"confirm\"\r\n            [status]=\"ems.status.confirm\"\r\n            [message]=\"ems.message.confirm\"></ua-input>\r\n          <div class=\"form-group\">\r\n            <button class=\"btn btn-primary\" type=\"submit\">Set Password</button>\r\n          </div>\r\n        </form>\r\n        <pre>{{invitePwdForm.value | json}}</pre>\r\n        <pre>{{invitePwdForm.status}}</pre>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"col-sm-3\"></div>\r\n</div>"
+module.exports = "<div>\r\n  <div class=\"col-sm-3\"></div>\r\n  <div class=\"col-sm-6\">\r\n    <div class=\"panel panel-default panel-primary\">\r\n      <div class=\"panel-heading\">\r\n        <h2>Invitation</h2>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <div>\r\n          <div>Set your password</div> <br/> \r\n        </div>\r\n        <form [formGroup]=\"invitePwdForm\" (ngSubmit)=\"setPassword(invitePwdForm.value)\">\r\n          <ua-input label=\"Password\" formControlName=\"password\" type=\"password\"\r\n            [status]=\"ems.status.password\"\r\n            [message]=\"ems.message.password\"></ua-input>\r\n          <ua-input label=\"Confirm Password\" formControlName=\"confirmPassword\" type=\"password\"\r\n            [status]=\"ems.status.confirmPassword\"\r\n            [message]=\"ems.message.confirmPassword\"></ua-input>\r\n          <div class=\"form-group\">\r\n            <button class=\"btn btn-primary\" type=\"submit\">Set Password</button>\r\n          </div>\r\n        </form>\r\n        <pre>{{invitePwdForm.value | json}}</pre>\r\n        <pre>{{invitePwdForm.status}}</pre>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"col-sm-3\"></div>\r\n</div>"
 
 /***/ }),
 /* 244 */
@@ -3715,7 +3714,7 @@ module.exports = "<div class=\"panel panel-primary\">\n  <div class=\"panel-head
 /* 247 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"panel panel-primary\">\r\n  <div class=\"panel-heading\"><h2>Sign Up!</h2></div>\r\n  <div class=\"panel-body\">\r\n    <form novalidate [formGroup]=\"signupForm\" (ngSubmit)=\"signupUser(signupForm.value)\">\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-4\">\r\n          <ua-input label=\"Username\"\r\n            formControlName=\"username\"\r\n            [status]=\"ems.status.username\"\r\n            [message]=\"ems.message.username\"></ua-input>\r\n        </div>\r\n        <div class=\"col-sm-8\">\r\n          <ua-input label=\"Email\"\r\n            formControlName=\"email\"\r\n            [status]=\"ems.status.email\"\r\n            [message]=\"ems.message.email\"></ua-input>\r\n        </div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-6\">\r\n          <ua-input label=\"Password\"\r\n            formControlName=\"password\"\r\n            type=\"password\"\r\n            [status]=\"ems.status.password\"\r\n            [message]=\"ems.message.password\"></ua-input>\r\n        </div>\r\n        <div class=\"col-sm-6\">\r\n          <ua-input label=\"Confirm Password\"\r\n            formControlName=\"confirmPassword\"\r\n            type=\"password\"\r\n            [status]=\"ems.status.confirmPassword\"\r\n            [message]=\"ems.message.confirmPassword\"></ua-input>\r\n        </div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-6\">\r\n          <ua-input label=\"First Name\"\r\n            formControlName=\"fname\"\r\n            [status]=\"ems.status.fname\"\r\n            [message]=\"ems.message.fname\"></ua-input>\r\n        </div>\r\n        <div class=\"col-sm-6\">\r\n          <ua-input label=\"Last Name\"\r\n            formControlName=\"lname\"\r\n            [status]=\"ems.status.lname\"\r\n            [message]=\"ems.message.lname\"></ua-input>\r\n        </div>\r\n      </div>\r\n      <div>\r\n        <button type=\"submit\" class=\"btn btn-primary btn-lg\" [disabled]=\"!signupForm.valid\">\r\n          <i class=\"glyphicon glyphicon-save\"></i> Save\r\n        </button>\r\n      </div>\r\n    </form>\r\n    <!--pre>{{signupForm.value | json}}</pre!-->\r\n    <!--pre>{{signupForm.status}}</pre!-->\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"panel panel-primary\">\r\n  <div class=\"panel-heading\"><h2>Sign Up!</h2></div>\r\n  <div class=\"panel-body\">\r\n    <form [formGroup]=\"signupForm\" (ngSubmit)=\"signupUser(signupForm.value)\">\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-4\">\r\n          <ua-input label=\"Username\"\r\n            formControlName=\"username\"\r\n            [status]=\"ems.status.username\"\r\n            [message]=\"ems.message.username\"></ua-input>\r\n        </div>\r\n        <div class=\"col-sm-8\">\r\n          <ua-input label=\"Email\"\r\n            formControlName=\"email\"\r\n            [status]=\"ems.status.email\"\r\n            [message]=\"ems.message.email\"></ua-input>\r\n        </div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-6\">\r\n          <ua-input label=\"Password\"\r\n            formControlName=\"password\"\r\n            type=\"password\"\r\n            [status]=\"ems.status.password\"\r\n            [message]=\"ems.message.password\"></ua-input>\r\n        </div>\r\n        <div class=\"col-sm-6\">\r\n          <ua-input label=\"Confirm Password\"\r\n            formControlName=\"confirmPassword\"\r\n            type=\"password\"\r\n            [status]=\"ems.status.confirmPassword\"\r\n            [message]=\"ems.message.confirmPassword\"></ua-input>\r\n        </div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-6\">\r\n          <ua-input label=\"First Name\"\r\n            formControlName=\"fname\"\r\n            [status]=\"ems.status.fname\"\r\n            [message]=\"ems.message.fname\"></ua-input>\r\n        </div>\r\n        <div class=\"col-sm-6\">\r\n          <ua-input label=\"Last Name\"\r\n            formControlName=\"lname\"\r\n            [status]=\"ems.status.lname\"\r\n            [message]=\"ems.message.lname\"></ua-input>\r\n        </div>\r\n      </div>\r\n      <div>\r\n        <button type=\"submit\" class=\"btn btn-primary btn-lg\" [disabled]=\"!signupForm.valid\">\r\n          <i class=\"glyphicon glyphicon-save\"></i> Save\r\n        </button>\r\n      </div>\r\n    </form>\r\n    <!--pre>{{signupForm.value | json}}</pre!-->\r\n    <!--pre>{{signupForm.status}}</pre!-->\r\n  </div>\r\n</div>"
 
 /***/ }),
 /* 248 */

@@ -31,7 +31,7 @@ Route::get('/get_methods','AccountController@get_methods');
 
 Route::post('invite','InviteController@invite');
 Route::post('invite/set_password','InviteController@set_password');
-Route::get ('invite/get_user/{id}','InviteController@get_user');
+Route::get ('invite/get_user','InviteController@get_user');
 
 Route::post('/check_username','ValidatorController@check_username');
 Route::post('/check_user_email','ValidatorController@check_user_email');

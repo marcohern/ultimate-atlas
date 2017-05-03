@@ -10,12 +10,12 @@
           <div>Set your password</div> <br/> 
         </div>
         <form [formGroup]="invitePwdForm" (ngSubmit)="setPassword(invitePwdForm.value)">
-          <ua-input label="Password" type="password" formGroupName="password"
+          <ua-input label="Password" formControlName="password" type="password"
             [status]="ems.status.password"
             [message]="ems.message.password"></ua-input>
-          <ua-input label="Confirm Password" type="password" formGroupName="confirm"
-            [status]="ems.status.confirm"
-            [message]="ems.message.confirm"></ua-input>
+          <ua-input label="Confirm Password" formControlName="confirmPassword" type="password"
+            [status]="ems.status.confirmPassword"
+            [message]="ems.message.confirmPassword"></ua-input>
           <div class="form-group">
             <button class="btn btn-primary" type="submit">Set Password</button>
           </div>

@@ -63,12 +63,11 @@ export class UaInputBase implements ControlValueAccessor {
     }
   }
 
-  public writeValue       (value:any) { this.value           = value; }
-  public registerOnChange (fn   :any) { this.propagateChange = fn; }
-  public registerOnTouched(fn   :any) { this.propagateTouch  = fn; }
+  public writeValue       (value:any) { this.value          = value; }
+  public registerOnChange (fn   :any) {this.propagateChange = fn; }
+  public registerOnTouched(fn   :any) { this.propagateTouch = fn; }
   
   protected onKeyUp($event) {
-    console.log("onKeyUp",$event);
     this.propagateChange(this.value); 
   }
 }
