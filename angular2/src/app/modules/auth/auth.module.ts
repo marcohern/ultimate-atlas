@@ -8,7 +8,8 @@ import { AuthRoutes } from './auth.routes'
 import { LoginComponent           } from './login/login.component'
 import { RecoverPasswordComponent } from './recover-password/recover-password.component'
 
-import { AuthService              } from './auth.service'
+import { AuthService              } from './auth.service';
+import { SetPasswordComponent } from './set-password/set-password.component'
 
 @NgModule({
     imports:[
@@ -20,7 +21,8 @@ import { AuthService              } from './auth.service'
     ],
     declarations:[
         LoginComponent,
-        RecoverPasswordComponent
+        RecoverPasswordComponent,
+        SetPasswordComponent
     ],
     providers:[AuthService],
     exports:[

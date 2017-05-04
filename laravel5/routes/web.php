@@ -11,8 +11,9 @@
 |
 */
 
-Route::get('/activate/{token}', function ($token) { return view('angular2'); });
-Route::get('/invite/{token}'  , function ($token) { return view('angular2'); });
+Route::get('/activate/{token}'        , function ($token) { return view('angular2'); });
+Route::get('/invite/{token}'          , function ($token) { return view('angular2'); });
+Route::get('/recover-password/{token}', function ($token) { return view('angular2'); });
 Route::get('/login'           , function ()       { return view('angular2'); });
 Route::get('/test'            , function ()       { return view('angular2'); });
 Route::get('/welcome'         , function ()       { return view('angular2'); });

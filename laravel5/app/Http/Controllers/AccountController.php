@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Mail;
 use App\Exceptions\UnauthorizedException;
 use App\Exceptions\NotFoundException;
+use App\Exceptions\BadRequestException;
 use App\User;
 use App\Token;
 use App\PasswordReset;
@@ -163,6 +164,36 @@ class AccountController extends Controller
             'affected' => 1,
             'created' => true,
             'password_reset' => $pr
+        ];
+    }
+
+    public function reset_password_set(Request $r) {
+        $token = $r->input('token');
+        $pwd = $r->input('password');
+        if (empty($pwd)) throw new BadRequestException("Password required.");
+        if (empty($pwd)) throw new BadRequestException("Token required.");
+        $pr = PasswordReset::where('token',$token)->first();
+        if (!$pr) throw new BadRequestException("Set password token not found.");
+        $user = User::where('email',$pr->email)->first();
+        if (!$user) throw new BadRequestException("Set password token email not found.");
+
+        $salt = Salt::make(48);
+        $password = Hash::make($salt.$r->input('password'));
+        $af = User::where('id', $user->id)->update([
+            'password' => $password,
+            'salt' => $salt,
+            'activated' => 'TRUE',
+            'updated_at' => new \Datetime("now")
+        ]);
+
+        $afp = PasswordReset::where('token',$token)->delete();
+
+        $updatedUser = User::where('id',$user->id)->first();
+        return [
+            'affected' => $af,
+            'pasword_set' => true,
+            'deleted' => $afp,
+            'user' => $updatedUser
         ];
     }
 }

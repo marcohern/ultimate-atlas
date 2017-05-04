@@ -95,4 +95,7 @@ export class AuthService {
   public getUser():LoginUser {
     return this.user;
   }
+
+  public recoverPassword(token) {
+  }
 }
