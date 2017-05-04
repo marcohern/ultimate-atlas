@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Response } from '@angular/http';
 
 import { RequestService } from '../../request.service';
 import { SignupRequest } from './signup-request';
