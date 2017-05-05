@@ -4,14 +4,22 @@ namespace App\Lib;
 
 class Salt
 {
-    private static $tpl = "abcdefghijlkmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#&%()[]{}!?_-.,";
+    
+    private static $tpls = [
+        "abcdefghijlkmnopqrstuvwxyz",  //26
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ",  //26
+        "0123456789",                  //10
+        "#&%()[]{}!?.,_+-*/\\" //19
+    ];
 
     public static function make($length=16) {
-        $n = strlen(self::$tpl);
+        $n = count(self::$tpls);
         $r = "";
         for ($i=0; $i<$length; $i++) {
-            $index = rand(0, $n-1);
-            $r .= self::$tpl[$index];
+            $type = rand(0, $n-1);
+            $l = strlen(self::$tpls[$type]);
+            $index = rand(0, $l-1);
+            $r .= self::$tpls[$type][$index];
         }
         return $r;
     }

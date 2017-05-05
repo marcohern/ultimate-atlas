@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Mail;
 use App\Exceptions\UnauthorizedException;
 use App\Exceptions\NotFoundException;
 use App\Exceptions\BadRequestException;
+
 use App\User;
 use App\Token;
 use App\PasswordReset;
-use App\Lib\Salt;
+use App\Lib\PasswordGenerator;
 use App\Lib\UrlToken;
 use App\Lib\AutoRouter;
 use App\Mail\SignupActivate;
 use App\Mail\SignupActivated;
 use App\Mail\RecoverPassword;
 
+use Mail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -71,8 +72,8 @@ class AccountController extends Controller
     }
 
     public function signup(Request $r) {
-        $salt = Salt::make(48);
-        $pwd = Hash::make($r->input('password').$salt);
+        $salt = PasswordGenerator::salt();
+        $pwd = PasswordGenerator::hash($salt, $r->input('password'));
 
         $at = UrlToken::make(60);
         
@@ -131,7 +132,7 @@ class AccountController extends Controller
             }
         }
         
-        if (Hash::check($password.$user->salt,$user->password)) {
+        if (PasswordGenerator::check($password, $user->salt, $user->password)) {
             $uniqueid = Hash::make(uniqid('',true).str_random(48));
             $id = Token::insertGetId([
                 'token' => $uniqueid,
@@ -177,8 +178,9 @@ class AccountController extends Controller
         $user = User::where('email',$pr->email)->first();
         if (!$user) throw new BadRequestException("Set password token email not found.");
 
-        $salt = Salt::make(48);
-        $password = Hash::make($salt.$r->input('password'));
+        $salt = PasswordGenerator::salt();
+        $password = PasswordGenerator::make($salt, $r->input('password'));
+
         $af = User::where('id', $user->id)->update([
             'password' => $password,
             'salt' => $salt,

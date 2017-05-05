@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use App\User;
-use App\Lib\Salt;
+use App\Lib\PasswordGenerator;
 
 class UserTableSeeder extends Seeder
 {
@@ -120,9 +120,9 @@ class UserTableSeeder extends Seeder
         
         //set missing fields, hash passwords
         for($i=0;$i<count($users);$i++) {
-            $s = Salt::make(48);
+            $s = PasswordGenerator::salt();
             $users[$i]['salt'] = $s;
-            $users[$i]['password']=Hash::make($users[$i]['username'].$s);
+            $users[$i]['password']=PasswordGenerator::hash($s, $users[$i]['username']);
             $users[$i]['role'] = 'ADMIN';
             $users[$i]['created_at'] = new \Datetime("now");
         }

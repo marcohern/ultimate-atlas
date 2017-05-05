@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Lib\Salt;
+use App\Lib\UrlToken;
+use App\Lib\PasswordGenerator;
 use App\Exceptions\UAException;
 use App\Exceptions\NotFoundException;
 use App\Exceptions\BadRequestException;
@@ -58,23 +60,29 @@ class UserController extends Controller
      */
     public function store(Request $r)
     {
-        $salt = Salt::make(48);
-        $pwd = Hash::make($salt.$r->input('username'));
+        $password = $r->input('username');
+        $salt = PasswordGenerator::salt();
+        $pwd = PasswordGenerator::hash($salt, $password);
+        
         try {
             $id = User::insertGetId([
                 'username' => $r->input('username'),
                 'fname' => $r->input('fname'),
                 'lname' => $r->input('lname'),
                 'email' => $r->input('email'),
-                'gender' => $r->input('gender'),
+                'gender' => 'M',//$r->input('gender'),
                 'birth' => $r->input('birth'),
                 'role' => $r->input('role'),
 
                 'password' => $pwd,
                 'salt' => $salt,
+                'activated' => 'FALSE',
 
                 'created_at' => new \Datetime("now")
             ]);
+
+            //TODO: send password reset email
+
             $user = User::where('id', $id)->first();
             return [
                 'affected' => 1,

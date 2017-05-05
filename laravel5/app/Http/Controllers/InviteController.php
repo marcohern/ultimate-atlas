@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Mail;
 use App\Exceptions\BadRequestException;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\User;
 use App\PasswordReset;
 use App\Lib\Salt;
 use App\Lib\UrlToken;
+use App\Lib\PasswordGenerator;
 use App\Mail\Invite;
+
 
 class InviteController extends Controller
 {
@@ -20,9 +21,10 @@ class InviteController extends Controller
 
     public function invite(Request $r) {
         $pwd = Salt::make(16);
-        $salt = Salt::make(48);
         $token = UrlToken::make(64);
-        $password = Hash::make($salt.$pwd);
+
+        $salt = PasswordGenerator::salt();
+        $password = PasswordGenerator::hash($salt, $pwd);
 
         $id = User::insertGetId([
             'username' => $r->input('username'),
@@ -67,8 +69,9 @@ class InviteController extends Controller
         $user = User::where('email',$pr->email)->first();
         if (!$user) throw new BadRequestException("Set password token email not found.");
 
-        $salt = Salt::make(48);
-        $password = Hash::make($salt.$r->input('password'));
+        $salt = PasswordGenerator::salt();
+        $password = PasswordGenerator::hash($salt, $r->input('password'));
+
         $af = User::where('id', $user->id)->update([
             'password' => $password,
             'salt' => $salt,
