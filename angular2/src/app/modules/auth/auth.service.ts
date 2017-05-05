@@ -4,6 +4,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http'
 import { LoginUser } from './login-user'
 import { LoginResponse } from './login-response'
 import { LogoutResponse } from './logout-response'
+import { SetPasswordResponse } from './set-password-response'
 import { Token } from './token'
 import { SendResetPasswordEmailResponse } from './send-reset-password-email-response'
 import {RequestService} from'../../request.service'
@@ -96,6 +97,8 @@ export class AuthService {
     return this.user;
   }
 
-  public recoverPassword(token) {
+  public setPassword(token, password) {
+    return this.rs.post('/reset-password-set',{token:token,password:password})
+      .map((r:Response) => <SetPasswordResponse>r.json());
   }
 }

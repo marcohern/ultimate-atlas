@@ -179,7 +179,7 @@ class AccountController extends Controller
         if (!$user) throw new BadRequestException("Set password token email not found.");
 
         $salt = PasswordGenerator::salt();
-        $password = PasswordGenerator::make($salt, $r->input('password'));
+        $password = PasswordGenerator::hash($salt, $r->input('password'));
 
         $af = User::where('id', $user->id)->update([
             'password' => $password,

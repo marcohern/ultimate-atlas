@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { FormGroup, Validators } from '@angular/forms'
+import { ActivatedRoute, Router } from '@angular/router'
+import { AuthService } from '../auth.service'
 import { ErrorMessageService } from '../../inputs/error-message.service'
 import { UaValidators } from '../../inputs/ua-validators'
 
@@ -10,11 +12,17 @@ import { UaValidators } from '../../inputs/ua-validators'
 })
 export class SetPasswordComponent implements OnInit {
   private setPwdForm:FormGroup;
+  token:string;
   constructor(
     private ems:ErrorMessageService,
-    private uav:UaValidators) { }
+    private as:AuthService,
+    private uav:UaValidators,
+    private route:ActivatedRoute,
+    private router:Router) { }
 
   ngOnInit() {
+    this.token = this.route.snapshot.params['token'];
+    console.log("ngOnInit",this.token);
     this.setPwdForm = this.ems.build({
       password: {
         control: ['', Validators.required ],
@@ -27,4 +35,11 @@ export class SetPasswordComponent implements OnInit {
     });
   }
 
+  setPassword(value) {
+    console.log("SetPasswordComponent.setPassword",value);
+    this.as.setPassword(this.token, value.password).subscribe(data => {
+      console.log("as.setPassword",data);
+      this.router.navigate(['/login']);
+    });
+  }
 }

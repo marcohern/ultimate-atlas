@@ -183,6 +183,117 @@ var _a, _b;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__request_service__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_catch__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_catch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_do__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_do___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_do__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var AuthService = (function () {
+    function AuthService(rs) {
+        this.rs = rs;
+        this.userStg = 'com.marcohern.ultimate-atlas.auth.user';
+        this.tokenStg = 'com.marcohern.ultimate-atlas.auth.token';
+        this.authenticated = false;
+        this.user = null;
+        this.token = null;
+    }
+    AuthService.prototype.clearToken = function () {
+        this.rs.clearToken();
+        this.authenticated = false;
+        this.user = null;
+        this.token = null;
+        localStorage.removeItem(this.tokenStg);
+        localStorage.removeItem(this.userStg);
+    };
+    AuthService.prototype.setToken = function (loginResponse) {
+        this.user = loginResponse.user;
+        this.token = loginResponse.token;
+        this.authenticated = true;
+        this.rs.setToken(loginResponse.token.token);
+        localStorage.setItem(this.tokenStg, JSON.stringify(loginResponse.token));
+        localStorage.setItem(this.userStg, JSON.stringify(loginResponse.user));
+    };
+    AuthService.prototype.updateToken = function (token) {
+        this.token = token;
+        this.authenticated = true;
+        this.rs.setToken(this.token.token);
+    };
+    AuthService.prototype.start = function () {
+        var _this = this;
+        var userJson = localStorage.getItem(this.userStg);
+        var tokenJson = localStorage.getItem(this.tokenStg);
+        if (userJson && tokenJson) {
+            this.user = JSON.parse(userJson);
+            var localToken = JSON.parse(tokenJson);
+            this.rs.post('/check_token', { token: localToken.token })
+                .map(function (r) { return r.json().token; })
+                .subscribe(function (data) { return _this.updateToken(data); }, function (error) { return _this.clearToken(); });
+        }
+        else {
+            this.clearToken();
+        }
+    };
+    AuthService.prototype.login = function (username, password) {
+        var _this = this;
+        return this.rs.post('/login', { username: username, password: password })
+            .map(function (r) { return r.json(); })
+            .do(function (loginResponse) { return _this.setToken(loginResponse); });
+    };
+    AuthService.prototype.sendResetPasswordEmail = function (email) {
+        return this.rs.post('/reset-password', { email: email })
+            .map(function (r) { return r.json(); });
+    };
+    AuthService.prototype.logout = function () {
+        var _this = this;
+        return this.rs.post('/logout', {})
+            .map(function (r) { return r.json(); })
+            .do(function (response) {
+            _this.clearToken();
+        });
+    };
+    AuthService.prototype.isAuthenticated = function () {
+        return this.authenticated;
+    };
+    AuthService.prototype.getUser = function () {
+        return this.user;
+    };
+    AuthService.prototype.setPassword = function (token, password) {
+        return this.rs.post('/reset-password-set', { token: token, password: password })
+            .map(function (r) { return r.json(); });
+    };
+    return AuthService;
+}());
+AuthService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__request_service__["a" /* RequestService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__request_service__["a" /* RequestService */]) === "function" && _a || Object])
+], AuthService);
+
+var _a;
+//# sourceMappingURL=auth.service.js.map
+
+/***/ }),
+/* 19 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(4);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ErrorMessageService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -279,7 +390,7 @@ ErrorMessageService = __decorate([
 //# sourceMappingURL=error-message.service.js.map
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -381,119 +492,10 @@ var _a;
 //# sourceMappingURL=ua-validators.js.map
 
 /***/ }),
-/* 20 */,
 /* 21 */,
 /* 22 */,
 /* 23 */,
-/* 24 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__request_service__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_catch__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_catch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_do__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_do___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_do__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthService; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var AuthService = (function () {
-    function AuthService(rs) {
-        this.rs = rs;
-        this.userStg = 'com.marcohern.ultimate-atlas.auth.user';
-        this.tokenStg = 'com.marcohern.ultimate-atlas.auth.token';
-        this.authenticated = false;
-        this.user = null;
-        this.token = null;
-    }
-    AuthService.prototype.clearToken = function () {
-        this.rs.clearToken();
-        this.authenticated = false;
-        this.user = null;
-        this.token = null;
-        localStorage.removeItem(this.tokenStg);
-        localStorage.removeItem(this.userStg);
-    };
-    AuthService.prototype.setToken = function (loginResponse) {
-        this.user = loginResponse.user;
-        this.token = loginResponse.token;
-        this.authenticated = true;
-        this.rs.setToken(loginResponse.token.token);
-        localStorage.setItem(this.tokenStg, JSON.stringify(loginResponse.token));
-        localStorage.setItem(this.userStg, JSON.stringify(loginResponse.user));
-    };
-    AuthService.prototype.updateToken = function (token) {
-        this.token = token;
-        this.authenticated = true;
-        this.rs.setToken(this.token.token);
-    };
-    AuthService.prototype.start = function () {
-        var _this = this;
-        var userJson = localStorage.getItem(this.userStg);
-        var tokenJson = localStorage.getItem(this.tokenStg);
-        if (userJson && tokenJson) {
-            this.user = JSON.parse(userJson);
-            var localToken = JSON.parse(tokenJson);
-            this.rs.post('/check_token', { token: localToken.token })
-                .map(function (r) { return r.json().token; })
-                .subscribe(function (data) { return _this.updateToken(data); }, function (error) { return _this.clearToken(); });
-        }
-        else {
-            this.clearToken();
-        }
-    };
-    AuthService.prototype.login = function (username, password) {
-        var _this = this;
-        return this.rs.post('/login', { username: username, password: password })
-            .map(function (r) { return r.json(); })
-            .do(function (loginResponse) { return _this.setToken(loginResponse); });
-    };
-    AuthService.prototype.sendResetPasswordEmail = function (email) {
-        return this.rs.post('/reset-password', { email: email })
-            .map(function (r) { return r.json(); });
-    };
-    AuthService.prototype.logout = function () {
-        var _this = this;
-        return this.rs.post('/logout', {})
-            .map(function (r) { return r.json(); })
-            .do(function (response) {
-            _this.clearToken();
-        });
-    };
-    AuthService.prototype.isAuthenticated = function () {
-        return this.authenticated;
-    };
-    AuthService.prototype.getUser = function () {
-        return this.user;
-    };
-    AuthService.prototype.recoverPassword = function (token) {
-    };
-    return AuthService;
-}());
-AuthService = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__request_service__["a" /* RequestService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__request_service__["a" /* RequestService */]) === "function" && _a || Object])
-], AuthService);
-
-var _a;
-//# sourceMappingURL=auth.service.js.map
-
-/***/ }),
+/* 24 */,
 /* 25 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -501,9 +503,9 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__error_message_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__error_message_service__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__validator_service__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ua_validators__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ua_validators__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ua_input_ua_input_component__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ua_select_ua_select_component__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ua_quick_select_ua_quick_select_component__ = __webpack_require__(147);
@@ -642,7 +644,7 @@ ConfigService = __decorate([
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_service__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_service__ = __webpack_require__(18);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthorizedGuard; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1017,7 +1019,7 @@ var recordAnimation = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__auth_routes__ = __webpack_require__(142);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__login_login_component__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__recover_password_recover_password_component__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__auth_service__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__auth_service__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__set_password_set_password_component__ = __webpack_require__(81);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1071,7 +1073,7 @@ AuthModule = __decorate([
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_service__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_service__ = __webpack_require__(18);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1120,7 +1122,7 @@ var _a, _b;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_service__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_service__ = __webpack_require__(18);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RecoverPasswordComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1169,8 +1171,10 @@ var _a;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__inputs_error_message_service__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__inputs_ua_validators__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__inputs_error_message_service__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__inputs_ua_validators__ = __webpack_require__(20);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SetPasswordComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1185,12 +1189,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var SetPasswordComponent = (function () {
-    function SetPasswordComponent(ems, uav) {
+    function SetPasswordComponent(ems, as, uav, route, router) {
         this.ems = ems;
+        this.as = as;
         this.uav = uav;
+        this.route = route;
+        this.router = router;
     }
     SetPasswordComponent.prototype.ngOnInit = function () {
+        this.token = this.route.snapshot.params['token'];
+        console.log("ngOnInit", this.token);
         this.setPwdForm = this.ems.build({
             password: {
                 control: ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* Validators */].required],
@@ -1202,6 +1213,14 @@ var SetPasswordComponent = (function () {
             }
         });
     };
+    SetPasswordComponent.prototype.setPassword = function (value) {
+        var _this = this;
+        console.log("SetPasswordComponent.setPassword", value);
+        this.as.setPassword(this.token, value.password).subscribe(function (data) {
+            console.log("as.setPassword", data);
+            _this.router.navigate(['/login']);
+        });
+    };
     return SetPasswordComponent;
 }());
 SetPasswordComponent = __decorate([
@@ -1210,10 +1229,10 @@ SetPasswordComponent = __decorate([
         template: __webpack_require__(239),
         styles: [__webpack_require__(214)]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__inputs_error_message_service__["a" /* ErrorMessageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__inputs_error_message_service__["a" /* ErrorMessageService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__inputs_ua_validators__["a" /* UaValidators */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__inputs_ua_validators__["a" /* UaValidators */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__inputs_error_message_service__["a" /* ErrorMessageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__inputs_error_message_service__["a" /* ErrorMessageService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__auth_service__["a" /* AuthService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__inputs_ua_validators__["a" /* UaValidators */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__inputs_ua_validators__["a" /* UaValidators */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["c" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["c" /* ActivatedRoute */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */]) === "function" && _e || Object])
 ], SetPasswordComponent);
 
-var _a, _b;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=set-password.component.js.map
 
 /***/ }),
@@ -1602,9 +1621,9 @@ InviteDoneComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__inputs_error_message_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__inputs_error_message_service__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__invite_service__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__inputs_ua_validators__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__inputs_ua_validators__ = __webpack_require__(20);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InviteSetpwdComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1672,8 +1691,8 @@ var _a, _b, _c, _d, _e;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__inputs_error_message_service__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__inputs_ua_validators__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__inputs_error_message_service__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__inputs_ua_validators__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__invite_service__ = __webpack_require__(45);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InviteComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1833,8 +1852,8 @@ SignupDoneComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__signup_service__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__inputs_error_message_service__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__inputs_ua_validators__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__inputs_error_message_service__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__inputs_ua_validators__ = __webpack_require__(20);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignupComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1921,8 +1940,8 @@ var _a, _b, _c, _d;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_service__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__inputs_ua_validators__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__inputs_error_message_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__inputs_ua_validators__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__inputs_error_message_service__ = __webpack_require__(19);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserDetailComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2097,10 +2116,10 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_inputs_validator_service__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_inputs_error_message_service__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_inputs_error_message_service__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_inputs_ua_validators__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_inputs_ua_validators__ = __webpack_require__(20);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TestComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2337,7 +2356,7 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dyna
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config_service__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_auth_auth_service__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_auth_auth_service__ = __webpack_require__(18);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2381,7 +2400,7 @@ var _a, _b;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser_animations__ = __webpack_require__(135);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(76);
@@ -2579,7 +2598,7 @@ var menu = {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_auth_auth_service__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_auth_auth_service__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config_service__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__menu__ = __webpack_require__(140);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MenuComponent; });
