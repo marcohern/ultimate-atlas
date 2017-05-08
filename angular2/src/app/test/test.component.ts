@@ -7,6 +7,7 @@ import { ErrorMessageService } from '../modules/inputs/error-message.service'
 import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/operator/map'
 import { UaValidators } from '../modules/inputs/ua-validators'
+import { UaQuickButton } from '../modules/inputs/ua-quick-input-base'
 
 @Component({
   selector: 'app-test',
@@ -24,6 +25,7 @@ export class TestComponent implements OnInit {
   testForm:FormGroup;
   mylistOptions:IOption[];
   myquickOptions:IQuick[];
+  myQuickButtons:UaQuickButton[];
 
   ngOnInit() {
     this.testForm = this.ems.build({
@@ -50,6 +52,10 @@ export class TestComponent implements OnInit {
       confirmPassword: {
         control:['', [Validators.required, this.uav.requiresConfirm("password")] ],
         messages: { required: 'Required.', requiresConfirm:'Password mismatch.' }
+      },
+      myTime: {
+        control:['', Validators.required],
+        messages: { required: 'Required.' }
       }
     });
     
@@ -76,6 +82,16 @@ export class TestComponent implements OnInit {
       {value:8, text:'', glyph:'shopping-cart', color:'success'},
     ];
 
+    this.myQuickButtons = [
+      {label:'-5',value:-5,glyph:'remove',color:'warning'},
+      {label:'-2',value:-2,glyph:'remove',color:'warning'},
+      {label:'-1',value:-1,glyph:'remove',color:'warning'},
+      {label:'Now',value:0,glyph:'ok',color:'primary'},
+      {label:'+1',value:1,glyph:'remove',color:'success'},
+      {label:'+2',value:2,glyph:'remove',color:'success'},
+      {label:'+5',value:2,glyph:'remove',color:'success'}
+    ];
+
     this.testForm.get('password').valueChanges.subscribe((c) => this.notifyConfirmPassword());
 
     this.ems.setValues(this.testForm, {
@@ -89,6 +105,13 @@ export class TestComponent implements OnInit {
   notifyConfirmPassword() {
     this.testForm.get('confirmPassword').updateValueAndValidity();
   }  
+
+  clickQuickButton(btn) {
+    let now = new Date();
+    if (btn.value==0) {
+
+    }
+  }
 
   submit(values) {
     console.log(values);

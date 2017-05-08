@@ -1,0 +1,19 @@
+<div class="form-group has-feedback" [ngClass]="fieldClass">
+  <label>{{label}}</label>
+  <div class="input-group">
+    <div class="input-group-btn">
+      <button type="button" *ngFor="let btn of buttons" class="btn btn-{{btn.color}}" (click)="onClickButton(btn,$event)">
+        {{btn.label}}
+      </button>
+    </div>
+    <input type="{{type}}" class="form-control"
+      [(ngModel)]="value"
+      (keyup)="onKeyUp($event)"/>
+  </div>
+  <span *ngIf="error" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+  <span *ngIf="success" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+  <span *ngIf="pending" class="glyphicon ua-icon ua-icon-bars form-control-feedback" aria-hidden="true"></span>
+  <div class="alert" [ngClass]="messageClass">
+    &nbsp;{{message}}
+  </div>
+</div>

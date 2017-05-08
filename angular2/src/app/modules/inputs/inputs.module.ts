@@ -8,7 +8,9 @@ import { UaValidators } from './ua-validators'
 
 import { UaInput } from './ua-input/ua-input.component';
 import { UaSelect } from './ua-select/ua-select.component';
-import { UaQuickSelect } from './ua-quick-select/ua-quick-select.component'
+import { UaQuickSelect } from './ua-quick-select/ua-quick-select.component';
+import { UaQuickInput } from './ua-quick-input/ua-quick-input.component';
+import { UaQuickTimeInput } from './ua-quick-time-input/ua-quick-time-input.component'
 
 @NgModule({
     imports:[
@@ -17,7 +19,7 @@ import { UaQuickSelect } from './ua-quick-select/ua-quick-select.component'
         ReactiveFormsModule
     ],
     declarations:[
-        UaInput, UaSelect, UaQuickSelect
+        UaInput, UaSelect, UaQuickSelect, UaQuickInput, UaQuickTimeInput
     ],
     providers:[
         ValidatorService,
@@ -25,7 +27,7 @@ import { UaQuickSelect } from './ua-quick-select/ua-quick-select.component'
         UaValidators
     ],
     exports:[
-        UaInput, UaSelect, UaQuickSelect
+        UaInput, UaSelect, UaQuickSelect, UaQuickInput, UaQuickTimeInput
     ]
 })
 export class InputsModule {}

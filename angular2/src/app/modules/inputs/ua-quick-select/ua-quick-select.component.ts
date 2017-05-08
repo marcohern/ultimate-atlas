@@ -20,6 +20,7 @@ export class UaQuickSelect extends UaQuickSelectBase implements OnInit, OnChange
   constructor() { super(); }
 
   ngOnInit() { super.init(); }
+  
   ngOnChanges(changes) { super.change(changes); }
 
 }
