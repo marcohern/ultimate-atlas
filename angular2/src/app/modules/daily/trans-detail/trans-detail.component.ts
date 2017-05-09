@@ -3,8 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { DatePipe } from '@angular/common'
 import { FormGroup, FormControl } from '@angular/forms'
 
-import { DailyTrans } from '../daily-trans'
-import { DailyCat } from '../daily-cat'
+import { DailyTrans } from '../../../models/daily-trans'
+import { DailyCat } from '../../../models/daily-cat'
 import { DailyService } from '../daily.service'
 
 import { ErrorMessageService } from '../../inputs/error-message.service'

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core'
 
 import { Response } from '@angular/http'
 
-import { DailyTrans } from './daily-trans'
-import { DailyCat } from './daily-cat'
+import { DailyTrans } from '../../models/daily-trans'
+import { DailyCat } from '../../models/daily-cat'
 import { DailyTransDeleteResponse } from './daily-trans-delete-response'
 import { DailyTransSaveResponse } from './daily-trans-save-response'
 

@@ -5,7 +5,7 @@ import { FormGroup, FormBuilder, AbstractControl, Validators } from '@angular/fo
 import { UserService } from '../user.service';
 import { UaValidators } from '../../inputs/ua-validators'
 import { ErrorMessageService } from '../../inputs/error-message.service';
-import { User } from '../user';
+import { User } from '../../../models/user';
 
 @Component({
   moduleId: module.id,

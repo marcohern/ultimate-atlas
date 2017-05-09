@@ -8,7 +8,7 @@ import { UserSaveResponse } from './user-save-response'
 import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/operator/map'
 
-import { User } from './user'
+import { User } from '../../models/user'
 
 @Injectable()
 export class UserService {

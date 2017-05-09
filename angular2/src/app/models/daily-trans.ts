@@ -1,4 +1,4 @@
-import { Record } from '../../record';
+import { Record } from './record'
 
 interface IDailyTrans {
     event_date:Date;

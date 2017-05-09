@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { UserService } from '../user.service';
 
-import { User } from '../user';
 import { recordAnimation } from '../../../animations';
+
+import { User } from '../../../models/user';
 
 @Component({
   moduleId: module.id,

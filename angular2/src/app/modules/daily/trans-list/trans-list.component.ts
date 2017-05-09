@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 
-import { DailyTrans } from '../daily-trans'
+import { DailyTrans } from '../../../models/daily-trans'
 
 import { DatePipe } from '@angular/common'
 import { DailyService } from '../daily.service'
