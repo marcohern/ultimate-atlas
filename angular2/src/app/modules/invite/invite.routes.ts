@@ -4,14 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { InviteComponent } from './invite/invite.component';
 import { InviteDoneComponent } from './invite-done/invite-done.component';
-import { InviteSetpwdComponent } from './invite-setpwd/invite-setpwd.component';
+//import { InviteSetpwdComponent } from './invite-setpwd/invite-setpwd.component';
 
 import { AuthorizedGuard } from '../auth/authorized.guard';
 
 const routes: Routes = [
     { path: 'invite', component: InviteComponent },
     { path: 'invited',  component: InviteDoneComponent },
-    { path: 'invite/:token',  component: InviteSetpwdComponent },
+//    { path: 'invite/:token',  component: InviteSetpwdComponent },
 ];
 
 @NgModule({

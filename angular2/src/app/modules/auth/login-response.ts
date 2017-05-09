@@ -1,7 +1,7 @@
-import { LoginUser } from './login-user'
+import { User } from '../../models/user'
 import { Token } from './token'
 
 export interface LoginResponse {
-    user:LoginUser;
+    user:User;
     token:Token;
 }

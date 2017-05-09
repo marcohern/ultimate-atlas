@@ -63,13 +63,15 @@ class UserController extends Controller
         $password = $r->input('username');
         $salt = PasswordGenerator::salt();
         $pwd = PasswordGenerator::hash($salt, $password);
+        $token = UrlToken::make(60);
+        $email = $r->input('email');
         
         try {
             $id = User::insertGetId([
                 'username' => $r->input('username'),
                 'fname' => $r->input('fname'),
                 'lname' => $r->input('lname'),
-                'email' => $r->input('email'),
+                'email' => $email,
                 'gender' => 'M',//$r->input('gender'),
                 'birth' => $r->input('birth'),
                 'role' => $r->input('role'),
@@ -81,9 +83,17 @@ class UserController extends Controller
                 'created_at' => new \Datetime("now")
             ]);
 
-            //TODO: send password reset email
+            $prid = PasswordReset::insertGetId([
+                'email' => $email,
+                'token' => $token,
+                'created_at' => new \Datetime("now")
+            ]);
 
             $user = User::where('id', $id)->first();
+            $pr = PasswordReset::where('id', $prid)->first();
+
+            Mail::to($email)->send((new ResetPassword($pr, $user))->createUser());
+
             return [
                 'affected' => 1,
                 'saved' => true,

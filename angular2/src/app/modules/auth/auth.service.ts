@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Http, Response, Headers, RequestOptions } from '@angular/http'
 
-import { LoginUser } from './login-user'
+import { User } from '../../models/user'
 import { LoginResponse } from './login-response'
 import { LogoutResponse } from './logout-response'
 import { SetPasswordResponse } from './set-password-response'
@@ -20,7 +20,7 @@ export class AuthService {
   private tokenStg = 'com.marcohern.ultimate-atlas.auth.token';
 
   public authenticated:boolean = false;
-  private user:LoginUser = null;
+  private user:User = null;
   private token:Token = null;
 
   constructor(
@@ -56,7 +56,7 @@ export class AuthService {
     let userJson = localStorage.getItem(this.userStg);
     let tokenJson = localStorage.getItem(this.tokenStg);
     if (userJson && tokenJson) {
-      this.user = <LoginUser> JSON.parse(userJson);
+      this.user = <User> JSON.parse(userJson);
       let localToken:Token = <Token> JSON.parse(tokenJson);
 
       this.rs.post('/check_token', {token:localToken.token})
@@ -93,7 +93,7 @@ export class AuthService {
     return this.authenticated;
   }
 
-  public getUser():LoginUser {
+  public getUser():User {
     return this.user;
   }
 

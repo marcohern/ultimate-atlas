@@ -14,7 +14,7 @@ use App\Lib\UrlToken;
 use App\Lib\AutoRouter;
 use App\Mail\SignupActivate;
 use App\Mail\SignupActivated;
-use App\Mail\RecoverPassword;
+use App\Mail\ResetPassword;
 
 use Mail;
 use Illuminate\Http\Request;
@@ -155,11 +155,12 @@ class AccountController extends Controller
             'token' => $token,
             'created_at' => new \Datetime("now")
         ]);
+        $user = User::where('email',$email)->first();
 
         $pr = PasswordReset::where('email',$email)->first();
 
         
-        Mail::to($pr->email)->send(new RecoverPassword($pr));
+        Mail::to($pr->email)->send(new ResetPassword($pr, $user));
 
         return [
             'affected' => 1,

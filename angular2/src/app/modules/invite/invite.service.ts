@@ -24,9 +24,4 @@ export class InviteService {
       .map((r:Response) => <InviteUser>r.json().user);
   }
 
-  public setPassword(token, password):Observable<InviteUser> {
-    return this.rs.post('/invite/set_password', {token:token, password:password})
-      .map((r:Response) => <InviteUser>r.json());
-  }
-
 }

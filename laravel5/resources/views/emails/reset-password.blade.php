@@ -7,8 +7,8 @@
     <div style="font-size:12px;color:darkgrey;">
         <p>Click on the following to reset your password.</p>
         <p>
-            <a href="{{ URL::to('/') }}/recover-password/{{$pr->token}}">
-                    {{ URL::to('/') }}/recover-password/{{$pr->token}}
+            <a href="{{ URL::to('/') }}/reset-password/{{$pr->token}}">
+                    {{ URL::to('/') }}/reset-password/{{$pr->token}}
             </a>
         </p>
     </div>

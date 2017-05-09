@@ -3,26 +3,39 @@
 namespace App\Mail;
 
 use App\PasswordReset;
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class RecoverPassword extends Mailable
+class ResetPassword extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $title = "Ultimate Atlas";
     public $subject = "Password Recovery";
     public $pr;
+    public $user;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(PasswordReset $pr)
+    public function __construct(PasswordReset $pr, User $user)
     {
+        $this->user = $user;
         $this->pr = $pr;
+    }
+
+    public function invite() {
+        $this->subject = "You have been invited.";
+        return $this;
+    }
+
+    public function createUser() {
+        $this->subject = "Set your password.";
+        return $this;
     }
 
     /**
@@ -32,6 +45,6 @@ class RecoverPassword extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.recover_password');
+        return $this->view('emails.reset_password');
     }
 }

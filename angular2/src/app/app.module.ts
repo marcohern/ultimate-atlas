@@ -18,6 +18,7 @@ import { ConfigService    } from './config.service'
 
 //Plugable Imports
 import { AuthSignupModule } from './modules/signup/auth-signup.module'
+import { ResetPasswordModule } from './modules/reset-password/reset-password.module'
 import { InviteModule     } from './modules/invite/invite.module'
 import { UserModule       } from './modules/user/user.module'
 import { DailyModule      } from './modules/daily/daily.module'
@@ -36,10 +37,11 @@ import { DailyModule      } from './modules/daily/daily.module'
     AuthModule,
 
     //Plugable Modules
-    AuthSignupModule, //Allow users to sign up by them selves
-    InviteModule,     //Allows ADMIN users to invite other users to sign up
-    UserModule,       //User management
-    DailyModule,      //Daily transactions module
+    AuthSignupModule,    //Allow users to sign up by them selves
+    InviteModule,        //Allows ADMIN users to invite other users to sign up
+    ResetPasswordModule, //Reset a user's password
+    UserModule,          //User management
+    DailyModule,         //Daily transactions module
 
     //App Routes
     AppRoutes

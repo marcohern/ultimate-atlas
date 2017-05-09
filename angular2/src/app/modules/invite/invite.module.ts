@@ -6,7 +6,7 @@ import { InviteRoutes } from './invite.routes';
 
 import { InviteComponent } from './invite/invite.component';
 import { InviteDoneComponent } from './invite-done/invite-done.component';
-import { InviteSetpwdComponent } from './invite-setpwd/invite-setpwd.component';
+//import { InviteSetpwdComponent } from './invite-setpwd/invite-setpwd.component';
 
 import { InviteService } from './invite.service';
 
@@ -18,7 +18,7 @@ import { InviteService } from './invite.service';
     InputsModule,
     InviteRoutes
   ],
-  declarations: [InviteComponent, InviteDoneComponent, InviteSetpwdComponent],
+  declarations: [InviteComponent, InviteDoneComponent],
   providers: [InviteService]
 })
 export class InviteModule { }
