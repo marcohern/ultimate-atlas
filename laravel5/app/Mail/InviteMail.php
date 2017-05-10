@@ -2,27 +2,30 @@
 
 namespace App\Mail;
 
+use App\PasswordReset;
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SignupActivated extends Mailable
+class InviteMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $title = 'Ultimate Atlas';
+    public $subject = 'Invitation';
     public $user;
-    public $title = "Ultimate Atlas";
-    public $subject = "Your account has been activated!";
-
+    public $pr;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct(User $user, PasswordReset $pr)
     {
         $this->user = $user;
+        $this->pr = $pr;
     }
 
     /**
@@ -32,8 +35,6 @@ class SignupActivated extends Mailable
      */
     public function build()
     {
-        return $this
-            ->subject($this->subject)
-            ->view('emails.signup_activated');
+        return $this->view('emails.invite');
     }
 }

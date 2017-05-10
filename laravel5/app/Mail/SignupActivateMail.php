@@ -2,30 +2,28 @@
 
 namespace App\Mail;
 
-use App\PasswordReset;
-use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\User;
 
-class Invite extends Mailable
+class SignupActivateMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $title = 'Ultimate Atlas';
-    public $subject = 'Invitation';
     public $user;
-    public $token;
+    public $title = "Ultimate Atlas";
+    public $subject = "Activate your account";
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user, $token)
+    public function __construct(User $user)
     {
         $this->user = $user;
-        $this->token = $token;
     }
 
     /**
@@ -35,6 +33,8 @@ class Invite extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.invite');
+        return $this
+            ->subject($this->subject)
+            ->view('emails.signup_activate');
     }
 }

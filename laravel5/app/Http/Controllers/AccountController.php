@@ -13,9 +13,9 @@ use App\Lib\PasswordGenerator;
 use App\Lib\UrlToken;
 use App\Lib\In;
 use App\Lib\AutoRouter;
-use App\Mail\SignupActivate;
-use App\Mail\SignupActivated;
-use App\Mail\ResetPassword;
+use App\Mail\SignupActivateMail;
+use App\Mail\SignupActivatedMail;
+use App\Mail\ResetPasswordMail;
 
 use Mail;
 use Illuminate\Http\Request;
@@ -63,7 +63,7 @@ class AccountController extends Controller
             'updated_at' => new \Datetime("now")
         ]);
         $user = User::where('id', $user->id)->first();
-        Mail::to($user->email)->send(new SignupActivated($user));
+        Mail::to($user->email)->send(new SignupActivatedMail($user));
 
         return [
             'affected' => $affected,
@@ -97,7 +97,7 @@ class AccountController extends Controller
 
         $user = User::where('id',$id)->first();
 
-        Mail::to($user->email)->send(new SignupActivate($user));
+        Mail::to($user->email)->send(new SignupActivateMail($user));
 
         return [
             'user' => $user

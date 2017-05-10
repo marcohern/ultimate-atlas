@@ -13,9 +13,7 @@ use App\Lib\PasswordGenerator;
 use App\Lib\UrlToken;
 use App\Lib\AutoRouter;
 use App\Lib\In;
-use App\Mail\SignupActivate;
-use App\Mail\SignupActivated;
-use App\Mail\ResetPassword;
+use App\Mail\ResetPasswordMail;
 
 use Mail;
 use Illuminate\Http\Request;
@@ -38,7 +36,7 @@ class ResetPasswordController extends Controller
         
         $pr = PasswordReset::where('id', $prid)->first();
 
-        Mail::to($email)->send(new ResetPassword($pr, $user));
+        Mail::to($email)->send(new ResetPasswordMail($pr, $user));
         return [
             'affected' => 1,
             'created' => true,

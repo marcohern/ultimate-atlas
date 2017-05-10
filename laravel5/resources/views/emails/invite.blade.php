@@ -7,7 +7,7 @@
     <div style="font-size:12px;color:darkgrey;">
         <p>Hello, {{$user->fname}}! You have been invited to log into the app! Click the following link:</p>
         <p>
-            <a href="{{ URL::to('/') }}/invite/{{$token}}">{{ URL::to('/') }}/invite/{{$token}}</a>
+            <a href="{{ URL::to('/') }}/reset-password/{{$pr->token}}">{{ URL::to('/') }}/reset-password/{{$pr->token}}</a>
         </p>
     </div>
 </div>

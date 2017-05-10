@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use App\Lib\Salt;
-use App\Lib\UrlToken;
-use App\Lib\PasswordGenerator;
 use App\Exceptions\UAException;
 use App\Exceptions\NotFoundException;
 use App\Exceptions\BadRequestException;
+
+use Mail;
+use App\User;
+use App\PasswordReset;
+use App\Lib\Salt;
+use App\Lib\UrlToken;
+use App\Lib\In;
+use App\Lib\PasswordGenerator;
+use App\Mail\ResetPasswordMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use PDOException;
@@ -80,19 +85,20 @@ class UserController extends Controller
                 'salt' => $salt,
                 'activated' => 'FALSE',
 
-                'created_at' => new \Datetime("now")
+                'created_at' => In::now()
             ]);
 
             $prid = PasswordReset::insertGetId([
                 'email' => $email,
                 'token' => $token,
-                'created_at' => new \Datetime("now")
+                'expires' => In::passwordResetTokenPeriod(),
+                'created_at' => In::now()
             ]);
 
             $user = User::where('id', $id)->first();
             $pr = PasswordReset::where('id', $prid)->first();
 
-            Mail::to($email)->send((new ResetPassword($pr, $user))->createUser());
+            Mail::to($email)->send((new ResetPasswordMail($pr, $user))->createUser());
 
             return [
                 'affected' => 1,
@@ -151,7 +157,7 @@ class UserController extends Controller
                     'gender' => $r->input('gender'),
                     'birth' => $r->input('birth'),
                     'role' => $r->input('role'),
-                    'updated_at' => new \Datetime("now")
+                    'updated_at' => In::now()
                 ]
             );
             $user = User::where('id', $id)->first();
@@ -187,9 +193,4 @@ class UserController extends Controller
             'user' => $user
         ];
     }
-
-    public function g_stuff() { return [1,2,3]; }
-    public function post_a() { return [1,2,3]; }
-    public function p_b() { return [1,2,3]; }
-    public function del_stuff() { return [1,2,3]; }
 }

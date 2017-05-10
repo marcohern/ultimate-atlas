@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ResetPassword extends Mailable
+class ResetPasswordMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -29,7 +29,7 @@ class ResetPassword extends Mailable
     }
 
     public function invite() {
-        $this->subject = "You have been invited.";
+        $this->subject = "Invitation";
         return $this;
     }
 
