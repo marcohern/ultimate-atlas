@@ -1,0 +1,19 @@
+{
+  "affected": 1,
+  "pasword_set": true,
+  "deleted": 1,
+  "user": {
+    "id": 9999,
+    "username": "mockuser",
+    "fname": "Mock",
+    "lname": "User",
+    "gender": "M",
+    "birth": "1980-10-15 00:00:00",
+    "email": "marcohern@gmail.com",
+    "role": "ADMIN",
+    "activated": "TRUE",
+    "activated_token": null,
+    "created_at": "2017-05-10 15:54:04",
+    "updated_at": "2017-05-10 15:55:35"
+  }
+}

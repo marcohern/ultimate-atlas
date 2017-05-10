@@ -24,7 +24,11 @@ export class ForgotComponent implements OnInit {
   request() {
     this.sending = true;
     this.rps.request(this.email).subscribe(
-      () => this.sent = true
+      data => this.sent = true,
+      error => {
+        this.sending = false;
+        this.sent = false;
+      }
     );
   }
 
