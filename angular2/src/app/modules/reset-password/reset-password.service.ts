@@ -7,14 +7,21 @@ import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/operator/map'
 
 import { User } from '../../models/user'
+import { RequestResetPasswordResponse } from './models/request-reset-password-response'
+import { ResetPasswordResponse } from './models/reset-password-response'
 
 @Injectable()
 export class ResetPasswordService {
 
   constructor(private rs:RequestService) { }
 
-  public setPassword(token, password):Observable<User> {
-    return this.rs.post('/invite/set_password', {token:token, password:password})
-      .map((r:Response) => <User>r.json());
+  public request(email:string):Observable<RequestResetPasswordResponse> {
+    return this.rs.post('/reset-password', {email:email})
+      .map((r:Response) => <RequestResetPasswordResponse>r.json());
+  }
+
+  public resetPassword(token:string, password:string):Observable<ResetPasswordResponse> {
+    return this.rs.post('/reset-password/update', {token:token, password:password})
+      .map((r:Response) => <ResetPasswordResponse>r.json());
   }
 }

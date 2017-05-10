@@ -1,5 +1,5 @@
 
-import { User } from '../../models/user'
+import { User } from '../../../models/user'
 
 export class SetPasswordResponse {
     affected:number;

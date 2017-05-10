@@ -44,7 +44,7 @@ export class ResetPasswordComponent implements OnInit {
   setPassword(value) {
 
     console.log(value);
-    this.rss.setPassword(this.token, value.password)
+    this.rss.resetPassword(this.token, value.password)
       .subscribe(data => {
         this.router.navigate(['/login']);
       });

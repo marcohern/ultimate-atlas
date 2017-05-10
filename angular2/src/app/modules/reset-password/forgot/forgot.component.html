@@ -9,7 +9,7 @@
           <input type="email" [(ngModel)]="email" class="form-control" value="">
         </div>
         <div  class="form-group">
-          <button class="btn btn-primary" (click)="sendResetPasswordEmail()" [disabled]="sending" *ngIf="!sent">Reset Password</button>
+          <button class="btn btn-primary" (click)="request()" [disabled]="sending" *ngIf="!sent">Reset Password</button>
           <div *ngIf="sent">
             <p>Email sent! Click on the link in the email to reset your password.</p>
             <a class="btn btn-primary" [routerLink]="['/login']">Sign In</a>

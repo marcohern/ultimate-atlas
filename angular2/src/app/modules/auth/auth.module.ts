@@ -6,10 +6,9 @@ import { InputsModule } from '../inputs/inputs.module'
 import { AuthRoutes } from './auth.routes'
 
 import { LoginComponent           } from './login/login.component'
-import { RecoverPasswordComponent } from './recover-password/recover-password.component'
 
 import { AuthService              } from './auth.service';
-import { SetPasswordComponent } from './set-password/set-password.component'
+
 
 @NgModule({
     imports:[
@@ -20,14 +19,11 @@ import { SetPasswordComponent } from './set-password/set-password.component'
         AuthRoutes
     ],
     declarations:[
-        LoginComponent,
-        RecoverPasswordComponent,
-        SetPasswordComponent
+        LoginComponent
     ],
     providers:[AuthService],
     exports:[
-        LoginComponent,
-        RecoverPasswordComponent
+        LoginComponent
     ]
 })
 export class AuthModule {

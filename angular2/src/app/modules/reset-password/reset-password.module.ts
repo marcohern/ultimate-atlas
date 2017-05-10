@@ -6,7 +6,8 @@ import { ResetPasswordRoutes } from './reset-password.routes'
 
 import { ResetPasswordComponent } from './reset-password/reset-password.component'
 
-import { ResetPasswordService } from './reset-password.service'
+import { ResetPasswordService } from './reset-password.service';
+import { ForgotComponent } from './forgot/forgot.component'
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { ResetPasswordService } from './reset-password.service'
     InputsModule,
     ResetPasswordRoutes
   ],
-  declarations: [ResetPasswordComponent],
+  declarations: [ResetPasswordComponent, ForgotComponent],
   providers: [ResetPasswordService]
 })
 export class ResetPasswordModule { }
