@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { Response } from '@angular/http';
+import { Injectable } from '@angular/core'
+import { Response } from '@angular/http'
 
-import { RequestService } from '../../request.service';
-import { SignupRequest } from './signup-request';
-import { SignupResponse } from './signup-response';
-import { ActivateResponse } from './activate-response';
+import { RequestService } from '../../request.service'
+import { SignupRequest } from './models/signup-request'
+import { SignupResponse } from './models/signup-response'
+import { ActivateResponse } from './models/activate-response'
 
 import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/operator/map'

@@ -4,7 +4,7 @@ import { FormGroup, Validators } from '@angular/forms'
 
 import { Router } from '@angular/router'
 
-import { SignupRequest } from '../signup-request'
+import { SignupRequest } from '../models/signup-request'
 
 import { SignupService } from '../signup.service'
 import { ErrorMessageService } from '../../inputs/error-message.service'

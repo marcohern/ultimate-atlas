@@ -1,5 +1,5 @@
 
-import {DailyTrans} from '../../models/daily-trans'
+import {DailyTrans} from '../../../models/daily-trans'
 
 export interface DailyTransSaveResponse {
     affected:number;

@@ -3,8 +3,8 @@ import { Response } from '@angular/http'
 
 import { RequestService } from '../../request.service'
 
-import {InviteUser} from './invite-user'
-import {InviteUserResponse} from './invite-user-response'
+import { User } from '../../models/user'
+import {InviteUserResponse} from './models/invite-user-response'
 
 import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/operator/map'
@@ -14,14 +14,14 @@ export class InviteService {
 
   constructor(private rs:RequestService) { }
 
-  public inviteUser(user:InviteUser):Observable<InviteUserResponse> {
+  public inviteUser(user:User):Observable<InviteUserResponse> {
     return this.rs.post('/invite', user)
       .map((r:Response) => <InviteUserResponse>r.json());
   }
 
-  public getUser(id:number):Observable<InviteUser> {
+  public getUser(id:number):Observable<User> {
     return this.rs.get('/invite/get_user', id)
-      .map((r:Response) => <InviteUser>r.json().user);
+      .map((r:Response) => <User>r.json().user);
   }
 
 }

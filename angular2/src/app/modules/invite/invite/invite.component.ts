@@ -5,7 +5,7 @@ import { FormGroup, Validators } from '@angular/forms'
 import { ErrorMessageService } from '../../inputs/error-message.service'
 import { UaValidators } from '../../inputs/ua-validators'
 
-import { InviteUser } from '../invite-user'
+import { User } from '../../../models/user'
 
 import {InviteService} from '../invite.service'
 
@@ -47,7 +47,7 @@ export class InviteComponent implements OnInit {
   }
 
   inviteUser(value) {
-    let user:InviteUser = <InviteUser>value;
+    let user:User = value;
     
     this.is.inviteUser(user).subscribe(data => {
       this.router.navigate(['/invited']);

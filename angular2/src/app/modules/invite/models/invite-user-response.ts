@@ -1,7 +1,7 @@
-import {InviteUser} from './invite-user';
+import { User } from '../../../models/user';
 
 export interface InviteUserResponse {
     invited:boolean;
-    user:InviteUser;
+    user:User;
     token:string;
 }

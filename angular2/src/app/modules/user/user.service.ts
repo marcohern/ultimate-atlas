@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core'
 import { Response } from '@angular/http'
 import { RequestService } from '../../request.service'
 
-import { UserDeleteResponse } from './user-delete-response'
-import { UserSaveResponse } from './user-save-response'
+import { UserDeleteResponse } from './models/user-delete-response'
+import { UserSaveResponse } from './models/user-save-response'
 
 import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/operator/map'

@@ -1,4 +1,4 @@
-import { User } from '../../models/user'
+import { User } from '../../../models/user'
 
 export interface UserSaveResponse {
     affected:number;

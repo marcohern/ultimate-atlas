@@ -4,8 +4,8 @@ import { Response } from '@angular/http'
 
 import { DailyTrans } from '../../models/daily-trans'
 import { DailyCat } from '../../models/daily-cat'
-import { DailyTransDeleteResponse } from './daily-trans-delete-response'
-import { DailyTransSaveResponse } from './daily-trans-save-response'
+import { DailyTransDeleteResponse } from './models/daily-trans-delete-response'
+import { DailyTransSaveResponse } from './models/daily-trans-save-response'
 
 import { RequestService } from '../../request.service' 
 
