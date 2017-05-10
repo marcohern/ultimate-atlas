@@ -21,14 +21,15 @@ Route::resource('users', 'UserController');
 Route::resource('daily_trans', 'Daily\DailyTransController');
 Route::resource('daily_cats', 'Daily\DailyCatsController');
 
-Route::post('/reset-password'        ,'AccountController@reset_password');
-Route::post('/reset-password-set'    ,'AccountController@reset_password_set');
 Route::post('/check_token'           ,'AccountController@check_token');
 Route::post('/signup'                ,'AccountController@signup');
 Route::post('/activate'              ,'AccountController@activate');
 Route::post('/login'                 ,'AccountController@login');
 Route::post('/logout'                ,'AccountController@logout');
 Route::get('/get_methods'            ,'AccountController@get_methods');
+
+Route::post('/reset-password'       ,'ResetPasswordController@request');
+Route::post('/reset-password/update','ResetPasswordController@update'   );
 
 Route::post('invite','InviteController@invite');
 Route::post('invite/set_password','InviteController@set_password');

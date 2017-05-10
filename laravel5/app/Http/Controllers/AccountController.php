@@ -11,6 +11,7 @@ use App\Token;
 use App\PasswordReset;
 use App\Lib\PasswordGenerator;
 use App\Lib\UrlToken;
+use App\Lib\In;
 use App\Lib\AutoRouter;
 use App\Mail\SignupActivate;
 use App\Mail\SignupActivated;
@@ -136,8 +137,8 @@ class AccountController extends Controller
             $uniqueid = Hash::make(uniqid('',true).str_random(48));
             $id = Token::insertGetId([
                 'token' => $uniqueid,
-                'expires' => (new \Datetime("now"))->add(new \DateInterval("P2D")),
-                'created_at' => new \Datetime("now")
+                'expires' => In::loginTokenPeriod(),
+                'created_at' => In::now()
             ]);
 
             $token = Token::where('id', $id)->first();
@@ -145,58 +146,5 @@ class AccountController extends Controller
         } else {
             throw new UnauthorizedException($errormsg);
         }
-    }
-
-    public function reset_password(Request $r) {
-        $token = UrlToken::make(60);
-        $email = $r->input('email');
-        PasswordReset::insert([
-            'email' => $email,
-            'token' => $token,
-            'created_at' => new \Datetime("now")
-        ]);
-        $user = User::where('email',$email)->first();
-
-        $pr = PasswordReset::where('email',$email)->first();
-
-        
-        Mail::to($pr->email)->send(new ResetPassword($pr, $user));
-
-        return [
-            'affected' => 1,
-            'created' => true,
-            'password_reset' => $pr
-        ];
-    }
-
-    public function reset_password_set(Request $r) {
-        $token = $r->input('token');
-        $pwd = $r->input('password');
-        if (empty($pwd)) throw new BadRequestException("Password required.");
-        if (empty($pwd)) throw new BadRequestException("Token required.");
-        $pr = PasswordReset::where('token',$token)->first();
-        if (!$pr) throw new BadRequestException("Set password token not found.");
-        $user = User::where('email',$pr->email)->first();
-        if (!$user) throw new BadRequestException("Set password token email not found.");
-
-        $salt = PasswordGenerator::salt();
-        $password = PasswordGenerator::hash($salt, $r->input('password'));
-
-        $af = User::where('id', $user->id)->update([
-            'password' => $password,
-            'salt' => $salt,
-            'activated' => 'TRUE',
-            'updated_at' => new \Datetime("now")
-        ]);
-
-        $afp = PasswordReset::where('token',$token)->delete();
-
-        $updatedUser = User::where('id',$user->id)->first();
-        return [
-            'affected' => $af,
-            'pasword_set' => true,
-            'deleted' => $afp,
-            'user' => $updatedUser
-        ];
     }
 }

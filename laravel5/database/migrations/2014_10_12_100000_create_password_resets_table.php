@@ -17,6 +17,7 @@ class CreatePasswordResetsTable extends Migration
             $table->increments('id');
             $table->string('email')->index();
             $table->string('token');
+            $table->datetime('expires');
             $table->timestamps();
         });
     }
