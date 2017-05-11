@@ -36,6 +36,7 @@
     [status]="ems.status.myTime"
     [message]="ems.message.myTime">
   </ua-quick-time-input>
+  <ua-quick-category-select label="My Quick Category Select" formControlName="myQuickCategory"></ua-quick-category-select>
   <button type="submit" class="btn btn-primary" [disabled]="!testForm.valid">Save</button>
 </form>
 <pre>{{ testForm.value | json }}</pre>

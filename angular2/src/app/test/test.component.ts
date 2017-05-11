@@ -56,6 +56,10 @@ export class TestComponent implements OnInit {
       myTime: {
         control:['', Validators.required],
         messages: { required: 'Required.' }
+      },
+      myQuickCategory: {
+        control:['', Validators.required],
+        messages: { required: 'Required.' }
       }
     });
     

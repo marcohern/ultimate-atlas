@@ -6,10 +6,10 @@ import { ErrorMessageService } from './error-message.service'
 import { ValidatorService } from './validator.service'
 import { UaValidators } from './ua-validators'
 
-import { UaInput } from './ua-input/ua-input.component';
-import { UaSelect } from './ua-select/ua-select.component';
-import { UaQuickSelect } from './ua-quick-select/ua-quick-select.component';
-import { UaQuickInput } from './ua-quick-input/ua-quick-input.component';
+import { UaInput } from './ua-input/ua-input.component'
+import { UaSelect } from './ua-select/ua-select.component'
+import { UaQuickSelect } from './ua-quick-select/ua-quick-select.component'
+import { UaQuickInput } from './ua-quick-input/ua-quick-input.component'
 import { UaQuickTimeInput } from './ua-quick-time-input/ua-quick-time-input.component'
 
 @NgModule({
@@ -19,7 +19,7 @@ import { UaQuickTimeInput } from './ua-quick-time-input/ua-quick-time-input.comp
         ReactiveFormsModule
     ],
     declarations:[
-        UaInput, UaSelect, UaQuickSelect, UaQuickInput, UaQuickTimeInput
+        UaInput, UaSelect, UaQuickSelect, UaQuickInput, UaQuickTimeInput,
     ],
     providers:[
         ValidatorService,
@@ -27,7 +27,7 @@ import { UaQuickTimeInput } from './ua-quick-time-input/ua-quick-time-input.comp
         UaValidators
     ],
     exports:[
-        UaInput, UaSelect, UaQuickSelect, UaQuickInput, UaQuickTimeInput
+        UaInput, UaSelect, UaQuickSelect, UaQuickInput, UaQuickTimeInput,
     ]
 })
 export class InputsModule {}

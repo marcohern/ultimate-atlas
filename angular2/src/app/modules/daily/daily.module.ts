@@ -8,7 +8,8 @@ import { DailyRoutes } from './daily.routes'
 import { TransListComponent } from './trans-list/trans-list.component'
 import { TransDetailComponent } from './trans-detail/trans-detail.component'
 
-import { DailyService } from './daily.service'
+import { DailyService } from './daily.service';
+import { UaQuickCategorySelect } from './ua-quick-category-select/ua-quick-category-select.component'
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { DailyService } from './daily.service'
     InputsModule,
     DailyRoutes
   ],
-  declarations: [TransListComponent, TransDetailComponent],
-  providers:[DailyService,DatePipe]
+  declarations: [TransListComponent, TransDetailComponent, UaQuickCategorySelect],
+  providers:[DailyService,DatePipe],
+  exports:[UaQuickCategorySelect]
 })
 export class DailyModule { }
