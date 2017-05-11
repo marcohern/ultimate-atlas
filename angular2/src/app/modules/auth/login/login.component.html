@@ -14,8 +14,8 @@
             type="password"
             [status]="ems.status.password"
             [message]="ems.message.password"></ua-input>
-          <div class="form-group" *ngIf="loginFailed">
-            <p style="color:red">Login failed, check credentials and try again</p>
+          <div class="alert alert-danger" *ngIf="loginFailed">
+            <p>Login failed, check credentials and try again</p>
           </div>
           <div class="form-group">
             <button class="btn btn-primary" type="submit">Login</button>

@@ -23,7 +23,12 @@
 <body>
   <ultimate-atlas>
     <div id="first_loader">
-      <img src="assets/loaders/spinning-circles.svg" alt="Loading" width="80" />Loading Ultimate Atlas
+      <p>
+        <img src="assets/loaders/spinning-circles.svg" alt="Loading" width="80" />
+      </p>
+      <p>
+        Loading Ultimate Atlas
+      </p>
     </div>
   </ultimate-atlas>
   <script type="text/javascript" src="inline.bundle.js"></script>
