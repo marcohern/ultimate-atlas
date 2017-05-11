@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
+import { FormGroup,Validators } from '@angular/forms'
 
+import { ErrorMessageService } from '../../inputs/error-message.service'
 import { AuthService } from '../auth.service'
 
 @Component({
@@ -10,20 +12,32 @@ import { AuthService } from '../auth.service'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  username:string = '';
-  password:string = '';
+  
+  loginForm:FormGroup;
   loginFailed:boolean = false;
 
-  constructor(private _auth:AuthService, private _router:Router) { }
+  constructor(
+    private auth:AuthService,
+    private router:Router,
+    private ems:ErrorMessageService) { }
 
   ngOnInit() {
-
+    this.loginForm = this.ems.build({
+      username: {
+        control:['',Validators.required],
+        messages: {required:'Username is Required.'}
+      },
+      password: {
+        control:['',Validators.required],
+        messages: {required:'Password is Required.'}
+      }
+    });
   }
 
-  login() {
+  login(value) {
     this.loginFailed = false;
-    this._auth.login(this.username, this.password).subscribe(
-      () => this._router.navigate(['/welcome']),
+    this.auth.login(value.username, value.password).subscribe(
+      () => this.router.navigate(['/welcome']),
       error => this.loginFailed = true
     );
   }
