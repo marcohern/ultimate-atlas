@@ -27,7 +27,7 @@ export class DailyService {
       .map((r:Response) => <DailyTrans>r.json().daily_trans);
   }
 
-  saveTransaction(trans:DailyTrans, id):Observable<DailyTransSaveResponse> {
+  saveTransaction(trans:DailyTrans, id?:any):Observable<DailyTransSaveResponse> {
     return this.rs.save('/daily_trans', trans, id)
       .map((r:Response) => <DailyTransSaveResponse>r.json());
   }

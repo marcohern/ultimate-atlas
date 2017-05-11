@@ -42,7 +42,6 @@ export class UaQuickCategorySelect extends UaQuickSelectBase implements OnInit, 
       data.forEach((item:DailyCat)=>{
         this.options.push({text:item.name,value:item.id})
       });
-      this.propagateChange(this.options);
     });
   }
 

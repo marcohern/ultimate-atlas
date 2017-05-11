@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { DatePipe } from '@angular/common'
-import { FormGroup, FormControl } from '@angular/forms'
+import { FormGroup, FormControl, Validators } from '@angular/forms'
 
 import { DailyTrans } from '../../../models/daily-trans'
 import { DailyCat } from '../../../models/daily-cat'
@@ -23,6 +23,10 @@ export class TransDetailComponent implements OnInit {
   private MINUTE:number = 1000*60;
   
   cats:DailyCat[] = [];
+  transType = [
+    { value:'CASH', text:'Cash' },
+    { value:'DEBIT', text:'Debit' }
+  ];
 
   constructor(
     private ds:DailyService,
@@ -41,21 +45,43 @@ export class TransDetailComponent implements OnInit {
 
     this.transForm = this.ems.build({
       date: {
-        control: [today],
-        messages: {}
+        control: [today, [Validators.required, Validators.pattern("[0-9]{4}-[0-9]{2}-[0-9]{2}")]],
+        messages: {required:'Required.'}
       },
       time: {
-        control: [seconds],
-        messages: {}
+        control: [seconds, [Validators.required, Validators.pattern("[0-9]{2}:[0-9]{2}:[0-9]{2}")]],
+        messages: {required:'Required.',pattern:'Must have valid time format (HH:mm:ss).'}
+      },
+      cat_id: {
+        control: ['', Validators.required],
+        messages: {required:'Required.'}
+      },
+      value: {
+        control: ['', [Validators.required, Validators.pattern("[\-+]?[0-9]+")]],
+        messages: {required:'Required.',pattern:'Must be numeric.'}
+      },
+      type: {
+        control: ['CASH', Validators.required],
+        messages: {required:'Required.'}
       }
     });
   }
 
-  private submitTrans(value) {
-    console.log("submitTrans",value);
-    //this.edate = this.datepipe.transform(this.trans.event_date, "yyyy-MM-dd");
-    //this.etime = this.datepipe.transform(this.trans.event_date, "HH:mm:ss");
-    //this.trans.event_date = new Date(this.trans.event_date.valueOf() - minOffset*this.MINUTE);
-  }
+  private saveTrans(value) {
+    
+    let trans:DailyTrans = {
+      cat_id:value.cat_id,
+      user_id: 1,
+      event_date: value.date + ' ' + value.time,
+      type: value.type,
+      value: value.value,
+      status:''
+    };
 
+    let id = null;
+    
+    this.ds.saveTransaction(trans, id).subscribe(data => {
+      this.router.navigate(['/daily/trans']);
+    });
+  }
 }

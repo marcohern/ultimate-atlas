@@ -1,7 +1,7 @@
 import { Record } from './record'
 
 interface IDailyTrans {
-    event_date:Date;
+    event_date:string;
     type:string;
     cat_id:number;
     user_id:number;
@@ -14,7 +14,7 @@ interface IDailyTrans {
 }
 
 export class DailyTrans extends Record implements IDailyTrans {
-    event_date:Date;
+    event_date:string;
     type:string;
     cat_id:number;
     user_id:number;

@@ -15,20 +15,36 @@
         formControlName="time"
         [status]="ems.status.time"
         [message]="ems.message.time"></ua-quick-time-input>
+    </div> 
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <ua-quick-category-select label="Category"
+        formControlName="cat_id"
+        [status]="ems.status.cat_id"
+        [message]="ems.message.cat_id">
+        </ua-quick-category-select>
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-4">
-      
+    <div class="col-sm-6">
+      <ua-input label="Value"
+        formControlName="value"
+        [status]="ems.status.value"
+        [message]="ems.message.value"></ua-input>
     </div>
-    <div class="col-sm-4">
-      
-    </div>
-    <div class="col-sm-4">
-      
+    <div class="col-sm-6">
+      <ua-select label="Type"
+        formControlName="type"
+        [options]="transType"
+        [status]="ems.status.type"
+        [message]="ems.message.type">
+      </ua-select>
     </div>
   </div>
   <p>
-    <button class="btn btn-primary btn-lg" type="submit"><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>
+    <button class="btn btn-primary btn-lg" type="submit" [disabled]="!transForm.valid">
+      <i class="glyphicon glyphicon-floppy-disk"></i> Save</button>
   </p>
 </form>
+<pre>{{ transForm.value | json}}</pre>
