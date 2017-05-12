@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\User;
 use App\Lib\In;
-use App\Lib\PasswordGenerator;
+use App\Lib\Hasher;
 
 class ProductionSeeder extends Seeder
 {
@@ -35,8 +35,8 @@ class ProductionSeeder extends Seeder
         ];
 
         foreach($users as $i => $user) {
-            $salt = PasswordGenerator::salt();
-            $password = PasswordGenerator::hash($salt, $user['password']);
+            $salt = Hasher::salt();
+            $password = Hasher::password($salt, $user['password']);
 
             $users[$i]['salt'] = $salt;
             $users[$i]['password'] = $password;
