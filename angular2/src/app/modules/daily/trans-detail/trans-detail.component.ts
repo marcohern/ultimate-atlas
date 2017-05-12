@@ -8,6 +8,7 @@ import { DailyCat } from '../../../models/daily-cat'
 import { DailyService } from '../daily.service'
 
 import { ErrorMessageService } from '../../inputs/error-message.service'
+import { AuthService } from '../../auth/auth.service'
 import { UaValidators } from '../../inputs/ua-validators'
 
 @Component({
@@ -34,7 +35,8 @@ export class TransDetailComponent implements OnInit {
     private route:ActivatedRoute,
     private router:Router,
     private ems:ErrorMessageService,
-    private uav:UaValidators)
+    private uav:UaValidators,
+    private auth:AuthService)
   { }
 
   ngOnInit() {
@@ -71,7 +73,7 @@ export class TransDetailComponent implements OnInit {
     
     let trans:DailyTrans = {
       cat_id:value.cat_id,
-      user_id: 1,
+      user_id: this.auth.getUser().id,
       event_date: value.date + ' ' + value.time,
       type: value.type,
       value: value.value,

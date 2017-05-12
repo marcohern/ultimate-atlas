@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { CommonModule,DatePipe } from '@angular/common'
 
+import { AuthModule } from '../auth/auth.module'
 import { InputsModule } from '../inputs/inputs.module'
 import { DailyRoutes } from './daily.routes' 
 
@@ -16,6 +17,7 @@ import { UaQuickCategorySelect } from './ua-quick-category-select/ua-quick-categ
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    AuthModule,
     InputsModule,
     DailyRoutes
   ],
