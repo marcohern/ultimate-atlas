@@ -9,8 +9,7 @@ use App\Exceptions\BadRequestException;
 use App\User;
 use App\Token;
 use App\PasswordReset;
-use App\Lib\PasswordGenerator;
-use App\Lib\UrlToken;
+use App\Lib\Hasher;
 use App\Lib\In;
 use App\Lib\AutoRouter;
 use App\Mail\SignupActivateMail;
@@ -73,10 +72,10 @@ class AccountController extends Controller
     }
 
     public function signup(Request $r) {
-        $salt = PasswordGenerator::salt();
-        $pwd = PasswordGenerator::hash($salt, $r->input('password'));
+        $salt = Hasher::salt();
+        $pwd = Hasher::password($salt, $r->input('password'));
 
-        $at = UrlToken::make(60);
+        $at = Hasher::token();
         
         $id = User::insertGetId([
             'username' => $r->input('username'),
@@ -133,8 +132,8 @@ class AccountController extends Controller
             }
         }
         
-        if (PasswordGenerator::check($password, $user->salt, $user->password)) {
-            $uniqueid = Hash::make(uniqid('',true).str_random(48));
+        if (Hasher::check($password, $user->salt, $user->password)) {
+            $uniqueid = Hasher::token();
             $id = Token::insertGetId([
                 'token' => $uniqueid,
                 'expires' => In::loginTokenPeriod(),

@@ -22,7 +22,7 @@ class InviteController extends Controller
 
     public function invite(Request $r) {
         $pwd = Salt::make(16);
-        $token = UrlToken::make(64);
+        $token = UrlToken::make();
 
         $salt = PasswordGenerator::salt();
         $password = PasswordGenerator::hash($salt, $pwd);

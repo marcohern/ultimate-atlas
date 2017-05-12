@@ -21,7 +21,7 @@ use Illuminate\Http\Request;
 class ResetPasswordController extends Controller
 {
     public function request(Request $r) {
-        $token = UrlToken::make(60);
+        $token = UrlToken::make();
         $email = $r->input('email');
         
         $user = User::where('email',$email)->first();

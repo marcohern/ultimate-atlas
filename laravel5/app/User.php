@@ -9,6 +9,24 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    public static function query($q=null, $limit=100) {
+        $query = self::select(['id','username','lname','fname','email'])->latest()->take($limit);
+        if (!empty($q)) {
+            $query->where('username','LIKE',"%$q%")
+                ->orwhere('lname', 'LIKE', "%$q%")
+                ->orwhere('fname', 'LIKE', "%$q%");
+        }
+        return $query->get();
+    }
+
+    public static function get($id) {
+        $col = 'username';
+        if (is_numeric($id)) $col = 'id';
+        $user = self::where($col, $id)->first();
+         if (!$user) throw new NotFoundException('User not found');
+        return $user;
+    }
+
     /**
      * The attributes that are mass assignable.
      *

@@ -9,10 +9,8 @@ use App\Exceptions\BadRequestException;
 use Mail;
 use App\User;
 use App\PasswordReset;
-use App\Lib\Salt;
-use App\Lib\UrlToken;
+use App\Lib\Hasher;
 use App\Lib\In;
-use App\Lib\PasswordGenerator;
 use App\Mail\ResetPasswordMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -36,15 +34,7 @@ class UserController extends Controller
         //
         $q = $r->input('q','');
         $lq = str_replace(" ", "%", $q);
-        $usersq= User::select(['id','username','lname','fname','email'])
-            ->latest()->take(100);
-        if (!empty($q)) {
-            $usersq->where('username', 'LIKE',  "%$q%")
-                ->orwhere('lname', 'LIKE', "%$q%")
-                ->orwhere('fname', 'LIKE', "%$q%");
-        }
-        $users = $usersq->get();
-        return $users;
+        return User::query($lq, 100);
     }
 
     /**
@@ -65,10 +55,10 @@ class UserController extends Controller
      */
     public function store(Request $r)
     {
-        $password = $r->input('username');
-        $salt = PasswordGenerator::salt();
-        $pwd = PasswordGenerator::hash($salt, $password);
-        $token = UrlToken::make(60);
+        $password = Hasher::random(16);
+        $salt = Hasher::salt();
+        $pwd = Hasher::password($salt, $password);
+        $token = Hasher::token();
         $email = $r->input('email');
         
         try {
@@ -120,11 +110,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $col = 'username';
-        if (is_numeric($id)) $col = 'id';
-        $user = User::where($col, $id)->first();
-         if (!$user) throw new NotFoundException('User not found');
-        return ['user' => $user];
+        return [
+            'user' => User::get($id)
+        ];
     }
 
     /**
@@ -160,7 +148,7 @@ class UserController extends Controller
                     'updated_at' => In::now()
                 ]
             );
-            $user = User::where('id', $id)->first();
+            $user = User::get($id);
             return [
                 'affected' => $affected,
                 'saved' => true,
@@ -183,7 +171,7 @@ class UserController extends Controller
     {
         $col = 'username';
         if (is_numeric($id)) $col = 'id';
-        $user = User::where($col, $id)->first();
+        $user = User::get($id);
         if (!$user) throw new NotFoundException('User not found');
         $deleted = User::where($col, $id)->delete();
 
