@@ -1255,17 +1255,17 @@ var TransDetailComponent = (function () {
         ];
     }
     TransDetailComponent.prototype.ngOnInit = function () {
-        var id = +this.route.snapshot.params['id'];
-        var now = new Date();
-        var today = this.datepipe.transform(now, "yyyy-MM-dd");
-        var seconds = this.datepipe.transform(now, "HH:mm:ss");
+        //let now = new Date();
+        //let today = this.datepipe.transform(now, "yyyy-MM-dd");
+        //let seconds = this.datepipe.transform(now, "HH:mm:ss");
+        var _this = this;
         this.transForm = this.ems.build({
             date: {
-                control: [today, [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].pattern("[0-9]{4}-[0-9]{2}-[0-9]{2}")]],
+                control: ['', [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].pattern("[0-9]{4}-[0-9]{2}-[0-9]{2}")]],
                 messages: { required: 'Required.' }
             },
             time: {
-                control: [seconds, [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].pattern("[0-9]{2}:[0-9]{2}:[0-9]{2}")]],
+                control: ['', [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].pattern("[0-9]{2}:[0-9]{2}:[0-9]{2}")]],
                 messages: { required: 'Required.', pattern: 'Must have valid time format (HH:mm:ss).' }
             },
             cat_id: {
@@ -1273,7 +1273,7 @@ var TransDetailComponent = (function () {
                 messages: { required: 'Required.' }
             },
             value: {
-                control: ['', [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].pattern("[\-+]?[0-9]+")]],
+                control: ['', [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].pattern("[\-+]?[0-9]+(\.[0-9]{2})")]],
                 messages: { required: 'Required.', pattern: 'Must be numeric.' }
             },
             type: {
@@ -1281,10 +1281,25 @@ var TransDetailComponent = (function () {
                 messages: { required: 'Required.' }
             }
         });
+        var id = +this.route.snapshot.params['id'];
+        if (id) {
+            this.ds.getTransaction(id).subscribe(function (data) {
+                _this.transForm.setValue({
+                    date: data.event_date.substr(0, 10),
+                    time: data.event_date.substr(11),
+                    cat_id: data.cat_id,
+                    value: data.value,
+                    type: data.type
+                });
+            });
+        }
     };
     TransDetailComponent.prototype.saveTrans = function (value) {
         var _this = this;
+        var id = +this.route.snapshot.params['id'];
+        console.log("saveTrans user", this.auth.getUser());
         var trans = {
+            id: id,
             cat_id: value.cat_id,
             user_id: this.auth.getUser().id,
             event_date: value.date + ' ' + value.time,
@@ -1292,7 +1307,7 @@ var TransDetailComponent = (function () {
             value: value.value,
             status: ''
         };
-        var id = null;
+        console.log("saveTrans", trans);
         this.ds.saveTransaction(trans, id).subscribe(function (data) {
             _this.router.navigate(['/daily/trans']);
         });
@@ -1301,7 +1316,7 @@ var TransDetailComponent = (function () {
 }());
 TransDetailComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Y" /* Component */])({
-        selector: 'app-trans-detail',
+        selector: 'ua-trans-detail',
         template: __webpack_require__(246),
         styles: [__webpack_require__(219)]
     }),
@@ -1348,9 +1363,13 @@ var TransListComponent = (function () {
     };
     TransListComponent.prototype.deleteTrans = function (i) {
         var _this = this;
-        this.ds.deleteTransaction(this.trans[i].id).subscribe(function (data) {
-            _this.trans[i].status = 'gone';
-        });
+        var tran = this.trans[i];
+        var time = tran.event_date.substr(11);
+        if (confirm("Are you sure you want to delete " + time + " " + tran.category + "(" + tran.value + ")?")) {
+            this.ds.deleteTransaction(tran.id).subscribe(function (data) {
+                _this.trans[i].status = 'gone';
+            });
+        }
     };
     TransListComponent.prototype.onAnimDone = function ($event, i) {
         if ($event.toState == 'gone') {
@@ -1383,6 +1402,21 @@ var TransListComponent = (function () {
             return 'Day Before Yesterday';
         return date;
     };
+    TransListComponent.prototype.allowEditDelete = function (date) {
+        var now = new Date();
+        now.setHours(0);
+        now.setMinutes(0);
+        now.setSeconds(0);
+        now.setMilliseconds(0);
+        var today = this.datepipe.transform(now, "yyyy-MM-dd");
+        if (today == date)
+            return true;
+        var yesterday = this.datepipe.transform(now.valueOf() - this.DAY, "yyyy-MM-dd");
+        if (yesterday == date)
+            return true;
+        else
+            return false;
+    };
     TransListComponent.prototype.valueClass = function (value) {
         return (value > 0) ? 'trans_positive' : (value < 0) ? 'trans_negative' : '';
     };
@@ -1407,7 +1441,7 @@ var TransListComponent = (function () {
 }());
 TransListComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Y" /* Component */])({
-        selector: 'app-trans-list',
+        selector: 'ua-trans-list',
         template: __webpack_require__(247),
         styles: [__webpack_require__(220)],
         animations: [__WEBPACK_IMPORTED_MODULE_3__animations__["a" /* recordAnimation */]]
@@ -2694,7 +2728,11 @@ var menu = {
         public: [],
         private: [
             { label: 'Users', route: ['/users'] },
-            { label: 'Daily', route: ['/daily/trans'] }
+            { label: 'Daily', children: [
+                    { label: 'Transactions', route: ['/daily/trans'] },
+                    { label: 'Categories', route: ['/daily/cats'] },
+                    { label: 'History', route: ['/daily/history'] }
+                ] }
         ]
     },
     buttons: {
@@ -2748,6 +2786,9 @@ var MenuComponent = (function () {
         this.auth.logout().subscribe(function (data) {
             _this.router.navigate(['/welcome']);
         });
+    };
+    MenuComponent.prototype.dropdown = function (item) {
+        return (item.children) ? ['dropdown'] : [];
     };
     return MenuComponent;
 }());
@@ -2951,8 +2992,8 @@ var UaQuickCategorySelect = UaQuickCategorySelect_1 = (function (_super) {
             { value: 6, text: '', glyph: 'cutlery', color: 'warning' },
             { value: 8, text: '', glyph: 'cutlery', color: 'danger' },
             { value: 18, text: '', glyph: 'ice-lolly', color: 'primary' },
-            { value: 27, text: '', glyph: 'glass', color: 'danger' },
-            { value: 10, text: '', glyph: 'shopping-cart', color: 'success' },
+            //{value:27, text:'', glyph:'glass'        , color:'danger'},
+            //{value:10, text:'', glyph:'shopping-cart', color:'success'},
             { value: 24, text: '', glyph: 'credit-card', color: 'primary' },
         ];
         this.ds.getCategories().subscribe(function (data) {
@@ -3205,15 +3246,17 @@ var UaQuickTimeInput = UaQuickTimeInput_1 = (function (_super) {
         _super.prototype.init.call(this);
         this.buttons = [
             { label: '-5', value: -5, glyph: 'remove', color: 'warning' },
-            { label: '-2', value: -2, glyph: 'remove', color: 'warning' },
+            //{label:'-2',value:-2,glyph:'remove',color:'warning'},
             { label: '-1', value: -1, glyph: 'remove', color: 'warning' },
             { label: 'Now', value: 0, glyph: 'ok', color: 'primary' },
             { label: '+1', value: 1, glyph: 'remove', color: 'success' },
-            { label: '+2', value: 2, glyph: 'remove', color: 'success' },
+            //{label:'+2',value:2,glyph:'remove',color:'success'},
             { label: '+5', value: 2, glyph: 'remove', color: 'success' }
         ];
     };
-    UaQuickTimeInput.prototype.ngOnChanges = function (changes) { _super.prototype.change.call(this, changes); };
+    UaQuickTimeInput.prototype.ngOnChanges = function (changes) {
+        _super.prototype.change.call(this, changes);
+    };
     UaQuickTimeInput.prototype.onClickBtn = function (btn) {
         switch (btn.value) {
             case 0:
@@ -3229,6 +3272,9 @@ var UaQuickTimeInput = UaQuickTimeInput_1 = (function (_super) {
         }
         this.value = this.time(this.currentDate);
         this.propagateChange(this.value);
+    };
+    UaQuickTimeInput.prototype.writeValue = function (value) {
+        _super.prototype.writeValue.call(this, value);
     };
     return UaQuickTimeInput;
 }(__WEBPACK_IMPORTED_MODULE_3__ua_quick_input_base__["a" /* UaQuickInputBase */]));
@@ -4156,7 +4202,7 @@ module.exports = "<div class=\"loader\" *ngIf=\"rs.isCalling()\">\r\n  <div>\r\n
 /* 244 */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default\">\r\n  <div class=\"container\">\r\n    <a class=\"navbar-brand\" [routerLink]=\"['/welcome']\">\r\n      <span>{{title}}</span>\r\n      <sub *ngIf=\"cs.get().env\">{{cs.get().env}}</sub>\r\n    </a>\r\n    <ul class=\"nav navbar-nav\">\r\n      <li *ngFor=\"let item of menu.links.public\">\r\n        <a [routerLink]=\"item.route\">{{item.label}}</a>\r\n      </li>\r\n    </ul>\r\n    <ul class=\"nav navbar-nav\" *ngIf=\"auth.isAuthenticated()\">\r\n      <li *ngFor=\"let item of menu.links.private\">\r\n        <a [routerLink]=\"item.route\">{{item.label}}</a>\r\n      </li>\r\n    </ul>\r\n    <ul class=\"nav navbar-nav navbar-right\">\r\n      <li *ngIf=\"!auth.isAuthenticated()\">\r\n        <p class=\"navbar-btn btn-group\">\r\n          <a *ngFor=\"let item of menu.buttons.unauthenticated\" class=\"btn btn-{{item.color}}\" [routerLink]=\"item.route\">{{item.label}}</a>\r\n        </p>\r\n      </li>\r\n      <li *ngIf=\"auth.isAuthenticated()\">\r\n        <a>{{auth.getUser().fname}} {{auth.getUser().lname}}</a>\r\n      </li>\r\n      <li *ngIf=\"auth.isAuthenticated()\">\r\n        <p class=\"navbar-btn\">\r\n          <a *ngFor=\"let item of menu.buttons.private\" class=\"btn btn-{{item.color}}\" [routerLink]=\"item.route\">{{item.label}}</a>\r\n          <button class=\"btn btn-danger\" (click)=\"logout()\">Logout</button>\r\n        </p>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</nav>"
+module.exports = "<nav class=\"navbar navbar-default\">\r\n  <div class=\"container\">\r\n    <div class=\"navbar-header\">\r\n      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#ua-navbar-1\" aria-expanded=\"false\">\r\n        <span class=\"sr-only\">Toggle navigation</span>\r\n        <span class=\"icon-bar\"></span>\r\n        <span class=\"icon-bar\"></span>\r\n        <span class=\"icon-bar\"></span>\r\n      </button>\r\n      <a class=\"navbar-brand\" [routerLink]=\"['/welcome']\">\r\n        <span>{{title}}</span>\r\n        <sub *ngIf=\"cs.get().env\">{{cs.get().env}}</sub>\r\n      </a>\r\n    </div>\r\n    <div class=\"collapse navbar-collapse\" id=\"ua-navbar-1\">\r\n      <ul class=\"nav navbar-nav\">\r\n        <li [ngClass]=\"dropdown(item)\" *ngFor=\"let item of menu.links.public\">\r\n          <a *ngIf=\"!item.children\" [routerLink]=\"item.route\">{{item.label}}</a>\r\n          <a *ngIf=\"item.children\" class=\"dropdown-toggle\"\r\n            data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>\r\n            {{item.label}} <span *ngIf=\"item.children\" class=\"caret\"></span>\r\n          </a>\r\n          <ul *ngIf=\"item.children\" class=\"dropdown-menu\">\r\n            <li *ngFor=\"let child of item.children\">\r\n              <a [routerLink]=\"child.route\">{{child.label}}</a>\r\n            </li>\r\n          </ul>\r\n        </li>\r\n      </ul>\r\n      <ul class=\"nav navbar-nav\" *ngIf=\"auth.isAuthenticated()\">\r\n        <li [ngClass]=\"dropdown(item)\" *ngFor=\"let item of menu.links.private\">\r\n          <a *ngIf=\"!item.children\" [routerLink]=\"item.route\">{{item.label}}</a>\r\n          <a *ngIf=\"item.children\" class=\"dropdown-toggle\"\r\n            data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>\r\n            {{item.label}} <span *ngIf=\"item.children\" class=\"caret\"></span>\r\n          </a>\r\n          <ul *ngIf=\"item.children\" class=\"dropdown-menu\">\r\n            <li *ngFor=\"let child of item.children\">\r\n              <a [routerLink]=\"child.route\">{{child.label}}</a>\r\n            </li>\r\n          </ul>\r\n        </li>\r\n      </ul>\r\n      <ul class=\"nav navbar-nav navbar-right\">\r\n        <li *ngIf=\"!auth.isAuthenticated()\">\r\n          <p class=\"navbar-btn btn-group\">\r\n            <a *ngFor=\"let item of menu.buttons.unauthenticated\" class=\"btn btn-{{item.color}}\" [routerLink]=\"item.route\">{{item.label}}</a>\r\n          </p>\r\n        </li>\r\n        <li *ngIf=\"auth.isAuthenticated()\">\r\n          <a>{{auth.getUser().fname}} {{auth.getUser().lname}}</a>\r\n        </li>\r\n        <li *ngIf=\"auth.isAuthenticated()\">\r\n          <p class=\"navbar-btn\">\r\n            <a *ngFor=\"let item of menu.buttons.private\" class=\"btn btn-{{item.color}}\" [routerLink]=\"item.route\">{{item.label}}</a>\r\n            <button class=\"btn btn-danger\" (click)=\"logout()\">Logout</button>\r\n          </p>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n</nav>"
 
 /***/ }),
 /* 245 */
@@ -4174,7 +4220,7 @@ module.exports = "<form [formGroup]=\"transForm\" (ngSubmit)=\"saveTrans(transFo
 /* 247 */
 /***/ (function(module, exports) {
 
-module.exports = "<form>\r\n  <div class=\"input-group\">\r\n    <span class=\"input-group-btn\">\r\n      <a class=\"btn btn-primary\" [routerLink]=\"['/daily/trans/add']\">\r\n        <i class=\"glyphicon glyphicon-plus\"></i> Add\r\n      </a>\r\n    </span>\r\n    <input type=\"text\" class=\"form-control\" placeholder=\"Search...\" />\r\n    <span class=\"input-group-btn\">\r\n      <button type=\"submit\" class=\"btn btn-primary\">\r\n        <i class=\"glyphicon glyphicon-search\"></i>\r\n      </button>\r\n    </span>\r\n  </div>\r\n</form>\r\n<div class=\"ua-record-row\" *ngFor=\"let tran of trans; let i = index\" [@record]=\"tran.status\">\r\n  <div class=\"btn-group btn-group-lg\" role=\"group\">\r\n    <div *ngIf=\"group(i)\"><h3>{{datestr(tran.edate)}}</h3></div>\r\n    <a class=\"btn btn-danger\" (click)=\"deleteTrans(i)\"><i class=\"glyphicon glyphicon-trash\"></i></a>\r\n    <div class=\"btn btn-default\" [routerLink]=\"['/daily/trans', tran.id]\">\r\n      <i class=\"glyphicon glyphicon-pencil\"></i>\r\n      <span>{{tran.event_date.substr(12)}}</span>\r\n      <span [ngClass]=\"catClass(tran.hypercat)\">{{tran.category}}</span>\r\n      <span [ngClass]=\"valueClass(tran.value)\">( ${{tran.value | number:'1.2-2'}} )</span>\r\n      \r\n    </div>\r\n  </div>\r\n</div>"
+module.exports = "<form>\r\n  <div class=\"input-group\">\r\n    <span class=\"input-group-btn\">\r\n      <a class=\"btn btn-primary\" [routerLink]=\"['/daily/trans/add']\">\r\n        <i class=\"glyphicon glyphicon-plus\"></i> Add\r\n      </a>\r\n    </span>\r\n    <input type=\"text\" class=\"form-control\" placeholder=\"Search...\" />\r\n    <span class=\"input-group-btn\">\r\n      <button type=\"submit\" class=\"btn btn-primary\">\r\n        <i class=\"glyphicon glyphicon-search\"></i>\r\n      </button>\r\n    </span>\r\n  </div>\r\n</form>\r\n<div class=\"ua-record-row\" *ngFor=\"let tran of trans; let i = index\" [@record]=\"tran.status\">\r\n  <div class=\"btn-group btn-group-lg\" role=\"group\">\r\n    <div *ngIf=\"group(i)\"><h3>{{datestr(tran.edate)}}</h3></div>\r\n    <a class=\"btn btn-danger\" *ngIf=\"allowEditDelete(tran.edate)\" (click)=\"deleteTrans(i)\"><i class=\"glyphicon glyphicon-trash\"></i></a>\r\n    <a class=\"btn btn-warning\" *ngIf=\"allowEditDelete(tran.edate)\" [routerLink]=\"['/daily/trans',tran.id]\"><i class=\"glyphicon glyphicon-pencil\"></i></a>\r\n    <div class=\"btn btn-default\">\r\n      <span class=\"hidden-xs\">{{tran.event_date.substr(11)}}</span>\r\n      <span [ngClass]=\"catClass(tran.hypercat)\">{{tran.category}}</span>\r\n      <span [ngClass]=\"valueClass(tran.value)\" class=\"hidden-xs\">(${{tran.value | number:'1.2-2'}})</span>\r\n      <span [ngClass]=\"valueClass(tran.value)\" class=\"visible-xs-inline\">${{ (tran.value/1000) | number }}m</span>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 /* 248 */
@@ -4264,7 +4310,7 @@ module.exports = "<form novalidate [formGroup]=\"userForm\" (ngSubmit)=\"saveUse
 /* 262 */
 /***/ (function(module, exports) {
 
-module.exports = "<form (ngSubmit)=\"searchUsers()\">\r\n  <div class=\"input-group\">\r\n    <span class=\"input-group-btn\">\r\n      <a class=\"btn btn-primary\" [routerLink]=\"['/user/add']\">\r\n        <i class=\"glyphicon glyphicon-plus\"></i> Add\r\n      </a>\r\n    </span>\r\n    <input type=\"text\" class=\"form-control\" placeholder=\"Search...\" [(ngModel)]=\"searchText\" [ngModelOptions]=\"{standalone: true}\" />\r\n    <span class=\"input-group-btn\">\r\n      <button type=\"submit\" class=\"btn btn-primary\">\r\n        <i class=\"glyphicon glyphicon-search\"></i>\r\n      </button>\r\n    </span>\r\n  </div>\r\n</form>\r\n<div class=\"ua-record-row\" *ngFor=\"let user of users; let i = index\" [@record]=\"user.status\">\r\n  <div class=\"btn-group btn-group-lg\" role=\"group\">\r\n    <a class=\"btn btn-danger\" (click)=\"deleteUser(i)\"><i class=\"glyphicon glyphicon-trash\"></i></a>\r\n    <div class=\"btn btn-primary\" [routerLink]=\"['/user', user.id]\">\r\n      <i class=\"glyphicon glyphicon-pencil\"></i>\r\n      <span>{{user.fname}} {{user.lname}} ({{user.username}})</span>\r\n      <span>{{user.email}}</span>\r\n    </div>\r\n  </div>\r\n</div>"
+module.exports = "<form (ngSubmit)=\"searchUsers()\">\r\n  <div class=\"input-group\">\r\n    <span class=\"input-group-btn\">\r\n      <a class=\"btn btn-primary\" [routerLink]=\"['/user/add']\">\r\n        <i class=\"glyphicon glyphicon-plus\"></i> Add\r\n      </a>\r\n    </span>\r\n    <input type=\"text\" class=\"form-control\" placeholder=\"Search...\" [(ngModel)]=\"searchText\" [ngModelOptions]=\"{standalone: true}\" />\r\n    <span class=\"input-group-btn\">\r\n      <button type=\"submit\" class=\"btn btn-primary\">\r\n        <i class=\"glyphicon glyphicon-search\"></i>\r\n      </button>\r\n    </span>\r\n  </div>\r\n</form>\r\n<div class=\"ua-record-row\" *ngFor=\"let user of users; let i = index\" [@record]=\"user.status\">\r\n  <div class=\"btn-group btn-group-lg\" role=\"group\">\r\n    <a class=\"btn btn-danger\" (click)=\"deleteUser(i)\"><i class=\"glyphicon glyphicon-trash\"></i></a>\r\n    <div class=\"btn btn-primary\" [routerLink]=\"['/user', user.id]\">\r\n      <i class=\"glyphicon glyphicon-pencil\"></i>\r\n      <span>{{user.fname}} {{user.lname}}</span>\r\n      <span class=\"hidden-xs\">{{user.username}}</span>\r\n      <span class=\"hidden-xs\">({{user.email}})</span>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 /* 263 */

@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Exceptions\NotFoundException;
+
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -12,9 +14,9 @@ class User extends Authenticatable
     public static function query($q=null, $limit=100) {
         $query = self::select(['id','username','lname','fname','email'])->latest()->take($limit);
         if (!empty($q)) {
-            $query->where('username','LIKE',"%$q%")
-                ->orwhere('lname', 'LIKE', "%$q%")
-                ->orwhere('fname', 'LIKE', "%$q%");
+            $query->where('username', 'LIKE', "%$q%")
+                ->orwhere('lname'   , 'LIKE', "%$q%")
+                ->orwhere('fname'   , 'LIKE', "%$q%");
         }
         return $query->get();
     }

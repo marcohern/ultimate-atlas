@@ -8,7 +8,7 @@ import { recordAnimation } from '../../../animations';
 
 @Component({
   moduleId: module.id,
-  selector: 'app-trans-list',
+  selector: 'ua-trans-list',
   templateUrl: './trans-list.component.html',
   styleUrls: ['./trans-list.component.css'],
   animations: [ recordAnimation ]
@@ -27,9 +27,13 @@ export class TransListComponent implements OnInit {
   }
 
   deleteTrans(i) {
-    this.ds.deleteTransaction(this.trans[i].id).subscribe(data => {
-      this.trans[i].status = 'gone';
-    })
+    var tran = this.trans[i];
+    let time = tran.event_date.substr(11);
+    if (confirm("Are you sure you want to delete " +  time + " " + tran.category + "(" + tran.value + ")?")) {
+        this.ds.deleteTransaction(tran.id).subscribe(data => {
+        this.trans[i].status = 'gone';
+      });
+    }
   }
 
   onAnimDone($event, i) {
@@ -64,6 +68,22 @@ export class TransListComponent implements OnInit {
     if (dbef == date) return 'Day Before Yesterday';
 
     return date;
+  }
+
+  allowEditDelete(date:string) {
+    let now = new Date();
+    now.setHours(0);
+    now.setMinutes(0);
+    now.setSeconds(0);
+    now.setMilliseconds(0);
+
+    let today = this.datepipe.transform(now,"yyyy-MM-dd");
+    if (today == date) return true;
+
+    let yesterday = this.datepipe.transform(now.valueOf() - this.DAY,"yyyy-MM-dd");
+    if (yesterday == date) return true;
+
+    else return false;
   }
 
   valueClass(value) {

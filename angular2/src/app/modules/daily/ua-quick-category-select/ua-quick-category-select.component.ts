@@ -33,8 +33,8 @@ export class UaQuickCategorySelect extends UaQuickSelectBase implements OnInit, 
       {value:6, text:'', glyph:'cutlery'       , color:'warning'},
       {value:8, text:'', glyph:'cutlery'       , color:'danger'},
       {value:18, text:'', glyph:'ice-lolly'    , color:'primary'},
-      {value:27, text:'', glyph:'glass'        , color:'danger'},
-      {value:10, text:'', glyph:'shopping-cart', color:'success'},
+      //{value:27, text:'', glyph:'glass'        , color:'danger'},
+      //{value:10, text:'', glyph:'shopping-cart', color:'success'},
       {value:24, text:'', glyph:'credit-card'  , color:'primary'},
     ];
 

@@ -1,34 +1,62 @@
 <nav class="navbar navbar-default">
   <div class="container">
-    <a class="navbar-brand" [routerLink]="['/welcome']">
-      <span>{{title}}</span>
-      <sub *ngIf="cs.get().env">{{cs.get().env}}</sub>
-    </a>
-    <ul class="nav navbar-nav">
-      <li *ngFor="let item of menu.links.public">
-        <a [routerLink]="item.route">{{item.label}}</a>
-      </li>
-    </ul>
-    <ul class="nav navbar-nav" *ngIf="auth.isAuthenticated()">
-      <li *ngFor="let item of menu.links.private">
-        <a [routerLink]="item.route">{{item.label}}</a>
-      </li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li *ngIf="!auth.isAuthenticated()">
-        <p class="navbar-btn btn-group">
-          <a *ngFor="let item of menu.buttons.unauthenticated" class="btn btn-{{item.color}}" [routerLink]="item.route">{{item.label}}</a>
-        </p>
-      </li>
-      <li *ngIf="auth.isAuthenticated()">
-        <a>{{auth.getUser().fname}} {{auth.getUser().lname}}</a>
-      </li>
-      <li *ngIf="auth.isAuthenticated()">
-        <p class="navbar-btn">
-          <a *ngFor="let item of menu.buttons.private" class="btn btn-{{item.color}}" [routerLink]="item.route">{{item.label}}</a>
-          <button class="btn btn-danger" (click)="logout()">Logout</button>
-        </p>
-      </li>
-    </ul>
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#ua-navbar-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" [routerLink]="['/welcome']">
+        <span>{{title}}</span>
+        <sub *ngIf="cs.get().env">{{cs.get().env}}</sub>
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="ua-navbar-1">
+      <ul class="nav navbar-nav">
+        <li [ngClass]="dropdown(item)" *ngFor="let item of menu.links.public">
+          <a *ngIf="!item.children" [routerLink]="item.route">{{item.label}}</a>
+          <a *ngIf="item.children" class="dropdown-toggle"
+            data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>
+            {{item.label}} <span *ngIf="item.children" class="caret"></span>
+          </a>
+          <ul *ngIf="item.children" class="dropdown-menu">
+            <li *ngFor="let child of item.children">
+              <a [routerLink]="child.route">{{child.label}}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav" *ngIf="auth.isAuthenticated()">
+        <li [ngClass]="dropdown(item)" *ngFor="let item of menu.links.private">
+          <a *ngIf="!item.children" [routerLink]="item.route">{{item.label}}</a>
+          <a *ngIf="item.children" class="dropdown-toggle"
+            data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>
+            {{item.label}} <span *ngIf="item.children" class="caret"></span>
+          </a>
+          <ul *ngIf="item.children" class="dropdown-menu">
+            <li *ngFor="let child of item.children">
+              <a [routerLink]="child.route">{{child.label}}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li *ngIf="!auth.isAuthenticated()">
+          <p class="navbar-btn btn-group">
+            <a *ngFor="let item of menu.buttons.unauthenticated" class="btn btn-{{item.color}}" [routerLink]="item.route">{{item.label}}</a>
+          </p>
+        </li>
+        <li *ngIf="auth.isAuthenticated()">
+          <a>{{auth.getUser().fname}} {{auth.getUser().lname}}</a>
+        </li>
+        <li *ngIf="auth.isAuthenticated()">
+          <p class="navbar-btn">
+            <a *ngFor="let item of menu.buttons.private" class="btn btn-{{item.color}}" [routerLink]="item.route">{{item.label}}</a>
+            <button class="btn btn-danger" (click)="logout()">Logout</button>
+          </p>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>

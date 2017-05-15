@@ -1,7 +1,7 @@
 import { Component, OnInit, OnChanges, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms'
 import { DatePipe } from '@angular/common'
-import {UaQuickInputBase} from '../ua-quick-input-base'
+import {UaQuickButton,UaQuickInputBase} from '../ua-quick-input-base'
 
 @Component({
   selector: 'ua-quick-time-input',
@@ -29,18 +29,20 @@ export class UaQuickTimeInput extends UaQuickInputBase implements OnInit, OnChan
     super.init(); 
     this.buttons =  [
       {label:'-5',value:-5,glyph:'remove',color:'warning'},
-      {label:'-2',value:-2,glyph:'remove',color:'warning'},
+      //{label:'-2',value:-2,glyph:'remove',color:'warning'},
       {label:'-1',value:-1,glyph:'remove',color:'warning'},
       {label:'Now',value:0,glyph:'ok',color:'primary'},
       {label:'+1',value:1,glyph:'remove',color:'success'},
-      {label:'+2',value:2,glyph:'remove',color:'success'},
+      //{label:'+2',value:2,glyph:'remove',color:'success'},
       {label:'+5',value:2,glyph:'remove',color:'success'}
     ];
   }
 
-  ngOnChanges(changes) { super.change(changes); }
+  ngOnChanges(changes) {
+    super.change(changes);
+  }
 
-  onClickBtn(btn) {
+  onClickBtn(btn:UaQuickButton) {
     switch(btn.value) {
       case 0:
         this.currentDate = new Date();
@@ -55,6 +57,10 @@ export class UaQuickTimeInput extends UaQuickInputBase implements OnInit, OnChan
 
     this.value = this.time(this.currentDate);
     this.propagateChange(this.value);
+  }
+  
+  public writeValue(value:any) {
+    super.writeValue(value);
   }
 
 }

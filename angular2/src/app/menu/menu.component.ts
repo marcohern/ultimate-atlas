@@ -32,4 +32,8 @@ export class MenuComponent implements OnInit {
       });
   }
 
+  dropdown(item) {
+    return (item.children) ? ['dropdown'] : [];
+  }
+
 }

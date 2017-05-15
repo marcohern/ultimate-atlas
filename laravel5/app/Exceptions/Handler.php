@@ -95,7 +95,7 @@ class Handler extends ExceptionHandler
             if ($exception instanceof UnauthorizedException)
                 return $this->renderJsonError($request, $exception);
 
-            return $this->renderJsonError($request, $exception, true);
+            return $this->renderJsonError($request, $exception, false);
         }
         return parent::render($request, $exception);
     }

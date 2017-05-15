@@ -13,7 +13,7 @@ import { UaValidators } from '../../inputs/ua-validators'
 
 @Component({
   moduleId: module.id,
-  selector: 'app-trans-detail',
+  selector: 'ua-trans-detail',
   templateUrl: './trans-detail.component.html',
   styleUrls: ['./trans-detail.component.css']
 })
@@ -40,18 +40,17 @@ export class TransDetailComponent implements OnInit {
   { }
 
   ngOnInit() {
-    let id = +this.route.snapshot.params['id'];
-    let now = new Date();
-    let today = this.datepipe.transform(now, "yyyy-MM-dd");
-    let seconds = this.datepipe.transform(now, "HH:mm:ss");
+    //let now = new Date();
+    //let today = this.datepipe.transform(now, "yyyy-MM-dd");
+    //let seconds = this.datepipe.transform(now, "HH:mm:ss");
 
     this.transForm = this.ems.build({
       date: {
-        control: [today, [Validators.required, Validators.pattern("[0-9]{4}-[0-9]{2}-[0-9]{2}")]],
+        control: ['', [Validators.required, Validators.pattern("[0-9]{4}-[0-9]{2}-[0-9]{2}")]],
         messages: {required:'Required.'}
       },
       time: {
-        control: [seconds, [Validators.required, Validators.pattern("[0-9]{2}:[0-9]{2}:[0-9]{2}")]],
+        control: ['', [Validators.required, Validators.pattern("[0-9]{2}:[0-9]{2}:[0-9]{2}")]],
         messages: {required:'Required.',pattern:'Must have valid time format (HH:mm:ss).'}
       },
       cat_id: {
@@ -59,7 +58,7 @@ export class TransDetailComponent implements OnInit {
         messages: {required:'Required.'}
       },
       value: {
-        control: ['', [Validators.required, Validators.pattern("[\-+]?[0-9]+")]],
+        control: ['', [Validators.required, Validators.pattern("[\-+]?[0-9]+(\.[0-9]{2})")]],
         messages: {required:'Required.',pattern:'Must be numeric.'}
       },
       type: {
@@ -67,11 +66,25 @@ export class TransDetailComponent implements OnInit {
         messages: {required:'Required.'}
       }
     });
+    let id = +this.route.snapshot.params['id'];
+    if (id) {
+      this.ds.getTransaction(id).subscribe(data => {
+        this.transForm.setValue({
+          date: data.event_date.substr(0,10),
+          time: data.event_date.substr(11),
+          cat_id: data.cat_id,
+          value: data.value,
+          type: data.type
+        });
+      });
+    }
   }
 
   private saveTrans(value) {
-    
+    let id = +this.route.snapshot.params['id'];
+    console.log("saveTrans user",this.auth.getUser());
     let trans:DailyTrans = {
+      id:id,
       cat_id:value.cat_id,
       user_id: this.auth.getUser().id,
       event_date: value.date + ' ' + value.time,
@@ -79,9 +92,7 @@ export class TransDetailComponent implements OnInit {
       value: value.value,
       status:''
     };
-
-    let id = null;
-    
+    console.log("saveTrans",trans);
     this.ds.saveTransaction(trans, id).subscribe(data => {
       this.router.navigate(['/daily/trans']);
     });

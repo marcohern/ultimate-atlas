@@ -5,7 +5,11 @@ export const menu = {
         public: [],
         private: [
             { label:'Users', route:['/users'] },
-            { label:'Daily', route:['/daily/trans'] }
+            { label:'Daily', children: [
+                { label:'Transactions', route:['/daily/trans']   },
+                { label:'Categories'  , route:['/daily/cats']    },
+                { label:'History'     , route:['/daily/history'] }
+            ]}
         ]
     },
     buttons: {

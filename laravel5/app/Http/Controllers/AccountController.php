@@ -118,14 +118,16 @@ class AccountController extends Controller
         $username = $r->input('username');
         $password = $r->input('password');
 
-        $user = User::select(['username','password','salt','email','fname','lname'])
+        $user = User::select(['id','username','password','salt','email'])
             ->where('username', $username)
             ->where('activated', 'TRUE')
             ->first();
 
         if (!$user) {
-            $user =User::select(['username','password','salt','email'])
-                ->where('email', $username)->first();
+            $user =User::select(['id','username','password','salt','email'])
+                ->where('email', $username)
+                ->where('activated', 'TRUE')
+                ->first();
             
             if (!$user) {
                 throw new UnauthorizedException($errormsg);
@@ -139,7 +141,7 @@ class AccountController extends Controller
                 'expires' => In::loginTokenPeriod(),
                 'created_at' => In::now()
             ]);
-
+            $user = User::get($user->id);
             $token = Token::where('id', $id)->first();
             return ['user' => $user, 'token' => $token];
         } else {
