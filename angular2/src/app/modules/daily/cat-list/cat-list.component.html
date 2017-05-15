@@ -1,0 +1,49 @@
+<form>
+  <div class="input-group">
+    <span class="input-group-btn">
+      <a class="btn btn-primary" [routerLink]="['/daily/cat/add']">
+        <i class="glyphicon glyphicon-plus"></i> Add
+      </a>
+    </span>
+    <input type="text" class="form-control" placeholder="Search..." />
+    <span class="input-group-btn">
+      <button type="submit" class="btn btn-primary">
+        <i class="glyphicon glyphicon-search"></i>
+      </button>
+    </span>
+  </div>
+</form>
+<form [formGroup]="catForm" (ngSubmit)="saveCat(catForm.value)">
+  <div class="row">
+    <div class="col-sm-4">
+      <ua-input label="Category Name"
+        formControlName="name"
+        [status]="ems.status.name"
+        [message]="ems.message.name"></ua-input>
+    </div>
+    <div class="col-sm-4">
+      <ua-select label="Hyper Category"
+        formControlName="hypercat"
+        [status]="ems.status.hypercat"
+        [message]="ems.message.hypercat"
+        [options]="hypercats"></ua-input>
+    </div>
+    <div class="col-sm-4">
+      <button class="btn btn-primary form-control" type="submit">
+        <i class="glyphicon glyphicon-save"></i>
+        Add New
+      </button>
+    </div>
+  </div>
+</form>
+<pre>{{ catForm.value | json }}</pre>
+<div class="ua-record-row" *ngFor="let cat of cats; let i = index" [@record]="cat.status">
+  <div class="btn-group btn-group-lg" role="group">
+    <a class="btn btn-danger" (click)="deleteCat(i)"><i class="glyphicon glyphicon-trash"></i></a>
+    <a class="btn btn-warning" [routerLink]="['/daily/cat',cat.id]"><i class="glyphicon glyphicon-pencil"></i></a>
+    <div class="btn btn-default">
+      <span>{{cat.id}}</span>
+      <span>{{cat.name}}</span>
+    </div>
+  </div>
+</div>

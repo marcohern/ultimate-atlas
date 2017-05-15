@@ -83,6 +83,9 @@ export class TransListComponent implements OnInit {
     let yesterday = this.datepipe.transform(now.valueOf() - this.DAY,"yyyy-MM-dd");
     if (yesterday == date) return true;
 
+    let dbef = this.datepipe.transform(now.valueOf() - 2*this.DAY,"yyyy-MM-dd");
+    if (dbef == date) return true;
+
     else return false;
   }
 

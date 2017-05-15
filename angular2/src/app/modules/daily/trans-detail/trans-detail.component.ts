@@ -82,7 +82,6 @@ export class TransDetailComponent implements OnInit {
 
   private saveTrans(value) {
     let id = +this.route.snapshot.params['id'];
-    console.log("saveTrans user",this.auth.getUser());
     let trans:DailyTrans = {
       id:id,
       cat_id:value.cat_id,
@@ -92,8 +91,8 @@ export class TransDetailComponent implements OnInit {
       value: value.value,
       status:''
     };
-    console.log("saveTrans",trans);
-    this.ds.saveTransaction(trans, id).subscribe(data => {
+    
+    this.ds.saveTransaction(trans).subscribe(data => {
       this.router.navigate(['/daily/trans']);
     });
   }
