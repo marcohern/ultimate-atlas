@@ -40,13 +40,13 @@ export class TransDetailComponent implements OnInit {
   { }
 
   ngOnInit() {
-    //let now = new Date();
-    //let today = this.datepipe.transform(now, "yyyy-MM-dd");
+    let now = new Date();
+    let today = this.datepipe.transform(now, "yyyy-MM-dd");
     //let seconds = this.datepipe.transform(now, "HH:mm:ss");
 
     this.transForm = this.ems.build({
       date: {
-        control: ['', [Validators.required, Validators.pattern("[0-9]{4}-[0-9]{2}-[0-9]{2}")]],
+        control: [today, [Validators.required, Validators.pattern("[0-9]{4}-[0-9]{2}-[0-9]{2}")]],
         messages: {required:'Required.'}
       },
       time: {

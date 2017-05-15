@@ -25,13 +25,12 @@ export class CatListComponent implements OnInit {
   ) { }
 
   private cats:DailyCat[];
-  private options:IOption[];
+  private hypercats:IOption[];
   private catForm:FormGroup;
 
   ngOnInit() {
 
-    this.options = [
-      { value:'NONE', text:'None' },
+    this.hypercats = [
       { value:'TRANSPORT', text:'Transport' },
       { value:'FOOD', text:'Food' },
       { value:'PURCHASES', text:'Purchases' },
@@ -66,7 +65,7 @@ export class CatListComponent implements OnInit {
   saveCat(value) {
     let cat:DailyCat = {
       name: value.name,
-      hypercat:'',
+      hypercat:value.hypercat,
       status: ''
     };
     this.ds.saveCategory(cat).subscribe(data => {
