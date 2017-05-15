@@ -58,7 +58,7 @@ export class TransDetailComponent implements OnInit {
         messages: {required:'Required.'}
       },
       value: {
-        control: ['', [Validators.required, Validators.pattern("[\-+]?[0-9]+(\.[0-9]{2})")]],
+        control: ['', [Validators.required, Validators.pattern("[\-+]?[0-9]+(\.[0-9]+)?")]],
         messages: {required:'Required.',pattern:'Must be numeric.'}
       },
       type: {

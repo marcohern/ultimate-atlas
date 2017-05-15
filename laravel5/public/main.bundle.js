@@ -1372,7 +1372,7 @@ var TransDetailComponent = (function () {
                 messages: { required: 'Required.' }
             },
             value: {
-                control: ['', [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].pattern("[\-+]?[0-9]+(\.[0-9]{2})")]],
+                control: ['', [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].pattern("[\-+]?[0-9]+(\.[0-9]+)?")]],
                 messages: { required: 'Required.', pattern: 'Must be numeric.' }
             },
             type: {
