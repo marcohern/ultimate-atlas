@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
-import { FormGroup,Validators } from '@angular/forms'
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormGroup, Validators } from '@angular/forms';
 
-import { ErrorMessageService } from '../../inputs/error-message.service'
-import { AuthService } from '../auth.service'
+import { ErrorMessageService } from '../../inputs/error-message.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   moduleId: module.id,
@@ -12,24 +12,24 @@ import { AuthService } from '../auth.service'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  
-  loginForm:FormGroup;
-  loginFailed:boolean = false;
+
+  loginForm: FormGroup;
+  loginFailed = false;
 
   constructor(
-    private auth:AuthService,
-    private router:Router,
-    private ems:ErrorMessageService) { }
+    private auth: AuthService,
+    private router: Router,
+    private ems: ErrorMessageService) { }
 
   ngOnInit() {
     this.loginForm = this.ems.build({
       username: {
-        control:['',Validators.required],
-        messages: {required:'Username is Required.'}
+        control: ['', Validators.required],
+        messages: {required: 'Username is Required.'}
       },
       password: {
-        control:['',Validators.required],
-        messages: {required:'Password is Required.'}
+        control: ['', Validators.required],
+        messages: {required: 'Password is Required.'}
       }
     });
   }

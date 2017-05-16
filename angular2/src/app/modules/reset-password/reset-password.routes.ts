@@ -1,10 +1,10 @@
 
-import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
-import { AuthorizedGuard } from '../auth/authorized.guard'
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthorizedGuard } from '../auth/authorized.guard';
 
-import { ResetPasswordComponent } from './reset-password/reset-password.component'
-import { ForgotComponent } from './forgot/forgot.component'
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ForgotComponent } from './forgot/forgot.component';
 
 const routes: Routes = [
     { path: 'reset-password/forgot', component: ForgotComponent },

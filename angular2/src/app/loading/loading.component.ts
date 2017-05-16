@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core'
-import {RequestService} from '../request.service'
+import { Component, OnInit } from '@angular/core';
+import {RequestService} from '../request.service';
 
 @Component({
   selector: 'ua-loading',
@@ -8,7 +8,7 @@ import {RequestService} from '../request.service'
 })
 export class LoadingComponent implements OnInit {
 
-  constructor(private rs:RequestService) { }
+  constructor(private rs: RequestService) { }
 
   ngOnInit() {
   }

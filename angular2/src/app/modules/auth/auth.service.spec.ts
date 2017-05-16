@@ -1,15 +1,15 @@
-import { TestBed, inject } from '@angular/core/testing'
+import { TestBed, inject } from '@angular/core/testing';
 
-import { HttpModule } from '@angular/http'
+import { HttpModule } from '@angular/http';
 
-import { AuthService } from './auth.service'
-import { RequestService } from '../request.service'
-import { ConfigService } from '../config.service'
+import { AuthService } from './auth.service';
+import { RequestService } from '../request.service';
+import { ConfigService } from '../config.service';
 
 describe('AuthService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports:[HttpModule],
+      imports: [HttpModule],
       providers: [AuthService, RequestService, ConfigService]
     });
   });

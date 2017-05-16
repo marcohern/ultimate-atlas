@@ -5,10 +5,10 @@
 
 export const environment = {
   production: false,
-  env:'design',
+  env: 'design',
   request: {
-    prefix:'/tapi',
-    mock:true,
+    prefix: '/tapi',
+    mock: true,
     postfix: {
       get: '-get.json',
       post: '-post.json',

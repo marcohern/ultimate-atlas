@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core'
-import { CommonModule } from '@angular/common'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { InputsModule } from '../inputs/inputs.module'
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InputsModule } from '../inputs/inputs.module';
 
-import { UserRoutes } from './user.routes'
-import { UserListComponent } from './user-list/user-list.component'
-import { UserDetailComponent } from './user-detail/user-detail.component'
+import { UserRoutes } from './user.routes';
+import { UserListComponent } from './user-list/user-list.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 import { UserService } from './user.service';
 
@@ -20,6 +20,6 @@ import { UserService } from './user.service';
   declarations: [
     UserListComponent, UserDetailComponent
   ],
-  providers:[ UserService ]
+  providers: [ UserService ]
 })
 export class UserModule { }

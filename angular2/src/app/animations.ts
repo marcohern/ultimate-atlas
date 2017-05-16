@@ -27,8 +27,8 @@ export const appearAnimation: AnimationEntryMetadata =
   export const recordAnimation: AnimationEntryMetadata =
     trigger('record', [
       state('gone', style({
-        opacity:0.0,
-        height:0,
+        opacity: 0.0,
+        height: 0,
         marginTop: 0,
         marginBottom: 0,
         paddingTop: 0,

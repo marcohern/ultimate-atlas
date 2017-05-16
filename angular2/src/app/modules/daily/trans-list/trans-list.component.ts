@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core';
 
-import { DailyTrans } from '../../../models/daily-trans'
+import { DailyTrans } from '../../../models/daily-trans';
 
-import { DatePipe } from '@angular/common'
-import { DailyService } from '../daily.service'
+import { DatePipe } from '@angular/common';
+import { DailyService } from '../daily.service';
 import { recordAnimation } from '../../../animations';
 
 @Component({
@@ -15,10 +15,10 @@ import { recordAnimation } from '../../../animations';
 })
 export class TransListComponent implements OnInit {
 
-  trans:DailyTrans[];
-  constructor(private ds:DailyService,public datepipe: DatePipe) { }
+  trans: DailyTrans[];
+  constructor(private ds: DailyService, public datepipe: DatePipe) { }
 
-  private DAY:number = 1000*60*60*24; 
+  private DAY: number = 1000 * 60 * 60 * 24;
 
   ngOnInit() {
     this.ds.getTransactions().subscribe(data => {
@@ -27,9 +27,9 @@ export class TransListComponent implements OnInit {
   }
 
   deleteTrans(i) {
-    var tran = this.trans[i];
-    let time = tran.event_date.substr(11);
-    if (confirm("Are you sure you want to delete " +  time + " " + tran.category + "(" + tran.value + ")?")) {
+    const tran = this.trans[i];
+    const time = tran.event_date.substr(11);
+    if (confirm('Are you sure you want to delete ' +  time + ' ' + tran.category + '(' + tran.value + ')?')) {
         this.ds.deleteTransaction(tran.id).subscribe(data => {
         this.trans[i].status = 'gone';
       });
@@ -38,63 +38,63 @@ export class TransListComponent implements OnInit {
 
   onAnimDone($event, i) {
     if ($event.toState == 'gone') {
-      console.log("TransListComponent.onAnimDone",$event,i);
-      this.trans.splice(i,1);
+      console.log('TransListComponent.onAnimDone', $event, i);
+      this.trans.splice(i, 1);
     }
   }
 
   group(i) {
-    if (i==0) return true;
-    else if (this.trans[i].edate != this.trans[i-1].edate) {
+    if (i == 0) return true;
+    else if (this.trans[i].edate != this.trans[i - 1].edate) {
       return true;
     }
     return false;
   }
 
-  datestr(date:string):string {
-    let now = new Date();
+  datestr(date: string): string {
+    const now = new Date();
     now.setHours(0);
     now.setMinutes(0);
     now.setSeconds(0);
     now.setMilliseconds(0);
 
-    let today = this.datepipe.transform(now,"yyyy-MM-dd");
+    const today = this.datepipe.transform(now, 'yyyy-MM-dd');
     if (today == date) return 'Today';
 
-    let yesterday = this.datepipe.transform(now.valueOf() - this.DAY,"yyyy-MM-dd");
+    const yesterday = this.datepipe.transform(now.valueOf() - this.DAY, 'yyyy-MM-dd');
     if (yesterday == date) return 'Yesterday';
 
-    let dbef = this.datepipe.transform(now.valueOf() - 2*this.DAY,"yyyy-MM-dd");
+    const dbef = this.datepipe.transform(now.valueOf() - 2 * this.DAY, 'yyyy-MM-dd');
     if (dbef == date) return 'Day Before Yesterday';
 
     return date;
   }
 
-  allowEditDelete(date:string) {
-    let now = new Date();
+  allowEditDelete(date: string) {
+    const now = new Date();
     now.setHours(0);
     now.setMinutes(0);
     now.setSeconds(0);
     now.setMilliseconds(0);
 
-    let today = this.datepipe.transform(now,"yyyy-MM-dd");
+    const today = this.datepipe.transform(now, 'yyyy-MM-dd');
     if (today == date) return true;
 
-    let yesterday = this.datepipe.transform(now.valueOf() - this.DAY,"yyyy-MM-dd");
+    const yesterday = this.datepipe.transform(now.valueOf() - this.DAY, 'yyyy-MM-dd');
     if (yesterday == date) return true;
 
-    let dbef = this.datepipe.transform(now.valueOf() - 2*this.DAY,"yyyy-MM-dd");
+    const dbef = this.datepipe.transform(now.valueOf() - 2 * this.DAY, 'yyyy-MM-dd');
     if (dbef == date) return true;
 
     else return false;
   }
 
   valueClass(value) {
-    return (value > 0) ? 'trans_positive' : (value<0) ? 'trans_negative' : '';
+    return (value > 0) ? 'trans_positive' : (value < 0) ? 'trans_negative' : '';
   }
 
   catClass(hypercat) {
-    switch(hypercat) {
+    switch (hypercat) {
       case 'TRANSPORT':
         return 'trans_transport';
       case 'FOOD':

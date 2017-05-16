@@ -1,11 +1,11 @@
 
-import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
-import { AuthorizedGuard } from '../auth/authorized.guard'
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthorizedGuard } from '../auth/authorized.guard';
 
-import { TransListComponent }  from './trans-list/trans-list.component'
-import { TransDetailComponent } from './trans-detail/trans-detail.component'
-import { CatListComponent } from './cat-list/cat-list.component'
+import { TransListComponent }  from './trans-list/trans-list.component';
+import { TransDetailComponent } from './trans-detail/trans-detail.component';
+import { CatListComponent } from './cat-list/cat-list.component';
 
 const routes: Routes = [
     { path: 'daily/trans'    , component: TransListComponent  , canActivate: [AuthorizedGuard] },

@@ -1,24 +1,24 @@
-import {Input, Output, EventEmitter } from '@angular/core'
-import { UaInputBase } from './ua-input-base'
+import {Input, Output, EventEmitter } from '@angular/core';
+import { UaInputBase } from './ua-input-base';
 
 export interface UaQuickButton {
-    label:string;
-    value:any;
-    glyph:string;
-    color:string;
+    label: string;
+    value: any;
+    glyph: string;
+    color: string;
 }
 
 export class UaQuickInputBase extends UaInputBase {
     @Input()
-    buttons:UaQuickButton[] = [];
+    buttons: UaQuickButton[] = [];
 
     @Output()
     clickButton = new EventEmitter();
 
-    constructor() { super() }
+    constructor() { super(); }
 
     onClickButton(btn, $event) {
-        console.log("UaQuickInputBase.onClickButton",btn,$event);
+        console.log('UaQuickInputBase.onClickButton', btn, $event);
         this.clickButton.emit(btn);
     }
 }

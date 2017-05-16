@@ -11,18 +11,18 @@ import { menu } from '../menu';
 })
 export class MenuComponent implements OnInit {
 
-  @Input() title:string;
-  menu:any;
+  @Input() title: string;
+  menu: any;
 
   constructor(
-    private auth:AuthService,
-    private router:Router,
-    private cs:ConfigService) {
+    private auth: AuthService,
+    private router: Router,
+    private cs: ConfigService) {
       this.menu = menu;
     }
 
   ngOnInit() {
-    
+
   }
 
   logout() {

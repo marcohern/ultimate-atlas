@@ -1,17 +1,17 @@
-import { TestBed, inject } from '@angular/core/testing'
+import { TestBed, inject } from '@angular/core/testing';
 
-import { HttpModule } from '@angular/http'
+import { HttpModule } from '@angular/http';
 
-import { RequestService } from '../../request.service'
-import { ConfigService } from '../../config.service'
+import { RequestService } from '../../request.service';
+import { ConfigService } from '../../config.service';
 
-import { ValidatorService } from './validator.service'
+import { ValidatorService } from './validator.service';
 
 describe('ValidatorService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports:[HttpModule],
-      providers: [ValidatorService, RequestService,ConfigService]
+      imports: [HttpModule],
+      providers: [ValidatorService, RequestService, ConfigService]
     });
   });
 

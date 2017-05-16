@@ -8,7 +8,7 @@ import { UaInputBase } from '../ua-input-base';
   templateUrl: './ua-input.component.html',
   styleUrls: ['./ua-input.component.css'],
   providers: [
-    { 
+    {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => UaInput),
       multi: true
@@ -21,5 +21,5 @@ export class UaInput extends UaInputBase implements OnInit, OnChanges {
 
   ngOnInit() { super.init(); }
   ngOnChanges(changes) { super.change(changes); }
-  
+
 }

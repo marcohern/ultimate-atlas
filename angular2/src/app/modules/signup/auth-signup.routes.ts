@@ -1,12 +1,12 @@
 
-import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import { SignupComponent          } from './signup/signup.component'
-import { SignupDoneComponent      } from './signup-done/signup-done.component'
-import { ActivateComponent        } from './activate/activate.component'
+import { SignupComponent          } from './signup/signup.component';
+import { SignupDoneComponent      } from './signup-done/signup-done.component';
+import { ActivateComponent        } from './activate/activate.component';
 
-import { SignupService } from './signup.service'
+import { SignupService } from './signup.service';
 
 const routes: Routes = [
     { path: 'signup'          , component: SignupComponent          },

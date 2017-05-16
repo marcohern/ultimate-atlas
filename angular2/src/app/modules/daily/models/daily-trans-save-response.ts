@@ -1,9 +1,9 @@
 
-import {DailyTrans} from '../../../models/daily-trans'
+import {DailyTrans} from '../../../models/daily-trans';
 
 export interface DailyTransSaveResponse {
-    affected:number;
-    saved:boolean;
-    daily_trans:DailyTrans;
+    affected: number;
+    saved: boolean;
+    daily_trans: DailyTrans;
 }
 

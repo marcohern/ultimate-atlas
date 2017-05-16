@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core'
-import { Router, ActivatedRoute } from '@angular/router'
-import { FormGroup, Validators } from '@angular/forms'
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup, Validators } from '@angular/forms';
 
-import { ErrorMessageService } from '../../inputs/error-message.service'
-import { UaValidators } from '../../inputs/ua-validators'
+import { ErrorMessageService } from '../../inputs/error-message.service';
+import { UaValidators } from '../../inputs/ua-validators';
 
-import { ResetPasswordService } from '../reset-password.service'
+import { ResetPasswordService } from '../reset-password.service';
 
 
 @Component({
@@ -16,15 +16,15 @@ import { ResetPasswordService } from '../reset-password.service'
 })
 export class ResetPasswordComponent implements OnInit {
 
-  resetPasswordForm:FormGroup;
-  token:string;
+  resetPasswordForm: FormGroup;
+  token: string;
 
    constructor(
-    private router:Router,
-    private route:ActivatedRoute,
-    private rss:ResetPasswordService,
-    private uav:UaValidators,
-    private ems:ErrorMessageService) { }
+    private router: Router,
+    private route: ActivatedRoute,
+    private rss: ResetPasswordService,
+    private uav: UaValidators,
+    private ems: ErrorMessageService) { }
 
   ngOnInit() {
     this.token = this.route.snapshot.params['token'];
@@ -32,11 +32,11 @@ export class ResetPasswordComponent implements OnInit {
     this.resetPasswordForm = this.ems.build({
       password: {
         control: ['', Validators.required ],
-        messages: {required:'Password required.'}
+        messages: {required: 'Password required.'}
       },
       confirmPassword: {
         control: ['', [Validators.required, this.uav.requiresConfirm('password')] ],
-        messages: {required:'Confirm Password required.', requiresConfirm: 'Password mismatch.'}
+        messages: {required: 'Confirm Password required.', requiresConfirm: 'Password mismatch.'}
       }
     });
   }

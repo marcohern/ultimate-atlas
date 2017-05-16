@@ -15,11 +15,11 @@ import { User } from '../../../models/user';
 })
 export class UserListComponent implements OnInit {
 
-  private users:User[];
-  private searchText:string = '';
-  private errorMessage:string;
+  private users: User[];
+  private searchText = '';
+  private errorMessage: string;
 
-  constructor(private userService:UserService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.userService.getUsers()
@@ -30,17 +30,17 @@ export class UserListComponent implements OnInit {
   }
 
   deleteUser(index) {
-    let user = this.users[index];
+    const user = this.users[index];
     this.userService.deleteUser(user.id).subscribe(
       () => {
         //this.users.splice(index, 1);
-        this.users[index].status = "gone";
+        this.users[index].status = 'gone';
       }
     );
   }
 
   searchUsers() {
-    console.log("UserListComponent.searchUsers", this.searchText);
+    console.log('UserListComponent.searchUsers', this.searchText);
     this.userService.getUsers(this.searchText).subscribe(
         users => this.users = users,
         error => this.errorMessage = <any>error

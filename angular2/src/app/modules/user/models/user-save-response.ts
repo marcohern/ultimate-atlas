@@ -1,7 +1,7 @@
-import { User } from '../../../models/user'
+import { User } from '../../../models/user';
 
 export interface UserSaveResponse {
-    affected:number;
-    saved:boolean;
-    user:User;
+    affected: number;
+    saved: boolean;
+    user: User;
 }

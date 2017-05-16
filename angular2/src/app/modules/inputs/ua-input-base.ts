@@ -4,33 +4,33 @@ import { FormControl, ControlValueAccessor } from '@angular/forms';
 export class UaInputBase implements ControlValueAccessor {
 
   @Input()
-  public label:string = 'UA Input';
+  public label = 'UA Input';
 
   @Input()
-  public status:string = '';
+  public status = '';
 
   @Input()
-  public message:string = '';
+  public message = '';
 
   @Input()
-  public type:string = 'text';
+  public type = 'text';
 
-  public error:boolean = false;
-  public success:boolean = false;
-  public pending:boolean = false;
-  public touched:boolean = false;
+  public error = false;
+  public success = false;
+  public pending = false;
+  public touched = false;
 
-  public fieldClass:string[];
-  public messageClass:string[];
+  public fieldClass: string[];
+  public messageClass: string[];
 
-  public propagateChange:(_:any) => { }
-  public propagateTouch: (_:any) => { }
+  public propagateChange: (_: any) => { };
+  public propagateTouch: (_: any) => { };
 
-  public value:any;
+  public value: any;
 
   constructor() { }
 
-  private updateStatus(status:string) {
+  private updateStatus(status: string) {
     this.status = status;
     this.error = false;
     this.success = false;
@@ -54,7 +54,7 @@ export class UaInputBase implements ControlValueAccessor {
         break;
     }
   }
-  
+
   init() {}
 
   change(changes) {
@@ -63,11 +63,11 @@ export class UaInputBase implements ControlValueAccessor {
     }
   }
 
-  public writeValue       (value:any) { this.value          = value; }
-  public registerOnChange (fn   :any) {this.propagateChange = fn; }
-  public registerOnTouched(fn   :any) { this.propagateTouch = fn; }
-  
+  public writeValue       (value: any) { this.value          = value; }
+  public registerOnChange (fn   : any) {this.propagateChange = fn; }
+  public registerOnTouched(fn   : any) { this.propagateTouch = fn; }
+
   protected onKeyUp($event) {
-    this.propagateChange(this.value); 
+    this.propagateChange(this.value);
   }
 }

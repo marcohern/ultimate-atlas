@@ -25,8 +25,8 @@ describe('WelcomeComponent', () => {
   });
 
   it('should have Welcome message', () => {
-    let de = fixture.debugElement.query(By.css('h1'));
-    let el = de.nativeElement;
-    expect(el.textContent).toContain("Welcome");
+    const de = fixture.debugElement.query(By.css('h1'));
+    const el = de.nativeElement;
+    expect(el.textContent).toContain('Welcome');
   });
 });

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges, forwardRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms'
-import { UaQuickInputBase } from '../ua-quick-input-base'
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { UaQuickInputBase } from '../ua-quick-input-base';
 
 @Component({
   moduleId: module.id,
@@ -8,7 +8,7 @@ import { UaQuickInputBase } from '../ua-quick-input-base'
   templateUrl: './ua-quick-input.component.html',
   styleUrls: ['./ua-quick-input.component.css'],
   providers: [
-    { 
+    {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => UaQuickInput),
       multi: true
@@ -17,10 +17,10 @@ import { UaQuickInputBase } from '../ua-quick-input-base'
 })
 export class UaQuickInput extends UaQuickInputBase implements OnInit, OnChanges {
 
-  constructor() { super() }
+  constructor() { super(); }
 
-  ngOnInit() { super.init() }
+  ngOnInit() { super.init(); }
 
-  ngOnChanges(changes) { super.change(changes) }
-  
+  ngOnChanges(changes) { super.change(changes); }
+
 }

@@ -8,7 +8,7 @@ import { UaSelectBase } from '../ua-select-base';
   templateUrl: './ua-select.component.html',
   styleUrls: ['./ua-select.component.css'],
   providers: [
-    { 
+    {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => UaSelect),
       multi: true
@@ -17,7 +17,7 @@ import { UaSelectBase } from '../ua-select-base';
 })
 export class UaSelect extends UaSelectBase implements OnInit, OnChanges {
 
-  constructor() { super() }
+  constructor() { super(); }
 
   ngOnInit() { super.init(); }
   ngOnChanges(changes) { super.change(changes); }

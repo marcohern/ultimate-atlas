@@ -1,4 +1,4 @@
 export interface LogoutResponse {
-    logout:boolean;
-    tokenCleared:boolean;
+    logout: boolean;
+    tokenCleared: boolean;
 }

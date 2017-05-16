@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ResetPasswordService } from '../reset-password.service'
+import { ResetPasswordService } from '../reset-password.service';
 
 @Component({
   selector: 'app-forgot',
@@ -9,14 +9,14 @@ import { ResetPasswordService } from '../reset-password.service'
 })
 export class ForgotComponent implements OnInit {
 
-  email:string;
-  sending: boolean = false;
-  sent: boolean = false;
+  email: string;
+  sending = false;
+  sent = false;
 
-  constructor(private rps:ResetPasswordService) { }
+  constructor(private rps: ResetPasswordService) { }
 
-  isSending():boolean { return this.sending; }
-  isSent():boolean  { return this.sent; }
+  isSending(): boolean { return this.sending; }
+  isSent(): boolean  { return this.sent; }
 
   ngOnInit() {
   }

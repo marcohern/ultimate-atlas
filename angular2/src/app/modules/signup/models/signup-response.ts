@@ -1,6 +1,6 @@
-import { User } from '../../../models/user'
+import { User } from '../../../models/user';
 
 export interface SignupResponse {
-    signedUp:boolean;
-    user:User;
+    signedUp: boolean;
+    user: User;
 }

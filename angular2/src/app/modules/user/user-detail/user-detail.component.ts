@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router'
-import { FormGroup, FormBuilder, AbstractControl, Validators } from '@angular/forms'
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, FormBuilder, AbstractControl, Validators } from '@angular/forms';
 
 import { UserService } from '../user.service';
-import { UaValidators } from '../../inputs/ua-validators'
+import { UaValidators } from '../../inputs/ua-validators';
 import { ErrorMessageService } from '../../inputs/error-message.service';
 import { User } from '../../../models/user';
 
@@ -15,58 +15,58 @@ import { User } from '../../../models/user';
 })
 export class UserDetailComponent implements OnInit {
 
-  user:User = {
-    id:null,
+  user: User = {
+    id: null,
     username: '',
     lname: '',
-    fname:'',
-    email:'',
-    role:'ADMIN',
-    status:''
+    fname: '',
+    email: '',
+    role: 'ADMIN',
+    status: ''
   };
 
-  userForm:FormGroup;
-  active:boolean = false;
+  userForm: FormGroup;
+  active = false;
 
-  errorMessage:string;
+  errorMessage: string;
 
   constructor(
-        private route:ActivatedRoute,
-        private userService:UserService,
-        private router:Router,
-        private ems:ErrorMessageService,
-        private uav:UaValidators
+        private route: ActivatedRoute,
+        private userService: UserService,
+        private router: Router,
+        private ems: ErrorMessageService,
+        private uav: UaValidators
   ) { }
 
   ngOnInit() {
     this.userForm = this.ems.build({
       username: {
-        control:['', Validators.required],
-        messages: {required:'Required.', usernameExists: 'Must be unique.' }
+        control: ['', Validators.required],
+        messages: {required: 'Required.', usernameExists: 'Must be unique.' }
       },
       email: {
-        control:['', Validators.required],
-        messages: {required:'Required.', userEmailExists: 'Must be unique.' }
+        control: ['', Validators.required],
+        messages: {required: 'Required.', userEmailExists: 'Must be unique.' }
       },
       fname: {
-        control:['', Validators.required  ],
-        messages: {required:'Required.' }
+        control: ['', Validators.required  ],
+        messages: {required: 'Required.' }
       },
       lname: {
-        control:['', Validators.required  ],
-        messages: {required:'Required.' }
+        control: ['', Validators.required  ],
+        messages: {required: 'Required.' }
       }
     });
 
-    let id = +this.route.snapshot.params['id'];
+    const id = +this.route.snapshot.params['id'];
     if (id) {
       this.userService.getUser(id).subscribe(user => {
         this.user = user;
         this.userForm.setValue({
           username: user.username,
-          email:user.email,
-          fname:user.fname,
-          lname:user.lname
+          email: user.email,
+          fname: user.fname,
+          lname: user.lname
         });
 
         this.userForm.get('username').setAsyncValidators(this.uav.usernameExists(user.username));
@@ -82,7 +82,7 @@ export class UserDetailComponent implements OnInit {
 
   saveUser(value) {
     console.log(value);
-    let saveUser:User = {
+    const saveUser: User = {
       id: this.user.id,
       username: value.username,
       email: value.email,
@@ -90,12 +90,12 @@ export class UserDetailComponent implements OnInit {
       lname: value.lname,
       gender: this.user.gender,
       role: 'ADMIN',
-      status:''
-    }
+      status: ''
+    };
     this.userService.saveUser(saveUser).subscribe(
       (data) => {
         console.log(data);
-        this.router.navigate(['/users'])
+        this.router.navigate(['/users']);
       }
     );
   }

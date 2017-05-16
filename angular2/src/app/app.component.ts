@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core'
-import {ConfigService} from './config.service'
-import {AuthService} from './modules/auth/auth.service'
+import { Component, OnInit } from '@angular/core';
+import {ConfigService} from './config.service';
+import {AuthService} from './modules/auth/auth.service';
 
-import { MenuComponent } from './menu/menu.component'
+import { MenuComponent } from './menu/menu.component';
 
 
 @Component({
@@ -11,14 +11,14 @@ import { MenuComponent } from './menu/menu.component'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  
+
   title = 'Ultimate Atlas';
-  
-  constructor(private configService:ConfigService, private auth:AuthService) {
+
+  constructor(private configService: ConfigService, private auth: AuthService) {
   }
 
   ngOnInit() {
-    let config = this.configService.get();
+    const config = this.configService.get();
     this.auth.start();
   }
 }

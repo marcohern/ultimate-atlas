@@ -1,9 +1,9 @@
 export const environment = {
   production: true,
-  env:'',
+  env: '',
   request: {
-    prefix:'/api',
-    mock:false,
+    prefix: '/api',
+    mock: false,
     postfix: {
       get: '',
       post: '',

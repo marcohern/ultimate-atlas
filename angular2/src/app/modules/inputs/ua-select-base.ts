@@ -1,17 +1,17 @@
-import { Component, OnInit, Input,ViewChild, OnChanges, SimpleChange } from '@angular/core';
-import { UaInputBase } from './ua-input-base'
+import { Component, OnInit, Input, ViewChild, OnChanges, SimpleChange } from '@angular/core';
+import { UaInputBase } from './ua-input-base';
 
 export interface IOption {
-  value:any;
-  text:string;
+  value: any;
+  text: string;
 }
 
 export class UaSelectBase extends UaInputBase {
 
     @Input()
-    public options:IOption[] = [];
+    public options: IOption[] = [];
 
-    constructor() { super() }
+    constructor() { super(); }
 
     init() {
         super.init();

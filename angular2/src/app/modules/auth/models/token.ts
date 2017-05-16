@@ -1,8 +1,7 @@
-import { Record } from '../../../models/record'
+import { Record } from '../../../models/record';
 
 export interface Token {
-    token:string;
-    expired:Date;
-    expires:string;
+    token: string;
+    expired: Date;
+    expires: string;
 }
-    

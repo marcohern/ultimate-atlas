@@ -1,4 +1,4 @@
 export interface SendResetPasswordEmailResponse {
-    success:boolean;
-    email:string;
+    success: boolean;
+    email: string;
 }
