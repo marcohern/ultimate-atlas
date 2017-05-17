@@ -27,6 +27,7 @@ export class CatListComponent implements OnInit {
   private cats: DailyCat[];
   private hypercats: IOption[];
   private catForm: FormGroup;
+  private editIndex:null|number;
 
   ngOnInit() {
 
@@ -39,6 +40,10 @@ export class CatListComponent implements OnInit {
     ];
 
     this.catForm = this.ems.build({
+      id: {
+        control:[''],
+        messages:{}
+      },
       name: {
         control: ['', Validators.required],
         messages: {required: 'Required.'}
@@ -53,7 +58,7 @@ export class CatListComponent implements OnInit {
   }
 
   deleteCat(i) {
-    const cat = this.cats[i];
+    let cat = this.cats[i];
     if (confirm('Are you sure you want to delete ' +  cat.id + ' ' + cat.name + '?')) {
         this.ds.deleteCategory(cat.id).subscribe(data => {
         this.cats[i].status = 'gone';
@@ -61,8 +66,14 @@ export class CatListComponent implements OnInit {
     }
   }
 
+  editCat(cat:DailyCat, i:number) {
+    this.editIndex=i;
+    this.catForm.setValue(cat);
+  }
+
   saveCat(value) {
     const cat: DailyCat = {
+      id: (value.id=='') ? null: 0+value.id,
       name: value.name,
       hypercat: value.hypercat,
       status: ''

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, DatePipe } from '@angular/common';
+import { ChartsModule } from 'ng2-charts';
 
 import { AuthModule } from '../auth/auth.module';
 import { InputsModule } from '../inputs/inputs.module';
@@ -21,7 +22,8 @@ import { UaQuickCategorySelect } from './ua-quick-category-select/ua-quick-categ
     ReactiveFormsModule,
     AuthModule,
     InputsModule,
-    DailyRoutes
+    DailyRoutes,
+    ChartsModule,
   ],
   declarations: [TransListComponent, TransDetailComponent, UaQuickCategorySelect, CatListComponent],
   providers: [DailyService, DatePipe],

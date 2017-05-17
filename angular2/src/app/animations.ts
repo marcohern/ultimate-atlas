@@ -34,17 +34,6 @@ export const appearAnimation: AnimationEntryMetadata =
         paddingTop: 0,
         paddingBottom: 0
       })),
-      transition('gone => appear', [
-        style({
-        opacity: 0,
-        height: 0,
-        marginTop: 0,
-        marginBottom: 0,
-        paddingTop: 0,
-        paddingBottom: 0
-      }),
-      animate('0.5s ease-in')
-    ]),
       transition('* => gone', [
         animate('0ms 500ms ease-out')
       ]),
