@@ -13,6 +13,7 @@ import { CatListComponent } from './cat-list/cat-list.component';
 
 import { DailyService } from './daily.service';
 import { UaQuickCategorySelect } from './ua-quick-category-select/ua-quick-category-select.component';
+import { HistoryComponent } from './history/history.component';
 
 
 @NgModule({
@@ -22,10 +23,10 @@ import { UaQuickCategorySelect } from './ua-quick-category-select/ua-quick-categ
     ReactiveFormsModule,
     AuthModule,
     InputsModule,
-    DailyRoutes,
     ChartsModule,
+    DailyRoutes
   ],
-  declarations: [TransListComponent, TransDetailComponent, UaQuickCategorySelect, CatListComponent],
+  declarations: [TransListComponent, TransDetailComponent, UaQuickCategorySelect, CatListComponent, HistoryComponent],
   providers: [DailyService, DatePipe],
   exports: [UaQuickCategorySelect]
 })
