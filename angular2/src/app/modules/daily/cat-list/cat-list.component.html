@@ -15,31 +15,34 @@
 </form>
 <form [formGroup]="catForm" (ngSubmit)="saveCat(catForm.value)">
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-5">
       <ua-input label="Category Name"
         formControlName="name"
         [status]="ems.status.name"
         [message]="ems.message.name"></ua-input>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-5">
       <ua-select label="Hyper Category"
         formControlName="hypercat"
         [status]="ems.status.hypercat"
         [message]="ems.message.hypercat"
         [options]="hypercats"></ua-select>
     </div>
-    <div class="col-sm-4">
-      <button class="btn btn-primary form-control" type="submit">
-        <i class="glyphicon glyphicon-save"></i>
-        Add New
-      </button>
+    <div class="col-sm-2">
+      <div class="form-group">
+        <label>&nbsp;</label>
+        <button class="btn btn-primary form-control" type="submit">
+          <i class="glyphicon glyphicon-save"></i>
+          Save
+        </button>
+      </div>
     </div>
   </div>
 </form>
 <pre>{{ catForm.value | json }}</pre>
 <div class="ua-record-row" *ngFor="let cat of cats; let i = index" [@record]="cat.status">
   <div class="btn-group btn-group-lg" role="group">
-    <a class="btn btn-danger" (click)="deleteCat(i)"><i class="glyphicon glyphicon-trash"></i></a>
+    <button class="btn btn-danger" (click)="deleteCat(i)"><i class="glyphicon glyphicon-trash"></i></button>
     <a class="btn btn-warning" [routerLink]="['/daily/cat',cat.id]"><i class="glyphicon glyphicon-pencil"></i></a>
     <div class="btn btn-default">
       <span>{{cat.id}}</span>

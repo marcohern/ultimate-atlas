@@ -79,14 +79,14 @@ var ErrorMessageService = (function () {
         this.message[control_id] = '';
         var control = g.get(control_id);
         if (status == 'PENDING') {
-            this.message[control_id] += "Validating...";
+            this.message[control_id] += 'Validating...';
         }
         if (status == 'INVALID') {
             for (var key in control.errors) {
                 if (this.errors[control_id] && this.errors[control_id][key])
                     this.message[control_id] += this.errors[control_id][key] + ' ';
                 else
-                    this.message[control_id] += "[" + key + "]";
+                    this.message[control_id] += '[' + key + ']';
             }
         }
     };
@@ -584,7 +584,7 @@ var AuthorizedGuard = (function () {
         this.router = router;
     }
     AuthorizedGuard.prototype.canActivate = function (next, state) {
-        console.log("AuthorizedGuard.canActivate");
+        console.log('AuthorizedGuard.canActivate');
         if (this.auth.isAuthenticated())
             return true;
         this.router.navigate(['/login']);
@@ -792,9 +792,20 @@ var recordAnimation = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular
         paddingTop: 0,
         paddingBottom: 0
     })),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["d" /* transition */])('gone => appear', [
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["c" /* style */])({
+            opacity: 0,
+            height: 0,
+            marginTop: 0,
+            marginBottom: 0,
+            paddingTop: 0,
+            paddingBottom: 0
+        }),
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["e" /* animate */])('0.5s ease-in')
+    ]),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["d" /* transition */])('* => gone', [
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["e" /* animate */])('0ms 500ms ease-out')
-    ])
+    ]),
 ]);
 //# sourceMappingURL=animations.js.map
 
@@ -919,19 +930,19 @@ var UaInputBase = (function () {
 
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* Input */])(),
-    __metadata("design:type", String)
+    __metadata("design:type", Object)
 ], UaInputBase.prototype, "label", void 0);
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* Input */])(),
-    __metadata("design:type", String)
+    __metadata("design:type", Object)
 ], UaInputBase.prototype, "status", void 0);
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* Input */])(),
-    __metadata("design:type", String)
+    __metadata("design:type", Object)
 ], UaInputBase.prototype, "message", void 0);
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* Input */])(),
-    __metadata("design:type", String)
+    __metadata("design:type", Object)
 ], UaInputBase.prototype, "type", void 0);
 //# sourceMappingURL=ua-input-base.js.map
 
@@ -1104,12 +1115,12 @@ var UserService = (function () {
             .map(function (r) { return r.json().user; });
     };
     UserService.prototype.deleteUser = function (id) {
-        console.log("UserService.deleteUser", id);
+        console.log('UserService.deleteUser', id);
         return this.rs.delete(this.url, id)
             .map(function (r) { return r.json(); });
     };
     UserService.prototype.saveUser = function (user) {
-        console.log("UserService.saveUser", user);
+        console.log('UserService.saveUser', user);
         return this.rs.save(this.url, user)
             .map(function (r) { return r.json(); });
     };
@@ -1267,14 +1278,12 @@ var CatListComponent = (function () {
                 messages: { required: 'Required.' }
             }
         });
-        this.ds.getCategories().subscribe(function (cats) {
-            _this.cats = cats;
-        });
+        this.ds.getCategories().subscribe(function (cats) { return _this.cats = cats; });
     };
-    CatListComponent.prototype.deteleCat = function (i) {
+    CatListComponent.prototype.deleteCat = function (i) {
         var _this = this;
         var cat = this.cats[i];
-        if (confirm("Are you sure you want to delete " + cat.id + " " + cat.name + "?")) {
+        if (confirm('Are you sure you want to delete ' + cat.id + ' ' + cat.name + '?')) {
             this.ds.deleteCategory(cat.id).subscribe(function (data) {
                 _this.cats[i].status = 'gone';
             });
@@ -1288,7 +1297,9 @@ var CatListComponent = (function () {
             status: ''
         };
         this.ds.saveCategory(cat).subscribe(function (data) {
-            _this.router.navigate(['/daily/cats']);
+            _this.cats.unshift(data.daily_cat);
+            _this.catForm.reset();
+            //this.router.navigate(['/daily/cats']);
         });
     };
     return CatListComponent;
@@ -1356,15 +1367,15 @@ var TransDetailComponent = (function () {
     TransDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
         var now = new Date();
-        var today = this.datepipe.transform(now, "yyyy-MM-dd");
+        var today = this.datepipe.transform(now, 'yyyy-MM-dd');
         //let seconds = this.datepipe.transform(now, "HH:mm:ss");
         this.transForm = this.ems.build({
             date: {
-                control: [today, [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].pattern("[0-9]{4}-[0-9]{2}-[0-9]{2}")]],
+                control: [today, [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].pattern('[0-9]{4}-[0-9]{2}-[0-9]{2}')]],
                 messages: { required: 'Required.' }
             },
             time: {
-                control: ['', [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].pattern("[0-9]{2}:[0-9]{2}:[0-9]{2}")]],
+                control: ['', [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].pattern('[0-9]{2}:[0-9]{2}:[0-9]{2}')]],
                 messages: { required: 'Required.', pattern: 'Must have valid time format (HH:mm:ss).' }
             },
             cat_id: {
@@ -1372,7 +1383,7 @@ var TransDetailComponent = (function () {
                 messages: { required: 'Required.' }
             },
             value: {
-                control: ['', [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].pattern("[\-+]?[0-9]+(\.[0-9]+)?")]],
+                control: ['', [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].pattern('[\-+]?[0-9]+(\.[0-9]+)?')]],
                 messages: { required: 'Required.', pattern: 'Must be numeric.' }
             },
             type: {
@@ -1462,7 +1473,7 @@ var TransListComponent = (function () {
         var _this = this;
         var tran = this.trans[i];
         var time = tran.event_date.substr(11);
-        if (confirm("Are you sure you want to delete " + time + " " + tran.category + "(" + tran.value + ")?")) {
+        if (confirm('Are you sure you want to delete ' + time + ' ' + tran.category + '(' + tran.value + ')?')) {
             this.ds.deleteTransaction(tran.id).subscribe(function (data) {
                 _this.trans[i].status = 'gone';
             });
@@ -1470,7 +1481,7 @@ var TransListComponent = (function () {
     };
     TransListComponent.prototype.onAnimDone = function ($event, i) {
         if ($event.toState == 'gone') {
-            console.log("TransListComponent.onAnimDone", $event, i);
+            console.log('TransListComponent.onAnimDone', $event, i);
             this.trans.splice(i, 1);
         }
     };
@@ -1488,13 +1499,13 @@ var TransListComponent = (function () {
         now.setMinutes(0);
         now.setSeconds(0);
         now.setMilliseconds(0);
-        var today = this.datepipe.transform(now, "yyyy-MM-dd");
+        var today = this.datepipe.transform(now, 'yyyy-MM-dd');
         if (today == date)
             return 'Today';
-        var yesterday = this.datepipe.transform(now.valueOf() - this.DAY, "yyyy-MM-dd");
+        var yesterday = this.datepipe.transform(now.valueOf() - this.DAY, 'yyyy-MM-dd');
         if (yesterday == date)
             return 'Yesterday';
-        var dbef = this.datepipe.transform(now.valueOf() - 2 * this.DAY, "yyyy-MM-dd");
+        var dbef = this.datepipe.transform(now.valueOf() - 2 * this.DAY, 'yyyy-MM-dd');
         if (dbef == date)
             return 'Day Before Yesterday';
         return date;
@@ -1505,13 +1516,13 @@ var TransListComponent = (function () {
         now.setMinutes(0);
         now.setSeconds(0);
         now.setMilliseconds(0);
-        var today = this.datepipe.transform(now, "yyyy-MM-dd");
+        var today = this.datepipe.transform(now, 'yyyy-MM-dd');
         if (today == date)
             return true;
-        var yesterday = this.datepipe.transform(now.valueOf() - this.DAY, "yyyy-MM-dd");
+        var yesterday = this.datepipe.transform(now.valueOf() - this.DAY, 'yyyy-MM-dd');
         if (yesterday == date)
             return true;
-        var dbef = this.datepipe.transform(now.valueOf() - 2 * this.DAY, "yyyy-MM-dd");
+        var dbef = this.datepipe.transform(now.valueOf() - 2 * this.DAY, 'yyyy-MM-dd');
         if (dbef == date)
             return true;
         else
@@ -1590,7 +1601,7 @@ var UaQuickInputBase = (function (_super) {
         return _this;
     }
     UaQuickInputBase.prototype.onClickButton = function (btn, $event) {
-        console.log("UaQuickInputBase.onClickButton", btn, $event);
+        console.log('UaQuickInputBase.onClickButton', btn, $event);
         this.clickButton.emit(btn);
     };
     return UaQuickInputBase;
@@ -2106,7 +2117,7 @@ var SignupComponent = (function () {
         this.active = false;
     }
     SignupComponent.prototype.ngOnInit = function () {
-        console.log("SignupComponent.ngOnInit");
+        console.log('SignupComponent.ngOnInit');
         this.signupForm = this.ems.build({
             username: {
                 control: ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* Validators */].required, this.uav.usernameExists()],
@@ -2121,7 +2132,7 @@ var SignupComponent = (function () {
                 messages: { required: 'Required.' }
             },
             confirmPassword: {
-                control: ['', [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* Validators */].required, this.uav.requiresConfirm("password")]],
+                control: ['', [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* Validators */].required, this.uav.requiresConfirm('password')]],
                 messages: { required: 'Required.', requiresConfirm: 'Password Mismatch.' }
             },
             fname: {
@@ -2312,12 +2323,12 @@ var UserListComponent = (function () {
         var user = this.users[index];
         this.userService.deleteUser(user.id).subscribe(function () {
             //this.users.splice(index, 1);
-            _this.users[index].status = "gone";
+            _this.users[index].status = 'gone';
         });
     };
     UserListComponent.prototype.searchUsers = function () {
         var _this = this;
-        console.log("UserListComponent.searchUsers", this.searchText);
+        console.log('UserListComponent.searchUsers', this.searchText);
         this.userService.getUsers(this.searchText).subscribe(function (users) { return _this.users = users; }, function (error) { return _this.errorMessage = error; });
     };
     return UserListComponent;
@@ -2394,7 +2405,7 @@ var TestComponent = (function () {
                 messages: { required: 'Required.' }
             },
             confirmPassword: {
-                control: ['', [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* Validators */].required, this.uav.requiresConfirm("password")]],
+                control: ['', [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* Validators */].required, this.uav.requiresConfirm('password')]],
                 messages: { required: 'Required.', requiresConfirm: 'Password mismatch.' }
             },
             myTime: {
@@ -2406,7 +2417,7 @@ var TestComponent = (function () {
                 messages: { required: 'Required.' }
             }
         });
-        this.testForm.get('myinput').setAsyncValidators([this.uav.usernameExists("except", 2000)]);
+        this.testForm.get('myinput').setAsyncValidators([this.uav.usernameExists('except', 2000)]);
         this.mylistOptions = [
             { value: 1, text: 'Bus/Metro' },
             { value: 2, text: 'Breakfast' },
@@ -3383,7 +3394,7 @@ var UaQuickTimeInput = UaQuickTimeInput_1 = (function (_super) {
     };
     return UaQuickTimeInput;
 }(__WEBPACK_IMPORTED_MODULE_3__ua_quick_input_base__["a" /* UaQuickInputBase */]));
-UaQuickTimeInput.TIME_FORMAT = "HH:mm:ss";
+UaQuickTimeInput.TIME_FORMAT = 'HH:mm:ss';
 UaQuickTimeInput.MIN = 1000 * 60;
 UaQuickTimeInput = UaQuickTimeInput_1 = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Y" /* Component */])({
@@ -4336,7 +4347,7 @@ module.exports = "<div class=\"row\">\r\n  <div class=\"col-sm-3\"></div>\r\n  <
 /* 248 */
 /***/ (function(module, exports) {
 
-module.exports = "<form>\n  <div class=\"input-group\">\n    <span class=\"input-group-btn\">\n      <a class=\"btn btn-primary\" [routerLink]=\"['/daily/cat/add']\">\n        <i class=\"glyphicon glyphicon-plus\"></i> Add\n      </a>\n    </span>\n    <input type=\"text\" class=\"form-control\" placeholder=\"Search...\" />\n    <span class=\"input-group-btn\">\n      <button type=\"submit\" class=\"btn btn-primary\">\n        <i class=\"glyphicon glyphicon-search\"></i>\n      </button>\n    </span>\n  </div>\n</form>\n<form [formGroup]=\"catForm\" (ngSubmit)=\"saveCat(catForm.value)\">\n  <div class=\"row\">\n    <div class=\"col-sm-4\">\n      <ua-input label=\"Category Name\"\n        formControlName=\"name\"\n        [status]=\"ems.status.name\"\n        [message]=\"ems.message.name\"></ua-input>\n    </div>\n    <div class=\"col-sm-4\">\n      <ua-select label=\"Hyper Category\"\n        formControlName=\"hypercat\"\n        [status]=\"ems.status.hypercat\"\n        [message]=\"ems.message.hypercat\"\n        [options]=\"hypercats\"></ua-select>\n    </div>\n    <div class=\"col-sm-4\">\n      <button class=\"btn btn-primary form-control\" type=\"submit\">\n        <i class=\"glyphicon glyphicon-save\"></i>\n        Add New\n      </button>\n    </div>\n  </div>\n</form>\n<pre>{{ catForm.value | json }}</pre>\n<div class=\"ua-record-row\" *ngFor=\"let cat of cats; let i = index\" [@record]=\"cat.status\">\n  <div class=\"btn-group btn-group-lg\" role=\"group\">\n    <a class=\"btn btn-danger\" (click)=\"deleteCat(i)\"><i class=\"glyphicon glyphicon-trash\"></i></a>\n    <a class=\"btn btn-warning\" [routerLink]=\"['/daily/cat',cat.id]\"><i class=\"glyphicon glyphicon-pencil\"></i></a>\n    <div class=\"btn btn-default\">\n      <span>{{cat.id}}</span>\n      <span>{{cat.name}}</span>\n    </div>\n  </div>\n</div>"
+module.exports = "<form>\n  <div class=\"input-group\">\n    <span class=\"input-group-btn\">\n      <a class=\"btn btn-primary\" [routerLink]=\"['/daily/cat/add']\">\n        <i class=\"glyphicon glyphicon-plus\"></i> Add\n      </a>\n    </span>\n    <input type=\"text\" class=\"form-control\" placeholder=\"Search...\" />\n    <span class=\"input-group-btn\">\n      <button type=\"submit\" class=\"btn btn-primary\">\n        <i class=\"glyphicon glyphicon-search\"></i>\n      </button>\n    </span>\n  </div>\n</form>\n<form [formGroup]=\"catForm\" (ngSubmit)=\"saveCat(catForm.value)\">\n  <div class=\"row\">\n    <div class=\"col-sm-5\">\n      <ua-input label=\"Category Name\"\n        formControlName=\"name\"\n        [status]=\"ems.status.name\"\n        [message]=\"ems.message.name\"></ua-input>\n    </div>\n    <div class=\"col-sm-5\">\n      <ua-select label=\"Hyper Category\"\n        formControlName=\"hypercat\"\n        [status]=\"ems.status.hypercat\"\n        [message]=\"ems.message.hypercat\"\n        [options]=\"hypercats\"></ua-select>\n    </div>\n    <div class=\"col-sm-2\">\n      <div class=\"form-group\">\n        <label>&nbsp;</label>\n        <button class=\"btn btn-primary form-control\" type=\"submit\">\n          <i class=\"glyphicon glyphicon-save\"></i>\n          Save\n        </button>\n      </div>\n    </div>\n  </div>\n</form>\n<pre>{{ catForm.value | json }}</pre>\n<div class=\"ua-record-row\" *ngFor=\"let cat of cats; let i = index\" [@record]=\"cat.status\">\n  <div class=\"btn-group btn-group-lg\" role=\"group\">\n    <button class=\"btn btn-danger\" (click)=\"deleteCat(i)\"><i class=\"glyphicon glyphicon-trash\"></i></button>\n    <a class=\"btn btn-warning\" [routerLink]=\"['/daily/cat',cat.id]\"><i class=\"glyphicon glyphicon-pencil\"></i></a>\n    <div class=\"btn btn-default\">\n      <span>{{cat.id}}</span>\n      <span>{{cat.name}}</span>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 /* 249 */

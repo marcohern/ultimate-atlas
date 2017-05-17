@@ -48,12 +48,11 @@ export class CatListComponent implements OnInit {
         messages: {required: 'Required.'}
       }
     });
-    this.ds.getCategories().subscribe(cats => {
-      this.cats = cats;
-    });
+
+    this.ds.getCategories().subscribe(cats => this.cats = cats);
   }
 
-  deteleCat(i) {
+  deleteCat(i) {
     const cat = this.cats[i];
     if (confirm('Are you sure you want to delete ' +  cat.id + ' ' + cat.name + '?')) {
         this.ds.deleteCategory(cat.id).subscribe(data => {
@@ -69,7 +68,9 @@ export class CatListComponent implements OnInit {
       status: ''
     };
     this.ds.saveCategory(cat).subscribe(data => {
-      this.router.navigate(['/daily/cats']);
+      this.cats.unshift(data.daily_cat);
+      this.catForm.reset();
+      //this.router.navigate(['/daily/cats']);
     });
   }
 

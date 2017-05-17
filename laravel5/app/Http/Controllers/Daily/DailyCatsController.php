@@ -21,7 +21,7 @@ class DailyCatsController extends Controller
      */
     public function index()
     {
-        $cats = DailyCat::get();
+        $cats = DailyCat::query();
         return $cats;
     }
 
