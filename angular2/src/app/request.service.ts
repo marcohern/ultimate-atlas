@@ -85,6 +85,16 @@ export class RequestService {
     return this._get(url, loadscreen);
   }
 
+  public filter(uri:string, filters:any, loadscreen:boolean=true): Observable<any> {
+    let m:Map<string,any> = new Map<string, any>();
+    for (let key in filters) {
+      if (filters[key])
+        m.set(key,filters[key]);
+    }
+    const url = this.cs.mapUrl(uri, EthnicMethod.Query, null, m);
+    return this._get(url, loadscreen);
+  }
+
   public create(uri: string, body: any, loadscreen: boolean = true): Observable<any> {
     const url = this.cs.mapUrl(uri, EthnicMethod.Create, null, new Map<string, any>());
     if (this.cs.get().request.mock)

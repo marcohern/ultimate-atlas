@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { DailyTrans } from '../../../models/daily-trans';
+import { AuthService } from '../../auth/auth.service';
 
 import { DatePipe } from '@angular/common';
 import { DailyService } from '../daily.service';
@@ -16,12 +17,16 @@ import { recordAnimation } from '../../../animations';
 export class TransListComponent implements OnInit {
 
   trans: DailyTrans[];
-  constructor(private ds: DailyService, public datepipe: DatePipe) { }
+  constructor(
+    private ds: DailyService,
+    public datepipe: DatePipe,
+    private auth:AuthService) { }
 
   private DAY: number = 1000 * 60 * 60 * 24;
 
   ngOnInit() {
-    this.ds.getTransactions().subscribe(data => {
+    let user_id = this.auth.getUser().id;
+    this.ds.getTransactions(user_id).subscribe(data => {
       this.trans = data;
     });
   }

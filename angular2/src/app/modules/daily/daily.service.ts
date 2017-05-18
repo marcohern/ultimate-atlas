@@ -20,8 +20,8 @@ export class DailyService {
 
   constructor(private rs: RequestService) { }
 
-  getTransactions() : Observable<DailyTrans[]> {
-    return this.rs.query('/daily_trans')
+  getTransactions(user_id:number) : Observable<DailyTrans[]> {
+    return this.rs.filter('/daily_trans', {user_id:user_id})
       .map((r: Response) => <DailyTrans[]>r.json());
   }
 

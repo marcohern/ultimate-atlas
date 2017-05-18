@@ -9,9 +9,7 @@ use App\Exceptions\BadRequestException;
 use App\User;
 use App\Token;
 use App\PasswordReset;
-use App\Lib\PasswordGenerator;
-use App\Lib\UrlToken;
-use App\Lib\AutoRouter;
+use App\Lib\Hasher;
 use App\Lib\In;
 use App\Mail\ResetPasswordMail;
 
@@ -21,7 +19,7 @@ use Illuminate\Http\Request;
 class ResetPasswordController extends Controller
 {
     public function request(Request $r) {
-        $token = UrlToken::make();
+        $token = Hasher::token();
         $email = $r->input('email');
         
         $user = User::where('email',$email)->first();
@@ -55,8 +53,8 @@ class ResetPasswordController extends Controller
         $user = User::where('email',$pr->email)->first();
         if (!$user) throw new BadRequestException("Set password token email not found.");
 
-        $salt = PasswordGenerator::salt();
-        $password = PasswordGenerator::hash($salt, $r->input('password'));
+        $salt = Hasher::salt();
+        $password = Hasher::password($salt, $r->input('password'));
 
         $af = User::where('id', $user->id)->update([
             'password' => $password,

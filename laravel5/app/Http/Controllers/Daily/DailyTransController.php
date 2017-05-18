@@ -20,10 +20,12 @@ class DailyTransController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $r)
     {
+        $user_id = $r->input('user_id');
+        
         //
-        $trans = DailyTrans::leftJoin('daily_cats', 'daily_trans.cat_id', '=','daily_cats.id')
+        $query = DailyTrans::leftJoin('daily_cats', 'daily_trans.cat_id', '=','daily_cats.id')
             ->select(
                 'daily_trans.*',
                 DB::raw('DATE(daily_trans.event_date) AS edate'),
@@ -32,8 +34,11 @@ class DailyTransController extends Controller
                 DB::raw('YEAR(daily_trans.event_date) AS eyear'),
                 'daily_cats.name AS category',
                 'daily_cats.hypercat')
-            ->orderBy('event_date','DESC')->take(100)
-            ->get();
+            ->orderBy('event_date','DESC')->take(100);
+        if (!empty($user_id)) {
+            $query->where('user_id',$user_id);
+        }
+        $trans = $query->get();
         return $trans;
     }
 
