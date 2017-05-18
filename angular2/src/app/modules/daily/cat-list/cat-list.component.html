@@ -45,7 +45,7 @@
     </div>
   </div>
 </form>
-<pre>{{ catForm.value | json }}</pre>
+<!--pre>{{ catForm.value | json }}</pre!-->
 <div class="ua-record-row" *ngFor="let cat of cats; let i = index" [@record]="cat.status">
   <div class="btn-group btn-group-lg" role="group">
     <button class="btn btn-danger" (click)="deleteCat(i)"><i class="glyphicon glyphicon-trash"></i></button>

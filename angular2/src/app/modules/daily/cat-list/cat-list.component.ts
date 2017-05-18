@@ -28,6 +28,8 @@ export class CatListComponent implements OnInit {
   private hypercats: IOption[];
   private catForm: FormGroup;
   private editIndex:null|number;
+  private edit:boolean;
+  private create:boolean;
 
   ngOnInit() {
 
@@ -68,21 +70,34 @@ export class CatListComponent implements OnInit {
 
   editCat(cat:DailyCat, i:number) {
     this.editIndex=i;
-    this.catForm.setValue(cat);
+    this.catForm.setValue({id:cat.id, name:cat.name,hypercat:cat.hypercat});
   }
 
   saveCat(value) {
-    const cat: DailyCat = {
-      id: (value.id=='') ? null: 0+value.id,
+    console.log("saveCat",value);
+    let edit = (value.id=='') ? false:true;
+
+    let cat: DailyCat = {
+      id: (edit) ? value.id : null,
       name: value.name,
       hypercat: value.hypercat,
       status: ''
     };
+
     this.ds.saveCategory(cat).subscribe(data => {
-      this.cats.unshift(data.daily_cat);
+      if (edit) {
+        this.cats[this.editIndex].id = data.daily_cat.id;
+        this.cats[this.editIndex].name = data.daily_cat.name;
+        this.cats[this.editIndex].hypercat = data.daily_cat.hypercat;
+      } else {
+        this.cats.unshift(data.daily_cat);
+      }
       this.catForm.reset();
       //this.router.navigate(['/daily/cats']);
     });
   }
 
+  clearCat() {
+    this.catForm.reset();
+  }
 }
