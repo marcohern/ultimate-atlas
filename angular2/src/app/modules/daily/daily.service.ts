@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-
 import { Response } from '@angular/http';
+import { DatePipe } from '@angular/common';
 
 import { DailyTrans } from '../../models/daily-trans';
 import { DailyCat } from '../../models/daily-cat';
+import { DailyDay } from '../../models/daily-day';
 import { DailyTransDeleteResponse } from './models/daily-trans-delete-response';
 import { DailyTransSaveResponse } from './models/daily-trans-save-response';
 
@@ -18,7 +19,10 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class DailyService {
 
-  constructor(private rs: RequestService) { }
+  constructor(
+    private rs: RequestService,
+    private dp: DatePipe
+  ) { }
 
   getTransactions(user_id:number) : Observable<DailyTrans[]> {
     return this.rs.filter('/daily_trans', {user_id:user_id})
@@ -50,8 +54,15 @@ export class DailyService {
       .map((r: Response) => <DailyCatDeleteResponse>r.json());
   }
 
-  saveCategory(cat: DailyCat) {
+  saveCategory(cat: DailyCat) : Observable<DailyCatSaveResponse> {
     return this.rs.save('/daily_cats', cat)
       .map((r: Response) => <DailyCatSaveResponse>r.json());
+  }
+
+  getDaysChart(user_id:number, start:Date, end:Date) {
+    let sstart = this.dp.transform(start, "yyyy-MM-dd");
+    let send = this.dp.transform(end, "yyyy-MM-dd");
+    return this.rs.filter('/daily_charts/' + user_id + '/' + sstart + '/' + send,{})
+      .map((r: Response) => <DailyDay[]>r.json());
   }
 }

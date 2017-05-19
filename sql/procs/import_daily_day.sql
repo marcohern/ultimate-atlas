@@ -6,6 +6,7 @@ CREATE PROCEDURE import_daily_day()
 BEGIN
 	DECLARE loStartDate, loOriginDate, loEndDate DATE;
     DECLARE loSummaryExists INT DEFAULT 1;
+	DECLARE loSummaryBuffer INT DEFAULT 3;
     
     SET loOriginDate = (SELECT start FROM daily_summaries WHERE code = 'daily');
     SET loStartDate  = (SELECT MIN(DATE(event_date)) FROM daily_trans);
@@ -18,13 +19,13 @@ BEGIN
     END IF;
     
     IF loStartDate IS NULL THEN
-		SET loStartDate = DATE_ADD(loOriginDate, INTERVAL 1 DAY);
+		SET loStartDate = loOriginDate;
     END IF;
     
     IF loEndDate IS NULL THEN 
-		SET loEndDate = DATE_ADD(NOW(), INTERVAL -3 DAY);
+		SET loEndDate = DATE_ADD(NOW(), INTERVAL -loSummaryBuffer DAY);
 	ELSE
-		SET loEndDate = DATE_ADD(loEndDate, INTERVAL -3 DAY);
+		SET loEndDate = DATE_ADD(loEndDate, INTERVAL -loSummaryBuffer DAY);
 	END IF;
     
     DELETE FROM daily_days WHERE day BETWEEN loStartDate AND loEndDate;

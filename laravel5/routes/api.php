@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::resource('users', 'UserController');
 Route::resource('daily_trans', 'Daily\DailyTransController');
 Route::resource('daily_cats', 'Daily\DailyCatsController');
+Route::get('/daily_charts/{user_id}/{start}/{end}','Daily\DailyChartsController@days');
 
 Route::post('/check_token'           ,'AccountController@check_token');
 Route::post('/signup'                ,'AccountController@signup');
