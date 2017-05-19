@@ -9,7 +9,7 @@ class CreateDailyTables extends Migration
     private function create_daily_trans() {
         Schema::create('daily_trans', function (Blueprint $table) {
             $table->increments('id');
-            $table->datetime('event_date');
+            $table->datetime('event_date')->unique();
             $table->integer('cat_id');
             $table->integer('user_id');
             $table->decimal('value', 20, 2);
@@ -22,7 +22,7 @@ class CreateDailyTables extends Migration
     private function create_daily_cat() {
         Schema::create('daily_cats', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('name',64);
             $table->enum('hypercat',['NONE','TRANSPORT','FOOD','PURCHASES','SORTIE','OTHER'])->default('NONE');
             $table->timestamps();
         });
