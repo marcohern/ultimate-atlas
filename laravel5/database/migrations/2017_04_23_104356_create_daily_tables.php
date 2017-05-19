@@ -48,6 +48,37 @@ class CreateDailyTables extends Migration
         });
     }
 
+    private function create_daily_month() {
+        Schema::create('daily_months', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id');
+            $table->string('yearmonth', 7)->unique();
+            $table->smallInteger('year');
+            $table->tinyInteger('month');
+            $table->decimal('none', 20, 2)->default(0);
+            $table->decimal('transport', 20, 2)->default(0);
+            $table->decimal('food', 20, 2)->default(0);
+            $table->decimal('purchases', 20, 2)->default(0);
+            $table->decimal('sortie', 20, 2)->default(0);
+            $table->decimal('other', 20, 2)->default(0);
+            $table->decimal('input', 20, 2)->default(0);
+            $table->decimal('output', 20, 2)->default(0);
+            $table->decimal('balance', 20, 2)->default(0);
+            $table->timestamps();
+            $table->unique(['year','month']);
+        });
+    }
+
+    private function create_daily_summary() {
+        Schema::create('daily_summaries', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('code',16)->unique();
+            $table->datetime('start');
+            $table->datetime('end')->nullable();
+            $table->timestamps();
+        });
+    }
+
 
     /**
      * Run the migrations.
@@ -59,6 +90,8 @@ class CreateDailyTables extends Migration
         $this->create_daily_cat();
         $this->create_daily_trans();
         $this->create_daily_day();
+        $this->create_daily_month();
+        $this->create_daily_summary();
     }
 
     /**
@@ -71,5 +104,7 @@ class CreateDailyTables extends Migration
         Schema::dropIfExists('daily_trans');
         Schema::dropIfExists('daily_cats');
         Schema::dropIfExists('daily_days');
+        Schema::dropIfExists('daily_months');
+        Schema::dropIfExists('daily_summaries');
     }
 }
