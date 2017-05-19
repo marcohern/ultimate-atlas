@@ -1,4 +1,65 @@
+
 DELIMITER $$
+
+DROP PROCEDURE IF EXISTS backup_all$$
+
+CREATE PROCEDURE backup_all()
+BEGIN
+    CALL backup_users();
+    CALL backup_daily_cats();
+    CALL backup_daily_trans();
+END$$
+
+DELIMITER ;
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS backup_daily_cats$$
+
+CREATE PROCEDURE backup_daily_cats()
+BEGIN
+    DELETE FROM bkc_daily_cats;
+    INSERT INTO bkc_daily_cats 
+		  (id, name, hypercat, created_at, updated_at)
+    SELECT
+		  id, name, hypercat, created_at, updated_at
+	FROM daily_cats;
+END$$
+
+DELIMITER ;
+
+
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS backup_daily_trans$$
+
+CREATE PROCEDURE backup_daily_trans()
+BEGIN
+    DELETE FROM bkc_daily_trans;
+    INSERT INTO bkc_daily_trans 
+		(id, event_date, user_id, cat_id, value, type, created_at, updated_at)
+    SELECT
+		id, event_date, user_id, cat_id, value, type, created_at, updated_at
+	FROM daily_trans;
+END$$
+
+DELIMITER ;
+
+
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS backup_users$$
+
+CREATE PROCEDURE backup_users()
+BEGIN
+    DELETE FROM bkc_users;
+    INSERT INTO bkc_users
+        (id, username, fname, lname, birth, email, role, password, salt, activated, activated_token, remember_token, created_at, updated_at)
+    SELECT 
+        id, username, fname, lname, birth, email, role, password, salt, activated, activated_token, remember_token, created_at, updated_at
+    FROM users;
+END$$
+
+DELIMITER ;DELIMITER $$
 
 DROP PROCEDURE IF EXISTS import_daily_day$$
 
@@ -83,6 +144,66 @@ BEGIN
     END IF;
     
     -- SELECT loOriginDate AS 'origin', loStartDate AS 'start', loEndDate AS 'end';
+END$$
+
+DELIMITER ;
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS restore_all$$
+
+CREATE PROCEDURE restore_all()
+BEGIN
+    CALL restore_users();
+    CALL restore_daily_cats();
+    CALL restore_daily_trans();
+END$$
+
+DELIMITER ;
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS restore_daily_cats$$
+
+CREATE PROCEDURE restore_daily_cats()
+BEGIN
+    
+    INSERT INTO daily_cats 
+		  (id, name, hypercat, created_at, updated_at)
+    SELECT
+		  id, name, hypercat, created_at, updated_at
+	FROM bkc_daily_cats;
+END$$
+
+DELIMITER ;
+
+
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS restore_daily_trans$$
+
+CREATE PROCEDURE restore_daily_trans()
+BEGIN
+    
+    INSERT INTO daily_trans
+        (id, event_date, user_id, cat_id, value, type, created_at, updated_at)
+    SELECT
+        id, event_date, user_id, cat_id, value, type, created_at, updated_at
+    FROM bkc_daily_trans;
+END$$
+
+DELIMITER ;
+
+
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS restore_users$$
+
+CREATE PROCEDURE restore_users()
+BEGIN
+    INSERT INTO users
+        (id, username, fname, lname, birth, email, role, password, salt, activated, activated_token, remember_token, created_at, updated_at)
+    SELECT 
+        id, username, fname, lname, birth, email, role, password, salt, activated, activated_token, remember_token, created_at, updated_at
+    FROM bkc_users;
 END$$
 
 DELIMITER ;
