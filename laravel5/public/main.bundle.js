@@ -287,9 +287,7 @@ var _a, _b;
 /***/ }),
 /* 15 */,
 /* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -400,6 +398,8 @@ var _a;
 //# sourceMappingURL=auth.service.js.map
 
 /***/ }),
+/* 18 */,
+/* 19 */,
 /* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -647,7 +647,7 @@ var _a, _b;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_service__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_service__ = __webpack_require__(17);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthorizedGuard; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -828,7 +828,7 @@ var recordAnimation = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__inputs_inputs_module__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__auth_routes__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__login_login_component__ = __webpack_require__(81);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__auth_service__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__auth_service__ = __webpack_require__(17);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1181,7 +1181,7 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__inputs_error_message_service__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__auth_service__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__auth_service__ = __webpack_require__(17);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1353,7 +1353,8 @@ var _a, _b, _c;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__daily_service__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_auth_service__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__daily_service__ = __webpack_require__(26);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HistoryComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1366,8 +1367,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+var DAY = 1000 * 60 * 60 * 24;
 var HistoryComponent = (function () {
-    function HistoryComponent(ds) {
+    function HistoryComponent(auth, ds) {
+        this.auth = auth;
         this.ds = ds;
         this.displayChart = false;
         this.lineChartData = [
@@ -1399,30 +1403,29 @@ var HistoryComponent = (function () {
                 pointHoverBorderColor: 'rgba(77,83,96,1)'
             },
             {
-                backgroundColor: 'rgba(148,159,177,0.2)',
-                borderColor: 'rgba(148,159,177,1)',
-                pointBackgroundColor: 'rgba(148,159,177,1)',
+                backgroundColor: 'rgba(0,116,107,0.2)',
+                borderColor: 'rgba(0,116,107,1)',
+                pointBackgroundColor: 'rgba(0,116,107,1)',
                 pointBorderColor: '#fff',
                 pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+                pointHoverBorderColor: 'rgba(0,116,107,0.8)'
             },
             {
-                backgroundColor: 'rgba(77,83,96,0.2)',
-                borderColor: 'rgba(77,83,96,1)',
-                pointBackgroundColor: 'rgba(77,83,96,1)',
+                backgroundColor: 'rgba(96,92,168,0.2)',
+                borderColor: 'rgba(96,92,168,1',
+                pointBackgroundColor: 'rgba(96,92,168,1)',
                 pointBorderColor: '#fff',
                 pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(77,83,96,1)'
-            }
-            /*,
-            { // grey
-              backgroundColor: 'rgba(148,159,177,0.2)',
-              borderColor: 'rgba(148,159,177,1)',
-              pointBackgroundColor: 'rgba(148,159,177,1)',
-              pointBorderColor: '#fff',
-              pointHoverBackgroundColor: '#fff',
-              pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+                pointHoverBorderColor: 'rgba(96,92,168,0.8)'
             },
+            {
+                backgroundColor: 'rgba(0,114,188,0.2)',
+                borderColor: 'rgba(0,114,188,1)',
+                pointBackgroundColor: 'rgba(0,114,188,1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(0,114,188,0.8)'
+            } /*,
             { // dark grey
               backgroundColor: 'rgba(77,83,96,0.2)',
               borderColor: 'rgba(77,83,96,1)',
@@ -1452,30 +1455,42 @@ var HistoryComponent = (function () {
     HistoryComponent.prototype.chartHovered = function (e) {
         console.log("chartHovered", e);
     };
-    HistoryComponent.prototype.ngOnInit = function () {
+    HistoryComponent.prototype.loadDays = function (data) {
+        this.lineChartLabels = [];
+        this.lineChartData = [];
+        this.lineChartData = [
+            { label: 'Transport', data: [] },
+            { label: 'Food', data: [] },
+            { label: 'Purchases', data: [] },
+            { label: 'Sortie', data: [] },
+            { label: 'Other', data: [] }
+        ];
+        for (var i in data) {
+            this.lineChartLabels[i] = data[i].day;
+            this.lineChartData[0].data.push(data[i].transport);
+            this.lineChartData[1].data.push(data[i].food);
+            this.lineChartData[2].data.push(data[i].purchases);
+            this.lineChartData[3].data.push(data[i].sortie);
+            this.lineChartData[4].data.push(data[i].other);
+        }
+        this.displayChart = true;
+    };
+    HistoryComponent.prototype.initLastWeek = function () {
         var _this = this;
-        this.ds.getDaysChart(1, new Date(2017, 3, 1), new Date(2017, 3, 30)).subscribe(function (data) {
-            //console.log("Chart Dates",data);
-            _this.lineChartLabels = [];
-            _this.lineChartData = [];
-            _this.lineChartData = [
-                //{label: 'None', data:[]},
-                { label: 'Transport', data: [] },
-                { label: 'Food', data: [] },
-                { label: 'Purchases', data: [] },
-                { label: 'Sortie', data: [] },
-            ];
-            for (var i in data) {
-                //this.lineChartLabels[i] = data[i].day;
-                //this.lineChartData[0].data.push(data[i].none);
-                _this.lineChartData[0].data.push(data[i].transport);
-                _this.lineChartData[1].data.push(data[i].food);
-                _this.lineChartData[2].data.push(data[i].purchases);
-                _this.lineChartData[3].data.push(data[i].sortie);
-                //this.lineChartData[5].data.push(data[i].other);
-            }
-            _this.displayChart = true;
-        });
+        var today = new Date();
+        today.setHours(0);
+        today.setMinutes(0);
+        today.setSeconds(0);
+        today.setMilliseconds(0);
+        var yesterday = new Date(today.valueOf() - 1 * DAY);
+        var weekAgo = new Date(yesterday.valueOf() - 7 * DAY);
+        var user_id = this.auth.getUser().id;
+        console.log("initLastWeek", user_id, weekAgo, yesterday);
+        this.displayChart = false;
+        this.ds.getDaysChart(user_id, weekAgo, yesterday).subscribe(function (data) { return _this.loadDays(data); });
+    };
+    HistoryComponent.prototype.ngOnInit = function () {
+        this.initLastWeek();
     };
     return HistoryComponent;
 }());
@@ -1485,10 +1500,10 @@ HistoryComponent = __decorate([
         template: __webpack_require__(255),
         styles: [__webpack_require__(223)]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__daily_service__["a" /* DailyService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__daily_service__["a" /* DailyService */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__auth_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__auth_auth_service__["a" /* AuthService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__daily_service__["a" /* DailyService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__daily_service__["a" /* DailyService */]) === "function" && _b || Object])
 ], HistoryComponent);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=history.component.js.map
 
 /***/ }),
@@ -1502,7 +1517,7 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__daily_service__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__inputs_error_message_service__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__auth_auth_service__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__auth_auth_service__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__inputs_ua_validators__ = __webpack_require__(21);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TransDetailComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1614,7 +1629,7 @@ var _a, _b, _c, _d, _e, _f, _g;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_auth_service__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_auth_service__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__daily_service__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__animations__ = __webpack_require__(44);
@@ -2794,7 +2809,7 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dyna
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config_service__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_auth_auth_service__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_auth_auth_service__ = __webpack_require__(17);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3043,7 +3058,7 @@ var menu = {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_auth_auth_service__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_auth_auth_service__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config_service__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__menu__ = __webpack_require__(145);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MenuComponent; });
@@ -4560,7 +4575,7 @@ module.exports = "<form>\n  <div class=\"input-group\">\n    <span class=\"input
 /* 255 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-md-12\">\n    <div style=\"display: block;\" *ngIf=\"displayChart\">\n    <canvas baseChart width=\"800\" height=\"400\"\n                [datasets]=\"lineChartData\"\n                [labels]=\"lineChartLabels\"\n                [options]=\"lineChartOptions\"\n                [colors]=\"lineChartColors\"\n                [legend]=\"lineChartLegend\"\n                [chartType]=\"lineChartType\"\n                (chartHover)=\"chartHovered($event)\"\n                (chartClick)=\"chartClicked($event)\"></canvas>\n    </div>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-12\" style=\"margin-bottom: 10px\">\n    <table class=\"table table-responsive table-condensed\">\n      <tr>\n        <th *ngFor=\"let label of lineChartLabels\">{{label}}</th>\n      </tr>\n      <tr *ngFor=\"let d of lineChartData\">\n        <td *ngFor=\"let label of lineChartLabels; let j=index\">{{d && d.data[j]}}</td>\n      </tr>\n    </table>\n    <button *ngIf=\"false\" (click)=\"randomize()\">CLICK</button>\n  </div>\n</div>"
+module.exports = "<div class=\"row\">\n  <div class=\"col-xs-4\">\n    <button class=\"btn btn-primary\">Last Week</button>\n  </div>\n  <div class=\"col-xs-4\">\n    <button class=\"btn btn-primary\">Last Week</button>\n  </div>\n  <div class=\"col-xs-4\">\n    <button class=\"btn btn-primary\">Last Week</button>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-12\">\n    <div style=\"display: block;\" *ngIf=\"displayChart\">\n    <canvas baseChart width=\"800\" height=\"400\"\n                [datasets]=\"lineChartData\"\n                [labels]=\"lineChartLabels\"\n                [options]=\"lineChartOptions\"\n                [colors]=\"lineChartColors\"\n                [legend]=\"lineChartLegend\"\n                [chartType]=\"lineChartType\"\n                (chartHover)=\"chartHovered($event)\"\n                (chartClick)=\"chartClicked($event)\"></canvas>\n    </div>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-12\" style=\"margin-bottom: 10px\">\n    <table class=\"table table-responsive table-condensed\">\n      <tr>\n        <th *ngFor=\"let label of lineChartLabels\">{{label}}</th>\n      </tr>\n      <tr *ngFor=\"let d of lineChartData\">\n        <td *ngFor=\"let label of lineChartLabels; let j=index\">{{d && d.data[j]}}</td>\n      </tr>\n    </table>\n    <button *ngIf=\"false\" (click)=\"randomize()\">CLICK</button>\n  </div>\n</div>"
 
 /***/ }),
 /* 256 */

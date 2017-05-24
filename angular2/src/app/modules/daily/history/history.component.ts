@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AuthService } from '../../auth/auth.service';
 import { DailyService } from '../daily.service';
+
+const DAY = 1000*60*60*24;
 
 @Component({
   selector: 'app-history',
@@ -9,7 +12,10 @@ import { DailyService } from '../daily.service';
 })
 export class HistoryComponent implements OnInit {
 
-  constructor(private ds:DailyService) { }
+
+  constructor(
+    private auth:AuthService,
+    private ds:DailyService) { }
 
   private displayChart:boolean = false;
 
@@ -45,30 +51,29 @@ export class HistoryComponent implements OnInit {
       pointHoverBorderColor: 'rgba(77,83,96,1)'
     },
     { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
+      backgroundColor: 'rgba(0,116,107,0.2)',
+      borderColor: 'rgba(0,116,107,1)',
+      pointBackgroundColor: 'rgba(0,116,107,1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+      pointHoverBorderColor: 'rgba(0,116,107,0.8)'
     },
     { // dark grey
-      backgroundColor: 'rgba(77,83,96,0.2)',
-      borderColor: 'rgba(77,83,96,1)',
-      pointBackgroundColor: 'rgba(77,83,96,1)',
+      backgroundColor: 'rgba(96,92,168,0.2)',
+      borderColor: 'rgba(96,92,168,1',
+      pointBackgroundColor: 'rgba(96,92,168,1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(77,83,96,1)'
-    }
-    /*,
-    { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+      pointHoverBorderColor: 'rgba(96,92,168,0.8)'
     },
+    { // grey
+      backgroundColor: 'rgba(0,114,188,0.2)',
+      borderColor: 'rgba(0,114,188,1)',
+      pointBackgroundColor: 'rgba(0,114,188,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(0,114,188,0.8)'
+    }/*,
     { // dark grey
       backgroundColor: 'rgba(77,83,96,0.2)',
       borderColor: 'rgba(77,83,96,1)',
@@ -102,33 +107,47 @@ export class HistoryComponent implements OnInit {
     console.log("chartHovered",e);
   }
 
-  ngOnInit() {
-    this.ds.getDaysChart(1,new Date(2017,3,1), new Date(2017,3,30)).subscribe(data => {
-    
-      //console.log("Chart Dates",data);
-      this.lineChartLabels=[];
-      this.lineChartData = [];
+  public loadDays(data) {
+    this.lineChartLabels=[];
+    this.lineChartData = [];
 
-      this.lineChartData = [
-        //{label: 'None', data:[]},
-        {label: 'Transport', data:[]},
-        {label: 'Food', data:[]},
-        {label: 'Purchases', data:[]},
-        {label: 'Sortie', data:[]},
-        //{label: 'Other', data:[]}
-      ];
-      
-      for (let i in data) {
-        //this.lineChartLabels[i] = data[i].day;
-        //this.lineChartData[0].data.push(data[i].none);
+    this.lineChartData = [
+      {label: 'Transport', data:[]},
+      {label: 'Food', data:[]},
+      {label: 'Purchases', data:[]},
+      {label: 'Sortie', data:[]},
+      {label: 'Other', data:[]}
+    ];
+
+    for (let i in data) {
+        this.lineChartLabels[i] = data[i].day;
         this.lineChartData[0].data.push(data[i].transport);
         this.lineChartData[1].data.push(data[i].food);
         this.lineChartData[2].data.push(data[i].purchases);
         this.lineChartData[3].data.push(data[i].sortie);
-        //this.lineChartData[5].data.push(data[i].other);
+        this.lineChartData[4].data.push(data[i].other);
       }
-      this.displayChart = true;
-    });
+      this.displayChart=true;
+  }
+
+  public initLastWeek() {
+    let today = new Date();
+    today.setHours(0);
+    today.setMinutes(0);
+    today.setSeconds(0);
+    today.setMilliseconds(0);
+
+    let yesterday = new Date(today.valueOf() - 1*DAY);
+    let weekAgo = new Date(yesterday.valueOf() - 7*DAY);
+    let user_id = this.auth.getUser().id;
+    console.log("initLastWeek",user_id, weekAgo, yesterday);
+    
+    this.displayChart = false;
+    this.ds.getDaysChart(user_id,weekAgo, yesterday).subscribe( data => this.loadDays(data));
+  }
+
+  ngOnInit() {
+    this.initLastWeek();
   }
 
 }
