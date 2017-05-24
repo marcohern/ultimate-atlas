@@ -14,8 +14,24 @@ class CreateDailyTables extends Migration
             $table->integer('user_id');
             $table->decimal('value', 20, 2);
             $table->enum('type',['CASH','DEBIT'])->default('CASH');
+            $table->enum('from',['POCKET','STASH','DEBIT','CREDIT','3RDPARTY','ACCOUNT'])->default('POCKET');
+            $table->enum('to'  ,['POCKET','STASH','DEBIT','CREDIT','3RDPARTY','ACCOUNT'])->default('3RDPARTY');
+            $table->integer('from_acc')->nullable();
+            $table->integer('to_acc')->nullable();
             $table->timestamps();
             $table->index(['user_id','event_date']);
+        });
+    }
+
+    private function create_daily_accs() {
+        Schema::create('daily_accs', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name',64);
+            $table->string('bank',64);
+            $table->string('number',32);
+            $table->enum('type',['SAVINGS','CHECKING'])->default('SAVINGS');
+            $table->decimal('value', 20, 2);
+            $table->timestamps();
         });
     }
 
@@ -87,11 +103,12 @@ class CreateDailyTables extends Migration
      */
     public function up()
     {
+        $this->create_daily_accs();
         $this->create_daily_cat();
-        $this->create_daily_trans();
         $this->create_daily_day();
         $this->create_daily_month();
         $this->create_daily_summary();
+        $this->create_daily_trans();
     }
 
     /**
@@ -101,10 +118,11 @@ class CreateDailyTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('daily_trans');
+        Schema::dropIfExists('daily_accs');
         Schema::dropIfExists('daily_cats');
         Schema::dropIfExists('daily_days');
         Schema::dropIfExists('daily_months');
         Schema::dropIfExists('daily_summaries');
+        Schema::dropIfExists('daily_trans');
     }
 }
