@@ -1374,70 +1374,29 @@ var HistoryComponent = (function () {
         this.auth = auth;
         this.ds = ds;
         this.displayChart = false;
-        this.lineChartData = [
-            //{data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-            { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
-            { data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C' },
-            { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series D' },
-            { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series E' },
-        ];
-        this.lineChartLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-        this.lineChartOptions = {
-            responsive: true
-        };
+        this.lineChartData = [];
+        this.lineChartLabels = [];
+        this.lineChartOptions = { responsive: true };
         this.lineChartColors = [
-            {
-                backgroundColor: 'rgba(148,159,177,0.2)',
-                borderColor: 'rgba(148,159,177,1)',
-                pointBackgroundColor: 'rgba(148,159,177,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-            },
-            {
-                backgroundColor: 'rgba(77,83,96,0.2)',
-                borderColor: 'rgba(77,83,96,1)',
-                pointBackgroundColor: 'rgba(77,83,96,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(77,83,96,1)'
-            },
-            {
-                backgroundColor: 'rgba(0,116,107,0.2)',
-                borderColor: 'rgba(0,116,107,1)',
-                pointBackgroundColor: 'rgba(0,116,107,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(0,116,107,0.8)'
-            },
-            {
-                backgroundColor: 'rgba(96,92,168,0.2)',
-                borderColor: 'rgba(96,92,168,1',
-                pointBackgroundColor: 'rgba(96,92,168,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(96,92,168,0.8)'
-            },
-            {
-                backgroundColor: 'rgba(0,114,188,0.2)',
-                borderColor: 'rgba(0,114,188,1)',
-                pointBackgroundColor: 'rgba(0,114,188,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(0,114,188,0.8)'
-            } /*,
-            { // dark grey
-              backgroundColor: 'rgba(77,83,96,0.2)',
-              borderColor: 'rgba(77,83,96,1)',
-              pointBackgroundColor: 'rgba(77,83,96,1)',
-              pointBorderColor: '#fff',
-              pointHoverBackgroundColor: '#fff',
-              pointHoverBorderColor: 'rgba(77,83,96,1)'
-            }*/
+            this.color(148, 159, 177),
+            this.color(77, 83, 96),
+            this.color(0, 116, 107),
+            this.color(96, 92, 168),
+            this.color(0, 114, 188)
         ];
         this.lineChartLegend = true;
         this.lineChartType = 'line';
     }
+    HistoryComponent.prototype.color = function (r, g, b) {
+        return {
+            backgroundColor: 'rgba(' + r + ',' + g + ',' + b + ',0.2)',
+            borderColor: 'rgba(' + r + ',' + g + ',' + b + ',1)',
+            pointBackgroundColor: 'rgba(' + r + ',' + g + ',' + b + ',1)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgba(' + r + ',' + g + ',' + b + ',0.8)'
+        };
+    };
     HistoryComponent.prototype.randomize = function () {
         var _lineChartData = new Array(this.lineChartData.length);
         for (var i = 0; i < this.lineChartData.length; i++) {
@@ -1482,12 +1441,12 @@ var HistoryComponent = (function () {
         today.setMinutes(0);
         today.setSeconds(0);
         today.setMilliseconds(0);
-        var yesterday = new Date(today.valueOf() - 1 * DAY);
-        var weekAgo = new Date(yesterday.valueOf() - 7 * DAY);
+        var end = new Date(today.valueOf() - 3 * DAY);
+        var start = new Date(end.valueOf() - 20 * DAY);
         var user_id = this.auth.getUser().id;
-        console.log("initLastWeek", user_id, weekAgo, yesterday);
+        console.log("initLastWeek", user_id, start, end);
         this.displayChart = false;
-        this.ds.getDaysChart(user_id, weekAgo, yesterday).subscribe(function (data) { return _this.loadDays(data); });
+        this.ds.getDaysChart(user_id, start, end).subscribe(function (data) { return _this.loadDays(data); });
     };
     HistoryComponent.prototype.ngOnInit = function () {
         this.initLastWeek();
@@ -4575,7 +4534,7 @@ module.exports = "<form>\n  <div class=\"input-group\">\n    <span class=\"input
 /* 255 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-xs-4\">\n    <button class=\"btn btn-primary\">Last Week</button>\n  </div>\n  <div class=\"col-xs-4\">\n    <button class=\"btn btn-primary\">Last Week</button>\n  </div>\n  <div class=\"col-xs-4\">\n    <button class=\"btn btn-primary\">Last Week</button>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-12\">\n    <div style=\"display: block;\" *ngIf=\"displayChart\">\n    <canvas baseChart width=\"800\" height=\"400\"\n                [datasets]=\"lineChartData\"\n                [labels]=\"lineChartLabels\"\n                [options]=\"lineChartOptions\"\n                [colors]=\"lineChartColors\"\n                [legend]=\"lineChartLegend\"\n                [chartType]=\"lineChartType\"\n                (chartHover)=\"chartHovered($event)\"\n                (chartClick)=\"chartClicked($event)\"></canvas>\n    </div>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-12\" style=\"margin-bottom: 10px\">\n    <table class=\"table table-responsive table-condensed\">\n      <tr>\n        <th *ngFor=\"let label of lineChartLabels\">{{label}}</th>\n      </tr>\n      <tr *ngFor=\"let d of lineChartData\">\n        <td *ngFor=\"let label of lineChartLabels; let j=index\">{{d && d.data[j]}}</td>\n      </tr>\n    </table>\n    <button *ngIf=\"false\" (click)=\"randomize()\">CLICK</button>\n  </div>\n</div>"
+module.exports = "<div class=\"row\">\n  <div class=\"col-xs-4\">\n    <button class=\"btn btn-primary\" disabled>Last Month</button>\n  </div>\n  <div class=\"col-xs-4\">\n    <button class=\"btn btn-primary\" disabled>Last Year</button>\n  </div>\n  <div class=\"col-xs-4\">\n    <button class=\"btn btn-primary\" disabled>Last Decade</button>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-12\">\n    <div style=\"display: block;\" *ngIf=\"displayChart\">\n    <canvas baseChart width=\"800\" height=\"400\"\n                [datasets]=\"lineChartData\"\n                [labels]=\"lineChartLabels\"\n                [options]=\"lineChartOptions\"\n                [colors]=\"lineChartColors\"\n                [legend]=\"lineChartLegend\"\n                [chartType]=\"lineChartType\"\n                (chartHover)=\"chartHovered($event)\"\n                (chartClick)=\"chartClicked($event)\"></canvas>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 /* 256 */

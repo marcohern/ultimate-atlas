@@ -11,6 +11,7 @@
 |
 */
 
+Route::get('/daily/{path}', function ($path) { return view('angular2'); });
 Route::get('/signup/activate/{token}' , function ($token) { return view('angular2'); });
 Route::get('/invite/{token}'          , function ($token) { return view('angular2'); });
 Route::get('/reset-password/{token}'  , function ($token) { return view('angular2'); });

@@ -12,76 +12,34 @@ const DAY = 1000*60*60*24;
 })
 export class HistoryComponent implements OnInit {
 
-
   constructor(
     private auth:AuthService,
     private ds:DailyService) { }
 
   private displayChart:boolean = false;
 
-  public lineChartData:Array<any> = [
-    //{data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'},
-    {data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C'},
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series D'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series E'},
-    //{data: [18, 48, 77, 9, 100, 27, 40], label: 'Series F'}
-  ];
+  public lineChartData:Array<any> = [];
 
-  public lineChartLabels:Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  public lineChartOptions:any = {
-    responsive: true
-  };
+  public lineChartLabels:Array<any> = [];
+  public lineChartOptions:any = { responsive: true };
+
+  public color(r:number, g:number, b:number) {
+    return {
+      backgroundColor: 'rgba('+r+','+g+','+b+',0.2)',
+      borderColor: 'rgba('+r+','+g+','+b+',1)',
+      pointBackgroundColor: 'rgba('+r+','+g+','+b+',1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba('+r+','+g+','+b+',0.8)'
+    }
+  }
   
   public lineChartColors:Array<any> = [
-    { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    },
-    { // dark grey
-      backgroundColor: 'rgba(77,83,96,0.2)',
-      borderColor: 'rgba(77,83,96,1)',
-      pointBackgroundColor: 'rgba(77,83,96,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(77,83,96,1)'
-    },
-    { // grey
-      backgroundColor: 'rgba(0,116,107,0.2)',
-      borderColor: 'rgba(0,116,107,1)',
-      pointBackgroundColor: 'rgba(0,116,107,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(0,116,107,0.8)'
-    },
-    { // dark grey
-      backgroundColor: 'rgba(96,92,168,0.2)',
-      borderColor: 'rgba(96,92,168,1',
-      pointBackgroundColor: 'rgba(96,92,168,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(96,92,168,0.8)'
-    },
-    { // grey
-      backgroundColor: 'rgba(0,114,188,0.2)',
-      borderColor: 'rgba(0,114,188,1)',
-      pointBackgroundColor: 'rgba(0,114,188,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(0,114,188,0.8)'
-    }/*,
-    { // dark grey
-      backgroundColor: 'rgba(77,83,96,0.2)',
-      borderColor: 'rgba(77,83,96,1)',
-      pointBackgroundColor: 'rgba(77,83,96,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(77,83,96,1)'
-    }*/
+    this.color(148,159,177),
+    this.color( 77, 83, 96),
+    this.color(  0,116,107),
+    this.color( 96, 92,168),
+    this.color(  0,114,188)
   ];
   public lineChartLegend:boolean = true;
   public lineChartType:string = 'line';
@@ -137,13 +95,13 @@ export class HistoryComponent implements OnInit {
     today.setSeconds(0);
     today.setMilliseconds(0);
 
-    let yesterday = new Date(today.valueOf() - 1*DAY);
-    let weekAgo = new Date(yesterday.valueOf() - 7*DAY);
+    let end = new Date(today.valueOf() - 3*DAY);
+    let start = new Date(end.valueOf() - 20*DAY);
     let user_id = this.auth.getUser().id;
-    console.log("initLastWeek",user_id, weekAgo, yesterday);
+    console.log("initLastWeek",user_id, start, end);
     
     this.displayChart = false;
-    this.ds.getDaysChart(user_id,weekAgo, yesterday).subscribe( data => this.loadDays(data));
+    this.ds.getDaysChart(user_id, start, end).subscribe( data => this.loadDays(data));
   }
 
   ngOnInit() {
