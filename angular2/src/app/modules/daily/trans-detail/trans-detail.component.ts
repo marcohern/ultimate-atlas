@@ -28,6 +28,13 @@ export class TransDetailComponent implements OnInit {
     { value: 'CASH', text: 'Cash' },
     { value: 'DEBIT', text: 'Debit' }
   ];
+  accounts = [
+    { value: 'POCKET', text:'My Pocket' },
+    { value: 'STACH', text:'My Stash' },
+    { value: 'DEBIT', text:'Main Debit Account' },
+    { value: 'CREDIT', text:'Main Credit Card' },
+    { value: '3RDPARTY', text:'3rd Party' }
+  ];
 
   constructor(
     private ds: DailyService,
@@ -63,6 +70,14 @@ export class TransDetailComponent implements OnInit {
       },
       type: {
         control: ['CASH', Validators.required],
+        messages: {required: 'Required.'}
+      },
+      from: {
+        control: ['POCKET', Validators.required],
+        messages: {required: 'Required.'}
+      },
+      to: {
+        control: ['3RDPARTY', Validators.required],
         messages: {required: 'Required.'}
       }
     });

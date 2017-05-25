@@ -1511,6 +1511,13 @@ var TransDetailComponent = (function () {
             { value: 'CASH', text: 'Cash' },
             { value: 'DEBIT', text: 'Debit' }
         ];
+        this.accounts = [
+            { value: 'POCKET', text: 'My Pocket' },
+            { value: 'STACH', text: 'My Stash' },
+            { value: 'DEBIT', text: 'Main Debit Account' },
+            { value: 'CREDIT', text: 'Main Credit Card' },
+            { value: '3RDPARTY', text: '3rd Party' }
+        ];
     }
     TransDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1536,6 +1543,14 @@ var TransDetailComponent = (function () {
             },
             type: {
                 control: ['CASH', __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required],
+                messages: { required: 'Required.' }
+            },
+            from: {
+                control: ['POCKET', __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required],
+                messages: { required: 'Required.' }
+            },
+            to: {
+                control: ['3RDPARTY', __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* Validators */].required],
                 messages: { required: 'Required.' }
             }
         });
@@ -4540,7 +4555,7 @@ module.exports = "<div class=\"row\">\n  <div class=\"col-xs-4\">\n    <button c
 /* 256 */
 /***/ (function(module, exports) {
 
-module.exports = "<form [formGroup]=\"transForm\" (ngSubmit)=\"saveTrans(transForm.value)\">\r\n  <p>\r\n    <a class=\"btn btn-warning\" [routerLink]=\"['/daily/trans']\"><i class=\"glyphicon glyphicon-arrow-left\"></i> Back</a>\r\n  </p>\r\n  \r\n  <div class=\"row\">\r\n    <div class=\"col-sm-4\">\r\n      <ua-input label=\"Date\"\r\n        formControlName=\"date\"\r\n        [status]=\"ems.status.date\"\r\n        [message]=\"ems.message.date\"></ua-input>\r\n    </div>\r\n    <div class=\"col-sm-8\">\r\n      <ua-quick-time-input label=\"Time\"\r\n        formControlName=\"time\"\r\n        [status]=\"ems.status.time\"\r\n        [message]=\"ems.message.time\"></ua-quick-time-input>\r\n    </div> \r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12\">\r\n      <ua-quick-category-select label=\"Category\"\r\n        formControlName=\"cat_id\"\r\n        [status]=\"ems.status.cat_id\"\r\n        [message]=\"ems.message.cat_id\">\r\n        </ua-quick-category-select>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-6\">\r\n      <ua-input label=\"Value\"\r\n        formControlName=\"value\"\r\n        [status]=\"ems.status.value\"\r\n        [message]=\"ems.message.value\"></ua-input>\r\n    </div>\r\n    <div class=\"col-sm-6\">\r\n      <ua-select label=\"Type\"\r\n        formControlName=\"type\"\r\n        [options]=\"transType\"\r\n        [status]=\"ems.status.type\"\r\n        [message]=\"ems.message.type\">\r\n      </ua-select>\r\n    </div>\r\n  </div>\r\n  <p>\r\n    <button class=\"btn btn-primary btn-lg\" type=\"submit\" [disabled]=\"!transForm.valid\">\r\n      <i class=\"glyphicon glyphicon-floppy-disk\"></i> Save</button>\r\n  </p>\r\n</form>\r\n<pre>{{ transForm.value | json}}</pre>"
+module.exports = "<form [formGroup]=\"transForm\" (ngSubmit)=\"saveTrans(transForm.value)\">\r\n  <p>\r\n    <a class=\"btn btn-warning\" [routerLink]=\"['/daily/trans']\"><i class=\"glyphicon glyphicon-arrow-left\"></i> Back</a>\r\n  </p>\r\n  \r\n  <div class=\"row\">\r\n    <div class=\"col-sm-4\">\r\n      <ua-input label=\"Date\"\r\n        formControlName=\"date\"\r\n        [status]=\"ems.status.date\"\r\n        [message]=\"ems.message.date\"></ua-input>\r\n    </div>\r\n    <div class=\"col-sm-8\">\r\n      <ua-quick-time-input label=\"Time\"\r\n        formControlName=\"time\"\r\n        [status]=\"ems.status.time\"\r\n        [message]=\"ems.message.time\"></ua-quick-time-input>\r\n    </div> \r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12\">\r\n      <ua-quick-category-select label=\"Category\"\r\n        formControlName=\"cat_id\"\r\n        [status]=\"ems.status.cat_id\"\r\n        [message]=\"ems.message.cat_id\">\r\n        </ua-quick-category-select>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-6\">\r\n      <ua-input label=\"Value\"\r\n        formControlName=\"value\"\r\n        [status]=\"ems.status.value\"\r\n        [message]=\"ems.message.value\"></ua-input>\r\n    </div>\r\n    <div class=\"col-sm-6\">\r\n      <ua-select label=\"Type\"\r\n        formControlName=\"type\"\r\n        [options]=\"transType\"\r\n        [status]=\"ems.status.type\"\r\n        [message]=\"ems.message.type\">\r\n      </ua-select>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-6\">\r\n      <ua-select label=\"Account From\"\r\n        formControlName=\"from\"\r\n        [options]=\"accounts\"\r\n        [status]=\"ems.status.from\"\r\n        [message]=\"ems.message.from\"></ua-select>\r\n    </div>\r\n    <div class=\"col-sm-6\">\r\n      <ua-select label=\"Account To\"\r\n        formControlName=\"to\"\r\n        [options]=\"accounts\"\r\n        [status]=\"ems.status.to\"\r\n        [message]=\"ems.message.to\"></ua-select>\r\n    </div>\r\n  </div>\r\n  <p>\r\n    <button class=\"btn btn-primary btn-lg\" type=\"submit\" [disabled]=\"!transForm.valid\">\r\n      <i class=\"glyphicon glyphicon-floppy-disk\"></i> Save</button>\r\n  </p>\r\n</form>\r\n<pre>{{ transForm.value | json}}</pre>"
 
 /***/ }),
 /* 257 */

@@ -42,6 +42,22 @@
       </ua-select>
     </div>
   </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <ua-select label="Account From"
+        formControlName="from"
+        [options]="accounts"
+        [status]="ems.status.from"
+        [message]="ems.message.from"></ua-select>
+    </div>
+    <div class="col-sm-6">
+      <ua-select label="Account To"
+        formControlName="to"
+        [options]="accounts"
+        [status]="ems.status.to"
+        [message]="ems.message.to"></ua-select>
+    </div>
+  </div>
   <p>
     <button class="btn btn-primary btn-lg" type="submit" [disabled]="!transForm.valid">
       <i class="glyphicon glyphicon-floppy-disk"></i> Save</button>

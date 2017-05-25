@@ -68,6 +68,10 @@ class DailyTransController extends Controller
                 'user_id'    => $r->input('user_id'),
                 'value'      => $r->input('value'),
                 'type'       => $r->input('type'),
+                'from'       => $r->input('from'),
+                'to'         => $r->input('to'),
+                'from_acc'   => null,
+                'to_acc'     => null,
 
                 'created_at' => new \Datetime("now")
             ]);
