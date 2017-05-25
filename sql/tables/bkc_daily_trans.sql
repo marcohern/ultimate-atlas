@@ -7,6 +7,10 @@ CREATE TABLE bkc_daily_trans(
     event_date DATETIME NOT NULL,
     value NUMERIC(20,2) NOT NULL,
     type ENUM('CASH','DEBIT') DEFAULT 'CASH',
+    `from` ENUM('POCKET','STASH','DEBIT','CREDIT','3RDPARTY','ACCOUNT') NOT NULL DEFAULT 'POCKET',
+    `to`   ENUM('POCKET','STASH','DEBIT','CREDIT','3RDPARTY','ACCOUNT') NOT NULL DEFAULT '3RDPARTY',
+    from_acc INT NULL,
+    to_acc INT NULL,
     created_at DATETIME NOT NULL,
     updated_at DATETIME NULL
 );
