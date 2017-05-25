@@ -26,12 +26,14 @@ class CreateDailyTables extends Migration
     private function create_daily_accs() {
         Schema::create('daily_accs', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
             $table->string('name',64);
             $table->string('bank',64);
             $table->string('number',32);
             $table->enum('type',['SAVINGS','CHECKING'])->default('SAVINGS');
             $table->decimal('value', 20, 2);
             $table->timestamps();
+            $table->index(['user_id']);
         });
     }
 
