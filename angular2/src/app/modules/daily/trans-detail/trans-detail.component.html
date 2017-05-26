@@ -31,15 +31,11 @@
       <ua-input label="Value"
         formControlName="value"
         [status]="ems.status.value"
-        [message]="ems.message.value"></ua-input>
+        [message]="ems.message.value"
+        (change)="onChangeValue(transForm.value)"></ua-input>
     </div>
     <div class="col-sm-6">
-      <ua-select label="Type"
-        formControlName="type"
-        [options]="transType"
-        [status]="ems.status.type"
-        [message]="ems.message.type">
-      </ua-select>
+      <input type="hidden" formControlName="type" />
     </div>
   </div>
   <div class="row">

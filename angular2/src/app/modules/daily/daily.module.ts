@@ -14,6 +14,7 @@ import { CatListComponent } from './cat-list/cat-list.component';
 import { DailyService } from './daily.service';
 import { UaQuickCategorySelect } from './ua-quick-category-select/ua-quick-category-select.component';
 import { HistoryComponent } from './history/history.component';
+import { AccsListComponent } from './accs-list/accs-list.component';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import { HistoryComponent } from './history/history.component';
     ChartsModule,
     DailyRoutes
   ],
-  declarations: [TransListComponent, TransDetailComponent, UaQuickCategorySelect, CatListComponent, HistoryComponent],
+  declarations: [TransListComponent, TransDetailComponent, UaQuickCategorySelect, CatListComponent, HistoryComponent, AccsListComponent],
   providers: [DailyService, DatePipe],
   exports: [UaQuickCategorySelect]
 })

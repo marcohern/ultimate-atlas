@@ -89,9 +89,24 @@ export class TransDetailComponent implements OnInit {
           time: data.event_date.substr(11),
           cat_id: data.cat_id,
           value: data.value,
-          type: data.type
+          type: data.type,
+          from: data.from,
+          to: data.to
         });
       });
+    }
+  }
+
+  private onChangeValue(value) {
+    let amount = 0+value.value;
+    if (amount != NaN) {
+      if (amount > 0) {
+        this.transForm.controls['from'].setValue('3RDPARTY');
+        this.transForm.controls['to'  ].setValue('POCKET');
+      } else {
+        this.transForm.controls['from'].setValue('POCKET');
+        this.transForm.controls['to'  ].setValue('3RDPARTY');
+      }
     }
   }
 
@@ -104,6 +119,10 @@ export class TransDetailComponent implements OnInit {
       event_date: value.date + ' ' + value.time,
       type: value.type,
       value: value.value,
+      from: value.from,
+      to: value.to,
+      from_acc: null,
+      to_acc: null,
       status: ''
     };
 

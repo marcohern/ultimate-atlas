@@ -8,10 +8,11 @@ use App\Daily\DailyDay;
 
 class DailyChartsController extends Controller
 {
-    public function days($user_id, $start,$end) {
-        $days = DailyDay::where('user_id',$user_id)
-            ->where('day','>=',$start)
-            ->where('day','<=',$end)
+    public function days(Request $r) {
+        
+        $days = DailyDay::where('user_id',$r->input('user_id'))
+            ->where('day','>=',$r->input('start'))
+            ->where('day','<=',$r->input('end'))
             ->orderBy('day','ASC')
             ->get();
         

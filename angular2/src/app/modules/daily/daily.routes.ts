@@ -7,6 +7,7 @@ import { TransListComponent }  from './trans-list/trans-list.component';
 import { TransDetailComponent } from './trans-detail/trans-detail.component';
 import { CatListComponent } from './cat-list/cat-list.component';
 import { HistoryComponent } from './history/history.component';
+import { AccsListComponent } from './accs-list/accs-list.component';
 
 const routes: Routes = [
     { path: 'daily/trans'    , component: TransListComponent  , canActivate: [AuthorizedGuard] },
@@ -15,7 +16,9 @@ const routes: Routes = [
 
     { path: 'daily/cats'     ,  component: CatListComponent   , canActivate: [AuthorizedGuard] },
 
-    { path: 'daily/history'  , component: HistoryComponent, canActivate: [AuthorizedGuard] },
+    { path: 'daily/history'  , component: HistoryComponent    , canActivate: [AuthorizedGuard] },
+    
+    { path: 'daily/accs'     ,  component: AccsListComponent  , canActivate: [AuthorizedGuard] },
 ];
 
 @NgModule({

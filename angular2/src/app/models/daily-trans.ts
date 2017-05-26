@@ -6,6 +6,10 @@ interface IDailyTrans {
     cat_id: number;
     user_id: number;
     value: number;
+    from: string;
+    to:string;
+    from_acc:string;
+    to_acc:string;
     category?: string;
     hypercat?: string;
     edate?: string;
@@ -19,6 +23,10 @@ export class DailyTrans extends Record implements IDailyTrans {
     cat_id: number;
     user_id: number;
     value: number;
+    from: string;
+    to:string;
+    from_acc:string;
+    to_acc:string;
     category?: string;
     hypercat?: string;
     edate?: string;

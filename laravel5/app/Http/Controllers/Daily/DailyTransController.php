@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Daily;
 
 use App\Exceptions\UAException;
 use App\Exceptions\NotFoundException;
+use App\Exceptions\BadRequestException;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
@@ -34,7 +35,7 @@ class DailyTransController extends Controller
                 DB::raw('YEAR(daily_trans.event_date) AS eyear'),
                 'daily_cats.name AS category',
                 'daily_cats.hypercat')
-            ->orderBy('event_date','DESC')->take(100);
+            ->orderBy('event_date','DESC')->take(50);
         if (!empty($user_id)) {
             $query->where('user_id',$user_id);
         }
@@ -133,6 +134,11 @@ class DailyTransController extends Controller
                     'user_id' => $r->input('user_id'),
                     'value' => $r->input('value'),
                     'type' => $r->input('type'),
+
+                    'from'       => $r->input('from'),
+                    'to'         => $r->input('to'),
+                    'from_acc'   => null,
+                    'to_acc'     => null,
 
                     'updated_at' => new \Datetime("now")
                 ]
