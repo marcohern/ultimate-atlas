@@ -28,7 +28,9 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
-        $schedule->command('daily:sumdays')->daily();
+        $schedule->command('daily:sumdays')->daily()
+            ->sendOutputTo(storage_path('daily_sumdays.txt'))
+            ->emailOutputTo('marcohern@gmail.com');
     }
 
     /**

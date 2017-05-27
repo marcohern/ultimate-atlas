@@ -5,6 +5,7 @@ namespace App\Console\Commands\Daily;
 use DB;
 use Daily\DailyTrans;
 use Illuminate\Console\Command;
+use App\Lib\In;
 
 class SummarizeInDaysCommand extends Command
 {
@@ -40,6 +41,7 @@ class SummarizeInDaysCommand extends Command
     public function handle()
     {
         //
+        $this->info(In::now()->format("Y-m-d H:i:s"));
         $this->info('Calling procedure import_daily_day...');
         DB::select("CALL import_daily_day()");
         $this->info('Called! Done!');
