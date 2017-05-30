@@ -1,0 +1,28 @@
+<form [formGroup]="accForm" (ngSubmit)="saveAcc(accForm.value)">
+  <div class="row">
+    <div class="col-sm-12">
+      <ua-select label="Account Type"
+        formControlName="type"
+        [status]="ems.status.type"
+        [message]="ems.message.type"
+        [options]="opType"
+        (change)="onChangeType(accForm.value)"></ua-select>
+    </div>
+  </div>
+  <div *ngIf="moreFields">
+    <div class="row">
+      <div class="col-sm-6">
+        <ua-input label="Display Name"
+          formControlName="name"
+          [status]="ems.status.name"
+          [message]="ems.message.name"></ua-input>
+      </div>
+      <div class="col-sm-6">
+        <ua-input label="Bank Name"
+          formControlName="bank"
+          [status]="ems.status.bank"
+          [message]="ems.message.bank"></ua-input>
+      </div>
+    </div>
+  </div>
+</form>

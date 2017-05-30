@@ -27,10 +27,11 @@ class CreateDailyTables extends Migration
         Schema::create('daily_accs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
+            $table->enum('type',['POCKET','STASH','DEBIT','CREDIT','ACCOUNT'])->default('ACCOUNT');
             $table->string('name',64);
             $table->string('bank',64);
             $table->string('number',32);
-            $table->enum('type',['SAVINGS','CHECKING'])->default('SAVINGS');
+            $table->enum('acctype',['SAVINGS','CHECKING'])->default('SAVINGS');
             $table->decimal('value', 20, 2);
             $table->timestamps();
             $table->index(['user_id']);
