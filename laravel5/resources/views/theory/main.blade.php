@@ -1,0 +1,3 @@
+@extends('theory.layout.theory')
+
+<h1>Main View</h1>

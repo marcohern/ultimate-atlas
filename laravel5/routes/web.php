@@ -13,4 +13,4 @@
 Route::get('/ua'       , function () { return view('angular2'); });
 Route::get('/ua/{path}', function ($path) { return view('angular2'); });
 
-Route::get('/'       , function () { return view('theory.main'); });
+Route::get('/'       , function () { return view('theory/main'); });
