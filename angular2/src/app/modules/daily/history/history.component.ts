@@ -96,7 +96,7 @@ export class HistoryComponent implements OnInit {
     today.setMilliseconds(0);
 
     let end = new Date(today.valueOf() - 3*DAY);
-    let start = new Date(end.valueOf() - 20*DAY);
+    let start = new Date(end.valueOf() - 32*DAY);
     let user_id = this.auth.getUser().id;
     console.log("initLastWeek",user_id, start, end);
     
