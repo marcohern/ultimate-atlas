@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('password',60);
             $table->string('salt',48);
             $table->enum('activated',['TRUE','FALSE'])->default('TRUE');
-            $table->string('activated_token',60)->nullable();
+            $table->string('activated_token',64)->nullable();
             $table->index('activated_token');
             $table->rememberToken();
             $table->timestamps();
