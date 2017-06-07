@@ -9,8 +9,8 @@
         <p>Email: <b>{{$user->email}}</b></p>
         <p>Name: <b>{{$user->fname}} {{$user->lname}}</b></p>
         <p>Click on the following link to activate your account.</p>
-        <a href="{{ URL::to('/') }}/signup/activate/{{$user->activated_token}}">
-            {{ URL::to('/') }}/signup/activate/{{$user->activated_token}}
+        <a href="{{ URL::to('/') }}/ua/signup/activate/{{$user->activated_token}}">
+            {{ URL::to('/') }}/ua/signup/activate/{{$user->activated_token}}
         </a>
     </div>
 </div>
