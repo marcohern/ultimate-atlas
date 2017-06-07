@@ -15,7 +15,7 @@ rename config\database.aws1.php database.php
 rename config\mail.aws1.php mail.php
 
 REM Create ZIP
-7z a ..\output\aws\ua-laravel-vXX.zip -r * .[^.]* -xr!.env.example -xr!zip.bat -xr!config/database.*.php -xr!config/mail.*.php
+7z a ..\output\aws\ua-laravel-vXX.zip -r * .[^.]* -xr!.env.example -xr!zip.*.bat -xr!config\database.*.php -xr!config\mail.*.php
 
 REM Recover PREV Settings
 rename config\database.php database.aws1.php
