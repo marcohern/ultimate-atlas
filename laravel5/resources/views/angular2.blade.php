@@ -2,10 +2,10 @@
 <html lang="{{ config('app.locale') }}">
 <head>
   <meta charset="utf-8">
-  <title>UltimateAtlas</title>
+  <title>{{ config('app.name') }}</title>
   <base href="/ua">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" type="image/png" href="{{ url('favicon.png') }}">
   <style type="text/css">
     #first_loader {
       position: absolute;
@@ -23,10 +23,10 @@
   <ultimate-atlas>
     <div id="first_loader">
       <p>
-        <img src="assets/loaders/spinning-circles.svg" alt="Loading" width="80" />
+        <img src="{{ url('assets/loaders/spinning-circles.svg') }}" alt="Loading" width="80" />
       </p>
       <p>
-        Loading Ultimate Atlas
+        Loading <span>{{ config('app.name') }}</span>
       </p>
     </div>
   </ultimate-atlas>
