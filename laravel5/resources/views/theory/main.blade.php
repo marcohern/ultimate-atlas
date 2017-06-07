@@ -83,30 +83,30 @@
 <section id="three" class="wrapper special">
     <div class="inner">
         <header class="align-center">
-            <h2>Nunc Dignissim</h2>
-            <p>Aliquam erat volutpat nam dui </p>
+            <h2>Another Section</h2>
+            <p>Sop the template had this section, but I'm not sure what to put here...</p>
         </header>
         <div class="flex flex-2">
             <article>
                 <div class="image fit">
-                    <img src="{{ url('assets/theory/images/pic01.jpg') }}" alt="Pic 01" />
+                    <img src="{{ url('assets/theory/images/pic01.jpg') }}" alt="Valley Road Picture" />
                 </div>
                 <header>
-                    <h3>Praesent placerat magna</h3>
+                    <h3>Cool picture of a Road in a Valley</h3>
                 </header>
-                <p>Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor lorem ipsum.</p>
+                <p>It's a really cool picture, maybe I'll leave it here permanently.</p>
                 <footer>
                     <a href="#" class="button special">More</a>
                 </footer>
             </article>
             <article>
                 <div class="image fit">
-                    <img src="{{ url('assets/theory/images/pic02.jpg') }}" alt="Pic 02" />
+                    <img src="{{ url('assets/theory/images/pic02.jpg') }}" alt="Guy who took Valley Road Picture" />
                 </div>
                 <header>
-                    <h3>Fusce pellentesque tempus</h3>
+                    <h3>Guy with a Camera</h3>
                 </header>
-                <p>Sed adipiscing ornare risus. Morbi est est, blandit sit amet, sagittis vel, euismod vel, velit. Pellentesque egestas sem. Suspendisse commodo ullamcorper magna non comodo sodales tempus.</p>
+                <p>I'm no Sherlock Holmes, but I would imagine that this individual is the one who took the picture of the Vaalley Road.</p>
                 <footer>
                     <a href="#" class="button special">More</a>
                 </footer>
