@@ -1540,7 +1540,8 @@ var HistoryComponent = (function () {
             this.color(77, 83, 96),
             this.color(0, 116, 107),
             this.color(96, 92, 168),
-            this.color(0, 114, 188)
+            this.color(0, 114, 188),
+            this.color(158, 11, 15)
         ];
         this.lineChartLegend = true;
         this.lineChartType = 'line';
@@ -1573,6 +1574,7 @@ var HistoryComponent = (function () {
         console.log("chartHovered", e);
     };
     HistoryComponent.prototype.loadDays = function (data) {
+        var transport = 0, food = 0, purchases = 0, sortie = 0, other = 0, total = 0;
         this.lineChartLabels = [];
         this.lineChartData = [];
         this.lineChartData = [
@@ -1580,15 +1582,23 @@ var HistoryComponent = (function () {
             { label: 'Food', data: [] },
             { label: 'Purchases', data: [] },
             { label: 'Sortie', data: [] },
-            { label: 'Other', data: [] }
+            { label: 'Other', data: [] },
+            { label: 'Total', data: [] }
         ];
         for (var i in data) {
+            transport += parseFloat(data[i].transport);
+            food += parseFloat(data[i].food);
+            purchases += parseFloat(data[i].purchases);
+            sortie += parseFloat(data[i].sortie);
+            other += parseFloat(data[i].other);
+            total = transport + food + purchases + sortie + other;
             this.lineChartLabels[i] = data[i].day;
-            this.lineChartData[0].data.push(data[i].transport);
-            this.lineChartData[1].data.push(data[i].food);
-            this.lineChartData[2].data.push(data[i].purchases);
-            this.lineChartData[3].data.push(data[i].sortie);
-            this.lineChartData[4].data.push(data[i].other);
+            this.lineChartData[0].data.push(transport);
+            this.lineChartData[1].data.push(food);
+            this.lineChartData[2].data.push(purchases);
+            this.lineChartData[3].data.push(sortie);
+            this.lineChartData[4].data.push(other);
+            this.lineChartData[5].data.push(total);
         }
         this.displayChart = true;
     };
@@ -1600,7 +1610,7 @@ var HistoryComponent = (function () {
         today.setSeconds(0);
         today.setMilliseconds(0);
         var end = new Date(today.valueOf() - 3 * DAY);
-        var start = new Date(end.valueOf() - 20 * DAY);
+        var start = new Date(end.valueOf() - 32 * DAY);
         var user_id = this.auth.getUser().id;
         console.log("initLastWeek", user_id, start, end);
         this.displayChart = false;

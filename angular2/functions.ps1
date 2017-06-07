@@ -2,7 +2,7 @@
     Write-Host "Deleting files in destination"
     $prefix = "..\laravel5\public"
     Remove-Item -Recurse -Force "$prefix/tapi"
-    Remove-Item -Recurse -Force "$prefix/assets"
+    Remove-Item -Recurse -Force "$prefix/assets/loaders"
     Remove-Item -Force "$prefix/favicon.png"
     Remove-Item -Force "$prefix/*.js"
     Remove-Item -Force "$prefix/*.map"
@@ -15,7 +15,7 @@ function Publish-UABuildFiles() {
     $prefix = ".\dist"
     $dest = "..\laravel5\public"
     Copy-Item -Recurse "$prefix/tapi"  $dest
-    Copy-Item -Recurse "$prefix/assets"  $dest
+    Copy-Item -Recurse -Force "$prefix/assets"  $dest
     Copy-Item "$prefix/favicon.png"  $dest
     Copy-Item "$prefix/*.js"  $dest
     Copy-Item "$prefix/*.map"  $dest

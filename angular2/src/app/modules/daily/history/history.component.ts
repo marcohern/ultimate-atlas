@@ -39,7 +39,8 @@ export class HistoryComponent implements OnInit {
     this.color( 77, 83, 96),
     this.color(  0,116,107),
     this.color( 96, 92,168),
-    this.color(  0,114,188)
+    this.color(  0,114,188),
+    this.color(158, 11, 15)
   ];
   public lineChartLegend:boolean = true;
   public lineChartType:string = 'line';
@@ -66,7 +67,7 @@ export class HistoryComponent implements OnInit {
   }
 
   public loadDays(data) {
-    let transport=0,food=0, purchases=0,sortie=0,other=0;
+    let transport=0,food=0, purchases=0,sortie=0,other=0, total=0;
     this.lineChartLabels=[];
     this.lineChartData = [];
 
@@ -75,7 +76,8 @@ export class HistoryComponent implements OnInit {
       {label: 'Food', data:[]},
       {label: 'Purchases', data:[]},
       {label: 'Sortie', data:[]},
-      {label: 'Other', data:[]}
+      {label: 'Other', data:[]},
+      {label: 'Total', data:[]}
     ];
 
     for (let i in data) {
@@ -84,6 +86,7 @@ export class HistoryComponent implements OnInit {
         purchases += parseFloat(data[i].purchases);
         sortie += parseFloat(data[i].sortie);
         other += parseFloat(data[i].other);
+        total = transport + food + purchases + sortie + other;
 
         this.lineChartLabels[i] = data[i].day;
         this.lineChartData[0].data.push(transport);
@@ -91,6 +94,7 @@ export class HistoryComponent implements OnInit {
         this.lineChartData[2].data.push(purchases);
         this.lineChartData[3].data.push(sortie);
         this.lineChartData[4].data.push(other);
+        this.lineChartData[5].data.push(total);
       }
       this.displayChart=true;
   }
