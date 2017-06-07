@@ -2,15 +2,15 @@
 
 return [
 
-    'driver'     => env('SES_DRIVER'),
-    'host'       => env('SES_HOST'),
-    'port'       => env('SES_PORT'),
-    'encryption' => env('SES_ENCRYPTION'),
-    'username'   => env('SES_USERNAME'),
-    'password'   => env('SES_PASSWORD'),
+    'driver'     => env('MAIL_DRIVER'),
+    'host'       => env('MAIL_HOST'),
+    'port'       => env('MAIL_PORT'),
+    'encryption' => env('MAIL_ENCRYPTION'),
+    'username'   => env('MAIL_USERNAME'),
+    'password'   => env('MAIL_PASSWORD'),
     'from'       => [
-        'address' => env('MAIL_FROM_ADDRESS', 'sender@marcohern.com'),
-        'name'    => env('MAIL_FROM_NAME'   , 'Ultimate Atlas'),
+        'address' => env('MAIL_FROM_ADDRESS'),
+        'name'    => env('MAIL_FROM_NAME'),
     ],
 
     'sendmail' => '/usr/sbin/sendmail -bs',
