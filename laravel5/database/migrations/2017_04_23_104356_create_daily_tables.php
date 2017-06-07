@@ -34,7 +34,7 @@ class CreateDailyTables extends Migration
             $table->enum('acctype',['SAVINGS','CHECKING'])->default('SAVINGS');
             $table->decimal('value', 20, 2);
             $table->timestamps();
-            $table->index(['user_id']);
+            $table->unique(['user_id','type','bank','number']);
         });
     }
 

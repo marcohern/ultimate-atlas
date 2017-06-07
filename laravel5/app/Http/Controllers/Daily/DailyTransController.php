@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Daily\DailyAccs;
 use App\Daily\DailyTrans;
+use App\Lib\In;
 
 class DailyTransController extends Controller
 {
@@ -74,8 +76,10 @@ class DailyTransController extends Controller
                 'from_acc'   => null,
                 'to_acc'     => null,
 
-                'created_at' => new \Datetime("now")
+                'created_at' => In::now()
             ]);
+
+            DailyAccs::updateSnapshots($r->input('user_id'), $r->input('from'), $r->input('to'), 0+$r->input('value'), 0);
 
             $trans = DailyTrans::where('id', $id)->first();
 
@@ -127,6 +131,8 @@ class DailyTransController extends Controller
     {
         //
         try {
+            $trans = DailyTrans::where('id', $id)->first();
+
             $affected = DailyTrans::where('id', $id)
                 ->update([
                     'event_date' => $r->input('event_date'),
@@ -140,9 +146,10 @@ class DailyTransController extends Controller
                     'from_acc'   => null,
                     'to_acc'     => null,
 
-                    'updated_at' => new \Datetime("now")
+                    'updated_at' => In::now()
                 ]
             );
+            
             $trans = DailyTrans::where('id', $id)->first();
             return [
                 'affected' => $affected,
@@ -167,6 +174,9 @@ class DailyTransController extends Controller
         //
         $trans = DailyTrans::where('id',$id)->first();
         if (!$trans) throw new NotFoundException('Daily Transaction not found');
+
+        DailyAccs::updateSnapshots($trans->user_id, $trans->from, $trans->to, -$trans->value, 0);
+
         $affected = DailyTrans::where('id', $id)->delete();
         return [
             'affected' => $affected,

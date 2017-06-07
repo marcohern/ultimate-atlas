@@ -69,6 +69,7 @@ BEGIN
 	LEFT JOIN daily_trans ot ON ot.id = t.id AND ot.cat_id = oc.id
 
 	WHERE t.event_date BETWEEN loStartDate AND loEndDate
+	AND (t.from = 'POCKET' OR t.to = 'POCKET')
 	GROUP BY day, user_id
 	ORDER BY day DESC;
 
