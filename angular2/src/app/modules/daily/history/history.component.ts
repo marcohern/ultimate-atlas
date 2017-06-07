@@ -66,6 +66,7 @@ export class HistoryComponent implements OnInit {
   }
 
   public loadDays(data) {
+    let transport=0,food=0, purchases=0,sortie=0,other=0;
     this.lineChartLabels=[];
     this.lineChartData = [];
 
@@ -78,12 +79,18 @@ export class HistoryComponent implements OnInit {
     ];
 
     for (let i in data) {
+        transport += parseFloat(data[i].transport);
+        food += parseFloat(data[i].food);
+        purchases += parseFloat(data[i].purchases);
+        sortie += parseFloat(data[i].sortie);
+        other += parseFloat(data[i].other);
+
         this.lineChartLabels[i] = data[i].day;
-        this.lineChartData[0].data.push(data[i].transport);
-        this.lineChartData[1].data.push(data[i].food);
-        this.lineChartData[2].data.push(data[i].purchases);
-        this.lineChartData[3].data.push(data[i].sortie);
-        this.lineChartData[4].data.push(data[i].other);
+        this.lineChartData[0].data.push(transport);
+        this.lineChartData[1].data.push(food);
+        this.lineChartData[2].data.push(purchases);
+        this.lineChartData[3].data.push(sortie);
+        this.lineChartData[4].data.push(other);
       }
       this.displayChart=true;
   }
