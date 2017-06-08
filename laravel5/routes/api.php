@@ -17,6 +17,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });*/
 
+Route::resource('countries', 'CountriesController');
+Route::resource('states', 'StatesController');
+Route::resource('cities', 'CitiesController');
 Route::resource('users', 'UserController');
 Route::resource('daily_trans', 'Daily\DailyTransController');
 Route::resource('daily_cats', 'Daily\DailyCatsController');

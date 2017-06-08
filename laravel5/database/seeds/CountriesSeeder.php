@@ -1,0 +1,19 @@
+<?php
+
+use Illuminate\Database\Seeder;
+use App\Country;
+
+class CountriesSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        Country::insert([
+            ['id' => 1, 'name' => 'Colombia', 'iso2' => 'CO']
+        ]);
+    }
+}
