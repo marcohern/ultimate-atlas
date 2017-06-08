@@ -17,20 +17,8 @@ class ImageSeeder extends Seeder
         $path = base_path().'/database/seeds/Images/';
 
         $files = [
-            [
-                'id' => 1,
-                'profile' => 'original',
-                'density' => 'original',
-                'slug' => 'horsehead',
-                'index' => 0,
-                'filename' => '001_horsehead_nebula.jpg',
-                'type' => 'image/jpg',
-                'width' => 0,
-                'height' => 0,
-                'parent_id' => null,
-
-                'created_at' => In::now()
-            ]
+            ['id' => 1, 'slug' => 'horsehead'   , 'filename' => '001_horsehead_nebula.jpg','type' => 'image/jpg'],
+            ['id' => 2, 'slug' => 'eiffel_tower', 'filename' => '002_eiffel_tower.jpg'    ,'type' => 'image/jpg'],
         ];
 
         foreach ($files as $i => $file) {
@@ -40,6 +28,7 @@ class ImageSeeder extends Seeder
             $file['width'] = $size[0];
             $file['height'] = $size[1];
             $file['bytes'] = file_get_contents($filepath);
+            $file['created_at'] = In::now();
 
             $id = Image::insertGetId($file);
         }

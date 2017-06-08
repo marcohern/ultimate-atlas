@@ -11,22 +11,24 @@ use InterventionImage;
 
 class Image extends Model
 {
-    public static function make($slug, $profile, $density, $index) {
+    public static function make($domain, $slug, $profile, $density, $index) {
         
         $imagedata = null;
 
-        $record = Image::where('slug',$slug)
+        $record = Image::where('domain',$domain)
+            ->where('slug',$slug)
             ->where('profile', $profile)
             ->where('density', $density)
             ->where('index'  , $index)
             ->select(['id','type' ,'filename','width','height','bytes'])->first();
         
         if (empty($record)) {
-            $record = Image::where('slug',$slug)
-            ->where('profile', 'original')
-            ->where('density', 'original')
-            ->where('index'  , $index)
-            ->select(['id','type' ,'filename','width','height','bytes'])->first();
+            $record = Image::where('domain',$domain)
+                ->where('slug',$slug)
+                ->where('profile', 'original')
+                ->where('density', 'original')
+                ->where('index'  , $index)
+                ->select(['id','type' ,'filename','width','height','bytes'])->first();
 
             if (empty($record)) throw new NotFoundException("Image not found.");
             $size = null;
@@ -40,14 +42,15 @@ class Image extends Model
             $imagedata = $img->encode('jpg');
 
             Image::insert([
-                'slug' => $slug,
-                'profile' => $profile,
-                'density' => $density,
-                'index' => $index,
-                'filename' => "$slug-$profile-$density-$index.jpg",
-                'type' => 'image/jpg',
-                'width' => $size[0],
-                'height' => $size[1],
+                'domain'   => $domain,
+                'slug'     => $slug,
+                'profile'  => $profile,
+                'density'  => $density,
+                'index'    => $index,
+                'filename' => "$domain-$slug-$index-$profile-$density.jpg",
+                'type'     => 'image/jpg',
+                'width'    => $size[0],
+                'height'   => $size[1],
                 'parent_id' => $record['id'],
                 'bytes' => $imagedata,
                 'created_at' => In::now()

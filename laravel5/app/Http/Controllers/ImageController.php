@@ -15,14 +15,52 @@ class ImageController extends Controller
         $this->middleware('api');
     }
 
-    public function get_image($profile, $density, $slug, $index=0) {
-        //$record = Image::select(['id','type','width','height','bytes'])->first();
-        $img = Image::make($slug, $profile, $density, $index);
+    public function get_image_all($domain, $profile, $density, $slug, $index) {
+        $img = Image::make($domain, $slug, $profile, $density, $index);
 
         $response = Response::make($img);
         $response->header('Content-Type', 'image/jpg');
         return $response;
-        //return [$profile, $density, $slug, Dpi::size($profile,$density)];
+    }
+
+    public function get_image_pds($domain, $profile, $density, $slug) {
+        $img = Image::make($domain, $slug, $profile, $density, 0);
+
+        $response = Response::make($img);
+        $response->header('Content-Type', 'image/jpg');
+        return $response;
+    }
+
+    public function get_image_sdi($domain, $slug, $index) {
+        $img = Image::make($domain, $slug, 'original', 'original', $index);
+
+        $response = Response::make($img);
+        $response->header('Content-Type', 'image/jpg');
+        return $response;
+    }
+
+    public function get_image_sd($domain, $slug) {
+        $img = Image::make($domain, $slug, 'original', 'original', 0);
+
+        $response = Response::make($img);
+        $response->header('Content-Type', 'image/jpg');
+        return $response;
+    }
+
+    public function get_image_si($slug, $index) {
+        $img = Image::make('global', $slug, 'original', 'original', 0);
+
+        $response = Response::make($img);
+        $response->header('Content-Type', 'image/jpg');
+        return $response;
+    }
+
+    public function get_image_s($slug) {
+        $img = Image::make('global', $slug, 'original', 'original', 0);
+
+        $response = Response::make($img);
+        $response->header('Content-Type', 'image/jpg');
+        return $response;
     }
 
     /**

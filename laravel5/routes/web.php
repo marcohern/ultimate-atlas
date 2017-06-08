@@ -11,6 +11,12 @@
 |
 */
 Route::pattern('anything', '[\w\/\-_]+');
+Route::pattern('id'     ,'\d+');
+Route::pattern('index'  ,'\d+');
+Route::pattern('slug'   , '[\w_-]+');
+Route::pattern('domain' , '[\w_-]+');
+Route::pattern('profile', '[\w_-]+');
+Route::pattern('density', '[\w_-]+');
 
 //Email Routes
 /*
@@ -20,8 +26,13 @@ Route::get('/ua/login'                  , function ()       { return view('angul
 */
 
 //Images
-Route::get('/i/{profile}/{density}/{slug}','ImageController@get_image');
-Route::get('/i/{profile}/{density}/{slug}/{index}','ImageController@get_image');
+Route::get('/i/{domain}/{profile}/{density}/{slug}/{index}','ImageController@get_image_all');
+Route::get('/i/{domain}/{slug}/{index}','ImageController@get_image_sdi');
+Route::get('/i/{slug}/{index}','ImageController@get_image_si');
+
+Route::get('/i/{domain}/{profile}/{density}/{slug}','ImageController@get_image_pds');
+Route::get('/i/{domain}/{slug}','ImageController@get_image_sd');
+Route::get('/i/{slug}','ImageController@get_image_s');
 
 //Ultimate Atlas Console
 Route::get('/ua/{anything}', function ($path) { return view('angular2'); });
