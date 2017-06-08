@@ -15,7 +15,7 @@ rename config\database.aws1.php database.php
 rename config\mail.aws1.php mail.php
 
 REM Create ZIP
-7z a ..\output\aws\ua-laravel-vXX.zip -r * .[^.]* -xr!.env.example -xr!zip.*.bat -xr!config\database.*.php -xr!config\mail.*.php
+7z a ..\output\aws\ua-laravel-vXX.zip -r * .[^.]* -xr!.env.example -xr!zip.*.bat -xr!config\database.*.php -xr!config\mail.*.php -xr!database\seeds -xr!database\migrations -xr!build_number.txt -xr!version_number.txt
 
 REM Recover PREV Settings
 rename config\database.php database.aws1.php
@@ -26,6 +26,7 @@ rename config\mail.tmp.php mail.php
 
 REM Manage Build
 set /p Build=<build_number.txt
+set /p Version=<version_number.txt
 set /a "Build=%Build%+1"
-rename ..\output\aws\ua-laravel-vXX.zip ua-laravel-v%Build%.%RANDOM%.zip
+rename ..\output\aws\ua-laravel-vXX.zip ua-laravel-v%Version%.%Build%.%RANDOM%.zip
 echo %Build% > build_number.txt
