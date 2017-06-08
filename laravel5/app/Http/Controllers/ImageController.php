@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use App\Lib\Dpi;
 use App\Image;
+use InterventionImage;
 
 class ImageController extends Controller
 {
@@ -13,9 +15,14 @@ class ImageController extends Controller
         $this->middleware('api');
     }
 
-    public function get_image($profile, $density, $slug) {
-        $record = Image::select(['id','type','width','height','bytes'])->first();
-        
+    public function get_image($profile, $density, $slug, $index=0) {
+        //$record = Image::select(['id','type','width','height','bytes'])->first();
+        $img = Image::make($slug, $profile, $density, $index);
+
+        $response = Response::make($img);
+        $response->header('Content-Type', 'image/jpg');
+        return $response;
+        //return [$profile, $density, $slug, Dpi::size($profile,$density)];
     }
 
     /**
@@ -58,11 +65,10 @@ class ImageController extends Controller
      */
     public function show($id)
     {
-        $record = Image::where('id',$id)->select(['id','type','filename','width','height','bytes'])->first();
-        $img = \InterventionImage::make($record['bytes']);
+        $record = Image::where('id',$id)->select(['type','filename','width','height','bytes'])->first();
         
-        $response = Response::make($img->encode('jpg'));
-        $response->header('Content-Type', 'image/jpg');
+        $response = Response::make($record['bytes']);
+        $response->header('Content-Type', $record['type']);
         return $response;
     }
 

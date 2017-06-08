@@ -19,6 +19,11 @@ Route::get('/ua/signup/activate/{token}', function ($token) { return view('angul
 Route::get('/ua/login'                  , function ()       { return view('angular2'); });
 */
 
+//Images
+Route::get('/i/{profile}/{density}/{slug}','ImageController@get_image');
+Route::get('/i/{profile}/{density}/{slug}/{index}','ImageController@get_image');
+
+//Ultimate Atlas Console
 Route::get('/ua/{anything}', function ($path) { return view('angular2'); });
 Route::get('/ua'           , function ()      { return view('angular2'); });
 

@@ -2,6 +2,7 @@
 
 return [
     '_pivot_density' => 160,
+    'default' => 'original',
     '_densities' => [
         //           dpi   x
         'ldpi'    => [120, 0.75],
