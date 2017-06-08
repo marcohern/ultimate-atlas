@@ -3,7 +3,7 @@
 delete_build_files() {
     echo "\033[1;32mDeleting files in destination \033[0m"
     rm -rf ../laravel5/public/tapi
-    rm -rf ../laravel5/public/assets
+    rm -rf ../laravel5/public/assets/loaders
     rm -f  ../laravel5/public/favicon.png
     rm -f  ../laravel5/public/*.js
     rm -f  ../laravel5/public/glyphicons-*
@@ -17,7 +17,7 @@ send_build_files() {
     cp ./dist/glyphicons-* ../laravel5/public
     cp ./dist/*.json       ../laravel5/public
     ditto ./dist/tapi      ../laravel5/public/tapi
-    ditto ./dist/assets    ../laravel5/public/assets
+    ditto ./dist/assets/loaders    ../laravel5/public/assets/loaders
 }
 
 build_files_dev() {
