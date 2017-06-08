@@ -1,0 +1,5 @@
+version: 1
+cron:
+ - name: "Do some work as a TEST"
+   url: "/api/dowork"
+   schedule: "0 0 * * *"
