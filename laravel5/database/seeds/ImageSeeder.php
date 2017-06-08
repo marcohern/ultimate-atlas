@@ -39,12 +39,9 @@ class ImageSeeder extends Seeder
 
             $file['width'] = $size[0];
             $file['height'] = $size[1];
+            $file['bytes'] = file_get_contents($filepath);
 
             $id = Image::insertGetId($file);
-
-            $data = addslashes(file_get_contents($filepath));
-
-            DB::statement("UPDATE images SET bytes = '$data' WHERE id = $id");
         }
     }
 }

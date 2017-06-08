@@ -56,6 +56,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * By Marco
+         */
+         
+        Intervention\Image\ImageServiceProvider::class,
     ],
 
     'aliases' => [
@@ -93,6 +98,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+
+        'InterventionImage' => Intervention\Image\Facades\Image::class,
 
     ],
 

@@ -21,6 +21,10 @@ Route::resource('countries', 'CountriesController');
 Route::resource('states', 'StatesController');
 Route::resource('cities', 'CitiesController');
 Route::resource('users', 'UserController');
+Route::resource('image', 'ImageController');
+
+Route::get('/i/{profile}/{density}/{slug}','ImageController@get_image');
+
 Route::resource('daily_trans', 'Daily\DailyTransController');
 Route::resource('daily_cats', 'Daily\DailyCatsController');
 Route::resource('daily_accs', 'Daily\DailyAccsController');
