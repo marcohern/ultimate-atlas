@@ -57,16 +57,18 @@ class Handler extends ExceptionHandler
     }
 
     private function renderJsonError($request, Exception $exception, $includeData=false) {
-        $code = (empty($exception->getCode())) ? 400 : 0+$exception->getCode();
-        $errCode=0;
-        if ($code < 100 || $code > 699) {
-            $errCode = $code;
-            $code = 400;
+        
+        $httpCode = 400;
+        $errCode = $exception->getCode();
+
+        if ($exception instanceof UAException) {
+            $httpCode = $errCode;
         }
+
         $error = [
             'type' => get_class($exception),
             'message' => $exception->getMessage(),
-            'code' => $code,
+            'httpCode' => $httpCode,
             'errCode' => $errCode,
             'trace' => $exception->getTrace(),
             'inner' => $this->exceptionToJson($exception->getPrevious())
@@ -79,7 +81,7 @@ class Handler extends ExceptionHandler
         if ($includeData) {
             $req['data'] = $request->all();
         }
-        return response()->json(['error' => $error, 'request' => $req], $code);
+        return response()->json(['error' => $error, 'request' => $req], $httpCode);
     }
 
     /**
@@ -92,9 +94,6 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         if ($request->expectsJson()) {
-            if ($exception instanceof UnauthorizedException)
-                return $this->renderJsonError($request, $exception);
-
             return $this->renderJsonError($request, $exception, false);
         }
         return parent::render($request, $exception);

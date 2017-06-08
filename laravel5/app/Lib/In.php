@@ -19,4 +19,8 @@ class In {
     public static function passwordResetTokenPeriod() {
         return self::days(2);
     }
+
+    public static function lastDate() {
+        return new \Datetime("9999-12-31 23:59:59");
+    }
 }
