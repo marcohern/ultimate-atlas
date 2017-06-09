@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Router } from '@angular/router';
 
 import { User } from '../../models/user';
 import { LoginResponse } from './models/login-response';
@@ -20,15 +21,18 @@ export class AuthService {
   private tokenStg = 'com.marcohern.ultimate-atlas.auth.token';
 
   public authenticated = false;
+  public checking = false;
   private user: User = null;
   private token: Token = null;
 
   constructor(
-    private rs: RequestService) { }
+    private rs: RequestService,
+    private router: Router) { }
 
   public clearToken() {
     this.rs.clearToken();
     this.authenticated = false;
+    this.checking = false;
     this.user = null;
     this.token = null;
 
@@ -58,12 +62,16 @@ export class AuthService {
     if (userJson && tokenJson) {
       this.user = <User> JSON.parse(userJson);
       const localToken: Token = <Token> JSON.parse(tokenJson);
-
+      this.checking = true;
       this.rs.post('/check_token', {token: localToken.token})
         .map((r: Response) => <Token>r.json().token)
+        .do(() => this.checking = false)
         .subscribe(
           data => this.updateToken(data),
-          error => this.clearToken()
+          error => {
+            this.clearToken();
+            this.router.navigate['/login'];
+          }
         );
     } else {
       this.clearToken();
@@ -91,6 +99,10 @@ export class AuthService {
 
   public isAuthenticated(): boolean {
     return this.authenticated;
+  }
+
+  public isChecking(): boolean {
+    return this.checking;
   }
 
   public getUser(): User {

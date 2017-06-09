@@ -38,8 +38,8 @@ class AccountController extends Controller
         if (!$token) throw new NotFoundException("Token not found.");
         else {
             Token::where('id',$token->id)->update([
-                'expires' => (new \Datetime("now"))->add(new \DateInterval("P2D")),
-                'updated_at' => new \Datetime("now")
+                'expires' => In::loginTokenPeriod(),
+                'updated_at' => In::now()
             ]);
         }
         return ['token' => $token];
@@ -59,7 +59,7 @@ class AccountController extends Controller
             'activated_token' => null,
             'activated' => 'TRUE',
             
-            'updated_at' => new \Datetime("now")
+            'updated_at' => In::now()
         ]);
         $user = User::where('id', $user->id)->first();
         Mail::to($user->email)->send(new SignupActivatedMail($user));
@@ -91,7 +91,7 @@ class AccountController extends Controller
             'activated' => 'FALSE',
             'activated_token' => $at,
 
-            'created_at' => new \Datetime("now")
+            'created_at' => In::now()
         ]);
 
         $user = User::where('id',$id)->first();
