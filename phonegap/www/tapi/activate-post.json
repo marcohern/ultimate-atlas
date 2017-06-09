@@ -1,0 +1,18 @@
+{
+  "affected": 1,
+  "activated": true,
+  "user": {
+    "id": 9999,
+    "username": "mockuser",
+    "fname": "Mock",
+    "lname": "User",
+    "gender": "M",
+    "birth": "1980-10-15",
+    "email": "mockuser@mail.com",
+    "role": "ADMIN",
+    "activated": "TRUE",
+    "activated_token": null,
+    "created_at": null,
+    "updated_at": "2017-04-27 21:51:51"
+  }
+}

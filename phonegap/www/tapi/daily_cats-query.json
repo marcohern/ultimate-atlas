@@ -1,0 +1,240 @@
+[
+  {
+    "id": 1,
+    "name": "Bus/Metro",
+    "hypercat": "TRANSPORT",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 2,
+    "name": "Café",
+    "hypercat": "FOOD",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 3,
+    "name": "Dispensador",
+    "hypercat": "FOOD",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 4,
+    "name": "Desayuno",
+    "hypercat": "FOOD",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 5,
+    "name": "Pos-Desayuno",
+    "hypercat": "FOOD",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 6,
+    "name": "Almuerzo",
+    "hypercat": "FOOD",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 7,
+    "name": "Pos-Almuerzo",
+    "hypercat": "FOOD",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 8,
+    "name": "Comida",
+    "hypercat": "FOOD",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 9,
+    "name": "Pos-Comida",
+    "hypercat": "FOOD",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 10,
+    "name": "Compras Almacen",
+    "hypercat": "PURCHASES",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 11,
+    "name": "Trago + Comida",
+    "hypercat": "SORTIE",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 12,
+    "name": "Cover",
+    "hypercat": "OTHER",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 13,
+    "name": "Cine",
+    "hypercat": "OTHER",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 14,
+    "name": "Limosna",
+    "hypercat": "OTHER",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 15,
+    "name": "Monedas",
+    "hypercat": "OTHER",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 16,
+    "name": "Regalo",
+    "hypercat": "PURCHASES",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 17,
+    "name": "Aseo",
+    "hypercat": "OTHER",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 18,
+    "name": "Postre",
+    "hypercat": "FOOD",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 19,
+    "name": "Taxi",
+    "hypercat": "TRANSPORT",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 20,
+    "name": "Uber",
+    "hypercat": "TRANSPORT",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 21,
+    "name": "Copias de Llaves",
+    "hypercat": "PURCHASES",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 22,
+    "name": "Sortie",
+    "hypercat": "SORTIE",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 23,
+    "name": "Helado",
+    "hypercat": "FOOD",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 24,
+    "name": "Retiro Cajero",
+    "hypercat": "OTHER",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 25,
+    "name": "Pago Movil",
+    "hypercat": "PURCHASES",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 26,
+    "name": "Donación",
+    "hypercat": "OTHER",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 27,
+    "name": "Cerveza",
+    "hypercat": "SORTIE",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 28,
+    "name": "Pestramo",
+    "hypercat": "OTHER",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 29,
+    "name": "Arriendo",
+    "hypercat": "OTHER",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 30,
+    "name": "Sueldo",
+    "hypercat": "OTHER",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 31,
+    "name": "Pago Citibank",
+    "hypercat": "OTHER",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 32,
+    "name": "Papeleria",
+    "hypercat": "OTHER",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 33,
+    "name": "Notaria",
+    "hypercat": "OTHER",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  },
+  {
+    "id": 34,
+    "name": "Cerveza",
+    "hypercat": "OTHER",
+    "created_at": "2017-04-23 15:07:55",
+    "updated_at": null
+  }
+]

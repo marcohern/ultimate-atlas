@@ -1,0 +1,14 @@
+{
+  "affected": 1,
+  "saved": true,
+  "daily_trans": {
+    "id": 9999,
+    "event_date": "2017-04-23 22:56:21",
+    "cat_id": 1,
+    "user_id": 1,
+    "value": "1800.00",
+    "type": "CASH",
+    "created_at": "2017-04-24 03:57:00",
+    "updated_at": "2017-04-24 03:57:00"
+  }
+}
