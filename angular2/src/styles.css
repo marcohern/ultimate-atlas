@@ -22,3 +22,12 @@
 .glyphicon.ua-icon.ua-icon-bars {
     background-image:url(/assets/loaders/bars.svg);
 }
+
+.mrc_footer {
+  font-size: 10px;
+  font-weight: bold;
+  position:absolute;
+  bottom:0;
+  right:0;
+  padding:6px;
+}

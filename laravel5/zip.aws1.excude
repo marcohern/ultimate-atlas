@@ -1,0 +1,8 @@
+.env.example
+.env.*.txt
+zip.*.bat 
+config\database.*.php
+config\mail.*.php
+database
+test
+version

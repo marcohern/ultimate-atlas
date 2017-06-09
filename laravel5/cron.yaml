@@ -1,5 +1,5 @@
 version: 1
 cron:
- - name: "Do some work as a TEST"
+ - name: "do-work-fake"
    url: "/api/dowork"
-   schedule: "0 0 * * *"
+   schedule: "*/5 * * * *"

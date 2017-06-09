@@ -138,6 +138,7 @@ class AccountController extends Controller
             $uniqueid = Hasher::token();
             $id = Token::insertGetId([
                 'token' => $uniqueid,
+                'user_id' => $user->id,
                 'expires' => In::loginTokenPeriod(),
                 'created_at' => In::now()
             ]);
