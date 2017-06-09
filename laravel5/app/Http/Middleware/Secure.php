@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\Exceptions\ForbiddenException;
-use App\Token;
+use App\Models\Token;
 
 class Secure
 {

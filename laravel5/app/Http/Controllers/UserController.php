@@ -7,8 +7,8 @@ use App\Exceptions\NotFoundException;
 use App\Exceptions\BadRequestException;
 
 use Mail;
-use App\User;
-use App\PasswordReset;
+use App\Models\User;
+use App\Models\PasswordReset;
 use App\Lib\Hasher;
 use App\Lib\In;
 use App\Mail\ResetPasswordMail;

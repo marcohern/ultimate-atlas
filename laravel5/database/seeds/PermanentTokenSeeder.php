@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Lib\Hasher;
 use App\Lib\In;
-use App\Token;
+use App\Models\Token;
 
 class PermanentTokenSeeder extends Seeder
 {

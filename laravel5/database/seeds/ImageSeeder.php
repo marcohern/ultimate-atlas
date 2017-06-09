@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 
 use App\Lib\In;
-use App\Image;
+use App\Models\Image;
 
 class ImageSeeder extends Seeder
 {

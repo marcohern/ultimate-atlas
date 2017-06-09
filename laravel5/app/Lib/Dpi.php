@@ -3,7 +3,7 @@
 namespace App\Lib;
 
 use App\Exceptions\DpiException;
-use App\Image;
+use App\Models\Image;
 
 class Dpi {
     public static function size($profile, $density) {

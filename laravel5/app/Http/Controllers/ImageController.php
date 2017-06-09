@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use App\Lib\Dpi;
-use App\Image;
+use App\Models\Image;
 use InterventionImage;
 
 class ImageController extends Controller
