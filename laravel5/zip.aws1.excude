@@ -3,6 +3,7 @@
 zip.*.bat 
 config\database.*.php
 config\mail.*.php
-database
+database\seeds
+database\migrations
 test
 version

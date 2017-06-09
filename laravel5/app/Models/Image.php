@@ -11,11 +11,24 @@ use InterventionImage;
 
 class Image extends Model
 {
+    protected $hidden = [
+        'bytes',
+    ];
+
+    public static function query($q='',$attachedOnly=true) {
+        $query = self::where('attached','TRUE');
+        return $query->get();
+    }
+
+    public static function get($id) {
+        return self::where('id', $id)->first();
+    }
+
     public static function make($domain, $slug, $profile, $density, $index) {
         
         $imagedata = null;
 
-        $record = Image::where('domain',$domain)
+        $record = self::where('domain',$domain)
             ->where('slug',$slug)
             ->where('profile', $profile)
             ->where('density', $density)
@@ -23,7 +36,7 @@ class Image extends Model
             ->select(['id','type' ,'filename','width','height','bytes'])->first();
         
         if (empty($record)) {
-            $record = Image::where('domain',$domain)
+            $record = self::where('domain',$domain)
                 ->where('slug',$slug)
                 ->where('profile', 'original')
                 ->where('density', 'original')
@@ -41,7 +54,7 @@ class Image extends Model
             $img = InterventionImage::make($record['bytes'])->fit($size[0],$size[1]);
             $imagedata = $img->encode('jpg');
 
-            Image::insert([
+            self::insert([
                 'domain'   => $domain,
                 'slug'     => $slug,
                 'profile'  => $profile,

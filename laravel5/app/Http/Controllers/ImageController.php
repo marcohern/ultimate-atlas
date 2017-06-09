@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use App\Lib\Dpi;
+use App\Lib\In;
 use App\Models\Image;
 use InterventionImage;
 
@@ -68,20 +69,9 @@ class ImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $r)
     {
-        //
-        return config('dpi._densities');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Image::query($r->input('q'),true);
     }
 
     /**
@@ -90,9 +80,37 @@ class ImageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $r)
     {
+        ini_set('memory_limit', '512M');
+        $domain = $r->input('domain');
+        $slug = $r->input('slug');
+        $index = $r->input('index');
+        $image = InterventionImage::make($r->input('bytes'));
+
+        if (empty($domain)) $domain = 'global';
+        if (empty($index)) $index = 0;
         //
+        $id = Image::insertGetId([
+            'attached' => 'FALSE',
+            'domain' => $domain,
+            'slug' => $r->input('slug'),
+            'index' => $r->input('index'),
+            'profile' => 'original',
+            'density' => 'original',
+            'filename' => "$domain-$slug-$index.jpg",
+            'type' => 'image/jpg',
+            'width' => $image->width(),
+            'height' => $image->height(),
+            'parent_id' => null,
+            
+            'bytes' => $image->encode('jpg'),
+
+            'created_at' => In::now()
+        ]);
+
+        $imager = Image::where('id',$id)->first();
+        return $imager;
     }
 
     /**
@@ -103,11 +121,14 @@ class ImageController extends Controller
      */
     public function show($id)
     {
+        /*
         $record = Image::where('id',$id)->select(['type','filename','width','height','bytes'])->first();
         
         $response = Response::make($record['bytes']);
         $response->header('Content-Type', $record['type']);
         return $response;
+        */
+        return Image::get($id);
     }
 
     /**

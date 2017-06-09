@@ -16,7 +16,7 @@ class PermanentTokenSeeder extends Seeder
     {
 
         Token::insert([
-            'token' => Hasher::token(),
+            'token' => 'd53f5b196d054ecbd1a82aa8499f9739c71b006eae9eff9dcc4f94920febaeb8',
             'expires' => In::lastDate(),
             'user_id' => 1,
             'created_at' => In::now()
