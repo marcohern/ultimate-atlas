@@ -21,6 +21,10 @@ Route::resource('countries', 'CountriesController');
 Route::resource('states', 'StatesController');
 Route::resource('cities', 'CitiesController');
 Route::resource('users', 'UserController');
+
+Route::post('image/upload','ImageController@upload');
+Route::get('image/display/{id}','ImageController@display');
+Route::post('image/attach','ImageController@attach');
 Route::resource('image', 'ImageController');
 
 Route::resource('daily_trans', 'Daily\DailyTransController');
