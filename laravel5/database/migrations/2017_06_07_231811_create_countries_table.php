@@ -17,6 +17,9 @@ class CreateCountriesTable extends Migration
             $table->increments('id');
             $table->string('name',64);
             $table->string('iso2',2)->unique();
+            $table->string('currency',3)->default('');
+            $table->decimal('lat',17,14)->default(00.000000000000000);
+            $table->decimal('lng',17,14)->default(00.000000000000000);
             $table->timestamps();
         });
     }

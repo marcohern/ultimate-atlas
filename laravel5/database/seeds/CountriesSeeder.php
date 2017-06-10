@@ -13,7 +13,8 @@ class CountriesSeeder extends Seeder
     public function run()
     {
         Country::insert([
-            ['id' => 1, 'name' => 'Colombia', 'iso2' => 'CO']
+// Countries
+['id'=>1,'name'=>'Colombia','iso2'=>'CO','currency'=>'COP','lat'=>4.00971833452176,'lng'=>-72.7461853027343]
         ]);
     }
 }

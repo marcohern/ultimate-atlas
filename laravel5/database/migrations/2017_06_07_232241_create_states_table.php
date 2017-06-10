@@ -17,6 +17,8 @@ class CreateStatesTable extends Migration
             $table->increments('id');
             $table->string('name',64);
             $table->integer('country_id')->index();
+            $table->decimal('lat',17,14)->default(00.000000000000000);
+            $table->decimal('lng',17,14)->default(00.000000000000000);
             $table->timestamps();
         });
     }

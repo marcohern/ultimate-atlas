@@ -15,13 +15,91 @@ class Image extends Model
         'bytes',
     ];
 
-    public static function query($q='',$attachedOnly=true) {
+    public static function query($q='',$attached=true) {
         $query = self::where('attached','TRUE');
         return $query->get();
     }
 
     public static function get($id) {
         return self::where('id', $id)->first();
+    }
+
+    public static function display() {
+        $image = self::where('id',$id)->select(['type','bytes'])->first();
+        if (!$image) throw new NotFoundException('Image not found');
+        return $image;
+    }
+
+    public static function destroy($id)
+    {
+        $image = self::get($id);
+        if (!$image) throw new NotFoundException('Image not found');
+        $deleted = self::where('id',$id)->delete();
+        $deleted += self::where('parent_id',$id)->delete();
+
+        return [
+            'affected' => $deleted,
+            'deleted' => true,
+            'image' => $image
+        ];
+    }
+
+    public static function create($imagefpath) {
+        $im = InterventionImage::make($imagefpath);
+        $slug = md5(uniqid());
+        $id = Image::insertGetId([
+            'attached' => 'FALSE',
+            'domain' => 'tmp',
+            'slug' => $slug,
+            'index' => 0,
+            'profile' => 'original',
+            'density' => 'original',
+            'filename' => "tmp-$slug-temp-0.jpg",
+            'type' => 'image/jpg',
+            'width' => $im->width(),
+            'height' => $im->height(),
+            'parent_id' => null,
+
+            'bytes' => $im->encode('jpg'),
+
+            'created_at' => In::now()
+        ]);
+        $image = Image::where('id',$id)->first();
+        return [
+            'affected' => 1,
+            'saved' => true,
+            'image' => $image
+        ];
+    }
+
+    public static function attach($ids, $domain, $slug) {
+        $i=0;
+        if (is_array($ids)) {
+            foreach ($ids as $id) {
+                self::where('id',$id)->update([
+                    'domain' => $domain,
+                    'slug' => $slug,
+                    'index' => $i,
+                    'attached' => 'TRUE',
+                    'filename' => "$domain-$slug-$i.jpg",
+                    'updated_at' => In::now()
+                ]);
+                $i++;
+            }
+        } else {
+            self::where('id',$ids)->update([
+                'domain' => $domain,
+                'slug' => $slug,
+                'index' => 0,
+                'attached' => 'TRUE',
+                'filename' => "$domain-$slug-$i.jpg",
+                'updated_at' => In::now()
+            ]);
+        }
+        return [
+            'affected' => $i,
+            'attached' => true
+        ];
     }
 
     public static function make($domain, $slug, $profile, $density, $index) {

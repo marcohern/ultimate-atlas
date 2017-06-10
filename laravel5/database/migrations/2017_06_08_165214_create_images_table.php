@@ -16,7 +16,7 @@ class CreateImagesTable extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
             
-            $table->enum('attached',['TRUE','FALSE'])->default('TRUE');
+            $table->enum('attached',['TRUE','FALSE'])->default('TRUE')->index();
 
             $table->string('domain',32)->default('global');
             $table->string('slug'   ,32);

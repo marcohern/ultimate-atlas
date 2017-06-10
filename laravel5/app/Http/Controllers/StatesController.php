@@ -21,7 +21,7 @@ class StatesController extends Controller
     public function index(Request $r)
     {
         $country_id = $r->input('country_id');
-        $query = State::select(['id','name','country_id']);
+        $query = State::select(['id','name','country_id','lat','lng']);
         if (!empty($country_id)) {
             $query->where('country_id',$country_id);
         }
