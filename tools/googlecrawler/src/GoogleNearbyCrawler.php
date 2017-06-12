@@ -20,6 +20,7 @@ class GoogleNearbyCrawler {
     private $tab;
     private $csv;
     private $out;
+    private $outids;
     private $in;
     private $reqqty;
     private $total;
@@ -50,6 +51,10 @@ class GoogleNearbyCrawler {
             Tabulator::decimal("LngSW"  , 12,  8)
         ], $this->outfile);
 
+        $this->outids = new CsvTabulator([
+            Tabulator::string ("PlaceId", 27, false),
+        ], ROOTPATH.DS.'output'.DS.'places'.DS.'places_ids.csv');
+
         $this->out = new ConsoleTabulator([
             Tabulator::string ("Area"   , 24, false),
             Tabulator::string ("Type"   , 16),
@@ -65,12 +70,14 @@ class GoogleNearbyCrawler {
     public function start() {
         $this->csv->start();
         $this->out->start();
+        $this->outids->start();
         
     }
 
     public function end() {
         $this->csv->end();
         $this->out->end();
+        $this->outids->end();
     }
 
     private function displayRecord($item, $status, $qty, $rep) {
@@ -156,6 +163,7 @@ class GoogleNearbyCrawler {
                 foreach ($c->results as $r) {
                     if (!array_key_exists($r->place_id, $this->ids)) {
                         $row = $this->processRecord($r, $item);
+                        $this->outids->write(['PlaceId' => $r->place_id]);
                         $this->csv->write($row);
                     } else {
                         $repeated++;
