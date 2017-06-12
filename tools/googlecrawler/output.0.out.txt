@@ -1,0 +1,709 @@
+https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyBWrvIdSl-smOWvknZva4OT1bWsmPh1Wuc&type=bar&language=es&location=11.1977473,-74.2249876&radius=2000
+{
+   "html_attributions" : [],
+   "next_page_token" : "CoQC_wAAANOAmykkIWopxFrgdzak_z3Iu7iK9wVyJgYHFtvG7Duok5XDYfM6YSOsazjkbWpex_Jfh09zAEQUOH08nMBppWzxHdHpSmFTliJbphNropHwwJEALPdnEDeZEUsfzwELaKqHAyrDcneTs1NG7ZATPDP1pQmm-j2M7XEma7o9KRS_ZOd-M1v4_m9mqlDr7hTOYgaMUy47Ff-rdU4KiiMJzSQmftPs-oyRjy4KzrlQqFszDK_uNpfT4Rs7qUNhGHqjsUxLtS0k11znCHJ9U3fbM2ZObC-5OkJ3lEu1-zRSWPE8Vu03bgIDUs7p9Bz40zNzLQGJqVRjaaIal21BAo1Rgc8SEKuDGJNsUD07Pzn2byTgVfUaFAjwLMUirAPWVlO2gF2GBONCwbJE",
+   "results" : [
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : 11.1987797,
+               "lng" : -74.2269393
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 11.2001496802915,
+                  "lng" : -74.2255903197085
+               },
+               "southwest" : {
+                  "lat" : 11.1974517197085,
+                  "lng" : -74.22828828029151
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/lodging-71.png",
+         "id" : "0d1e85a5e3d1847bbe09aa6622a4f715c95ef0bc",
+         "name" : "Hotel Charmin",
+         "place_id" : "ChIJSy3dWFBf9I4RT32AOgvdTQg",
+         "rating" : 4.2,
+         "reference" : "CmRRAAAAD2nD9ZK8AENx8Obs0WJq3RuZl0bmXA3DlElB3HkQb5MOLsJQqnS4Xi9ZPy7dvxobgIJuvKvOrJrHIj41Oz_h2Q9FWidmBoCZS3xpKoe3vB1JhzBL9HixrXThM3PF0lsCEhDswX76iIPOA_GvhFwCbX7EGhSNnbGH49eyoKFC5LC72ONSPIYhzA",
+         "scope" : "GOOGLE",
+         "types" : [ "bar", "spa", "lodging", "food", "point_of_interest", "establishment" ],
+         "vicinity" : "Calle 13 #2-41, El Rodadero"
+      },
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : 11.193954,
+               "lng" : -74.228391
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 11.1952223302915,
+                  "lng" : -74.2270861697085
+               },
+               "southwest" : {
+                  "lat" : 11.1925243697085,
+                  "lng" : -74.22978413029151
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/lodging-71.png",
+         "id" : "105eb81f53e833d91095ecfe7459a0788309dfd2",
+         "name" : "Hotel Palma Blanca del Mar",
+         "opening_hours" : {
+            "open_now" : false,
+            "weekday_text" : []
+         },
+         "photos" : [
+            {
+               "height" : 1836,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/102586520957660834789/photos\"\u003eHotel Palma Blanca del Mar\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAA18YBr8X6ePTTu-kIOUnGfrboAE7u04yvm1GXbxSY0qhyTpvGTbQarU_x1T7TW8FeZEOFlERQIg-YPslYWaQOjXnqe9FLrilYXyLB4M3GsruCiEE0_oU9CmHsl2pD9lRcEhB6zbcjJZAjwlp6A0qjN7sNGhTxQjmtgwj1eH6SqR1aijnrPN9oZA",
+               "width" : 3264
+            }
+         ],
+         "place_id" : "ChIJh6BSa1Jf9I4RAx0o-ke1moU",
+         "rating" : 4.2,
+         "reference" : "CmRSAAAAliMU_R0OHaRbRwWtyJPxjc9FeLfpbPbjnrpyK3lBrYuSwRAgBfd5Whc5r1S75VlH9RuHbHyLiQRC1sFkTxBY1iPwy-YZHlboMWWHazNkrS_fijFW5RFXfs4yxJ_7VQoiEhC_RrS1I-6JZrrRQVVE9LyVGhQzJV0lYY4ymc5N1JW-LElJzb7l8w",
+         "scope" : "GOOGLE",
+         "types" : [
+            "bar",
+            "lodging",
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+         ],
+         "vicinity" : "Calle 20 #1B-69, Santa Marta"
+      },
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : 11.1958144,
+               "lng" : -74.22692379999999
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 11.1971207802915,
+                  "lng" : -74.22557921970848
+               },
+               "southwest" : {
+                  "lat" : 11.1944228197085,
+                  "lng" : -74.2282771802915
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/lodging-71.png",
+         "id" : "3a8c83d50f2c6da2c33d64f8aa87ec4a1eef1b5e",
+         "name" : "Casa del Ritmo - Hostel & RestoBar",
+         "opening_hours" : {
+            "open_now" : true,
+            "weekday_text" : []
+         },
+         "photos" : [
+            {
+               "height" : 1200,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/104109394167533250419/photos\"\u003eCasa del Ritmo - Hostel &amp; RestoBar\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAAx3k7s52D0MrVAf5h9kwOdIBikJRwaBZ4ONeb6QYdPy235x5n5qUE58kJ5t7xfMxjdxTt-2U8yheIPvgJlTqc_0qWQjTHI57Beo-ZlVOPcjmX_V8FGuTk2gw1-H6hzHJNEhDDMhvWKXYCdut9d8NFpYX7GhSybNcymTbytmLAcDyCIkMJb8Q7-A",
+               "width" : 1920
+            }
+         ],
+         "place_id" : "ChIJky5Pg1Ff9I4RdwLPFAGDPlY",
+         "rating" : 4.5,
+         "reference" : "CmRRAAAAFBin3Aw97tNFTEJFC4UQ2CDmw3AR_svUwzRyghI_LGwBAAqkt-CodLHJ1UTfdzNRMh0w4C3bVHbPH3REal2nCBmbZhgnxmEEoC2qg6NxTdlRGRHBrpJF8_jYXcxHTDo5EhDTOL_009bST8dzyBRWPBp1GhT6P9SccxNGLNa6ecQIEVzfzwDZwA",
+         "scope" : "GOOGLE",
+         "types" : [
+            "bar",
+            "lodging",
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+         ],
+         "vicinity" : "El Rodadero, Calle 18 #2-59, Gaira, Santa Marta"
+      },
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : 11.19912,
+               "lng" : -74.22678999999999
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 11.2004689802915,
+                  "lng" : -74.22544101970848
+               },
+               "southwest" : {
+                  "lat" : 11.1977710197085,
+                  "lng" : -74.2281389802915
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "2082cb83d8fe9dd49eb11901c1dc996394f5a440",
+         "name" : "Bariloche",
+         "place_id" : "ChIJQU-QX1Bf9I4Rm5idY-NGJJU",
+         "reference" : "CmRSAAAA2CP5x5_BPinIu4-DmtWTYreuDYs00uqIlZ9sDoB26QeGWEem5vQuMgAV8s2g7_SrXd_KuOoHCV6OdJEEd1g2EC0d2dZ4CCmEQCznRYJVECCWCUKptVIX560B91XHQqhGEhDQK8rzaFjVeZp_ZupcqeGtGhStoZBK19c6oyq6GQari2lL3Iv5og",
+         "scope" : "GOOGLE",
+         "types" : [ "bar", "point_of_interest", "establishment" ],
+         "vicinity" : "Calle 13 #2-41, Santa Marta"
+      },
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : 11.2073203,
+               "lng" : -74.2226735
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 11.2086692802915,
+                  "lng" : -74.22132451970849
+               },
+               "southwest" : {
+                  "lat" : 11.2059713197085,
+                  "lng" : -74.22402248029151
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+         "id" : "f2cd3f787c7f26c75db73e766f9f34460e2b040e",
+         "name" : "PUNTA BRAVA RESTAURANTE",
+         "opening_hours" : {
+            "open_now" : false,
+            "weekday_text" : []
+         },
+         "photos" : [
+            {
+               "height" : 500,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/106011888450439491881/photos\"\u003eMaria Monica Escobar\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAAGhSzJRIxF0l38BxAzCNq-IEAkHoxYmRMb8iuQF-kFNmDnQdyTr7jvfFn9QE2kbRoPG6N63rGNhydmf2SRlh9nP59rJE0R1-XJP-cUBGX3TlZWjnV6RQ6INyNmaoa3B_SEhCmaRUE91N1Kg59Ydqyj25-GhRLNCfGAigHaogDBoCO3rT3MWN7Gg",
+               "width" : 800
+            }
+         ],
+         "place_id" : "ChIJX6DmlV5f9I4RUYHePlKBKuM",
+         "rating" : 4.5,
+         "reference" : "CmRSAAAA14dEr_hUJ_TJO_sQf9nrsiVH8UGjHFD84LS6BLYq2LOWBvq8eCWcaAoxpZVFVG2ARvuhNCw-FOONBukjBDoQd9bN13cd6LiJcp-uveZ_prM0H9G0otU6kjxVriJ0U2-iEhA75e2kt_FXqaDVYIEnB1wXGhSdR-WfAlBQLZQIhbH72K2DFH8mXA",
+         "scope" : "GOOGLE",
+         "types" : [ "restaurant", "bar", "food", "point_of_interest", "establishment" ],
+         "vicinity" : "Hernández #6-01, Santa Marta"
+      },
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : 11.1899915,
+               "lng" : -74.2171515
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 11.1913299802915,
+                  "lng" : -74.2158104197085
+               },
+               "southwest" : {
+                  "lat" : 11.1886320197085,
+                  "lng" : -74.21850838029151
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "1f786be0853f394302f55783b362e80c0cf500ec",
+         "name" : "El Bar",
+         "photos" : [
+            {
+               "height" : 3024,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/102893740386559291649/photos\"\u003eAndres Felipe Gonzalez Vieira\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAAZFrF4pa9hyzA2ISs4hOFxw5828jnpKWnG-RJt209UFAlmT4dnXyCkJy3b9xDSO2JIXUK69wyE7Y_CPGPWUKgAO9qbdI_Sk3QKCPY7cxmD0shT7MgfrqLWwjPrVXTRvlgEhDCcXRv9dUZMgpoGrfB-pXJGhQ6wBs1fItyJOeGcxO8U4PozRA_Ig",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJ1wMy7v_19I4ReVg3gnMRh_Q",
+         "rating" : 5,
+         "reference" : "CmRSAAAAFo29sW6nRGDumAMNhyuNRvgARpcUeFfblzYZrXhi917z2p-Xch7UEFfrIu3PBY4DhDMxMgdktadZa5SRdnTcHnQxiy04It5jXOHzoyXrgq9zbanIhOW24CpoJ9q9hwhtEhDYyTUKw2FJ2F5N2am4RflHGhS_jtGO2xCMr9w09jKZJ8C1AYKS9Q",
+         "scope" : "GOOGLE",
+         "types" : [ "bar", "point_of_interest", "establishment" ],
+         "vicinity" : "Calle 13 #93, Gaira, Santa Marta"
+      },
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : 11.1974385,
+               "lng" : -74.2259425
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 11.1987848302915,
+                  "lng" : -74.2246426697085
+               },
+               "southwest" : {
+                  "lat" : 11.1960868697085,
+                  "lng" : -74.22734063029151
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "a2cd71a48c5bd52eaf33fc457c9a525ae7f26dd5",
+         "name" : "mangos",
+         "place_id" : "ChIJCzBbG1Ff9I4R4KhX_6n6gQ8",
+         "reference" : "CmRRAAAAE1D-wyZwsyHcU1ZVZZ7WQug84puaaZFOA8FF-q53kJ6NfmGo66wvOcD61_R1g--H3eS_TKcLMnOSuzo5s8q9tut5QdcJdiZFKTQe7FPBwlPqfKaH88AQdiLYlQbevm0GEhA_pE3sT0urI20R_WK0WD-CGhSgs_0BQLgF0PicgBLEc9dLUqagUg",
+         "scope" : "GOOGLE",
+         "types" : [ "night_club", "bar", "point_of_interest", "establishment" ],
+         "vicinity" : "Carrera 4 #15-15, El Rodadero"
+      },
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : 11.19829,
+               "lng" : -74.22601999999999
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 11.1996389802915,
+                  "lng" : -74.22467101970848
+               },
+               "southwest" : {
+                  "lat" : 11.1969410197085,
+                  "lng" : -74.22736898029149
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "4b6928e3822fe09006f3b769e497b2f46be5d8af",
+         "name" : "Barra Libre",
+         "place_id" : "ChIJ40cy-1Bf9I4R7VIyUlQiXwI",
+         "reference" : "CmRRAAAA6HPLZU5jBB7fCmPvp_DI-1_IxCE10eQI-NLXfB4yVlaRscfMoqFaGWN9TIZVnr4uM-Rz50TB2mhK4wQsazqQYtRv2mz4AeJ122uTfZzP6PZq2aOnHzst876v5f0wOVy4EhAAfLjqpfEh1rjyIlqEl21SGhTIGsG8o2RV459DmgvMY07bpzVg2A",
+         "scope" : "GOOGLE",
+         "types" : [ "bar", "point_of_interest", "establishment" ],
+         "vicinity" : "Carrera 4 #11B-46, Santa Marta"
+      },
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : 11.1947258,
+               "lng" : -74.22575979999999
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 11.1960707802915,
+                  "lng" : -74.22447571970849
+               },
+               "southwest" : {
+                  "lat" : 11.1933728197085,
+                  "lng" : -74.2271736802915
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+         "id" : "f936ee6ac33c93e46e1060d805ba8b6022e357b2",
+         "name" : "Restaurante Del Paisa",
+         "opening_hours" : {
+            "open_now" : true,
+            "weekday_text" : []
+         },
+         "photos" : [
+            {
+               "height" : 3264,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/114464303643366071697/photos\"\u003eJoe Garcia\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAAyBPSWT7AK2JL-Ooq9Trti8YbM_A0Fi9PTsa-gcEcZksw6Xdsm7B45xMybh4hVPwYmaO8WOHkKLTzxVX8YJ-UpyJZDTdMtQz3xWW-iIS9YS8Xps6p4thWiBLPhULdvXs-EhD4Z8tSEZGjpdhbMCNQiqyDGhR4XfW-X_uYhEZ_LAHYrXUqEPF_og",
+               "width" : 1836
+            }
+         ],
+         "place_id" : "ChIJ63pi2VNf9I4RIBgGXIKdY_c",
+         "rating" : 4.5,
+         "reference" : "CmRSAAAAZanwd_0-pxtp9oApHavWxZCBNZhvaPTkSGnt7YIzlGvGrz_VExB8Mk0FRZ7nwp8aMbef6NrXdHf_WdQ7TSEFQtHEyd0vBMCphOeAaxZYPZrAiY4vNGMWd9EkrWumLDcJEhDRyetSdARD1vy3Zz2uVejxGhTcdszVBru3UvcvVwYDFCTpINbHFA",
+         "scope" : "GOOGLE",
+         "types" : [ "restaurant", "bar", "food", "point_of_interest", "establishment" ],
+         "vicinity" : "Carrera 4 #15A-95, Santa Marta"
+      },
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : 11.2017677,
+               "lng" : -74.22696510000002
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 11.2030955802915,
+                  "lng" : -74.2255537197085
+               },
+               "southwest" : {
+                  "lat" : 11.2003976197085,
+                  "lng" : -74.22825168029151
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+         "id" : "d93ab5cdb92353043203dc21942cd5a339827b70",
+         "name" : "the kitchen",
+         "opening_hours" : {
+            "open_now" : false,
+            "weekday_text" : []
+         },
+         "place_id" : "ChIJI4Owi1pf9I4Rn1421eqlVm8",
+         "reference" : "CmRRAAAAAhPHDiwJLlaJr09A1CTv-yQaK_grleIPDdYIg5LyI2Peo3jznP0XycvNL9QduOc5XAZLDSgC6p32xzxMyg0mhXaYjmPMYwxiaTyie-jk3_5nv_XGsWK4kS5cjsvTxMKUEhC3OwPSGPfBtRl6FjFHRJDUGhSaqwODWyjv2GvtZBkZ8JGInMZ8gA",
+         "scope" : "GOOGLE",
+         "types" : [ "bar", "restaurant", "food", "point_of_interest", "establishment" ],
+         "vicinity" : "Carrera 2 #11-68, Santa Marta"
+      },
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : 11.2018124,
+               "lng" : -74.22703109999999
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 11.2031613802915,
+                  "lng" : -74.22568211970848
+               },
+               "southwest" : {
+                  "lat" : 11.2004634197085,
+                  "lng" : -74.2283800802915
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "46a2c0de7d7b2d11fd3cd68e003bbde4c3e4e56e",
+         "name" : "acurio rodadero de playa verde",
+         "opening_hours" : {
+            "open_now" : false,
+            "weekday_text" : []
+         },
+         "place_id" : "ChIJ15aei1pf9I4RzOS8TIxYdl4",
+         "rating" : 4,
+         "reference" : "CmRRAAAAxDHINQI9GNpjX6iD7RNktuVZX7F-UOB9qOOo1WLq4f4B8VfHYUBAewoHAAIb-U3ryppmBaBoA7p7fYI_OJqm2VhGR3rbdhHTQMESBspjmHJ-I3T27UEV3IYArsOI1OccEhCCAl35xNxPztCj-HzAr2HDGhSsthiWkvHLZ3pSY9OdB_2YH80VQg",
+         "scope" : "GOOGLE",
+         "types" : [ "bar", "point_of_interest", "establishment" ],
+         "vicinity" : "Tienda Mundo Marino,Entre Calle 11A y Calle 10,Cra. 2,, El Rodadero, Santa Marta"
+      },
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : 11.2024031,
+               "lng" : -74.22659329999999
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 11.2037499802915,
+                  "lng" : -74.22528296970849
+               },
+               "southwest" : {
+                  "lat" : 11.2010520197085,
+                  "lng" : -74.22798093029149
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+         "id" : "7f6370750db3acf96e2291b579a7e460fb5a228e",
+         "name" : "El Caleño",
+         "opening_hours" : {
+            "open_now" : false,
+            "weekday_text" : []
+         },
+         "photos" : [
+            {
+               "height" : 2576,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/102296356492182101560/photos\"\u003eALEXA MUÑOZ\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAARiphyEOaYbTj0cMQDbOYL1st8iqZFQ1Ta0tAOZo36HCWseiEe1AQfRAyHrzxcrzxcorjeS0EUomSWDbi1lnTx4xXkC1ayoGKdlpRb5phWxmCeCAV4lCQ6hvMItChyzNpEhAkoJOJVeEDSkbx5LX79_ODGhTv-4Q1wjRfG3SnWFZYMN4gPqXhZw",
+               "width" : 1932
+            }
+         ],
+         "place_id" : "ChIJqWDdWFpf9I4RNTysNtAHI-g",
+         "rating" : 4,
+         "reference" : "CmRSAAAAqAn8FkvhBbpdt6zWTqH84DQjgGZ64CvZmTjiwZmvLkpVDFjMtNIWSLjUxIM8tuWHvGbJPMVttsZsKLyPHKiZhzJIC5I79zTwM1Y0zJVyE4XoGnygwHc8pxVr4qYP9dWKEhCYPZ2hCmqXgA8ws2nGoRYZGhSkFgQWw5xctmZiVA4rsWsQc3sr2g",
+         "scope" : "GOOGLE",
+         "types" : [ "bar", "restaurant", "food", "point_of_interest", "establishment" ],
+         "vicinity" : "Carrera 2 #10-47, Santa Marta"
+      },
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : 11.2024751,
+               "lng" : -74.2264115
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 11.2038169802915,
+                  "lng" : -74.22519381970849
+               },
+               "southwest" : {
+                  "lat" : 11.2011190197085,
+                  "lng" : -74.2278917802915
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "37ec35ee0be63029b18c67e68acd77342ac6c4e3",
+         "name" : "D'Rumba con el Caleño",
+         "opening_hours" : {
+            "open_now" : true,
+            "weekday_text" : []
+         },
+         "place_id" : "ChIJBRZ4WVpf9I4RRiOhWIaFoKM",
+         "rating" : 1,
+         "reference" : "CmRSAAAAWx0yxUkNb0QfxZGvGJhSkfn_79sb2j7As8tnlhQeGQ0mLVV-MbM_ARHdKZ85Qv3WVNMU0qROn0ly8SnuHFabvoHPgrOPDKhPwHHGSlgbS4gS191a_9g_jcuGUH_QmHDREhAiv1OnvzSoVsjNqlERWNXbGhSVdlrEQjtK2g93UACHvxjNEQ9UUg",
+         "scope" : "GOOGLE",
+         "types" : [ "bar", "point_of_interest", "establishment" ],
+         "vicinity" : "Carrera 2 #10-47, Santa Marta"
+      },
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : 11.2023492,
+               "lng" : -74.2267995
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 11.2036981802915,
+                  "lng" : -74.2254505197085
+               },
+               "southwest" : {
+                  "lat" : 11.2010002197085,
+                  "lng" : -74.22814848029151
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "de009dcdcaa417038df9970d7455785f9b12f3cc",
+         "name" : "mister licores",
+         "photos" : [
+            {
+               "height" : 2340,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/115156619281292880285/photos\"\u003eRosban Mantilla olejua\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAAezmLSB387vPgXLqb5IVH9NgABf1X7-87kSB8ozbuT64pABz0OE37PUaipTDtCOFT31t3K6MXsUullfNMkGXTr-A9JCcQCq1zyYDXE3kOlWjQaDpLD2DDwZvrH50yi-JVEhAzf1GORqEZFzoavBtCapA8GhQ1lOsmGCQmdS2M50LsSmMVuCXIzQ",
+               "width" : 4160
+            }
+         ],
+         "place_id" : "ChIJMTYJ9lpf9I4R99NYkOZYm0s",
+         "reference" : "CmRRAAAAdSPqExK92JeV9Tl_PgoiHGfZM9PdYf9Jua4P2S6lkLe9oya5ibaYu7vacdzinzM27Bi8UT4XmvDCugvQviIrPZc0G_QInWubSybUCrkyPf-hEB7SuCQAd1pJASSBbVsVEhAmI9dFb9wGu4J9jpu7k6WqGhSDZDVx49_SPbeutbhGWO4NwVTYTQ",
+         "scope" : "GOOGLE",
+         "types" : [ "bar", "point_of_interest", "establishment" ],
+         "vicinity" : "Gaira, Santa Marta"
+      },
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : 11.2019298,
+               "lng" : -74.227707
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 11.2032950802915,
+                  "lng" : -74.22640961970849
+               },
+               "southwest" : {
+                  "lat" : 11.2005971197085,
+                  "lng" : -74.2291075802915
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+         "id" : "c9875c3d9b3f3a8245d6f61ff5c04072e8eeac48",
+         "name" : "El Pescador Paisa",
+         "opening_hours" : {
+            "open_now" : false,
+            "weekday_text" : []
+         },
+         "photos" : [
+            {
+               "height" : 5312,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/105687390448765551169/photos\"\u003eJuan Carlos Sierra R\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAAk5tZ1Rn1eSN5F6ymH2BuzHE0iW2zN45Pex6jvwU8iSSVIheDUuUwptq_i6veCXj45ery4PFEDMGu6_5Kmrfvu_IpIQlI1PCA7lityL_lyCFpcdwg6hIX4p6hQs9Z6TkeEhDpSuhkeVwLTGUmyPvOe_pqGhQY6d2Z0GYgSgftognSCwyZIsA4DQ",
+               "width" : 2988
+            }
+         ],
+         "place_id" : "ChIJOzEXk1pf9I4RCLic5_8dX54",
+         "rating" : 2.9,
+         "reference" : "CmRSAAAAgoC--9LsrAzcDXq7gh2Cw4VYAE2h9LlVc-e85TRbLIprMJObGGXLx2gM5vnXClkAVovRom6TwAYJcD6qgpwvJ0XJRb5IRY45zyF8HEbJMIUCKJQAeYttwRCWaQKnYXU8EhCGeY35dZZUMdKqHNfpjOCLGhSKTPsKoQdUHvlub827jpfM7piN6w",
+         "scope" : "GOOGLE",
+         "types" : [ "bar", "restaurant", "food", "point_of_interest", "establishment" ],
+         "vicinity" : "Carrera 1 #11-01, El Rodadero"
+      },
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : 11.2020512,
+               "lng" : -74.22766039999999
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 11.2034381802915,
+                  "lng" : -74.2263365197085
+               },
+               "southwest" : {
+                  "lat" : 11.2007402197085,
+                  "lng" : -74.2290344802915
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "8097e1df6a8871369e8321065961f9c7c16b6783",
+         "name" : "Wisqueria Nacional",
+         "opening_hours" : {
+            "open_now" : false,
+            "weekday_text" : []
+         },
+         "place_id" : "ChIJPcPV7Fpf9I4RKKLdt2MOZ5g",
+         "reference" : "CmRSAAAAmVibb1DYrKRlYkQAKS6D6k9pKWGRhzasizrwYzgSswMw0oQQZaSsBTbJV4pV3USPGQEdVKlVAmpvsDVXhlqG5pggrCsVzw2N2OmF_WhMGWn3jwMKbHRVbPMSXE5p111mEhBUKFjZ_Cc3O3JsJIFuzQ0OGhTcsaY6NYevDndNcgL9167q8tou8A",
+         "scope" : "GOOGLE",
+         "types" : [ "bar", "point_of_interest", "establishment" ],
+         "vicinity" : "Carrera 1 #11-01, El Rodadero"
+      },
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : 11.2023853,
+               "lng" : -74.22740659999999
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 11.2037321302915,
+                  "lng" : -74.22609776970849
+               },
+               "southwest" : {
+                  "lat" : 11.2010341697085,
+                  "lng" : -74.22879573029151
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png",
+         "id" : "9fd320954b144929c159ac2472341ce2f7fb526c",
+         "name" : "Latino Café Restaurante Bar",
+         "place_id" : "ChIJpUM26Fpf9I4RJ9mSh4vf37w",
+         "rating" : 4,
+         "reference" : "CmRSAAAAnu8IVG0KCBkj1yMb9S77PnbgdYO0YxJthBAM-iJ6J1qBTYrZOWxInX3yqX849U2oFDboEBp0Hk-iP-CenuK-OwGa6KcqjzCP3tZvOCzJ1VlgCrnfJ17yPQVa9azVRK9KEhB-VDlS_6QztK97_EhHGmTcGhTKK5S2l4w9UxNXxmECYOxOU7Wlqg",
+         "scope" : "GOOGLE",
+         "types" : [
+            "cafe",
+            "bar",
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+         ],
+         "vicinity" : "Edificio Palanda, Carrera 1 #9-20, Santa Marta"
+      },
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : 11.2028794,
+               "lng" : -74.2267384
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 11.2042153302915,
+                  "lng" : -74.2253887197085
+               },
+               "southwest" : {
+                  "lat" : 11.20151736970849,
+                  "lng" : -74.22808668029151
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "fec6d04ebadba8974c37d2e5253874ffa35157bc",
+         "name" : "El Palacio De Los Jugos Ruben",
+         "opening_hours" : {
+            "open_now" : true,
+            "weekday_text" : []
+         },
+         "photos" : [
+            {
+               "height" : 2560,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/107255123606548579157/photos\"\u003eRuben Orozcl\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAAISRgKbg30d4ItzZ_Kph4Z4Dl5Yd38mo586QS6Q6HeB59lHWKPdDZ6sOfKYXe2R31twJxXUqKqk-z6Y-FspsVxF2ATI1F1FSGP1Hl3ADBUP_o8pMybXL2wsj7p4mIrvPcEhALHHU_nTR8PDfAVjXBpSaOGhT-Br9aW23FwguAQxorl5Vaf0MjhQ",
+               "width" : 1920
+            }
+         ],
+         "place_id" : "ChIJy6OC-Fpf9I4R3UySw1q3VBU",
+         "reference" : "CmRRAAAAvQ910qK-DnrWK9k-cOy0olrE8xnpQWRKlIYHT0ru7S19m4pDVeHpJAOHrSGveArcDmWY-tf5foKA-hTjxAnT8wKSsjYe2EJ4aB0hJBP2vdAdmNmbELDZvVvg2aexZrzhEhCRWP9iljndz4aeVNWQHyFrGhQZPln0wl9Qc856pXXu47L7Lc6yRQ",
+         "scope" : "GOOGLE",
+         "types" : [ "bar", "point_of_interest", "establishment" ],
+         "vicinity" : "Calle 10 #190, Gaira, Santa Marta"
+      },
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : 11.2031155,
+               "lng" : -74.2258231
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 11.2044641302915,
+                  "lng" : -74.2244928197085
+               },
+               "southwest" : {
+                  "lat" : 11.2017661697085,
+                  "lng" : -74.22719078029151
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+         "id" : "1202010b3387c794f4203f949c62c52bd9b47547",
+         "name" : "RESTAURANTE BAR EL RINCON BOHEMIO",
+         "opening_hours" : {
+            "open_now" : true,
+            "weekday_text" : []
+         },
+         "place_id" : "ChIJU1qrTVpf9I4Rt3LRW6E-Izk",
+         "rating" : 3,
+         "reference" : "CmRRAAAAkbx6UbVQy2ViHbCtr_xvQXc8-gnHpp7bNZeEPbvES9qa1orzBb_CHKm1F_gb_Ul8h0M0Kp_C6pfkkLxcd8rCvwRb1m0Gx5ZalJWfHPVHrOdSTkkT1F_06hSVtdJF-dUMEhB5tkIsF3uQikI6m283-OziGhQedSieg48z8t16bM3FKKtS0KB3og",
+         "scope" : "GOOGLE",
+         "types" : [ "bar", "restaurant", "food", "point_of_interest", "establishment" ],
+         "vicinity" : "Carrera 3 #9-49, Santa Marta"
+      },
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : 11.2031859,
+               "lng" : -74.22581980000001
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 11.2045344802915,
+                  "lng" : -74.2244941197085
+               },
+               "southwest" : {
+                  "lat" : 11.2018365197085,
+                  "lng" : -74.2271920802915
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+         "id" : "b5a1bf13bb9104f0b7281764f460722b008ff5a3",
+         "name" : "Calle 9",
+         "photos" : [
+            {
+               "height" : 2432,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/104594772572897065972/photos\"\u003eedwin pineda guillen\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAAzzUWWHVDCClDeLyycZmTBrBcwhXkoBhIGuyjFO0MprybDO_hPMSHAnapgO49cdAI1U67s2fDsHJxiL7CV5ogJU5weg07TPkpALPSdZOujzPyagKRUiGohRvERkCpATAcEhBOJ6k6_074WiJzKFqr0HThGhQMhVzCzWDF2qw3SwWecQltq5VN6A",
+               "width" : 4320
+            }
+         ],
+         "place_id" : "ChIJTX0dTVpf9I4RsgOgrcxozjY",
+         "reference" : "CmRRAAAAKnGpudY33DzcXUykefbW8h4z01OSI7BjPgk5xAlg4d0KzVDPuKMZhUS2Ks4--k-asbk2BsRXsDaCnjO0pHgYx-ziO8DQerITH7rgWRV-VMK_yvHyuheOVpOhhHz8vlfTEhD8OrdxZzWMLYXTOneZrRNsGhSYHym5YmCeOkIqE3gMAp4pAOOSlQ",
+         "scope" : "GOOGLE",
+         "types" : [ "bar", "point_of_interest", "establishment" ],
+         "vicinity" : "Carrera 3 #9-11, El Rodadero"
+      }
+   ],
+   "status" : "OK"
+}

@@ -20,7 +20,7 @@ class CitiesController extends Controller
     public function index(Request $r)
     {
         $state_id = $r->input('state_id');
-        $query = City::select(['id','name','state_id']);
+        $query = City::select(['id','name','state_id','lat','lng']);
         if (!empty($state_id)) {
             $query->where('state_id',$state_id);
         }

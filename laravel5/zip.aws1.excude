@@ -1,6 +1,7 @@
 .env.example
 .env.*.txt
-zip.*.bat 
+zip.*.bat
+zip.*.sh 
 config\database.*.php
 config\mail.*.php
 database\seeds

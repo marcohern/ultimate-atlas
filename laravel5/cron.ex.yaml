@@ -1,0 +1,5 @@
+version: 1
+cron:
+ - name: "get-image"
+   url: "/api/image/1"
+   schedule: "*/5 * * * *"

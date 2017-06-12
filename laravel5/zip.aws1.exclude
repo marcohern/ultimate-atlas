@@ -1,0 +1,9 @@
+.env.example
+.env.*.txt
+zip.*
+config/database.*.php
+config/mail.*.php
+database/seeds/*
+database/migrations/*
+tests/*
+version/*

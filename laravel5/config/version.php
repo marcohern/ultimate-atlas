@@ -1,7 +1,7 @@
-<?php
-return [
-    'number' => '1.0.53.27867',
-    'branch' => '1.0',
-    'build'  => '53',
-    'rnd'    => '27867'
+<?php 
+return [ 
+   'number' => '1.0.67.13747',
+   'branch' => '1.0',
+   'build'  => '67',
+   'rnd'    => '13747'
 ];

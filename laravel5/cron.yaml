@@ -1,5 +1,0 @@
-version: 1
-cron:
- - name: "do-work-fake"
-   url: "/api/dowork"
-   schedule: "*/5 * * * *"
