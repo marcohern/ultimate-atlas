@@ -1,0 +1,856 @@
+{
+    "url":"https://maps.googleapis.com/maps/api/place/nearbysearch/json?key={{api_key}}&location=6.207121,-75.564731&radius=3000&language=es&pagetoken=CqQDnwEAADP3aZRtwsZr1Bx-uNlQI24cXZqGKBECmK0ZpPNwnIvaNU9M3NtZd-vvp8CsjhHTg5L9O1QZropQPwt4eQKjGpOeiddE2TZbsvbMrDlJW0TWZT9RL14OBlQqiAuc8OsVFjXPMDfnSGs5764fev0-XLzuq-DGPnHAr3PvV_2HNftpo-k_qUd86qbEf21dD9bTIWpW_mGL3kbJUxUEFcY2uO6rRVgl6BnvfRscyJJ55xJ0ivWXgMKSSJMX0RnmrVP0W8vgfdJ5krprVNnGBJqJH5ukHddGlHUEj8yKiogQ4qKp3O7AJaveBpdVXzI0J6hTWSQC0zTEsuUatAqZ4lx6POT0Wcen37tvcuGAJdH8Ft9RqD0AFVUDjNOtoCxQ9N3NKqkvyRtg0URj-WvKTl6YWo7xca0LblMPyFWYPFYxY6H7Q5DE8D-ux5nNc3-VyLkyf9sMWLPuOtrxNlnyTREB0UJhIPrKXnfyl-Ded2LiPiz-TkggL4weHi31lKUIM8q8t--kzhODzd3qJMOXcMp7QFRdlEiHwsruvkH3T4Me_YJSEhBN6bL6_ltSz-DJfv8xLoRlGhSOGWjz_1OLM0hL6RMITw5CWdM8-Q&type=bar",
+    "html_attributions": [],
+    "results": [
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.2072716,
+                    "lng": -75.56775309999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.208619930291502,
+                        "lng": -75.5664023697085
+                    },
+                    "southwest": {
+                        "lat": 6.205921969708498,
+                        "lng": -75.5691003302915
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+            "id": "10a1b52ccfd51b701715db908ab7f4419c2cef9e",
+            "name": "Pa' Entro Fonda Bar",
+            "place_id": "ChIJd9Yl_SkoRI4RY19SKQJNgXU",
+            "reference": "CmRRAAAAvv9AAvZ1O6R_8qyRPw_Q-jRhcRbv9Ux_XmR0AZBoUmhDEPnHcCfFNIcdKV2whasL0fkXljvJ1u7g9kp7cHi3Dtdm7oMzRh5M_ObfmcVKVA_ci-QU9KAAWxnkMmMikTjtEhCdCkyzBBItnhaGd3QoLntyGhQd-bLOd2GrP60fTft78JtrIBoX1Q",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Carrera 37a #70, Medellín"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.2091972,
+                    "lng": -75.56691189999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.210551280291502,
+                        "lng": -75.56556086970851
+                    },
+                    "southwest": {
+                        "lat": 6.207853319708498,
+                        "lng": -75.56825883029151
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+            "id": "c5a9f2a0ea2694ea8268b2a899de9ab45b336d0c",
+            "name": "ADDICT SHOTS",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 810,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/107237706904572616242/photos\">Carolina VC</a>"
+                    ],
+                    "photo_reference": "CmRaAAAArN8CpITLwfb1UWQ-DAwW9y2cWRhDmgi11fqBXJXCUq6XGowzNh7OT5fPUip_qUvdQeBSIjq-E8JDKEXvEbV7Mf3m1lMHgZtHIXmJXZ71ozan4OPGoXGHaJEFuqMGJ2XxEhDMpWRtuYIUEP8HO582h-qRGhQIK-Zg0DlUeEHHrBcCFbmy2Jypzw",
+                    "width": 1080
+                }
+            ],
+            "place_id": "ChIJ0bOJoikoRI4RyEEFnGeDR28",
+            "rating": 4.5,
+            "reference": "CmRRAAAASVlKRzdnXJabiBKDQV-jjq-hwTfQa8UYovVOBOgrLX3Mqx_LUPMOiN1CzXkHtxLdFj7lQD4ZFsrVLV6rN9_Z6ApHkWhY75WtTVksWW8du3aO8OaIJrOWfPL9C3cft8USEhAbyAfAZtPZn5tEdN1sTRsMGhTs6FJ8E5fQ07lJc44rdPY20Lif5Q",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Calle 10 #3741, Medellín"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.2086633,
+                    "lng": -75.56743419999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.210039580291501,
+                        "lng": -75.56607331970849
+                    },
+                    "southwest": {
+                        "lat": 6.207341619708497,
+                        "lng": -75.5687712802915
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+            "id": "589e87db737c47540b1e4e74f195d94515c26493",
+            "name": "ay caramba The original TEX MEX",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 2448,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/104695802793091910678/photos\">Ross Allan</a>"
+                    ],
+                    "photo_reference": "CmRaAAAAJD7p-u30zoMymdKRPakykL14IninyHK2dsGp-Utx-CsERODOfqW1N-AuOT_5OsPpYVKKp2vrSL7JQKowe4O4g5bosyn5sBkZUx62AWxcBIwVOUBp4_nFkFU2kqu4JXdzEhBH3LOqjdfX8TVWB6-PUQXWGhShdHo1f9ocUouvLC5or37tu9593w",
+                    "width": 3264
+                }
+            ],
+            "place_id": "ChIJsVPAkykoRI4Rr9V73br8HNg",
+            "rating": 3.5,
+            "reference": "CmRSAAAAr9GYKQjtkPg4CZYopS1VAQAM2pIMSucSLcHkPG7LWfoRp85OUDy2hLLYOtHkfPZYHB5imjhwGax3EKUkCeXEJ_pb_w2uc9RcR_dHBLhb9ePc75g9sIRzVdIYdPGCQIYKEhD0tGU5aGCBWsFkuH3XImtPGhS-gIC2lGSXiZqTc1CT2-rwdL7yuQ",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "restaurant",
+                "food",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Calle 9, Envigado"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.207872999999998,
+                    "lng": -75.56795
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.209226080291502,
+                        "lng": -75.56661226970849
+                    },
+                    "southwest": {
+                        "lat": 6.206528119708498,
+                        "lng": -75.56931023029149
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+            "id": "49c8b395f01dfb9602627069725f62060c04dac0",
+            "name": "La Sagrada Tienda Fonda",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 424,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/108177882519319366449/photos\">fondalaquinta porra</a>"
+                    ],
+                    "photo_reference": "CmRaAAAAj2pTJrXWfDtV5Y5P5GVJCH8Z7GiAwSA4NnQLy-sNJecG7d8yFctaW01g1bY4AL8XbTRU-NOlQc0g2AZosVVIgr5csjFVYY657dXIKsHVeTw_Cy1Kdb0_tFFWwrxm-5_yEhDbboEAK48D7XgWyHkCJ4KDGhR0Ga3Zmk1Nj_YhulJoOJZsUvgvMg",
+                    "width": 640
+                }
+            ],
+            "place_id": "ChIJF4PH85ApRI4Rx5wOlKM1ljU",
+            "rating": 4.5,
+            "reference": "CmRRAAAAKmbZvW1DPI5_wdHDlywSbA7VCKuooSlHWcOoYCKiipdvM0WjM1H0heCmeLSEJMXEdFI4JcnF4epiMcKvcJD8p--puxZXgWuUK1Ln09ihS31jRXAf0SSXJbg7MDbzVJKWEhC55vb49VhhRrSTSD2XuLv0GhSby3FW9VMv49juaK-73lPtLkuvsQ",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Carrera 38 #842, Medellín, Medellín"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.208349699999999,
+                    "lng": -75.5678544
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.209697980291502,
+                        "lng": -75.56650346970848
+                    },
+                    "southwest": {
+                        "lat": 6.207000019708497,
+                        "lng": -75.5692014302915
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+            "id": "59d60e204f9a6848d277fe4fdb0a06947723897d",
+            "name": "SkyBar Medellín",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 3036,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/105093841863291568914/photos\">Abhishek Amit</a>"
+                    ],
+                    "photo_reference": "CmRaAAAA_-9mUxZEEgpNShd5NtW8qjI0zoGwwyD8qQUfK_NBoGy32bvv4_fR_HWGs3vgV8SvE51Zv9z8IGfmmns9o1W8QVHpS6ifQzWfgpKgpRJzrpYTqMxMiYrq8Yt5wjk2haWAEhAO-ZjwT-BHBkYOcFqqSrAiGhSDZS0PGsXyayW6CZ1jjWJH0jPVRw",
+                    "width": 4048
+                }
+            ],
+            "place_id": "ChIJC2bDKDcoRI4Rn42144DWoxw",
+            "rating": 4.3,
+            "reference": "CmRRAAAA7eM66DqjDAixRSvvDSc8B7-1ECLoP0V4dqWnZ-KQJItx7YLYYgVyvKkjQShLhaVczXv6mHZ8sU88s9tZgwYSF7s5NQQ5HDYHIkEBMS4HmN1i4booQ6AJkt46JtgBsDQ6EhDM8AWlJdTU_zGyAgly6qxiGhTR-4rsqKujdun_VgXJoHeaUR5o-Q",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Lleras Park Carrera 38 #8-83, Medellín"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.208433699999999,
+                    "lng": -75.5678444
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.209774780291502,
+                        "lng": -75.5664743697085
+                    },
+                    "southwest": {
+                        "lat": 6.207076819708497,
+                        "lng": -75.56917233029151
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+            "id": "78125ccf5041b86554728f01b15beafe9c9e719a",
+            "name": "Juan Bala Fonda",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 2000,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/108696598711645745834/photos\">Juan Bala Fonda</a>"
+                    ],
+                    "photo_reference": "CmRaAAAADd6-3IA9RHSpJEuS1ohoPl7u6Bv-kUSiCN1Rhxq-SVqHVw61N3lAwiv3XqnRAmazfQhnq8nvd6Imqt3pjh8WMd3Sf_8cIs-NWIzKZTrLIkr81ZaA907QhPdPk5ddr_QtEhB084380IaTnbj5tgMazPfmGhTNYluU23b06Mev0hKqSlhT-w5ReQ",
+                    "width": 2992
+                }
+            ],
+            "place_id": "ChIJtwHN8ikoRI4RMa_dp1c7v-Y",
+            "rating": 3.4,
+            "reference": "CmRSAAAAYe7v495j6XKGE84pgeF4Jpal6nWlEKTKOZ3qF5iES_B8JHLHfgYZtiJK2Vi2w7h_sXdAM3Pctwx22YBliKeFRtzQc650MIX4Sa0uV7-wirUMJ67HgBDSkejxbYSW20QqEhA7nvfs01oosg48p5IktCj2GhSQswMYY83Ms9VSv5xEUMDBVnhGhw",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Carrera 38 #895, Medellín, Medellín"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.2084477,
+                    "lng": -75.56782319999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.209796680291502,
+                        "lng": -75.5664742197085
+                    },
+                    "southwest": {
+                        "lat": 6.207098719708497,
+                        "lng": -75.5691721802915
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+            "id": "49b46611c465870e7dfcecfb0a49b5c1099757e3",
+            "name": "Mi Lupe Lleras",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 1194,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/102153568877111469547/photos\">Mi Lupe Lleras</a>"
+                    ],
+                    "photo_reference": "CmRaAAAAkp3315IOORnb4ctAKiwv4RQ93mEoNM6h4mvDjhObRHhINPYknlrRVrUCBzDvkzKkdf_Lb52dTmLgGASsfa3uGbb0KhzKIHRZ3Pvq90Mqatyy3ej1yi_krBCiFAntaZwoEhC5FW2DALRi1SF0N4XHOHM0GhT9IWw3bdRjS_cNPNd-xyfDLRVXgw",
+                    "width": 1193
+                }
+            ],
+            "place_id": "ChIJ7cX7jvkoRI4REsqc6fBK74o",
+            "rating": 3,
+            "reference": "CmRSAAAAf1e-qvZUJUUHNTAvuccYZqsDUgX2unJeuzMXthwkoG2cT2sZdjJXK6ijks6eKaKh4JzIFu2QCJX9WXFwm66W2EVnkAtCpazAnXrG62zJIq8MwkmS8M6nut4j3hnDz94xEhAAnHV3iSBn9o7OnacFEyFBGhS1VG-tEkmyJLz2K7lBouzvOPmeqA",
+            "scope": "GOOGLE",
+            "types": [
+                "night_club",
+                "bar",
+                "restaurant",
+                "food",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Carrera #38, Medellín, Medellín"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.207555,
+                    "lng": -75.56811999999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.208903980291502,
+                        "lng": -75.56677101970848
+                    },
+                    "southwest": {
+                        "lat": 6.206206019708498,
+                        "lng": -75.56946898029149
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+            "id": "359a2bec4b91ed85610bc38c44f0bee0dd02bd64",
+            "name": "La Clínica Lleras",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "place_id": "ChIJFRRr-SkoRI4RyCoD4tehKnc",
+            "rating": 4,
+            "reference": "CmRRAAAA_4jbOB23DPcfc_tohHeAaT74MkQlN64IeBmoHfwyVEOUue3wHij0X4G9w04cCdMpAx6KhZNDdupGQYQMMbS4UlE4F4EYbI8d3ZwT1yQCaNRnQYv5vgrThXrB2WZiE97OEhDUqhpQ5DJWPDP0LmqTeZ_iGhTmkSP61Iy8Cl97YJcP1IW4lMcCiQ",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Calle 8 # 37a41, medellin"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.209255,
+                    "lng": -75.56743299999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.210608180291501,
+                        "lng": -75.5660957697085
+                    },
+                    "southwest": {
+                        "lat": 6.207910219708497,
+                        "lng": -75.5687937302915
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+            "id": "b01892805c8522fc46328913e31a00ae3102ed28",
+            "name": "Donde Aquellos Bar",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 436,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/110332339220842616850/photos\">Donde Aquellos Bar</a>"
+                    ],
+                    "photo_reference": "CmRaAAAA3VrJPxs3qqT8FMplnc_bXWkzptaHljG0bZ7cB_Y3ZZWCIJpdlJpLjGOHy4SV6cpi3dyHdE7X7mlfr6Is4O16_y9cz2RgCHTi0Y5l0UVVeyBnCkzmeyeuTzlsdO2Eqw1lEhA0tHaF2Lx5v4HFWvYtMe9cGhTmbaai5o2Oo7OmdQWhMndmaCiAKA",
+                    "width": 900
+                }
+            ],
+            "place_id": "ChIJ1Za3mykoRI4R4jQRfeXfnhs",
+            "rating": 4.3,
+            "reference": "CmRRAAAApq1YtwamdHuGMSL-zy5qm6xsxQ8KuHcv3-7UU69XXerdZCxA6-HWkzBq7A4XQivHro_LMR52qyUkj8tesCLSo936RRGBpNxu2rtNLYcBQGxMCPUmjdDF46JZFvnQEx7UEhCfXQrOZMFGDAnXKkIVqsrRGhRRynRqxA_fOv77InoSUF3Xd-1C_Q",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Carrera 38 #9A-26, Medellín"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.2093079,
+                    "lng": -75.5674678
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.210665280291502,
+                        "lng": -75.56614256970849
+                    },
+                    "southwest": {
+                        "lat": 6.207967319708498,
+                        "lng": -75.56884053029151
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+            "id": "216aa9275a9edf12e653def125e8d8072a6bced9",
+            "name": "IWANNA ICE",
+            "place_id": "ChIJP4WXmykoRI4R9sSs9UE47VM",
+            "rating": 4.7,
+            "reference": "CmRRAAAAK3vGFb37VtNgrFZaAR4TToxV3BNUFsBLYRUc-AdvgF2XzUXH9xJlGD-YGtG590Yqq-rUJk_zWjOFOFkmlI8kDpRUU4VNl4GntZVzS-UCNKhTjJg-xbo9mJgwSPMJELm3EhAIBHXhe5IozkWp2aEvQMGdGhR_gWZRoSj7PVxqj3ZtvFTsEQwkEw",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Local 102, Carrera 38 #9A-26, Envigado"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.209625,
+                    "lng": -75.56738199999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.210972280291502,
+                        "lng": -75.56602846970848
+                    },
+                    "southwest": {
+                        "lat": 6.208274319708497,
+                        "lng": -75.56872643029151
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+            "id": "db2188cf911a9a5d0bdddc8866db842bbe0225da",
+            "name": "Baren",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 918,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/111989954881908621753/photos\">Gregorio Arbelaez</a>"
+                    ],
+                    "photo_reference": "CmRaAAAAdgS46spLX9AdDwksT90fYM6qCKCs1mTsx8QkP5DDOKVwGW6agY1Th4-_oRIh879cJ5uD6bTQgr4li1SinaQ_KdSdTX_tO4Dc91njA0Qk6M_mLToeNWKRdzEnpyEuuS2UEhBEaBS7sdemcAjCirKYpwR0GhRzd3aURoikvtxDRbVVz3F5CFl79w",
+                    "width": 1632
+                }
+            ],
+            "place_id": "ChIJjddanCkoRI4R4PVyTJnndow",
+            "rating": 4.3,
+            "reference": "CmRSAAAAI-smdH-mza9teg2jjaScAp1krj-qt9kykMR9OqyHANePl0N9b9nJ_PdPq6BM8qxcd4fNWgSKXZTRMjIK7Xtvh5H5FCJuKDa1mpPFZVHyq-WME6iMTV44OtrMft1vsdwlEhBZAOBgZ7Yl90N_4pJlnau7GhTv97LGb4pC3pcdowfUzJ1WOIsQMg",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Carrera 38 #1013, Medellín, Medellín"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.2080328,
+                    "lng": -75.56832330000002
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.209377530291502,
+                        "lng": -75.5669621697085
+                    },
+                    "southwest": {
+                        "lat": 6.206679569708498,
+                        "lng": -75.56966013029151
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+            "id": "4f9fd2de3d8e7a20c2d5bed77da8653211aa8ac2",
+            "name": "Donde Su Madre",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 2322,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/100044584553363097677/photos\">jeimer sumadre</a>"
+                    ],
+                    "photo_reference": "CmRaAAAAz2OMuOwr0IIJpZkEfTm_Shy1cpIwtF-B-GLAhqWusA3KaElGs_lyDLmNGeKeCB3KsAFpjNf1Mbbob3pAI3AsldEqqOStiFeoZE_1TmL2UZjv2gCKiNQq8ENawDz9NRUoEhDqTxlh4EUY5qy_av8brQOOGhR6FoGmTnBAFg9RGTMnKWsWjMBSbA",
+                    "width": 4128
+                }
+            ],
+            "place_id": "ChIJOytA9ikoRI4RggVGQbqwzJo",
+            "rating": 4.4,
+            "reference": "CmRSAAAApvKMFBB_r5is3po6B_vfLROzMFsi0X_RwyXSC65SPKUXwgriVrezQ4ZPljY-al56kVpCSgiGM2m4LmyrmiITY1Rx9h_Mg76OHYsEl2_ohTk9QwIcFMGmnUlrApKmoJ7jEhDbElNukiykiodYgdoyhVOuGhQt_-lMIEcsXsiKDv5K3LhfuBb2tQ",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Carrera 39 #826, Medellín"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.207745999999999,
+                    "lng": -75.568358
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.209104980291502,
+                        "lng": -75.5670450197085
+                    },
+                    "southwest": {
+                        "lat": 6.206407019708498,
+                        "lng": -75.56974298029151
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+            "id": "2cd7473fc05813517ff9106288f32b65270eb8a8",
+            "name": "LA CHINGONA",
+            "opening_hours": {
+                "open_now": true,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 3024,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/101441627562677100817/photos\">Cesar Giraldo</a>"
+                    ],
+                    "photo_reference": "CmRaAAAAaPW3rxdUTh3mY3T7VR4P8v2IJB7qe5xRLem6zPRYF-jaDQkGf9RcocWKgnNnbvgx4A7IUn7NnpU5P_SdMkCYXQTdVljKHQjyTk3uSaf5Pp0dfjrBaqiBb_2tpqnN61FBEhAanh8bc1tJ61t6YvJU9JLWGhQQDK0TyWBSdnKU015mGmHZ5re8Zg",
+                    "width": 4032
+                }
+            ],
+            "place_id": "ChIJUy8S-CkoRI4Rv1hsF6ba-gg",
+            "rating": 4,
+            "reference": "CmRRAAAAGu58oFFWu9_CtyTA2Cve8jxzB_zRmYHdlnSkBtVo41YWgRMd7ojAAheU8EH4q18UwFc8fplP07nvQsRFK8nLzyASUcx2MafBnLuQYvGsnbBBaeFRYP-gZhkF-mqRlHOYEhBgjdBbzgs_UNXFhHty1L_mGhRCDlJRspY05cLXgHfYWBKmh45K8g",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "restaurant",
+                "food",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Carrera 39 #7124, Medellín, Envigado"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.210828900000001,
+                    "lng": -75.5647606
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.212177280291502,
+                        "lng": -75.5633937197085
+                    },
+                    "southwest": {
+                        "lat": 6.209479319708497,
+                        "lng": -75.56609168029151
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+            "id": "622877c0f4f3cbab85b6baad3d6cc26b6a395936",
+            "name": "Bruno Forno e Vino",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 3399,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/117264522444837307387/photos\">Bruno Forno e Vino</a>"
+                    ],
+                    "photo_reference": "CmRaAAAA4S3xl4WBHVcXpTVIwvOZiBh8MQl5Dk5b75c2FzYIYjUsmfF4sdFWg6L-_QjMQ_-OrcHsws5ajMscoDIp-7qk-gp3yuDbknb9t234AGdDNBEjdJ7UZ4smwW4c58k-uHUmEhBDWyBTA5bODIYoyv6OOP0VGhTbUuA5kbmzmqKRPxgpn09MzpOgwA",
+                    "width": 5098
+                }
+            ],
+            "place_id": "ChIJBWro5ygoRI4RDykse088WY8",
+            "rating": 4.3,
+            "reference": "CmRSAAAA4TVa2NPuEk1EP5Speo6M9zXb9mvDYhpva2qThffgIG_I9ZFKWJIhDhWWukcNiAvCQuYZZJgCCWAhoT-Jn7zQxk3mun9iqUbE4pM0EYMEz-SUDALt83fLI6hjTjCiwHTdEhD8hr72chKizXf7iembOjTtGhQ6oCHh57-S9E-73Vr1p4a8uzwpLQ",
+            "scope": "GOOGLE",
+            "types": [
+                "restaurant",
+                "bar",
+                "food",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Carrera 35 #10b - 33, Medellín"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.2082109,
+                    "lng": -75.5682609
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.209559880291502,
+                        "lng": -75.5669119197085
+                    },
+                    "southwest": {
+                        "lat": 6.206861919708498,
+                        "lng": -75.56960988029151
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+            "id": "90069651358409a3998fc1e862919dc52f75a22e",
+            "name": "Donde Chepe DOS",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "place_id": "ChIJZw209SkoRI4RQMWUNcp-pIU",
+            "reference": "CmRSAAAAvePw1qQT6ojhs4W_QNlPfNQ6a5GjmJhC9dUVAb2KX-pVqzQz2CRoZ4O7HgdFnZmVTAhwqDWAQ6ZeTJoNKZm9ILwlNsdtwaUb7fU6CQryy5Ip4CTKhQ1B6iHsAqSNoagNEhAq6KhRamNUnUbhB1yECCz2GhQ6svQJEngDovsrfUUokzSB4PHVBg",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "a 8-124, Carrera 39 #8-6, Medellín"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.207688,
+                    "lng": -75.5684179
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.209037280291502,
+                        "lng": -75.5670700197085
+                    },
+                    "southwest": {
+                        "lat": 6.206339319708498,
+                        "lng": -75.5697679802915
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+            "id": "ed929460df865d2d68d8c38e8f3f9e9091681cda",
+            "name": "La Terraza Medellín",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "place_id": "ChIJSUJ2-CkoRI4RfVfQUpRx2D8",
+            "rating": 3.7,
+            "reference": "CmRRAAAAplw7CaweSJQm9wtz72Mnua-DGBMIYCW9SsvlWxby5VVKU6-qtzT7QhT4AXBAJ1W6T_MayMRtR72NN9FQLhDlb3vJYQRYL2feQ3tmm39zIJL70SoabFjFfT9Y_fvYhRqvEhAdUXogcl0GF0FN1xa5nwPWGhRW5lPBKJOwiHgS3iD-Lf9e30D5KA",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Carrera 39 #7 - 100, Medellín"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.207942000000001,
+                    "lng": -75.568372
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.209281530291502,
+                        "lng": -75.5669958197085
+                    },
+                    "southwest": {
+                        "lat": 6.206583569708497,
+                        "lng": -75.5696937802915
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+            "id": "5b834032c364d0e96f9fdeb79c552bc2e38a44e9",
+            "name": "Oye Bonita del Lleras",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 395,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/103639451558095457894/photos\">Gofar Tv</a>"
+                    ],
+                    "photo_reference": "CmRaAAAAxgDDhEeiavtSR3BAgujfGfYTPBhzU-d5hHueO1i0rqsBX0-RSrKWWMRrUue47NT8ryLwhZSmOuxSo0WpHWGdyLCWpH8V4-pZ55S4sx5rVo7KPqNzW2PcFmZ6edw-Fn2UEhCGg-QZTe84-f3YzQCL4YWJGhTydWPc1ywCmFp3bkVdQmpHbZhBTA",
+                    "width": 394
+                }
+            ],
+            "place_id": "ChIJMcnX9ykoRI4RWnS7Xvn4uxY",
+            "rating": 4,
+            "reference": "CmRRAAAAGAkarduBBaXBMkk2YYYaxwUpi-m_HDHcPGzoazagygfS_kY_irb5KBiwm2KqAybaddu7LqYIE-HGiL3Zj1a6bBsqAc3VEMDil2924_LM8Sxak34Ejqhbj425tkrYQmnvEhDxr5ssNwqV1Daph1-nGPbuGhShjGt3qjOPh-z0shNkIC4gtLlcjw",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "a 8-123,, Carrera 39 #85, Medellín"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.2087693,
+                    "lng": -75.5681668
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.210105730291503,
+                        "lng": -75.56678146970849
+                    },
+                    "southwest": {
+                        "lat": 6.207407769708499,
+                        "lng": -75.56947943029149
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+            "id": "9f8430f8437b6d89ba8e9af19f9490e4730ae360",
+            "name": "Beer Store",
+            "opening_hours": {
+                "open_now": true,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 960,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/101373679078231023039/photos\">felipe torres</a>"
+                    ],
+                    "photo_reference": "CmRaAAAAJedTZDxWYUoQax--IvR9ltE6KUydXy0Yor5GliWSmKAaQG-a7Vdq4pqqW4mx27voE9Uksi0SlArL-ILAywOc_5Y17CwxW2nFqHrt9Vz9tWEM7EgOgMgNElsC1UsCg3kHEhDu7ZxElv9Ajv07ghBGd20QGhTi_Ap9he1NWvOQwjmS_O30C9S13A",
+                    "width": 640
+                }
+            ],
+            "place_id": "ChIJfRdhiSkoRI4RYjN6Nu_mLg4",
+            "rating": 4.1,
+            "reference": "CmRRAAAAES3gBdiHb3T8M_pmErGXOg0rqK3ZIdE8wEZGTmRh812P6lqTodf2-fG8vZgX0-HnbJUYJPcZvSKKK88TCjxToU7aSDjLtsDfPoUv1a-3rqsyxGg0t45DRpqIEJWQy4ajEhBCXkVkVP7NbYv6QvENHNhKGhRjJO2yJp2mkvaH8bLRqQ7-MHvufQ",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "restaurant",
+                "food",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Esquina Calle 9, Carrera 39 #135-07, Medellín"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.209251999999999,
+                    "lng": -75.56813199999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.210600330291501,
+                        "lng": -75.56678331970851
+                    },
+                    "southwest": {
+                        "lat": 6.207902369708497,
+                        "lng": -75.56948128029151
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+            "id": "e4e932c22a6a294392515226e54e828b6f8a5203",
+            "name": "Bar Restaurante Divino Cielo",
+            "photos": [
+                {
+                    "height": 720,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/107661160793408803758/photos\">Manuel Herrera</a>"
+                    ],
+                    "photo_reference": "CmRaAAAA1H37e5ki2__OaqvZdpPOXQFerM2KAUgZsocPfj5pYaAToDnQ-gGvfy2U_H8VgZjQ533HK5QxXtKscQnxXH5W7OxQDp22oSFUhapgdmmv8W17wtUg0UV00m3DAQO_j08IEhADLulg9C1C5X8cN8kdi0lzGhQtoQ6wjNPx2KR9BT0Ai9zNQGzmzw",
+                    "width": 1280
+                }
+            ],
+            "place_id": "ChIJ9dyLhikoRI4R1IEZoWSmNOo",
+            "rating": 4.6,
+            "reference": "CmRSAAAAQdCdlzBMKHZ6FFlUD8DP0DJJIXHiB2QgMtCZQShbKXd2yp6WQg2pYt7tWpizrwBCelZQtujjXHeGuCHg3jB-cusoCtvQ4j72CSKG2jdGDA8l7coMjFiChw3ySm2d-Yk5EhDWvsJALctCaNMXsDJcShJPGhTnTsZtLdWc9U43CNLiLNGyygw1JA",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "restaurant",
+                "food",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Calle 9a #38-90, Medellín"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.2095885,
+                    "lng": -75.56789010000001
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.210938580291502,
+                        "lng": -75.5665407197085
+                    },
+                    "southwest": {
+                        "lat": 6.208240619708497,
+                        "lng": -75.56923868029151
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+            "id": "cb33a08ce54ebdbfb16e8e6fd3cb9288a7eb65a3",
+            "name": "Midnight Bar",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 1241,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/104627016772958731780/photos\">sara rios</a>"
+                    ],
+                    "photo_reference": "CmRaAAAAuRmfJsR385tDku_Hz1gykvhnaqJAxGVkN6JwNgz7eIja7RqKonzs4-Kr1WYOJbx-3nXrDeCbM-AuVRDfgWHp2Fz9kYEHEGQMs3XHujpqCrqGkBnbXr_Smq4s4Yhv4Jr5EhBuW-jWDKIyxJ2RwJTvX0PsGhSKGRMQUfUy7VKjZD8PuyITnxXSVA",
+                    "width": 1226
+                }
+            ],
+            "place_id": "ChIJu6FXgikoRI4RLxASE9Snyas",
+            "rating": 4.4,
+            "reference": "CmRSAAAAjZpfrhSxyXpE3UVIVw_p9WHEaQ5MdhHe-O-73RVVnY3tx4PtSv7tR9LwqRhzYTgTplWe_FwQiC4g0y4v1_5WnrGyn1E3H07jGY1hGONVlflutj9SDxNLHR5R3PAjZzupEhCXrae1vXOpNd_9P5yNk6ROGhTUyqkdRBSxymbrf95b4i_pqHc7gQ",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Calle 10 #3855, Medellín"
+        }
+    ],
+    "status": "OK"
+}

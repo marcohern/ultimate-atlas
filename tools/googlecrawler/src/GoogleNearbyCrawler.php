@@ -2,31 +2,42 @@
 
 require_once("constants.php");
 require_once("CsvReader.php");
-require_once("Tabulator.php");
+require_once("ConsoleTabulator.php");
+require_once("CsvTabulator.php");
 
 class GoogleNearbyCrawler {
     private static $_ep = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json';
     private static $_types = ['bar','restaurant','night_club','casino'];
     private static $_lang = 'es';
-    private $id;
-    private $city;
-    private $area;
-    private $lat;
-    private $lng;
-    private $radius;
+
+    private $infile;
     private $outfile;
+    private $ids = [];
+    private $type = '_NA_';
+    private $page = 0;
+
 
     private $tab;
-    private $i;
+    private $csv;
+    private $out;
+    private $in;
+    private $reqqty;
+    private $total;
 
-    public function __construct($outfile) {
-        $this->outfile = $outfile;
-        $this->i = 0;
+    public function __construct() {
+        $this->infile = CURPATH.DS.'index.csv';
+        $this->outfile = ROOTPATH.DS.'output'.DS.'places'.DS.'places.csv';
+        $this->reqqty = 0;
+        $this->total = 0;
 
-        $this->tab = new Tabulator([
+        echo "IN:".$this->infile."\n";
+        echo "OUT:".$this->outfile."\n";
+
+        $this->csv = new CsvTabulator([
             Tabulator::integer("AreaId" ,  6),
             Tabulator::string ("Area"   , 24, false),
             Tabulator::string ("Status" , 16, false),
+            Tabulator::string ("Type"   , 16, false),
             Tabulator::string ("Id"     , 40, false),
             Tabulator::string ("PlaceId", 27, false),
             Tabulator::string ("Name"   , 20,  true),
@@ -37,36 +48,60 @@ class GoogleNearbyCrawler {
             Tabulator::decimal("LngNE"  , 12,  8),
             Tabulator::decimal("LatSW"  , 12,  8),
             Tabulator::decimal("LngSW"  , 12,  8)
-        ],['AreaId','Area','Id','PlaceId','Rating']);
-        echo $this->tab->formattedHeader();
-        $this->tab->openCsv($this->outfile);
-        $this->tab->writeCsvHeader();
+        ], $this->outfile);
+
+        $this->out = new ConsoleTabulator([
+            Tabulator::string ("Area"   , 24, false),
+            Tabulator::string ("Type"   , 16),
+            Tabulator::integer("Page"   ,  4),
+            Tabulator::string ("Status" , 16, false),
+            Tabulator::integer("Qty"    ,  4),
+            Tabulator::integer("Rep"    ,  4),
+            Tabulator::integer("Tot"    ,  4),
+            Tabulator::integer("RC"     ,  4),
+        ]);
     }
 
-    public function set($row) {
-        $this->id = $row['Id'];
-        $this->city = $row['City'];
-        $this->area = $row['Area'];
-        $this->lat = $row['Lat'];
-        $this->lng = $row['Lng'];
-        $this->radius = $row['Radius'];
-
+    public function start() {
+        $this->csv->start();
+        $this->out->start();
+        
     }
 
-    private function processRecord($r) {
+    public function end() {
+        $this->csv->end();
+        $this->out->end();
+    }
 
+    private function displayRecord($item, $status, $qty, $rep) {
+        $record = [
+            'Area' => $item['City'].$item['Area'],
+            'Type' => $this->type,
+            'Page' => $this->page,
+            'Status' => $status,
+            'Qty' => $qty,
+            'Rep' => $rep,
+            'Tot' => $this->total,
+            'RC'  => $this->reqqty
+        ];
+        $this->out->write($record);
+    }
+
+    private function processRecord($r, $item) {
+        $area_id = $item['Id'];
+        $area = $item['City'].$item['Area'];
         $id = $r->id;
         $place_id = $r->place_id;
-        $name = '';
-        if (isset($r->name)) $name = $r->name;
+        $name = $r->name;
 
         $rating = 0.0;
         if (isset($r->rating)) $rating = $r->rating;
 
         $r = [
-            'AriaId'  => $this->id,
-            'Area'    => "{$this->city}{$this->area}",
+            'AreaId'  => $area_id,
+            'Area'    => $area,
             'Status'  => 'OK',
+            'Type'    => $this->type,
             'Id'      => $id,
             'PlaceId' => $place_id,
             'Name'    => $name,
@@ -81,11 +116,14 @@ class GoogleNearbyCrawler {
         return $r;
     }
 
-    private function processError($status) {
+    private function processError($status, $item) {
+        $area_id = $item['Id'];
+        $area = $item['City'].$item['Area'];
         $r = [
-            'AriaId'  => $this->id,
-            'Area'    => "{$this->city}.{$this->area}",
+            'AriaId'  => $area_id,
+            'Area'    => $area,
             'Status'  => $status,
+            'Type'    => $this->type,
             'Id'      => '',
             'PlaceId' => '',
             'Name'    => '',
@@ -97,52 +135,84 @@ class GoogleNearbyCrawler {
             'LatSW'   => 0.0,
             'LngSW'   => 0.0
         ];
+        return $r;
     }
 
-    private function read($url,$i=0) {
+    private function read($url, $item) {
+        //echo "......READING....!\n";
         $txt = file_get_contents($url);
         $c = json_decode($txt);
-        if ($txt) { file_put_contents("output.$i.out.txt",$url."\n".$txt); }
+        $this->reqqty++;
+        //echo "......READ!\n";
+        
+        //if ($txt) { file_put_contents("output.$i.out.txt",$url."\n".$txt); }
         if ($c) {
+            //echo "......PARSED!\n";
             if ($c->status=='OK') {
+                $cnt = count($c->results);
+                $this->total += $cnt;
+                $repeated = 0;
+                //echo "......$cnt places!\n";
                 foreach ($c->results as $r) {
-                    $row = $this->processRecord($r);
-                    $this->tab->writeCsv($row);
-                    echo $this->tab->formattedValues($row);
+                    if (!array_key_exists($r->place_id, $this->ids)) {
+                        $row = $this->processRecord($r, $item);
+                        $this->csv->write($row);
+                    } else {
+                        $repeated++;
+                    }
                 }
-                if ($c->next_page_token) {
+                $this->displayRecord($item,'OK',$cnt,$repeated);
+                //echo "......$repeated repeated!\n";
+                if (isset($c->next_page_token)) {
+                    //echo "......NEXT PAGE!\n";
                     return $c->next_page_token;
                 }
             } else {
-                $row = $this->processError($c->status);
-                $this->tab->writeCsv($row);
+                //echo "......{$c->status}\n";
+                $this->displayRecord($item,$c->status,0,0);
+                $row = $this->processError($c->status, $item);
+                $this->csv->write($row);
             }
         } else {
-            $row = $this->processError("ERROR");
-            $this->tab->writeCsv($row);
+            //echo "......ERROR\n";
+            $this->displayRecord($item,"ERROR",0,0);
+            $row = $this->processError("ERROR", $item);
+            $this->csv->write($row);
         }
         return false;
     }
 
-    public function process($type) {
+    private function readPages($url, $item) {
         $i=0;
-        $key = API_KEY;
-        $url = self::$_ep."?key=$key&type=$type&language=".self::$_lang."&location={$this->lat},{$this->lng}&radius={$this->radius}";
-        echo "--$url\n";
-        $r = $this->read($url,$this->i);
-        echo "--$r\n";
+        $this->page = 1;
+        //echo "--$url\n";
+        $r = $this->read($url, $item);
         while ($r) {
-            $this->i++;
-            echo "NEXT PAGE\n";
-            $url = self::$_ep."?key=$key&type=$type&language=".self::$_lang."&location={$this->lat},{$this->lng}&radius={$this->radius}&pagetoken=$r";
+            $nurl = "$url&pagetoken=$r";
+            //echo "--$nurl\n";
             sleep(2);
-            $r = $this->read($url,$this->i);
-            echo "--$r\n";
+            $this->page++;
+            $r = $this->read($nurl, $item);
         }
-        echo "NO MORE PAGES\n";
     }
 
-    public function close() {
-        $this->tab->closeCsv();
+    public function process($type) {
+        $this->type = $type;
+        //echo "..Procesing: $type\n";
+        $key = API_KEY;
+        $this->in = new CsvReader($this->infile);
+
+        while ($r = $this->in->read()) {
+            $area = $r['City'].$r['Area'];
+            $lat = 0+$r['Lat'];
+            $lng = 0+$r['Lng'];
+            $radius = 0+$r['Radius'];
+            //echo "....$area:\n";
+            $url = self::$_ep."?key=$key&language=es&type=$type&location=$lat,$lng&radius=$radius";
+            $this->readPages($url, $r);
+            //break;
+        }
+        $this->in->close();
+        //echo "..TOTAL ".$this->reqqty." requests\n";
     }
 }

@@ -1,0 +1,807 @@
+{
+    "url":"https://maps.googleapis.com/maps/api/place/nearbysearch/json?key={{api_key}}&location=6.207121,-75.564731&radius=3000&language=es&type=bar",
+    "html_attributions": [],
+    "next_page_token": "CoQC_wAAAHiFKFk2WQUKeiMe0hOD3coq0OTMDvEZHwmRqWY43ICP3GjAJMbxX56EwtboOHY_DufmFXUG7PonD91nPT0lof0XnHNDMM7FPuFpDARH8PITDBcWpHs935zZnpJd3fT0LEpPIEZIMwKoM2fdF1neGtle-6nTB9Oluc2pC6IRfYshmqlUAjqeYXk6F_PXqybeM_pdYBmd4suPmkdKj74pMz6Xkyvuq4acNOBG8oRNOqKakKcRBcgzd1bfAi05ghGKFZqb0UPk2QCot7bdl4gGzoPKNHckQ9I1hcy08_jhfj9pAHN1lb2v-tM8F61rgk6kOm0f1cGWBNwLsuhakk_-0NwSELSn0AbZP_6F067AeoBajfwaFNlqjKGLuJFWLv4oHDnOey6pr54q",
+    "results": [
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.20723,
+                    "lng": -75.573753
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.208576630291502,
+                        "lng": -75.5724179197085
+                    },
+                    "southwest": {
+                        "lat": 6.205878669708498,
+                        "lng": -75.57511588029151
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/lodging-71.png",
+            "id": "98e4d89e171549bcdd1f259363691aa09785c5c8",
+            "name": "The Pit Stop Hostel",
+            "opening_hours": {
+                "open_now": true,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 387,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/117921981498320646465/photos\">The Pit Stop Hostel</a>"
+                    ],
+                    "photo_reference": "CmRaAAAAjt8ROyXMVSJ6KeQdqPfMOF_x_nlZ135YmOqhQuL7n8FdRhR80Js4ucvWWaqHMFvZEvcLPnNnnYZHfKSiFKbC1Xy617z2tttHE4KteW6x73VkNy_F6kIo-Dovt9Rm-KX3EhAA8m5FLjoWmx4_jpdK353kGhS3vY7uZBYWZw0q-SweEEBSuqSuhw",
+                    "width": 1136
+                }
+            ],
+            "place_id": "ChIJF7s7cdQpRI4Rjjsur8Enqkk",
+            "rating": 4.5,
+            "reference": "CmRRAAAA_CoODYS-FwAmy4q_e6pKrjbWARPStXPFj69M4-W8FVD_eWYLr6PEQINEojr9wMyQV3r7wV0Pn2aqfE-kPDkEdD9_8NDf9AhXrVvMorUYm0AMHLnZH_Td3kyfXgAsitX4EhCShljD1D1iXQWZU0RioGuiGhROqZGWRl5bys2AOp5T7X98vFffqA",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "lodging",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Carrera 43e #5110, Medellín"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.212815300000001,
+                    "lng": -75.58660159999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.214169230291501,
+                        "lng": -75.5852734197085
+                    },
+                    "southwest": {
+                        "lat": 6.211471269708498,
+                        "lng": -75.58797138029151
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+            "id": "428d10af39bc07a30711bef74fcb108b718090e8",
+            "name": "Mekatos La 65",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "place_id": "ChIJ32-qAtopRI4RAhMS0Qn78y8",
+            "reference": "CmRRAAAAHVx1-uXCJujs1ECkkH0u3px7EbsXXImDsaG8r-4uzX1di6DeP5qt0aEEetTEe6bm7XYt7XKfKJtJVbud_Ih_V_s9fVj7HOBi4u50Hon76Il8hAFzccoxp9bVvqtlPk5PEhDo1S6Kd-4F4uX7K3zMIkq8GhRtTZTvInjem2yVexV5Y0fxQoeB9Q",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "4, Carrera 65 #5, Medellín"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.2079893,
+                    "lng": -75.56798010000001
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.209418180291502,
+                        "lng": -75.56658826970849
+                    },
+                    "southwest": {
+                        "lat": 6.206720219708497,
+                        "lng": -75.56928623029151
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+            "id": "488142b9ef70bf40c2c1fd83b56362cf5f0e6ab3",
+            "name": "Lupe",
+            "place_id": "ChIJV_ho8SkoRI4RIPad4Ks_H9I",
+            "reference": "CmRSAAAAIR_nRUgf0bCz5ayRAdcq5aXfXyJQJncwGIAW979w1RrKH9GQnffs7U1LlM3FUDoQl_kE44YW8HW682HoQn0r2mtXYkM4eCZmUKp6m6ry6ptLdwtq7MRTOD8vxxfQQ4EzEhAxHESTjSugHRaOubPE7-9qGhT_4pggjQy5Mu1Hw8WBhw75C6VtIg",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Calle 8a, Medellín"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.20901,
+                    "lng": -75.56842999999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.210358980291502,
+                        "lng": -75.5670810197085
+                    },
+                    "southwest": {
+                        "lat": 6.207661019708498,
+                        "lng": -75.5697789802915
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+            "id": "aa01c7a4f132045f39e9ba790b58a7fbd54ffca4",
+            "name": "Bar Bourbon",
+            "place_id": "ChIJx2v1JyooRI4RkKlWDMl0T94",
+            "reference": "CmRSAAAArSrP97cvfa0OTWt7GxBe_beEWxEHMX5JDZKXB8TnLc99B9VkbgtgJ4ezEtatJ15s6lW0oM6oUYjLvtnQHC8nTC-KxFeuy8TWxQfkp-wojfucYJd7Huk-Pud-SaGyZgPkEhCypsPGXx49swZWE0AgdzG2GhS5BCEnlR_ilFbyVi6_Bka8wW2OHw",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Carrera 40 #9-26, Medellín"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.209756199999999,
+                    "lng": -75.5683914
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.211130730291502,
+                        "lng": -75.56703236970849
+                    },
+                    "southwest": {
+                        "lat": 6.208432769708498,
+                        "lng": -75.56973033029151
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+            "id": "9085a5ab203336af4816192f11813837c06714c5",
+            "name": "zona 10",
+            "place_id": "ChIJsbL7fykoRI4RGVPtaUDoTtg",
+            "reference": "CmRSAAAAD7QdFMRv363sJzXDUhPADJR9PSexnyopT8DaKIVDBkDj0bDpWA9Wmh6obS9zmh5mgjvMd7vkjJKNk9b4oG-rjoMQKu7mSwM1GqSoAStw4KEXlRpqVQDUxE0vKpzWPEXqEhAXRtKx83oe_GJu4iNR6jTKGhQ2GCbuf3cDruoBBcGBAmuozt8Z7w",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Calle 10 #40-29, Medellín"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.2082035,
+                    "lng": -75.56758649999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.209521280291503,
+                        "lng": -75.56615716970849
+                    },
+                    "southwest": {
+                        "lat": 6.206823319708498,
+                        "lng": -75.56885513029151
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+            "id": "bb2c88e448376c40befe7391c59494863a7d6b6d",
+            "name": "Jamrock Bar",
+            "place_id": "ChIJGSMP8CkoRI4R9PIv6b0BkZM",
+            "rating": 5,
+            "reference": "CmRSAAAAbOkRCJfwwDCNrjAhI9KxNvwrbQNnnBUxPLa-4wwpfF7O0X1kfiHeeo5X70ipLvdNSIhmvGuVXRPM1xYWTkTwhFBQQDS7X3bzq8MFUXyCk3Kvghz4y_hNn9uS7FJz9gRbEhCHbExXg0-dU7FoM9oEgUP8GhSwT2CcpEj2RtZmS0ZYsXEQxRciKQ",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Carrera 37a #37A-13, Envigado"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.209963999999999,
+                    "lng": -75.565669
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.211296930291502,
+                        "lng": -75.56427616970849
+                    },
+                    "southwest": {
+                        "lat": 6.208598969708498,
+                        "lng": -75.5669741302915
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+            "id": "ec4226b5c667b77e3c31c6e1ca7a0b320f0f4e39",
+            "name": "Carmen",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 1200,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/106692059625280196525/photos\">Carmen</a>"
+                    ],
+                    "photo_reference": "CmRaAAAAtMknASnq4LqAJOT-0UpNukEZXrjWmH3Z4BUCBhO7d9N5H8j1y4yZMdETU6_k4hl-51SqccPpoSK5-f2kU2EXOKKqlLH3RJmio1poXzhbHPqcXnfWvLaM-S18asRTU5h0EhAftJuAtb-CGdwVMpOt2M41GhQ-Y-OkZPFY15vFs52LVJXITiYbEg",
+                    "width": 800
+                }
+            ],
+            "place_id": "ChIJNwlQASkoRI4RLE2RqbGpVP0",
+            "rating": 4.4,
+            "reference": "CmRSAAAAJjKXBFQX7dTvjlGslvIOcrNAoHdCokUDFS-2myLweiD9Oc4YRLX5AD4Tl7Ro9Y0n92y1NkZL1CUIHDnmRVgWwDu9yi51_aszSzbQLd7yi1weDO9Xt4XWrof-3GbNKA_DEhDZ1FPnfI9fIMP6TZQvEOv1GhS3djC3Ovwz6hoc-FIMTeYv2Potlg",
+            "scope": "GOOGLE",
+            "types": [
+                "restaurant",
+                "bar",
+                "food",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Carrera 36 #10a-27, Medellín"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.214849999999999,
+                    "lng": -75.561098
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.216198980291502,
+                        "lng": -75.55974901970849
+                    },
+                    "southwest": {
+                        "lat": 6.213501019708497,
+                        "lng": -75.5624469802915
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+            "id": "2cdbad9df64d6faaee0d9e730df4e996704fd637",
+            "name": "San Carbón",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 4008,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/116139116303545839907/photos\">Jeremy Cáceres</a>"
+                    ],
+                    "photo_reference": "CmRaAAAAqr58gsdDsh1jw_fL937P6mH3KGB7WTqcoY7VyHKhUeoKQjOORuxq77m-NMU-Zcj-AoKh5iEQOk9bDQU4wxVoPwdmn-Z9di1gkKn5_VSPEh4eDBMyp2zKcywclAVcCLzdEhDsa3gj6e8ajlOnMoNQ6LHEGhTKPmGJEj37jcixWHBHWBwE5Nj13g",
+                    "width": 5344
+                }
+            ],
+            "place_id": "ChIJU50sCyUoRI4RXRFASyqT-fs",
+            "rating": 4.5,
+            "reference": "CmRSAAAAqhgUov5kc33MV_LNYHNbslgYdvHK6w3IuwzQXTPcDkhaTB3TeciYzBWguOZqne8Lzqpjq9pLWMpDuSLYt_GCW8VqXJoM2BsnwOcyEH6cx_tYFit_8v8WOqU0rAVNGRchEhA1z4eSKxZiM1LTSOUDhPhkGhQa2GbPOtKgtdz9ayzRlEcDAkVzdg",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "restaurant",
+                "food",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Medellin"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.2150818,
+                    "lng": -75.57498339999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.216423630291501,
+                        "lng": -75.57354761970849
+                    },
+                    "southwest": {
+                        "lat": 6.213725669708497,
+                        "lng": -75.57624558029151
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+            "id": "eff0207573e66f931956411a8b855c9ea0dce5b2",
+            "name": "Bar El Solar",
+            "place_id": "ChIJz1IA2NIpRI4ReEvYX4pwVeA",
+            "rating": 3,
+            "reference": "CmRSAAAARhOY55qsVn88ILcoQLK3g1rXZbX9KGv9Z4aLPRd4dBAeUgU2esFlJwFv5WEe29cVr0sEyrBmYHUuBU_Uf72-wVm5yXuqvOjPx6vuPxYwo5DyXreWzthDgOQScw_AT8WXEhA1D5rMISQKKrfqTtR8BQFjGhR4wS6afwtKJsijF7hTeBW1eI9CtA",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Carrera 48, Medellín"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.208715699999999,
+                    "lng": -75.56764849999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.210063930291502,
+                        "lng": -75.5662974697085
+                    },
+                    "southwest": {
+                        "lat": 6.207365969708499,
+                        "lng": -75.56899543029151
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+            "id": "a577860a41c9efb3b14fc2e571c59bab64997062",
+            "name": "Restaurante Basílica",
+            "photos": [
+                {
+                    "height": 768,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/106100389856587014325/photos\">Milton Rivadeneira</a>"
+                    ],
+                    "photo_reference": "CmRaAAAAr4ju0ZSyr9cwU6tQZcYdJyQGd9b_itBJpv53TC1tCBrEigL7NqcaLxfp2iopVD1LUWg91MPfAhm_7mqKsXYmztcbx7ytI7Mw20br6W9lW1hihjLVtPxLaETcSzBKqBbYEhCwsT8oiFvPqqIjjnhYJ8RGGhRNtoAT0prsBrbHrx2Ie9N3x5pAeg",
+                    "width": 1024
+                }
+            ],
+            "place_id": "ChIJVVtSkikoRI4RU6e_Cn3uiN0",
+            "rating": 3.7,
+            "reference": "CmRSAAAApl0NWkXLhnCh_KYRiOnqCaDEtezLck1wMTZDTstFvbGNloWqf9ap0rdnCarCAQks9o9_303JyxL-Y_w-wrphUxOU_RYnY4Qu2A592ovkH6KswETvRv3gXvcymXJlANyyEhAyovuWxYYCmm988Gpkvh17GhQg4do2eRcbkZyCJM-etue28IJV9Q",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "restaurant",
+                "food",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Calle 9 #38, Envigado"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.207674,
+                    "lng": -75.567561
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.209031030291503,
+                        "lng": -75.5662312697085
+                    },
+                    "southwest": {
+                        "lat": 6.206333069708498,
+                        "lng": -75.5689292302915
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+            "id": "190552737b5fea3f6d23d0ef8750dfba1cc4289a",
+            "name": "Hooters Medellín",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 305,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/108407387697940561765/photos\">Hooters Medellín</a>"
+                    ],
+                    "photo_reference": "CmRaAAAAzUe4bDf323qpLo8Z1NaFr4PhFZapSKSHLuBUVLStd1D5ZOF8Rlu7AMGXLZZ8YmRiR-mQKq623buiuAJqhkJtv55DjNhqeRulFU42fOuJKGa7qOsbXk2u1rt103hOqoD0EhDvrLKBxvvJfVZJSxxa9NxSGhRWHfOS6uHgXjwSA_WJ4hsYbYMGjg",
+                    "width": 305
+                }
+            ],
+            "place_id": "ChIJ7Rg1-ykoRI4RFLhuS_ov1UM",
+            "price_level": 1,
+            "rating": 4.1,
+            "reference": "CmRRAAAA4br-gaaE75LcYyYV0-3Pm5tWyhtgI1BIJz62inLydQZEDzGi3CZi2c51uVZuHRcoBRTX82Zg1VAUJxK8SKytLkt-i4k4NPN5KWIfBllGyz50QD6zmGET1d7TbGWjY3o8EhAqFsiVkPSyX43BHpH2G2wIGhQ_oiv7BBpWIXJmqoES83wILnsO7w",
+            "scope": "GOOGLE",
+            "types": [
+                "restaurant",
+                "bar",
+                "food",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Carrera 37a #844, Medellín, Envigado"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.206467399999999,
+                    "lng": -75.5643125
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.207817930291502,
+                        "lng": -75.56295861970848
+                    },
+                    "southwest": {
+                        "lat": 6.205119969708497,
+                        "lng": -75.56565658029149
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+            "id": "bdf72b53bd0dad792df23b48037f9d69190e6675",
+            "name": "Restaurante Mistura Provenza",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 3008,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/117193372087393111011/photos\">Restaurante Mistura Provenza</a>"
+                    ],
+                    "photo_reference": "CmRaAAAAlDhEYypPcpM4eZn2BMIKyEO30kAB4Y0H530PTRDNfnE55bTAfMOQring_g-FWybL3IX63YxOgdQRKd9iNUjSYwze11LmerrYnJQqx0i2Hons0ojXUWEENCtWFjsuq-gFEhBigiKYj9ULUen_rbaAoYVJGhS-xrQ-AwXiYlyOFTag9f0Nhn05ZA",
+                    "width": 4512
+                }
+            ],
+            "place_id": "ChIJ77nAmYKCRo4RhJzA9msoFnU",
+            "rating": 4.4,
+            "reference": "CmRRAAAAWykND-YJeSaUr1G6MKIgt6dg2AZoeJPPBh_2IVtmLGTzAa92JZqZkhaPhsHTao8k46SnpG8pfBQpHzLAnvrCpXUpbjz_ldPSADsSkCw_yQk2iNIhDmG4oATIOqC-sc1cEhDAQmDi9bGQLJa1rn-YEucIGhSrd9QfdlWO7JKLXRyHroIN2VSGog",
+            "scope": "GOOGLE",
+            "types": [
+                "restaurant",
+                "bar",
+                "food",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Carrera 33 #7-55, Medellín"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.207958999999999,
+                    "lng": -75.56794499999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.209303480291502,
+                        "lng": -75.56658366970849
+                    },
+                    "southwest": {
+                        "lat": 6.206605519708497,
+                        "lng": -75.5692816302915
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+            "id": "4d7ac55f70934a4e57ff3228824f8f4eaacb0313",
+            "name": "Morena (El Museo Colombomexicano)",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 957,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/110587669748740330826/photos\">Morena (El Museo Colombomexicano)</a>"
+                    ],
+                    "photo_reference": "CmRZAAAA-qb8O05oMxW_htzbuP91zgVGQFt3pARuv7ZVQkxjeiSSp4zq7LIMHrclbp7_77Yjnffa7CsEp8QqYkMhRMlXE7gOL0Y50LbHO8VNswHAplFJzER-Vls98njgQz2Yn7NzEhCHaxichgGzBG3e90WH2PwOGhTfGr24DVu8mcKx-EJ6YVTvhZoE3w",
+                    "width": 957
+                }
+            ],
+            "place_id": "ChIJtY-BXCooRI4RXsB2lfZfp-8",
+            "rating": 4.6,
+            "reference": "CmRSAAAA50ZyG_Di8g1jyDeUGfAPYPo1kZ-tYCj4bN-UD3RdwExENUMYw1X6J83bOtyLEL0PhPQU_GOx9zy0ebTMJ7PZdKWKMtnRUAc_7JWs2eYWoRzKBZMphQ-1hzf1zkXgTkO7EhD-lgnvTL6FxvDhmGNcJhZTGhQqVlydwfv8WD0xLp7kkBEjVUi82A",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Carrera 38 #8-54, Medellín, Medellín"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.2075854,
+                    "lng": -75.568191
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.208944080291502,
+                        "lng": -75.56683371970848
+                    },
+                    "southwest": {
+                        "lat": 6.206246119708497,
+                        "lng": -75.56953168029149
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+            "id": "0daf675170be9ac94f0d8a4465db4f9f74af2c5e",
+            "name": "La Octava Bar",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 2304,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/115852424161058581734/photos\">AZUCENA ANDREA HOYOS LONDOÑO</a>"
+                    ],
+                    "photo_reference": "CmRaAAAALCHW53V4y3U7AW1-XoNrjxftwtughYvTfKj3Hwr5y2x-vY9LOxuEnnBmkTAorCeHGPHpn9OHTnUEdEuwyGf9mDwSb-3jvUkeFR1WiBZC9iy19oIZTZHW3WzMaage51DZEhBi9IWJ0RGqdjSYJGRuqY-UGhQhG362XPlee1wz1PyIwHY3dG9Bbg",
+                    "width": 4096
+                }
+            ],
+            "place_id": "ChIJebEL-SkoRI4RcXaj3HEEDJU",
+            "rating": 4.7,
+            "reference": "CmRSAAAAXZG4xjosABQ6nKhQNjO3aLpC7RIO-ekhyzFNT9mZQeZc1S-SKVks1voWvLBUEYopoZTwu7OKWljdNp4sIDm1hbiHoixLW8vJQz_lRRlpbvc6o-VN7J5lAflC4Ql_oCkLEhAmcEjiD59KJEmbJ8Y7BaxsGhT68_AQcJGWe_nxdSI5OHFZVFLxfg",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Calle 8 #3749, Medellín"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.2083547,
+                    "lng": -75.5731169
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.209669430291502,
+                        "lng": -75.57177596970851
+                    },
+                    "southwest": {
+                        "lat": 6.206971469708497,
+                        "lng": -75.57447393029152
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+            "id": "d66f4149499629f48ef958495bbdc956d5384379",
+            "name": "Restaurante Hummus Grill & Wine",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 3024,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/112662025485633211419/photos\">Bram Borggreve</a>"
+                    ],
+                    "photo_reference": "CmRaAAAAmGmP-8Um5XGeGYUs0zlnD57vj3Idm2PiDvqaiHBgH_yedKyl4BKQWC0YAZ-WSCB90FM7YVQLz1jf3yP73e-3EWT59gwfc6fouybW9DoO-V63iuqx3EYgd2squo9gGAAFEhA-lm_5-vBD0gdAtAKXWVcyGhRf-rq-tjObL6guzagMguya1qf2Xg",
+                    "width": 4032
+                }
+            ],
+            "place_id": "ChIJrZawviooRI4RSzUuHINXVEM",
+            "rating": 4.5,
+            "reference": "CmRRAAAA6-PyqeON514CZkk2lAshWSsPYAjumeUeDxp0g3dShyntvOBNQ3CS4AmlIMOjChK_4hEKhxjnDvQewH5__erO-kzlE3VO5kJU7cE76lborANGC0sR_EHeNQvKnzC41PjPEhBvOP6vQ4dMDSn74Tm5pweRGhQI5ipsYqhoz64MmT7fCb5A1eTnxQ",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "restaurant",
+                "food",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Calle 6 #43c12, Medellín"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.209780999999999,
+                    "lng": -75.56817420000002
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.211119380291502,
+                        "lng": -75.56682936970849
+                    },
+                    "southwest": {
+                        "lat": 6.208421419708498,
+                        "lng": -75.56952733029151
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+            "id": "e7c0eb39d7537105ca6a1c889b916e2c35c90195",
+            "name": "Bar El Blue",
+            "photos": [
+                {
+                    "height": 2322,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/102965722110811691396/photos\">Carolina Rumierk</a>"
+                    ],
+                    "photo_reference": "CmRaAAAATEgvUAz26QSCMcT7_v8e4JytUE3k4lchxJz64DHsS3D5FevGgFHJR4nwPp76zS1dJUIJRTtPL_Fc3pHCJocwqtpALFuKZe5ZYZShzWKK3W9vJfEOc_Hr8o4vFXygVhVPEhDreJ6gHtbXWMoDGyC3LGI9GhQAdZqoGH-NT0zjOnGkdjWMOVgwgw",
+                    "width": 4128
+                }
+            ],
+            "place_id": "ChIJCe3ifikoRI4RP_Z94x3tVJ8",
+            "rating": 4.5,
+            "reference": "CmRSAAAAGo_ZGlOAOZ4tjO57MQc16Hw5mA9Yy0ZL7nnOHZK5mZAu0sNDszk8yExnHjUKnQTO_P8fMsXG_cvVBKY-3xW2lIW29zo8s_xbyBGIVTA8CgOgrLsUE3NehW4NZ7JILbX0EhCEkxwKWkvpvLfhfm2Fp1OWGhTZ5q9G7ZtI6J8QsjocUfnCd0zsbA",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Calle 10, Medellín"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.210938,
+                    "lng": -75.57107800000001
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.212282230291501,
+                        "lng": -75.5697128697085
+                    },
+                    "southwest": {
+                        "lat": 6.209584269708496,
+                        "lng": -75.5724108302915
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+            "id": "a6d355770f01b4afee4f0a5702e1bbdbec81b245",
+            "name": "Tinto Tintero café bar",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 1836,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/107851655617085930637/photos\">Santiago Bastidas</a>"
+                    ],
+                    "photo_reference": "CmRaAAAAO8VRi_oA4kQ0P42RMhFo4MekN1hD9-pWTlycBb8ZxI3El_wJ6yA7L646y3nXXAJK0ze0LJzS8Wl_ghXDoURsRcnmHoJuf91nHtHxz1INtu0A3cdJcNOQuNmliOyTxhf3EhAXW34Cu7JG6ltBtx_wJIwDGhRntcZC9ZY1Pt0TmEeNdLckeP1GDg",
+                    "width": 3264
+                }
+            ],
+            "place_id": "ChIJRelu3SkoRI4RVUM4Vd0z8Ok",
+            "rating": 4,
+            "reference": "CmRSAAAA0yMJT_5tBK9AdQrKc1pI2X93es04nT-V2nPn-wl6JcLzDkgLCSv_RWoyM27s7C9BSSj7A-MW8Zm6NyLoJALPMedPSHU6cEuDBdlUoM9eIUrDgHR_xzUYlgv8NdqOTt_LEhD6e3Dw1i6dHqhqH2suUvP1GhToKyK2UTYYeR3qMyVdzOplkCKEpw",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Carrera 43b #10-12, Medellín"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.2099726,
+                    "lng": -75.5713607
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.211321580291502,
+                        "lng": -75.57001171970849
+                    },
+                    "southwest": {
+                        "lat": 6.208623619708497,
+                        "lng": -75.57270968029151
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+            "id": "14428343d4c7ccdc37493c659e07af86aa4e9164",
+            "name": "Latineria",
+            "opening_hours": {
+                "open_now": true,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 5344,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/113701497120144769480/photos\">Ana Cristina Muñoz</a>"
+                    ],
+                    "photo_reference": "CmRaAAAAlsStTrnubmor3h5WvejLXcSk6hYeClX3-ydQsJMD7gOdgqbIjtCXxXGcJMPIdvw8KrgKldrjW7QZz8iAILhuyxGudWU0zowuLvrOXavcYls-Wi3vSgEdv5YPrngLzejqEhAls1R1gqe4ih_UbW6g21wAGhSmpdKfkMixdXsgP3-5rdWkJ11sOQ",
+                    "width": 3006
+                }
+            ],
+            "place_id": "ChIJsdK0_yooRI4R3SLRo1_xQQ8",
+            "rating": 4.3,
+            "reference": "CmRRAAAADzgEUdMCMhb3ahOY3qyKSBCzmwwqtFDe_2ASJhR4KDd6XPhgtVjZoh-RK0p6FHzN5AByXs2bEdq9giuVX4Zsch8Z5DnK9adPdoL0aO8CffdTrp1jKnc6WySJuLhibNwDEhC3OspzXaOLC1MZ8o9FsPxwGhTK20Mfk6BkS1iXVwDm5mUIJHg7Zw",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Calle 9 #43b 17"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.2101085,
+                    "lng": -75.56622589999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.211462330291503,
+                        "lng": -75.5648895697085
+                    },
+                    "southwest": {
+                        "lat": 6.208764369708498,
+                        "lng": -75.5675875302915
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+            "id": "4bab073e11d7ddba52d2d1f7ab9aa52edc74d097",
+            "name": "Rubor Barra Dance",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "place_id": "ChIJo0rkBSkoRI4RKoVgJe-QgAQ",
+            "rating": 3.5,
+            "reference": "CmRRAAAAd-p3ZMFJVTi2A6JPbKfbdgAvBYTJmJNIZjdeAMd72O2XMNEu2GvV4DvYkAQX2-waSV3WThlb3V-UWKXKsrilqE2svumYLcy-ENpHfHfh-ISMLWeDXhkq7usY8qBJOFYIEhBXpr9IV3xF-NQoxiyyriQRGhTZY5CfcKZ9t9NaUMMv_weZQf81zQ",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "night_club",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Carrera 37 #10A-22, Envigado"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 6.208807600000001,
+                    "lng": -75.56548029999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.210420230291503,
+                        "lng": -75.56395191970849
+                    },
+                    "southwest": {
+                        "lat": 6.207722269708499,
+                        "lng": -75.56664988029149
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+            "id": "552a515f6a83a47f306245f39716256d9b504152",
+            "name": "Mokana Bar",
+            "place_id": "ChIJjekrsykoRI4R5VqUzoazgCU",
+            "rating": 4.2,
+            "reference": "CmRRAAAAjLAF4Y8R1am-PTEdxHfNyOge6q2Tn7gxiRLdgICTqOmCE6T5kpD641fdH_SPRztX6wbsNvry0MJDCmOj16Y5ikGMV5U7LRsYcW0tsfe6d_loI_2QIysKNbtWJZsWTP9fEhDyO2N4oKHVLDzIMJ29NFViGhTqg82AE5lspjpbWDcamLJKcwVnfQ",
+            "scope": "GOOGLE",
+            "types": [
+                "bar",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "Calle 10A #01-115, Medellín"
+        }
+    ],
+    "status": "OK"
+}
