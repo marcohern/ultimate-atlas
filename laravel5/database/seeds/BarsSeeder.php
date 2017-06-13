@@ -1441,7 +1441,7 @@ class BarsSeeder extends Seeder
             $bars[$i]['zip'] = '';
             $bars[$i]['email'] = '';
             $bars[$i]['description'] = '';
-            $bars[$i]['slug'] .= "$i-".$bars[$i]['slug'];
+            $bars[$i]['slug'] = sprintf("%04d.%s",$i,$bars[$i]['slug']);
         }
 
         Bar::insert($bars);
