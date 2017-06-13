@@ -14,7 +14,7 @@ class CreateBarsxTable extends Migration
     public function up()
     {
         Schema::create('barsx', function (Blueprint $table) {
-            $table->primary('id');
+            $table->integer('id');
             $table->integer('franhise_id')->nullable()->index();
             $table->enum('plan',[
                 'lead','copper','bronze','aluminium','tin','iron',
@@ -29,6 +29,7 @@ class CreateBarsxTable extends Migration
             $table->decimal('cover',20,2)->default(0);
             $table->string('color',32)->default('');
             $table->timestamps();
+            $table->primary('id');
         });
         DB::statement("ALTER TABLE barsx ADD genre SET ("
             ."'Rock','Pop','Rap','Ska','Reggae','Blues',"
