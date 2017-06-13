@@ -33,6 +33,8 @@ Route::resource('daily_accs', 'Daily\DailyAccsController');
 
 Route::post('/daily_charts/days','Daily\DailyChartsController@days');
 
+Route::resource('bars', 'Bars\BarsController');
+
 Route::post('/check_token'           ,'AccountController@check_token');
 Route::post('/signup'                ,'AccountController@signup');
 Route::post('/activate'              ,'AccountController@activate');

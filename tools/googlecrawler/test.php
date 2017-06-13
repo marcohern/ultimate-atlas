@@ -4,16 +4,33 @@ require_once("src/constants.php");
 require_once("src/CsvReader.php");
 require_once("src/ConsoleTabulator.php");
 require_once("src/CsvTabulator.php");
-require_once("src/GoogleNearbyCrawler.php");
+require_once("src/GooglePlacePhotoCrawler.php");
 
 _debug();
 
-$types = ['bar','restaurant','night_club','casino'];
+$infile = CURPATH.DS.'dimgf.csv';
+$imgdir = ROOTPATH.DS.'output'.DS.'places'.DS.'img'.DS;
+$csv = new CsvReader($infile);
 
-$gnc = new GoogleNearbyCrawler();
-$gnc->start();
+$i=0;
+$tot=0;
+while($r = $csv->read()) {
+    $slug = $r['slug'];
 
-foreach ($types as $t) {
-    $gnc->process($t);
+    $cnt=0;
+
+    for ($j=0;$j<10;$j++) {
+        $file = $imgdir.$slug.".$j.jpg";
+        if (file_exists($file)) {
+            $cnt++;
+        } else {
+        }
+    }
+    $tot+=$cnt;
+
+    if ($cnt > 0) printf("..%-':80s %2d %4d\n",$slug,$cnt,$tot);
+    $i++;
+    //if ($i>10) break;
 }
-$gnc->end();
+
+$csv->close();

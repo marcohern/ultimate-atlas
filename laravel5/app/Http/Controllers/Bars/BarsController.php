@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Bars;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Bars\Bar;
+
 class BarsController extends Controller
 {
     /**
@@ -12,9 +14,17 @@ class BarsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $r)
     {
-        //
+        $q = $r->input('q');
+        $city_id = $r->input('city_id');
+        $offset = 0+$r->input('offset');
+        $limit = 0+$r->input('limit');
+
+        if (empty($offset)) $offset = 0;
+        if (empty($limit )) $limit  = 10;
+
+        return Bar::query($q, $city_id, $limit, $offset);
     }
 
     /**
