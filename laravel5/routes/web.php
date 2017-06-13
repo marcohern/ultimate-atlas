@@ -13,7 +13,7 @@
 Route::pattern('anything', '[\w\/\-_]+');
 Route::pattern('id'     ,'\d+');
 Route::pattern('index'  ,'\d+');
-Route::pattern('slug'   , '[\w_-]+');
+//Route::pattern('slug'   , '[\w_-\.]+');
 Route::pattern('domain' , '[\w_-]+');
 Route::pattern('profile', '[\w_-]+');
 Route::pattern('density', '[\w_-]+');

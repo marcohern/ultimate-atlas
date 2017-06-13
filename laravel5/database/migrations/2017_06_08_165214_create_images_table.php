@@ -19,7 +19,7 @@ class CreateImagesTable extends Migration
             $table->enum('attached',['TRUE','FALSE'])->default('TRUE')->index();
 
             $table->string('domain',32)->default('global');
-            $table->string('slug'   ,32);
+            $table->string('slug',128);
             $table->integer('index')->default(0);
             $table->string('profile',32)->default('original');
             $table->string('density',32)->default('original');
