@@ -28,6 +28,10 @@ class CreateBarsxTable extends Migration
             $table->decimal('avg_price',20,2)->default(0);
             $table->decimal('cover',20,2)->default(0);
             $table->string('color',32)->default('');
+            $table->decimal ('lat_ne', 17, 14)->default(0);
+            $table->decimal ('lng_ne', 17, 14)->default(0);
+            $table->decimal ('lat_sw', 17, 14)->default(0);
+            $table->decimal ('lng_sw', 17, 14)->default(0);
             $table->timestamps();
             $table->primary('id');
         });
