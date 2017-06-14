@@ -1,3 +1,5 @@
+DROP TABLE if exists __bar_photocount;
+
 CREATE TABLE __bar_photocount (
 	id INT,
     qty INT

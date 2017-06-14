@@ -15,9 +15,17 @@ class Image extends Model
         'bytes',
     ];
 
-    public static function query($q='',$attached=true) {
+    public static function query() {
         $query = self::where('attached','TRUE');
         return $query->get();
+    }
+
+    public static function queryIds($domain, $slug) {
+        $query = self::where('domain',$domain)
+            ->where('slug',$slug)
+            ->where('index',0)
+            ->where('profile','original')
+            ->where('density','original');
     }
 
     public static function get($id) {
@@ -73,8 +81,9 @@ class Image extends Model
     }
 
     public static function attach($ids, $domain, $slug) {
-        $i=0;
+        
         if (is_array($ids)) {
+            $i=0;
             foreach ($ids as $id) {
                 self::where('id',$id)->update([
                     'domain' => $domain,
@@ -99,6 +108,40 @@ class Image extends Model
         return [
             'affected' => $i,
             'attached' => true
+        ];
+    }
+
+    public static function detach($ids) {
+        $domain = 'detached';
+        
+        if (is_array($ids)) {
+            $i=0;
+            foreach ($ids as $id) {
+                $slug = md5(uniqid());
+                self::where('id',$id)->update([
+                    'domain' => $domain,
+                    'slug' => $slug,
+                    'index' => $i,
+                    'attached' => 'FALSE',
+                    'filename' => "$domain-$slug-$i.jpg",
+                    'updated_at' => In::now()
+                ]);
+                $i++;
+            }
+        } else {
+            $slug = md5(uniqid());    
+            self::where('id',$ids)->update([
+                'domain' => $domain,
+                'slug' => $slug,
+                'index' => 0,
+                'attached' => 'FALSE',
+                'filename' => "$domain-$slug-$i.jpg",
+                'updated_at' => In::now()
+            ]);
+        }
+        return [
+            'affected' => $i,
+            'detached' => true
         ];
     }
 

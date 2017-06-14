@@ -74,7 +74,7 @@ class ImageController extends Controller
      */
     public function index(Request $r)
     {
-        return Image::query($r->input('q'),true);
+        return Image::query();
     }
 
     public function upload(Request $r) {

@@ -30,24 +30,23 @@ class Bar extends Model
         return $query->get();
     }
 
-    public static function get($id, $profile='', $density='') {
+    public static function get($id, $profile='', $density='',$root='') {
         $bar = self::where('id',$id)->first();
         if (!$bar) throw new NotFoundException("Bar not found");
-
         $slug = $bar['slug'];
         $photos = 0+$bar['photos'];
         if ($photos>0) {
             $photourls = [];
             $cover = '';
             if (!empty($profile) && !empty($density)) {
-                $cover = "/i/bar/$profile/$density/$slug";
-                for ($i=0;$i<$photos;$i++) {
-                    $photourls[$i] = "/i/bar/$profile/$density/$slug/$i";
+                $cover = "$root/i/bar/$profile/$density/$slug";
+                for ($i=1;$i<$photos;$i++) {
+                    $photourls[] = "$root/i/bar/$profile/$density/$slug/$i";
                 }
             } else {
-                $cover = "/i/bar/$slug";
-                for ($i=0;$i<$photos;$i++) {
-                    $photourls[$i] = "/i/bar/$slug/$i";
+                $cover = "$root/i/bar/$slug";
+                for ($i=1;$i<$photos;$i++) {
+                    $photourls[] = "$root/i/bar/$slug/$i";
                 }
             }
             $bar['photo_cover'] = $cover;
@@ -71,8 +70,9 @@ class Bar extends Model
         
         unset($data['images']);
         $barx = [];
-        
+
         $id = Bar::insertGetId($data);
+        Image::attach($images, 'bar', $data['slug']);
 
         $bar = Bar::where('id',$id)->first();
         return $bar;
@@ -82,14 +82,18 @@ class Bar extends Model
 
     public static function modify($id, $data) {
         $bar = Bar::where('id',$id)->first();
-        if (!$bar) 
+        if (!$bar) throw new NotFoundException("Bar not found");
+
+        $newImages = $data['images'];
+        $oldImages = Image::queryIds('bar',$data['slug']);
+        unset($data['images']);
 
         $data['slug'] = self::slugifyUnique($data['name']);
         $data['updated_at'] = In::now();
         $data['modified'] = In::now();
 
         $aff = Bar::where('id',$id)->update($data);
-        if ($aff==0) throw new NotFoundException("Bar not found");
+        
         $bar = Bar::where('id',$id)->first();
         return $bar;
     }

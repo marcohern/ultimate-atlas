@@ -76,7 +76,7 @@ class BarsController extends Controller
      */
     public function show(Request $r, $id)
     {
-        return Bar::get($id, $r->input('p'),$r->input('d'));
+        return Bar::get($id, $r->input('p'),$r->input('d'), $r->root());
     }
 
     /**
