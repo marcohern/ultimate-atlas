@@ -15,8 +15,9 @@ class Image extends Model
         'bytes',
     ];
 
-    public static function query() {
+    public static function query($limit=10,$offset=0) {
         $query = self::where('attached','TRUE');
+        $query->take($limit)->skip($offset);
         return $query->get();
     }
 
@@ -113,11 +114,18 @@ class Image extends Model
 
     public static function detach($ids) {
         $domain = 'detached';
-        
+        $slug = md5(uniqid());
+
+
         if (is_array($ids)) {
             $i=0;
             foreach ($ids as $id) {
-                $slug = md5(uniqid());
+                $img = self::where('id',$id)->select(['domain','slug'])->first();
+                self::where('domain',$img['domain'])
+                    ->where('slug',$img['slug'])
+                    ->where('profile','<>','original')
+                    ->where('profile','<>','original')
+                    ->delete();
                 self::where('id',$id)->update([
                     'domain' => $domain,
                     'slug' => $slug,
@@ -129,7 +137,12 @@ class Image extends Model
                 $i++;
             }
         } else {
-            $slug = md5(uniqid());    
+            $img = self::where('id',$ids)->select(['domain','slug'])->first();
+            self::where('domain',$img['domain'])
+                ->where('slug',$img['slug'])
+                ->where('profile','<>','original')
+                ->where('profile','<>','original')
+                ->delete();
             self::where('id',$ids)->update([
                 'domain' => $domain,
                 'slug' => $slug,

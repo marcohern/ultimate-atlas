@@ -72,9 +72,9 @@ class ImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $r)
+    public function index(Request $r, $limit=10,$offset=0)
     {
-        return Image::query();
+        return Image::query($limit, $offset);
     }
 
     public function upload(Request $r) {

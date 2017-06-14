@@ -43,6 +43,7 @@ class BarsController extends Controller
             'description' => $r->input('description'),
             'city_id' => $r->input('city_id'),
             'user_id' => $r->input('user_id'),
+            'type' => $r->input('type'),
             'address' => $r->input('address'),
             'zip' => $r->input('zip'),
             'lat' => $r->input('lat'),

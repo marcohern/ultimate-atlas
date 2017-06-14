@@ -31,7 +31,9 @@ class Bar extends Model
     }
 
     public static function get($id, $profile='', $density='',$root='') {
-        $bar = self::where('id',$id)->first();
+        $col = 'id';
+        if (!is_numeric($id)) $col = 'slug';
+        $bar = self::where($col,$id)->first();
         if (!$bar) throw new NotFoundException("Bar not found");
         $slug = $bar['slug'];
         $photos = 0+$bar['photos'];
@@ -62,7 +64,7 @@ class Bar extends Model
         if (empty($images)) $images = [];
         if (is_string($images)) $images = explode(',',$images);
         $data['slug'] = self::slugifyUnique($data['name']);
-        $data['enabled'] = 'TRUE';
+        $data['enabled'] = 'FALSE';
         $data['verified'] = 'FALSE';
         $data['photos'] = count($images);
         $data['created_at'] = In::now();
@@ -74,11 +76,9 @@ class Bar extends Model
         $id = Bar::insertGetId($data);
         Image::attach($images, 'bar', $data['slug']);
 
-        $bar = Bar::where('id',$id)->first();
+        $bar = Bar::get($id);
         return $bar;
     }
-
-
 
     public static function modify($id, $data) {
         $bar = Bar::where('id',$id)->first();
@@ -93,6 +93,8 @@ class Bar extends Model
         $data['modified'] = In::now();
 
         $aff = Bar::where('id',$id)->update($data);
+        Image::detach($oldImages);
+        Image::attach($newImages);
         
         $bar = Bar::where('id',$id)->first();
         return $bar;
@@ -102,6 +104,7 @@ class Bar extends Model
         $bar = self::where('id',$id)->first();
         if (!$bar) throw new NotFoundException("Bar not found");
         Bar::where('id',$id)->delete();
+        Image::where('domain','bar')->where('slug',$bar)->delete();
         return $bar;
     }
 
