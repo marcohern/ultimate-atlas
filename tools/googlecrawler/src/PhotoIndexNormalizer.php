@@ -10,9 +10,9 @@ class PhotoIndexNormalizer {
     private $in;
     private $out;
 
-    public function __construct($outfile) {
-        $infile = CURPATH.DS.'index_photos.csv';
-        $outpath = ROOTPATH.DS.'output'.DS.'places'.DS.$outfile;
+    public function __construct() {
+        $infile = CURPATH.DS.'index_photos.1.csv';
+        $outpath = ROOTPATH.DS.'output'.DS.'places'.DS.'photos.csv';
         
         $this->in = new CsvReader($infile);
 
@@ -33,7 +33,8 @@ class PhotoIndexNormalizer {
                 $key = "Photo$j";
                 
                 $ref = (array_key_exists($key,$r)) ? $r[$key] : '';
-                $filename = $r['No'].'.'.$r['Slug'].'.'.$j.'.jpg';
+                $filename = sprintf("%04s.%s.%d.jpg",""+$r['No'],$r['Slug'],$j);
+                //$filename = $r['No'].'.'.$r['Slug'].'.'.$j.'.jpg';
                 if(!empty($ref)) {
                     $cp++;
                     $this->out->write(['Name' => $filename, 'Reference' => $ref]);

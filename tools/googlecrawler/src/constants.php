@@ -38,7 +38,7 @@ function slugify($text) {
 
 define('CURPATH',dirname(dirname(__FILE__)));// /<project>/tools/googlecrawler/
 define('DS', _ds());
-define('API_KEY','AIzaSyBWrvIdSl-smOWvknZva4OT1bWsmPh1Wuc'); //Ultimate-Atlas
-//define('API_KEY','AIzaSyB5JQFJ1eaHHNq238b1V2cgKIrxDFGdwLw'); //iParty
+//define('API_KEY','AIzaSyBWrvIdSl-smOWvknZva4OT1bWsmPh1Wuc'); //Ultimate-Atlas
+define('API_KEY','AIzaSyB5JQFJ1eaHHNq238b1V2cgKIrxDFGdwLw'); //iParty
 define('TOOLSPATH', dirname(CURPATH  )); // /<project>/tools/
 define('ROOTPATH' , dirname(TOOLSPATH)); // /<project>/

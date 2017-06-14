@@ -39,4 +39,29 @@ class CsvReader {
         }
         return false;
     }
+
+    public function readAll() {
+        $table = [];
+        $i=0;
+        while ($r = $this->read()) {
+            $table[$i]= $r;
+            $i++;
+        }
+        $this->close();
+        return $table;
+    }
+
+    public function readBatch($rows) {
+        $table = [];
+        if ($rows==0) return $table;
+        $i=0;
+        while ($r = $this->read()) {
+            $table[$i]= $r;
+            $i++;
+            if ($i>=$rows) break;
+        }
+        return $table;
+    }
+
+    
 }

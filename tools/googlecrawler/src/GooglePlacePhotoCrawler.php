@@ -27,13 +27,17 @@ class GooglePlacePhotoCrawler {
             $ref = $r['Reference'];
             $url = "$endpoint?key=$key&maxheight=1440&photoreference=$ref";
 
-            echo "..$name";
+            echo "$i..$name";
 
             $bytes = file_get_contents($url);
-            $status = $http_response_header[0];
-            file_put_contents($file, $bytes);
+            if (empty($bytes)) {
+                echo "..EMPTY\n";
+            } else {
+                $status = $http_response_header[0];
+                file_put_contents($file, $bytes);
 
-            echo "..$status\n";
+                echo "..$status\n";
+            }
             $i++;
         }
         $csv->close();
