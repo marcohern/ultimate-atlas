@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Bars;
 
+use App\Exceptions\NotFoundException;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -20,21 +22,12 @@ class BarsController extends Controller
         $city_id = $r->input('city_id');
         $offset = 0+$r->input('offset');
         $limit = 0+$r->input('limit');
+        $modified = $r->input("modified");
 
         if (empty($offset)) $offset = 0;
         if (empty($limit )) $limit  = 10;
 
-        return Bar::query($q, $city_id, $limit, $offset);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Bar::query($q, $city_id,$modified, $limit, $offset);
     }
 
     /**
@@ -43,9 +36,36 @@ class BarsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $r)
     {
-        //
+        return Bar::create([
+            'name' => $r->input('name'),
+            'description' => $r->input('description'),
+            'city_id' => $r->input('city_id'),
+            'user_id' => $r->input('user_id'),
+            'address' => $r->input('address'),
+            'zip' => $r->input('zip'),
+            'lat' => $r->input('lat'),
+            'lng' => $r->input('lng'),
+            'email' => $r->input('email'),
+            'phone1' => $r->input('phone1'),
+            'phone2' => $r->input('phone2'),
+            'mobile' => $r->input('mobile'),
+            'website' => $r->input('website'),
+            'contact_name' => $r->input('contact_name'),
+
+            'images' => $r->input('images'),
+            
+            'franhise_id' => $r->input('franhise_id'),
+            'plan' => $r->input('plan'),
+            'avg_price' => $r->input('avg_price'),
+            'cover' => $r->input('cover'),
+            'color' => $r->input('color'),
+            'lat_ne' => $r->input('lat_ne'),
+            'lng_ne' => $r->input('lng_ne'),
+            'lat_sw' => $r->input('lat_sw'),
+            'lng_sw' => $r->input('lng_sw')
+        ]);
     }
 
     /**
@@ -54,20 +74,9 @@ class BarsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $r, $id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return Bar::get($id, $r->input('p'),$r->input('d'));
     }
 
     /**
@@ -77,9 +86,34 @@ class BarsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $r, $id)
     {
-        //
+        return Bar::modify($id, [
+            'name' => $r->input('name'),
+            'description' => $r->input('description'),
+            'city_id' => $r->input('city_id'),
+            'user_id' => $r->input('user_id'),
+            'address' => $r->input('address'),
+            'zip' => $r->input('zip'),
+            'lat' => $r->input('lat'),
+            'lng' => $r->input('lng'),
+            'email' => $r->input('email'),
+            'phone1' => $r->input('phone1'),
+            'phone2' => $r->input('phone2'),
+            'mobile' => $r->input('mobile'),
+            'website' => $r->input('website'),
+            'contact_name' => $r->input('contact_name'),
+            
+            'franhise_id' => $r->input('franhise_id'),
+            'plan' => $r->input('plan'),
+            'avg_price' => $r->input('avg_price'),
+            'cover' => $r->input('cover'),
+            'color' => $r->input('color'),
+            'lat_ne' => $r->input('lat_ne'),
+            'lng_ne' => $r->input('lng_ne'),
+            'lat_sw' => $r->input('lat_sw'),
+            'lng_sw' => $r->input('lng_sw')
+        ]);
     }
 
     /**
@@ -90,6 +124,6 @@ class BarsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Bar::destroy($id);
     }
 }

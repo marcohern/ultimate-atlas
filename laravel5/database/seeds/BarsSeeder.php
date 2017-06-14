@@ -1443,8 +1443,9 @@ class BarsSeeder extends Seeder
         foreach($bars as $i => $bar) {
             $bars[$i]['zip'] = '';
             $bars[$i]['email'] = '';
+            $bars[$i]['user_id'] = 1;
             $bars[$i]['description'] = '';
-            //$bars[$i]['slug'] = sprintf("%04d.%s",$i,$bars[$i]['slug']);
+            $bars[$i]['modified'] = In::now();
             $bars[$i]['created_at'] = In::now();
         }
 

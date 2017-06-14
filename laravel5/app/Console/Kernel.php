@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
-        Commands\Daily\SummarizeInDaysCommand::class
+        Commands\Daily\SummarizeInDaysCommand::class,
+        Commands\TestCommand::class,
     ];
 
     /**

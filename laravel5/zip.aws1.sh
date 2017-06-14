@@ -1,5 +1,5 @@
 #!/bin/bash
-@echo off
+# @echo off
 
 VersionFile="config/version.php"
 
