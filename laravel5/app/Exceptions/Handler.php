@@ -70,7 +70,7 @@ class Handler extends ExceptionHandler
             'message' => $exception->getMessage(),
             'httpCode' => $httpCode,
             'errCode' => $errCode,
-            'trace' => $exception->getTrace(),
+            'trace' => (config('app.debug')) ? $exception->getTrace() : [],
             'inner' => $this->exceptionToJson($exception->getPrevious())
         ];
         $req = [

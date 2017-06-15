@@ -20,7 +20,7 @@ class Secure
         $token = $r->header('Token');
         if (empty($token)) throw new ForbiddenException("The user is forbidden to execute this action.");
         else {
-            $t = Token::where('token',$token)->first();
+            $t = Token::getToken($token);
             if (!$t) throw new ForbiddenException("Invalid token.");
         }
         return $next($r);

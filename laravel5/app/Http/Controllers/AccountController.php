@@ -31,28 +31,27 @@ class AccountController extends Controller
         
     }
 
+    /**
+    * Check if a Token Exists
+    * @param $r Request object
+    * @param $r.token Token String
+    * @return Token
+    */
     public function check_token(Request $r) {
-        $token = Token::where('token', $r->input('token'))
-            ->where('expired', 'false')
-            ->first();
-        if (!$token) throw new NotFoundException("Token not found.");
-        else {
-            Token::where('id',$token->id)->update([
-                'expires' => In::loginTokenPeriod(),
-                'updated_at' => In::now()
-            ]);
-        }
-        return ['token' => $token];
+        $token = Token::getToken($r->input('token'));
+        return $token;
     }
 
-    public function get_methods() {
-        return ['methods' => AutoRouter::getMethods("App\\Http\\Controllers\\UserController")];
-    }
-
+    /**
+    * Activates a recently created User account.
+    * Sends and email indicating that the user has been activated.
+    * @param $r Request object
+    * @param $r.token Activation token, the one sent on email.
+    * @return User user info
+    */
     public function activate(Request $r) {
         $token = $r->input('token');
         $user = User::where('activated_token',$token)->select('id')->first();
-
         if (!$user) throw new NotFoundException("Token invalid.");
 
         $affected = User::where('id',$user->id)->update([
@@ -61,14 +60,9 @@ class AccountController extends Controller
             
             'updated_at' => In::now()
         ]);
-        $user = User::where('id', $user->id)->first();
+        $user = User::get($user->id);
         Mail::to($user->email)->send(new SignupActivatedMail($user));
-
-        return [
-            'affected' => $affected,
-            'activated' => true,
-            'user' => $user
-        ];
+        return $user;
     }
 
     public function signup(Request $r) {
@@ -104,12 +98,12 @@ class AccountController extends Controller
     }
 
     public function logout(Request $r) {
-        $token = Token::where('token', $r->input('token'))
-            ->where('expired', 'false')
-            ->first();
-        if ($token) {
-            Token::where('id',$token->id)->delete();
-        }
+        try {
+            $token = Token::getToken($r->header('Token'));
+            if ($token) {
+                Token::destroy($token->id);
+            }
+        } catch (NotFoundException $ex) {}
         return ['success' => true];
     }
 
@@ -135,15 +129,8 @@ class AccountController extends Controller
         }
         
         if (Hasher::check($password, $user->salt, $user->password)) {
-            $uniqueid = Hasher::token();
-            $id = Token::insertGetId([
-                'token' => $uniqueid,
-                'user_id' => $user->id,
-                'expires' => In::loginTokenPeriod(),
-                'created_at' => In::now()
-            ]);
             $user = User::get($user->id);
-            $token = Token::where('id', $id)->first();
+            $token = Token::create($user->id);
             return ['user' => $user, 'token' => $token];
         } else {
             throw new UnauthorizedException($errormsg);

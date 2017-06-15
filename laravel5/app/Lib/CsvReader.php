@@ -61,7 +61,5 @@ class CsvReader {
             if ($i>=$rows) break;
         }
         return $table;
-    }
-
-    
+    }  
 }
