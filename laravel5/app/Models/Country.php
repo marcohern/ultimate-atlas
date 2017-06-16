@@ -11,9 +11,10 @@ use App\Lib\In;
 class Country extends Model
 {
     //
-    public function search($name='',$limit=10,$offset=0) {
-        $countries = $this->select()->take($limit)->from($offset);
-        return $countries->list();
+    public function search($q='',$limit=10,$offset=0) {
+        $query = $this->select()->take($limit)->from($offset);
+        if (!empty($q)) $query->where('name', 'LIKE', "%$q%");
+        return $query->list();
     }
 
     public function view($id) {

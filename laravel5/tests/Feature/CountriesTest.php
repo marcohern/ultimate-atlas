@@ -82,9 +82,11 @@ class CountriesTest extends TestCase
      */
     public function testCountriesList()
     {
-        $this->cm->shouldReceive('get')->once()->andReturn([ $this->fakeCountry ]);
+        $this->cm->shouldReceive('search')->once()->with('',10,0)->andReturn([ $this->fakeCountry ]);
         
-        $response = $this->json('GET','/api/countries',[],$this->okHeaders);
+        $response = $this->json('GET','/api/countries', [
+            'q' => ''
+        ],$this->okHeaders);
         $response->assertStatus(200);
     }
 

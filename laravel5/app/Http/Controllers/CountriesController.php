@@ -22,9 +22,9 @@ class CountriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $r)
     {
-        return $this->cm->get();
+        return $this->cm->search($r->input('q'));
     }
 
     /**
