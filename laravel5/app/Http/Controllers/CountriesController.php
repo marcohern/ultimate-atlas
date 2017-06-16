@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\NotFoundException;
 use Illuminate\Http\Request;
 
 use App\Models\Country;
 
 class CountriesController extends Controller
 {
-    private $country;
-    
-    public function __construct(Country $country) {
+    private $cm;
+
+    public function __construct(Country $cm) {
         $this->middleware('api');
         $this->middleware('secure');
-        $this->country = $country;
+
+        $this->cm = $cm;
     }
     /**
      * Display a listing of the resource.
@@ -22,18 +24,7 @@ class CountriesController extends Controller
      */
     public function index()
     {
-        $countries = $this->country->get();
-        return $countries;
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return $this->cm->get();
     }
 
     /**
@@ -42,9 +33,15 @@ class CountriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $r)
     {
-        //
+        return $this->cm->create([
+            'name' => $r->input('name'),
+            'iso2' => $r->input('iso2'),
+            'currency' => $r->input('currency'),
+            'lat' => $r->input('lat'),
+            'lng' => $r->input('lng')
+        ]);
     }
 
     /**
@@ -55,18 +52,7 @@ class CountriesController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return $this->cm->view($id);
     }
 
     /**
@@ -76,9 +62,15 @@ class CountriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $r, $id)
     {
-        //
+        return $this->cm->modify($id, [
+            'name' => $r->input('name'),
+            'iso2' => $r->input('iso2'),
+            'currency' => $r->input('currency'),
+            'lat' => $r->input('lat'),
+            'lng' => $r->input('lng')
+        ]);
     }
 
     /**
@@ -89,6 +81,6 @@ class CountriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $this->cm->erase($id);
     }
 }
