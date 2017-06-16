@@ -17,6 +17,7 @@ class Bar extends Model
             ->where('bars.modified','>=',$modified);
         $query->join('cities', 'cities.id', '=', 'bars.city_id');
         $query->select(['bars.*','cities.name AS city']);
+        $query->take($limit)->from($offset);
         
         if (!empty($q)) {
             $qw = explode(' ',$q);
