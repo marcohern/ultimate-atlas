@@ -8,6 +8,11 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class AccountTest extends TestCase
 {
+    public function setup() {
+        parent::setup();
+
+        
+    }
     /**
      * A basic test example.
      *
