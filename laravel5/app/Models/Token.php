@@ -28,8 +28,8 @@ class Token extends Model
     * @return Token Record
     * @throws NotFoundException If the token is not found.
     */
-    public static function getToken($token) {
-        $token = self::where('token',$token)->first();
+    public function getToken($token) {
+        $token = $this->where('token',$token)->first();
         if (empty($token)) throw new NotFoundException("Token not found.");
         return $token;
     }

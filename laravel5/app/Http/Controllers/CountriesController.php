@@ -8,9 +8,12 @@ use App\Models\Country;
 
 class CountriesController extends Controller
 {
-    public function __construct() {
+    private $country;
+    
+    public function __construct(Country $country) {
         $this->middleware('api');
         $this->middleware('secure');
+        $this->country = $country;
     }
     /**
      * Display a listing of the resource.
@@ -19,7 +22,7 @@ class CountriesController extends Controller
      */
     public function index()
     {
-        $countries = Country::get();
+        $countries = $this->country->get();
         return $countries;
     }
 

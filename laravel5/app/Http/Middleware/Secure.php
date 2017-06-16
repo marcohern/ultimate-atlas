@@ -4,10 +4,16 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\Exceptions\ForbiddenException;
+use App\Exceptions\NotFoundException;
 use App\Models\Token;
 
 class Secure
 {
+    private $token;
+
+    public function __construct(Token $token) {
+        $this->token = $token;
+    }
     /**
      * Handle an incoming request.
      *
@@ -17,12 +23,12 @@ class Secure
      */
     public function handle($r, Closure $next)
     {
-        $token = $r->header('Token');
-        if (empty($token)) throw new ForbiddenException("The user is forbidden to execute this action.");
-        else {
-            $t = Token::getToken($token);
-            if (!$t) throw new ForbiddenException("Invalid token.");
+        try {
+            $tok = $r->header('Token');
+            $t = $this->token->getToken($tok);
+            return $next($r);
+        } catch (NotFoundException $ex) {
+            throw new ForbiddenException("The user is forbidden to execute this action.");
         }
-        return $next($r);
     }
 }
