@@ -8,9 +8,13 @@ use App\Models\State;
 
 class StatesController extends Controller
 {
-    public function __construct() {
+    private $sm;
+
+    public function __construct(State $sm) {
         $this->middleware('api');
         $this->middleware('secure');
+
+        $this->sm = $sm;
     }
 
     /**
@@ -20,34 +24,28 @@ class StatesController extends Controller
      */
     public function index(Request $r)
     {
-        $country_id = $r->input('country_id');
-        $query = State::select(['id','name','country_id','lat','lng']);
-        if (!empty($country_id)) {
-            $query->where('country_id',$country_id);
-        }
-
-        return $query->get();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return $this->sm->search(
+            $r->input('country_id'),
+            $r->input('name'),
+            $r->input('l'),
+            $r->input('o')
+        );
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  $r
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $r)
     {
-        //
+        return $this->sm->create([
+            'name' => $r->input('name'),
+            'country_id' => $r->input('country_id'),
+            'lat' => $r->input('lat'),
+            'lng' => $r->input('lng')
+        ]);
     }
 
     /**
@@ -58,18 +56,7 @@ class StatesController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return $this->sm->view($id);
     }
 
     /**
@@ -79,9 +66,14 @@ class StatesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $r, $id)
     {
-        //
+        return $this->sm->modify($id, [
+            'name' => $r->input('name'),
+            'country_id' => $r->input('country_id'),
+            'lat' => $r->input('lat'),
+            'lng' => $r->input('lng')
+        ]);
     }
 
     /**
@@ -92,6 +84,6 @@ class StatesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $this->sm->erase($id);
     }
 }

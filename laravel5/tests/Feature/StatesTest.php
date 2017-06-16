@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
+use App\Exceptions\NotFoundException;
 use App\Models\State;
 use App\Models\Token;
 use Mockery;
@@ -79,34 +80,39 @@ class StatesTest extends TestCase
      */
     public function testStateList()
     {
-        $this->sm->shouldReceive('get')->once()->andReturn([ $this->fakeState ]);
+        $this->sm->shouldReceive('search')->once()->with(1,'',10,0)->andReturn([ $this->fakeState ]);
         
-        $response = $this->json('GET','/api/states',[],$this->okHeaders);
+        $response = $this->json('GET','/api/states', [
+            'country_id' => 1,
+            'name' => '',
+            'l' => 10,
+            'o'=>0
+        ],$this->okHeaders);
         $response->assertStatus(200);
     }
 
-    public function testCountryView() {
+    public function testStateView() {
         $this->sm->shouldReceive('view')->once()->with(1)->andReturn($this->fakeState);
 
         $response = $this->json('GET','/api/states/1',[],$this->okHeaders);
         $response->assertStatus(200);
     }
 
-    public function testCountryCreate() {
+    public function testStateCreate() {
         $this->sm->shouldReceive('create')->once()->with($this->fakeInputState)->andReturn($this->fakeState);
 
         $response = $this->json('POST','/api/states',$this->fakeInputState, $this->okHeaders);
         $response->assertStatus(200);
     }
 
-    public function testCountryUpdate() {
+    public function testStateUpdate() {
         $this->sm->shouldReceive('modify')->once()->with(1,$this->fakeInputState)->andReturn($this->fakeState);
 
         $response = $this->json('PUT','/api/states/1',$this->fakeInputState, $this->okHeaders);
         $response->assertStatus(200);
     }
 
-    public function testCountryDelete() {
+    public function testStateDelete() {
         $this->sm->shouldReceive('erase')->once()->with(1)->andReturn($this->fakeState);
 
         $response = $this->json('DELETE','/api/states/1',[], $this->okHeaders);

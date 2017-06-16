@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
+use App\Exceptions\NotFoundException;
+use App\Lib\In;
+
 class Country extends Model
 {
     //
@@ -20,15 +23,17 @@ class Country extends Model
     }
 
     public function create($data) {
+        $data['created_at'] = In::now();
         $id = $this->insertGetId($data);
         return $this->where('id',$id)->first();
     }
 
     public function modify($id, $data) {
-        $country = $this->where('id',$id)->first();
+        $country = $this->select('id')->where('id',$id)->first();
         if ($country) {
+            $data['updated_at'] = In::now();
             $this->where('id',$id)->update($data);
-            return $country;
+            return $this->where('id',$id)->first();
         }
         throw new NotFoundException("Country Not found");
     }
