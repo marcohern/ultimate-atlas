@@ -18,8 +18,9 @@ class Token extends Model
     */
     public static function get($id) {
         $token = self::where('id',$id)->first();
-        if (empty($token)) throw new NotFoundException("Token not found.");
-        return $token;
+        if ($token) return $token;
+        throw new NotFoundException("Token not found.");
+        
     }
 
     /**
@@ -30,8 +31,8 @@ class Token extends Model
     */
     public function getToken($token) {
         $token = $this->where('token',$token)->first();
-        if (empty($token)) throw new NotFoundException("Token not found.");
-        return $token;
+        if ($token) return $token;
+        throw new NotFoundException("Token not found.");
     }
 
     /**
