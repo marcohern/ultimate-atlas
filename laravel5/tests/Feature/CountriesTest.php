@@ -85,7 +85,9 @@ class CountriesTest extends TestCase
         $this->cm->shouldReceive('search')->once()->with('',10,0)->andReturn([ $this->fakeCountry ]);
         
         $response = $this->json('GET','/api/countries', [
-            'q' => ''
+            'q' => '',
+            'l' => 10,
+            'o' => 0
         ],$this->okHeaders);
         $response->assertStatus(200);
     }

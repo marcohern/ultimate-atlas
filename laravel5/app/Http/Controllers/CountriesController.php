@@ -24,13 +24,17 @@ class CountriesController extends Controller
      */
     public function index(Request $r)
     {
-        return $this->cm->search($r->input('q'));
+        return $this->cm->search(
+            $r->input('q'),
+            $r->input('l'),
+            $r->input('o')
+        );
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  $r
      * @return \Illuminate\Http\Response
      */
     public function store(Request $r)
