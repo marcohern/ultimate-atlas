@@ -27,16 +27,20 @@ class ResetPasswordController extends Controller
         $this->hasher = $hasher;
         $this->prm = $prm;
     }
+
+    /**
+    * Sends a request to reset a password.
+    * @param $r Request.
+    * @param $r.email User Email
+    * @return User and Password reset record
+    */
     public function request(Request $r) {
         $user = $this->um->getLoginUserByEmail($r->input('email'));
         if (!$user) throw new BadRequestException("Email not found.");
 
         try {
             DB::beginTransaction();
-            $pr = $this->prm->create([
-                'email' => $r->input('email'),
-                'token' => $this->hasher->token()
-            ]);
+            $pr = $this->prm->create($r->input('email'));
 
             Mail::to($email)->send(new ResetPasswordMail($pr, $user));
             DB::commit();
@@ -47,37 +51,28 @@ class ResetPasswordController extends Controller
             ];
         } catch(\Exception $ex) {
             DB::rollback();
+            throw $ex;
         }
     }
 
+    /**
+    * Reset's the password for a user
+    * @param $r Request.
+    * @param $r.token The Reset Password token.
+    * @param $r.password New password
+    * @return User and Password reset record
+    */
     public function update(Request $r) {
         $token = $r->input('token');
-        $pwd = $r->input('password');
-        if (empty($pwd)) throw new BadRequestException("Password required.");
-        if (empty($token)) throw new BadRequestException("Token required.");
-        $pr = PasswordReset::where('token',$token)->first();
-        if (!$pr) throw new BadRequestException("Set password token not found.");
-        $user = User::where('email',$pr->email)->first();
-        if (!$user) throw new BadRequestException("Set password token email not found.");
+        $typedPassword = $r->input('password');
+        if (empty($typedPassword)) throw new BadRequestException("Password required.");
+        
+        $pr = $this->prm->viewByToken($token);
+        $user = $this->um->getLoginUserByEmail($pr->email);
+        
+        $updatedUser = $this->um->resetPassword($user->id, $typedPassword);
 
-        $salt = Hasher::salt();
-        $password = Hasher::password($salt, $r->input('password'));
-
-        $af = User::where('id', $user->id)->update([
-            'password' => $password,
-            'salt' => $salt,
-            'activated' => 'TRUE',
-            'updated_at' => In::now()
-        ]);
-
-        $afp = PasswordReset::where('token',$token)->delete();
-
-        $updatedUser = User::where('id',$user->id)->first();
-        return [
-            'affected' => $af,
-            'pasword_set' => true,
-            'deleted' => $afp,
-            'user' => $updatedUser
-        ];
+        $afp = $this->prm->where('token',$token)->delete();
+        return $updatedUser;
     }
 }

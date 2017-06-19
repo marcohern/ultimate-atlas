@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Exceptions\UAException;
-use App\Exceptions\NotFoundException;
 use App\Exceptions\BadRequestException;
+use App\Exceptions\NotFoundException;
+use App\Exceptions\UAException;
 
-use Mail;
-use App\Models\User;
+use App\Mail\ResetPasswordMail;
 use App\Models\PasswordReset;
+use App\Models\User;
 use App\Lib\Hasher;
 use App\Lib\In;
-use App\Mail\ResetPasswordMail;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Mail;
 use PDOException;
 
 class UserController extends Controller
@@ -23,9 +23,10 @@ class UserController extends Controller
     private $um;
     private $prm;
 
-    public function __construct(User $um, Hasher $hasher, PasswordReset $prm) {
+    public function __construct(Hasher $hasher, User $um, PasswordReset $prm) {
         $this->middleware('api');
         $this->middleware('secure');
+        
         $this->um = $um;
         $this->prm = $prm;
         $this->hasher = $hasher;
@@ -38,10 +39,7 @@ class UserController extends Controller
      */
     public function index(Request $r)
     {
-        //
-        $q = $r->input('q','');
-        $lq = str_replace(" ", "%", $q);
-        return $this->um->search($lq, 100);
+        return $this->um->search($q, 100);
     }
 
     /**
@@ -66,18 +64,11 @@ class UserController extends Controller
                 'password' => $r->input('password')
             ]);
 
-            $pr = $this->prm->create([
-                'email' => $email,
-                'token' => $this->hasher->token()
-            ]);
+            $pr = $this->prm->create($email);
 
             Mail::to($email)->send((new ResetPasswordMail($pr, $user))->createUser());
             DB::commit();
-            return [
-                'affected' => 1,
-                'saved' => true,
-                'user' => $user
-            ];
+            return $user;
         } catch (PDOException $ex) {
             DB::rollback();
             throw new BadRequestException("Error storing user", 400, $ex);
