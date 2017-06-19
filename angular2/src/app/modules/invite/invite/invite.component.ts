@@ -48,6 +48,8 @@ export class InviteComponent implements OnInit {
 
   inviteUser(value) {
     const user: User = value;
+    user.gender = 'X';
+    user.role = 'ADMIN';
 
     this.is.inviteUser(user).subscribe(data => {
       this.router.navigate(['/invited']);

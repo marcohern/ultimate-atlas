@@ -11,6 +11,7 @@ export class RequestService {
 
   private token: string = null;
   private calling = false;
+  private calls = 0;
 
   constructor(
     private http: Http,
@@ -35,34 +36,46 @@ export class RequestService {
   }
 
   private _get(url: string, loadscreen: boolean = true): Observable<any> {
-    if (loadscreen) this.calling = true;
+    if (loadscreen) {
+      this.calling = true;
+      this.calls++;
+    }
     return this.http
       .get(url, { headers: this.buildHeaders() })
-      .do(data => this.do(data))
+      .do(data => this.do(data, loadscreen))
       .catch(error => this.handleError(error));
   }
 
   private _post(url: string, body: any, loadscreen: boolean = true): Observable<any> {
-    if (loadscreen) this.calling = true;
+    if (loadscreen) {
+      this.calling = true;
+      this.calls++;
+    }
     return this.http
       .post(url, body, { headers: this.buildHeaders() })
-      .do(data => this.do(data))
+      .do(data => this.do(data, loadscreen))
       .catch(error => this.handleError(error));
   }
 
   private _put(url: string, body: any, loadscreen: boolean = true): Observable<any> {
-    if (loadscreen) this.calling = true;
+    if (loadscreen) {
+      this.calling = true;
+      this.calls++;
+    }
     return this.http
       .put(url, body, { headers: this.buildHeaders() })
-      .do(data => this.do(data))
+      .do(data => this.do(data, loadscreen))
       .catch(error => this.handleError(error));
   }
 
   private _delete(url: string, loadscreen: boolean = true): Observable<any> {
-    if (loadscreen) this.calling = true;
+    if (loadscreen) {
+      this.calling = true;
+      this.calls++;
+    }
     return this.http
       .delete(url, { headers: this.buildHeaders() })
-      .do(data => this.do(data))
+      .do(data => this.do(data, loadscreen))
       .catch(error => this.handleError(error));
   }
 
@@ -124,14 +137,21 @@ export class RequestService {
     }
   }
 
-  private handleError(error: Response) {
-    this.calling = false;
+  private handleError(error: Response, loadscreen:boolean = true) {
+    if (loadscreen) {
+      this.calling = false;
+      this.calls--;
+    }
+    
     return Observable.throw(error.json().error || 'Server error');
   }
 
-  private do(data) {
-    this.calling = false;
+  private do(data, loadscreen:boolean = true) {
+    if (loadscreen) {
+      this.calling = false;
+      this.calls--;
+    }
   }
 
-  public isCalling(): boolean { return this.calling; }
+  public isCalling(): boolean { return (this.calls>0); }
 }

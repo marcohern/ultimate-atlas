@@ -171,7 +171,6 @@ var AuthService = (function () {
         localStorage.setItem(this.userStg, JSON.stringify(loginResponse.user));
     };
     AuthService.prototype.updateToken = function (token) {
-        console.log("auth.updateToken", token);
         this.token = token;
         this.authenticated = true;
         this.rs.setToken(this.token.token);
@@ -180,20 +179,15 @@ var AuthService = (function () {
         var _this = this;
         var userJson = localStorage.getItem(this.userStg);
         var tokenJson = localStorage.getItem(this.tokenStg);
-        console.log("auth.start");
         if (userJson && tokenJson) {
             this.user = JSON.parse(userJson);
             var localToken = JSON.parse(tokenJson);
             this.updateToken(localToken);
-            console.log("auth.start", "user and token in client");
             this.checking = true;
-            console.log("auth.start", "POST /check_token");
             this.rs.post('/check_token', { token: localToken.token })
                 .map(function (r) { return r.json(); })
                 .do(function () { return _this.checking = false; })
-                .do(function () { return console.log("auth.start", "done checking"); })
                 .subscribe(function (data) { return _this.updateToken(data); }, function (error) {
-                console.log("auth.start", "ERROR, clearing token");
                 _this.clearToken();
                 _this.router.navigate['/login'];
             });
@@ -283,6 +277,7 @@ var RequestService = (function () {
         this.cs = cs;
         this.token = null;
         this.calling = false;
+        this.calls = 0;
     }
     RequestService.prototype.buildHeaders = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]();
@@ -301,8 +296,10 @@ var RequestService = (function () {
     RequestService.prototype._get = function (url, loadscreen) {
         var _this = this;
         if (loadscreen === void 0) { loadscreen = true; }
-        if (loadscreen)
+        if (loadscreen) {
             this.calling = true;
+            this.calls++;
+        }
         return this.http
             .get(url, { headers: this.buildHeaders() })
             .do(function (data) { return _this.do(data); })
@@ -311,18 +308,22 @@ var RequestService = (function () {
     RequestService.prototype._post = function (url, body, loadscreen) {
         var _this = this;
         if (loadscreen === void 0) { loadscreen = true; }
-        if (loadscreen)
+        if (loadscreen) {
             this.calling = true;
+            this.calls++;
+        }
         return this.http
             .post(url, body, { headers: this.buildHeaders() })
-            .do(function (data) { return _this.do(data); })
+            .do(function (data) { return _this.do(data, loadscreen); })
             .catch(function (error) { return _this.handleError(error); });
     };
     RequestService.prototype._put = function (url, body, loadscreen) {
         var _this = this;
         if (loadscreen === void 0) { loadscreen = true; }
-        if (loadscreen)
+        if (loadscreen) {
             this.calling = true;
+            this.calls++;
+        }
         return this.http
             .put(url, body, { headers: this.buildHeaders() })
             .do(function (data) { return _this.do(data); })
@@ -331,8 +332,10 @@ var RequestService = (function () {
     RequestService.prototype._delete = function (url, loadscreen) {
         var _this = this;
         if (loadscreen === void 0) { loadscreen = true; }
-        if (loadscreen)
+        if (loadscreen) {
             this.calling = true;
+            this.calls++;
+        }
         return this.http
             .delete(url, { headers: this.buildHeaders() })
             .do(function (data) { return _this.do(data); })
@@ -398,14 +401,22 @@ var RequestService = (function () {
             return this.create(uri, body, loadscreen);
         }
     };
-    RequestService.prototype.handleError = function (error) {
-        this.calling = false;
+    RequestService.prototype.handleError = function (error, loadscreen) {
+        if (loadscreen === void 0) { loadscreen = true; }
+        if (loadscreen) {
+            this.calling = false;
+            this.calls--;
+        }
         return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].throw(error.json().error || 'Server error');
     };
-    RequestService.prototype.do = function (data) {
-        this.calling = false;
+    RequestService.prototype.do = function (data, loadscreen) {
+        if (loadscreen === void 0) { loadscreen = true; }
+        if (loadscreen) {
+            this.calling = false;
+            this.calls--;
+        }
     };
-    RequestService.prototype.isCalling = function () { return this.calling; };
+    RequestService.prototype.isCalling = function () { return (this.calls > 0); };
     return RequestService;
 }());
 RequestService = __decorate([
@@ -2233,6 +2244,8 @@ var InviteComponent = (function () {
     InviteComponent.prototype.inviteUser = function (value) {
         var _this = this;
         var user = value;
+        user.gender = 'X';
+        user.role = 'ADMIN';
         this.is.inviteUser(user).subscribe(function (data) {
             _this.router.navigate(['/invited']);
         });

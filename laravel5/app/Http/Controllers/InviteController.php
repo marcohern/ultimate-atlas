@@ -2,28 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use Mail;
 use App\Exceptions\BadRequestException;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+use App\Mail\ResetPasswordMail;
 use App\Models\User;
 use App\Models\PasswordReset;
-use App\Lib\Salt;
+use App\Lib\Hasher;
 use App\Lib\In;
+use App\Lib\Salt;
 use App\Lib\UrlToken;
-use App\Lib\PasswordGenerator;
-use App\Mail\ResetPasswordMail;
+use Mail;
 
 
 class InviteController extends Controller
 {
     private $hasher;
     private $um;
-    private $prm;
 
-    public function __construct(Hasher $hasher, User $um, PasswordReset $prm) {
+    public function __construct(Hasher $hasher, User $um) {
         $this->middleware('api');
 
-        $this->hasher = $hasher; 
+        $this->hasher = $hasher;
         $this->um = $um;
     }
 
@@ -31,12 +33,12 @@ class InviteController extends Controller
         try {
             DB::beginTransaction();
 
-            $user = $this->user->create([
+            $user = $this->um->create([
                 'username' => $r->input('username'),
                 'fname' => $r->input('fname'),
                 'lname' => $r->input('lname'),
                 'email' => $r->input('email'),
-                'password' => $r->input('password'),
+                'password' => $this->hasher->random(16),
                 'gender' => $r->input('gender'),
                 'birth' => $r->input('birth'),
                 'role' => $r->input('role')
