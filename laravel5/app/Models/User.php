@@ -79,12 +79,18 @@ class User extends Authenticatable
         return $user;
     }
 
+    public function viewByEmail($email) {
+        $user = $this->where('email',$email)->first();
+        if (empty($user)) throw new NotFoundException("User not found");
+        return $user;
+    }
+
     public function resetPassword($id, $password) {
         $salt = $this->hasher->salt();
-        $encPassword = $this->hasherpassword($salt, $password);
+        $encPassword = $this->hasher->password($salt, $password);
 
-        $af = $this->um->where('id', $user->id)->update([
-            'password' => $password,
+        $af = $this->where('id', $id)->update([
+            'password' => $encPassword,
             'salt' => $salt,
             'activated' => 'TRUE',
             'updated_at' => In::now()

@@ -302,7 +302,7 @@ var RequestService = (function () {
         }
         return this.http
             .get(url, { headers: this.buildHeaders() })
-            .do(function (data) { return _this.do(data); })
+            .do(function (data) { return _this.do(data, loadscreen); })
             .catch(function (error) { return _this.handleError(error); });
     };
     RequestService.prototype._post = function (url, body, loadscreen) {
@@ -326,7 +326,7 @@ var RequestService = (function () {
         }
         return this.http
             .put(url, body, { headers: this.buildHeaders() })
-            .do(function (data) { return _this.do(data); })
+            .do(function (data) { return _this.do(data, loadscreen); })
             .catch(function (error) { return _this.handleError(error); });
     };
     RequestService.prototype._delete = function (url, loadscreen) {
@@ -338,7 +338,7 @@ var RequestService = (function () {
         }
         return this.http
             .delete(url, { headers: this.buildHeaders() })
-            .do(function (data) { return _this.do(data); })
+            .do(function (data) { return _this.do(data, loadscreen); })
             .catch(function (error) { return _this.handleError(error); });
     };
     RequestService.prototype.get = function (uri, id, loadscreen) {
@@ -1164,12 +1164,10 @@ var UserService = (function () {
             .map(function (r) { return r.json(); });
     };
     UserService.prototype.deleteUser = function (id) {
-        console.log('UserService.deleteUser', id);
         return this.rs.delete(this.url, id)
             .map(function (r) { return r.json(); });
     };
     UserService.prototype.saveUser = function (user) {
-        console.log('UserService.saveUser', user);
         return this.rs.save(this.url, user)
             .map(function (r) { return r.json(); });
     };
@@ -2365,7 +2363,7 @@ var ResetPasswordComponent = (function () {
     };
     ResetPasswordComponent.prototype.setPassword = function (value) {
         var _this = this;
-        console.log(value);
+        console.log(this.token, value);
         this.rss.resetPassword(this.token, value.password)
             .subscribe(function (data) {
             _this.router.navigate(['/login']);
@@ -2647,7 +2645,6 @@ var UserDetailComponent = (function () {
     };
     UserDetailComponent.prototype.saveUser = function (value) {
         var _this = this;
-        console.log(value);
         var saveUser = {
             id: this.user.id,
             username: value.username,
@@ -2659,7 +2656,6 @@ var UserDetailComponent = (function () {
             status: ''
         };
         this.userService.saveUser(saveUser).subscribe(function (data) {
-            console.log(data);
             _this.router.navigate(['/users']);
         });
     };

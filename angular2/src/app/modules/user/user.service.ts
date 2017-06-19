@@ -30,13 +30,11 @@ export class UserService {
   }
 
   public deleteUser(id: number): Observable<User> {
-    console.log('UserService.deleteUser', id);
     return this.rs.delete(this.url, id)
       .map((r: Response) => <User>r.json());
   }
 
   public saveUser(user: User) {
-    console.log('UserService.saveUser', user);
     return this.rs.save(this.url, user)
       .map((r: Response) => <UserSaveResponse>r.json());
   }

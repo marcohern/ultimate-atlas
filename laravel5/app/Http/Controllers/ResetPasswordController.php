@@ -15,6 +15,7 @@ use App\Mail\ResetPasswordMail;
 
 use Mail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ResetPasswordController extends Controller
 {
@@ -42,7 +43,7 @@ class ResetPasswordController extends Controller
             DB::beginTransaction();
             $pr = $this->prm->create($r->input('email'));
 
-            Mail::to($email)->send(new ResetPasswordMail($pr, $user));
+            Mail::to($r->input('email'))->send(new ResetPasswordMail($pr, $user));
             DB::commit();
             return [
                 'password_reset_requested' => true,
@@ -68,7 +69,7 @@ class ResetPasswordController extends Controller
         if (empty($typedPassword)) throw new BadRequestException("Password required.");
         
         $pr = $this->prm->viewByToken($token);
-        $user = $this->um->getLoginUserByEmail($pr->email);
+        $user = $this->um->viewByEmail($pr->email);
         
         $updatedUser = $this->um->resetPassword($user->id, $typedPassword);
 

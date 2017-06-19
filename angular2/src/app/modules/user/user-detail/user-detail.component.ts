@@ -82,7 +82,6 @@ export class UserDetailComponent implements OnInit {
   }
 
   saveUser(value) {
-    console.log(value);
     const saveUser: User = {
       id: this.user.id,
       username: value.username,
@@ -95,7 +94,6 @@ export class UserDetailComponent implements OnInit {
     };
     this.userService.saveUser(saveUser).subscribe(
       (data) => {
-        console.log(data);
         this.router.navigate(['/users']);
       }
     );
