@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\Request;
 use App\Exceptions\ForbiddenException;
 use App\Exceptions\NotFoundException;
 use App\Models\Token;
@@ -21,7 +22,7 @@ class Secure
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($r, Closure $next)
+    public function handle(Request $r, Closure $next)
     {
         try {
             $tok = $r->header('Token');

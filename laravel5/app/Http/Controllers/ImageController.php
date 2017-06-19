@@ -14,13 +14,16 @@ use InterventionImage;
 
 class ImageController extends Controller
 {
-
-    public function __construct() {
+    private $imm;
+    
+    public function __construct(Image $imm) {
         $this->middleware('api');
+
+        $this->imm = $imm;
     }
 
     public function get_image_all($domain, $profile, $density, $slug, $index) {
-        $img = Image::make($domain, $slug, $profile, $density, $index);
+        $img = $this->imm->make($domain, $slug, $profile, $density, $index);
 
         $response = Response::make($img);
         $response->header('Content-Type', 'image/jpg');
@@ -28,7 +31,7 @@ class ImageController extends Controller
     }
 
     public function get_image_pds($domain, $profile, $density, $slug) {
-        $img = Image::make($domain, $slug, $profile, $density, 0);
+        $img = $this->imm->make($domain, $slug, $profile, $density, 0);
 
         $response = Response::make($img);
         $response->header('Content-Type', 'image/jpg');
@@ -36,7 +39,7 @@ class ImageController extends Controller
     }
 
     public function get_image_sdi($domain, $slug, $index) {
-        $img = Image::make($domain, $slug, 'original', 'original', $index);
+        $img = $this->imm->make($domain, $slug, 'original', 'original', $index);
 
         $response = Response::make($img);
         $response->header('Content-Type', 'image/jpg');
@@ -44,7 +47,7 @@ class ImageController extends Controller
     }
 
     public function get_image_sd($domain, $slug) {
-        $img = Image::make($domain, $slug, 'original', 'original', 0);
+        $img = $this->imm->make($domain, $slug, 'original', 'original', 0);
 
         $response = Response::make($img);
         $response->header('Content-Type', 'image/jpg');
@@ -52,7 +55,7 @@ class ImageController extends Controller
     }
 
     public function get_image_si($slug, $index) {
-        $img = Image::make('global', $slug, 'original', 'original', 0);
+        $img = $this->imm->make('global', $slug, 'original', 'original', 0);
 
         $response = Response::make($img);
         $response->header('Content-Type', 'image/jpg');
@@ -60,7 +63,7 @@ class ImageController extends Controller
     }
 
     public function get_image_s($slug) {
-        $img = Image::make('global', $slug, 'original', 'original', 0);
+        $img = $this->imm->make('global', $slug, 'original', 'original', 0);
 
         $response = Response::make($img);
         $response->header('Content-Type', 'image/jpg');
@@ -74,13 +77,13 @@ class ImageController extends Controller
      */
     public function index(Request $r, $limit=10,$offset=0)
     {
-        return Image::query($limit, $offset);
+        return $this->imm->query($limit, $offset);
     }
 
     public function upload(Request $r) {
         if ($r->hasFile('image')) {
             if ($r->image->isValid()) {
-                return Image::create($r->image->path());
+                return $this->imm->create($r->image->path());
             }
             throw new BadRequestException("Upload invalid or damaged");
         }
@@ -95,13 +98,13 @@ class ImageController extends Controller
      */
     public function show($id)
     {
-        $image = Image::get($id);
+        $image = $this->imm->view($id);
         if (!$image) throw new NotFoundException('Image not found');
         return $image;
     }
 
     public function display($id) {
-        $image = Image::display($id);
+        $image = $this->imm->display($id);
         $response = Response::make($image['bytes']);
         $response->header('Content-Type', $image['type']);
         return $response;
@@ -115,7 +118,7 @@ class ImageController extends Controller
         if (empty($images)) throw new BadRequestException("image id's are required");
         if (empty($domain)) throw new BadRequestException("domain is required");
         if (empty($slug)  ) throw new BadRequestException("slug is required");
-        return Image::attach($images, $domain, $slug);
+        return $this->imm->attach($images, $domain, $slug);
     }
 
     /**
@@ -126,6 +129,6 @@ class ImageController extends Controller
      */
     public function destroy($id)
     {
-        return Image::destroy($id);
+        return $this->imm->destroy($id);
     }
 }

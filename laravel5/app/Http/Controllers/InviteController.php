@@ -16,49 +16,52 @@ use App\Mail\ResetPasswordMail;
 
 class InviteController extends Controller
 {
-    public function __construct() {
-        $this->middleware('api');    
+    private $hasher;
+    private $um;
+    private $prm;
+
+    public function __construct(Hasher $hasher, User $um, PasswordReset $prm) {
+        $this->middleware('api');
+
+        $this->hasher = $hasher; 
+        $this->um = $um;
     }
 
     public function invite(Request $r) {
-        $pwd = Salt::make(16);
-        $token = UrlToken::make();
+        try {
+            DB::beginTransaction();
 
-        $salt = PasswordGenerator::salt();
-        $password = PasswordGenerator::hash($salt, $pwd);
+            $user = $this->user->create([
+                'username' => $r->input('username'),
+                'fname' => $r->input('fname'),
+                'lname' => $r->input('lname'),
+                'email' => $r->input('email'),
+                'password' => $r->input('password'),
+                'gender' => $r->input('gender'),
+                'birth' => $r->input('birth'),
+                'role' => $r->input('role')
+            ]);
 
-        $id = User::insertGetId([
-            'username' => $r->input('username'),
-            'fname' => $r->input('fname'),
-            'lname' => $r->input('lname'),
-            'email' => $r->input('email'),
-            'password' => $password,
-            'salt' => $salt,
-            'activated' => 'FALSE',
+            $pr = $this->prm->create([
+                'token' => $this->hasher->token(),
+                'email' => $r->input('email')
+            ]);
 
-            'gender' => 'M',
-            'birth' => null,
-            'role' => 'ADMIN',
-            
-            'created_at' => In::now()
-        ]);
-        $prid = PasswordReset::insertGetId([
-            'token' => $token,
-            'email' => $r->input('email'),
-            'expires' => In::passwordResetTokenPeriod(),
-            'created_at' => In::now()
-        ]);
+            Mail::to($user->email)->send((new ResetPasswordMail($pr, $user))->invite());
+            DB::commit();
 
-        $user = User::where('id',$id)->first();
-        $pr = PasswordReset::where('id',$prid)->first();
-        Mail::to($user->email)->send((new ResetPasswordMail($pr, $user))->invite());
-
-        return [ 'invited' => true, 'user' => $user, 'password_reset' => $pr ];
+            return [
+                'invited' => true,
+                'user' => $user,
+                'password_reset' => $pr
+            ];
+        } catch (\Exception $ex) {
+            DB::rollback();
+            throw $ex;
+        }
     }
 
     public function get_user(Request $r, $id) {
-        $user = User::where('id',$id)->first();
-        if (!$user) throw new BadRequestException("User not found.");
-        return ['user' => $user ];
+        return $this->um->view($id);
     }
 }

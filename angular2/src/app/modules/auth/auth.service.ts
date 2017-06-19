@@ -51,6 +51,7 @@ export class AuthService {
   }
 
   private updateToken(token: Token) {
+    console.log("auth.updateToken",token);
     this.token = token;
     this.authenticated = true;
     this.rs.setToken(this.token.token);
@@ -59,21 +60,29 @@ export class AuthService {
   public start() {
     const userJson = localStorage.getItem(this.userStg);
     const tokenJson = localStorage.getItem(this.tokenStg);
+    console.log("auth.start");
     if (userJson && tokenJson) {
+      
       this.user = <User> JSON.parse(userJson);
       const localToken: Token = <Token> JSON.parse(tokenJson);
+      this.updateToken(<Token> localToken);
+      console.log("auth.start","user and token in client");
       this.checking = true;
+      console.log("auth.start","POST /check_token");
       this.rs.post('/check_token', {token: localToken.token})
-        .map((r: Response) => <Token>r.json().token)
+        .map((r: Response) => <Token>r.json())
         .do(() => this.checking = false)
+        .do(() => console.log("auth.start","done checking"))
         .subscribe(
           data => this.updateToken(data),
           error => {
+            console.log("auth.start","ERROR, clearing token");
             this.clearToken();
             this.router.navigate['/login'];
           }
         );
     } else {
+      console.log("auth.start","token not found in client, clearing...");
       this.clearToken();
     }
   }

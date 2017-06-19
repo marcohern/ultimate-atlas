@@ -22,7 +22,8 @@ export class UserDetailComponent implements OnInit {
     fname: '',
     email: '',
     role: 'ADMIN',
-    status: ''
+    status: '',
+    gender:'X'
   };
 
   userForm: FormGroup;

@@ -15,33 +15,33 @@ class Image extends Model
         'bytes',
     ];
 
-    public static function query($limit=10,$offset=0) {
-        $query = self::where('attached','TRUE');
+    public function query($limit=10,$offset=0) {
+        $query = $this->where('attached','TRUE');
         $query->take($limit)->skip($offset);
         return $query->get();
     }
 
-    public static function queryIds($domain, $slug) {
-        $query = self::where('domain',$domain)
+    public function queryIds($domain, $slug) {
+        $query = $this->where('domain',$domain)
             ->where('slug',$slug)
             ->where('index',0)
             ->where('profile','original')
             ->where('density','original');
     }
 
-    public static function get($id) {
-        return self::where('id', $id)->first();
+    public function view($id) {
+        return $this->where('id', $id)->first();
     }
 
-    public static function display() {
-        $image = self::where('id',$id)->select(['type','bytes'])->first();
+    public function display() {
+        $image = $this->where('id',$id)->select(['type','bytes'])->first();
         if (!$image) throw new NotFoundException('Image not found');
         return $image;
     }
 
-    public static function destroy($id)
+    public function destroy($id)
     {
-        $image = self::get($id);
+        $image = $this->view($id);
         if (!$image) throw new NotFoundException('Image not found');
         $deleted = self::where('id',$id)->delete();
         $deleted += self::where('parent_id',$id)->delete();
@@ -53,10 +53,10 @@ class Image extends Model
         ];
     }
 
-    public static function create($imagefpath) {
+    public function create($imagefpath) {
         $im = InterventionImage::make($imagefpath);
         $slug = md5(uniqid());
-        $id = Image::insertGetId([
+        $id = $this->insertGetId([
             'attached' => 'FALSE',
             'domain' => 'tmp',
             'slug' => $slug,
@@ -73,7 +73,7 @@ class Image extends Model
 
             'created_at' => In::now()
         ]);
-        $image = Image::where('id',$id)->first();
+        $image = $this->where('id',$id)->first();
         return [
             'affected' => 1,
             'saved' => true,
@@ -81,12 +81,12 @@ class Image extends Model
         ];
     }
 
-    public static function attach($ids, $domain, $slug) {
+    public function attach($ids, $domain, $slug) {
         
         if (is_array($ids)) {
             $i=0;
             foreach ($ids as $id) {
-                self::where('id',$id)->update([
+                $this->where('id',$id)->update([
                     'domain' => $domain,
                     'slug' => $slug,
                     'index' => $i,
@@ -97,7 +97,7 @@ class Image extends Model
                 $i++;
             }
         } else {
-            self::where('id',$ids)->update([
+            $this->where('id',$ids)->update([
                 'domain' => $domain,
                 'slug' => $slug,
                 'index' => 0,
@@ -112,7 +112,7 @@ class Image extends Model
         ];
     }
 
-    public static function detach($ids) {
+    public function detach($ids) {
         $domain = 'detached';
         $slug = md5(uniqid());
 
@@ -120,13 +120,13 @@ class Image extends Model
         if (is_array($ids)) {
             $i=0;
             foreach ($ids as $id) {
-                $img = self::where('id',$id)->select(['domain','slug'])->first();
-                self::where('domain',$img['domain'])
+                $img = $this->where('id',$id)->select(['domain','slug'])->first();
+                $this->where('domain',$img['domain'])
                     ->where('slug',$img['slug'])
                     ->where('profile','<>','original')
                     ->where('profile','<>','original')
                     ->delete();
-                self::where('id',$id)->update([
+                $this->where('id',$id)->update([
                     'domain' => $domain,
                     'slug' => $slug,
                     'index' => $i,
@@ -137,13 +137,13 @@ class Image extends Model
                 $i++;
             }
         } else {
-            $img = self::where('id',$ids)->select(['domain','slug'])->first();
-            self::where('domain',$img['domain'])
+            $img = $this->where('id',$ids)->select(['domain','slug'])->first();
+            $this->where('domain',$img['domain'])
                 ->where('slug',$img['slug'])
                 ->where('profile','<>','original')
                 ->where('profile','<>','original')
                 ->delete();
-            self::where('id',$ids)->update([
+            $this->where('id',$ids)->update([
                 'domain' => $domain,
                 'slug' => $slug,
                 'index' => 0,
@@ -158,11 +158,11 @@ class Image extends Model
         ];
     }
 
-    public static function make($domain, $slug, $profile, $density, $index) {
+    public function make($domain, $slug, $profile, $density, $index) {
         
         $imagedata = null;
 
-        $record = self::where('domain',$domain)
+        $record = $this->where('domain',$domain)
             ->where('slug',$slug)
             ->where('profile', $profile)
             ->where('density', $density)
@@ -170,7 +170,7 @@ class Image extends Model
             ->select(['id','type' ,'filename','width','height','bytes'])->first();
         
         if (empty($record)) {
-            $record = self::where('domain',$domain)
+            $record = $this->where('domain',$domain)
                 ->where('slug',$slug)
                 ->where('profile', 'original')
                 ->where('density', 'original')
@@ -188,7 +188,7 @@ class Image extends Model
             $img = InterventionImage::make($record['bytes'])->fit($size[0],$size[1]);
             $imagedata = $img->encode('jpg');
 
-            self::insert([
+            $this->insert([
                 'domain'   => $domain,
                 'slug'     => $slug,
                 'profile'  => $profile,

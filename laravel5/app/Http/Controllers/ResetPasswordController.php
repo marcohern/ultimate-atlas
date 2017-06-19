@@ -18,29 +18,36 @@ use Illuminate\Http\Request;
 
 class ResetPasswordController extends Controller
 {
+    private $um;
+    private $prm;
+    private $hasher;
+
+    public function __construct(User $um, Hasher $hasher, PasswordReset $prm) {
+        $this->um = $um;
+        $this->hasher = $hasher;
+        $this->prm = $prm;
+    }
     public function request(Request $r) {
-        $token = Hasher::token();
-        $email = $r->input('email');
-        
-        $user = User::where('email',$email)->first();
+        $user = $this->um->getLoginUserByEmail($r->input('email'));
         if (!$user) throw new BadRequestException("Email not found.");
 
-        $prid = PasswordReset::insertGetId([
-            'email' => $email,
-            'token' => $token,
-            'created_at' => In::now(),
-            'expires' => In::passwordResetTokenPeriod()
-        ]);
-        
-        $pr = PasswordReset::where('id', $prid)->first();
+        try {
+            DB::beginTransaction();
+            $pr = $this->prm->create([
+                'email' => $r->input('email'),
+                'token' => $this->hasher->token()
+            ]);
 
-        Mail::to($email)->send(new ResetPasswordMail($pr, $user));
-        return [
-            'affected' => 1,
-            'created' => true,
-            'password_reset' => $pr,
-            'user' => $user
-        ];
+            Mail::to($email)->send(new ResetPasswordMail($pr, $user));
+            DB::commit();
+            return [
+                'password_reset_requested' => true,
+                'user' => $user,
+                'password_reset' => $pr
+            ];
+        } catch(\Exception $ex) {
+            DB::rollback();
+        }
     }
 
     public function update(Request $r) {

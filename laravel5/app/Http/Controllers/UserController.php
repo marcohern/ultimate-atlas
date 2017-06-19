@@ -14,14 +14,21 @@ use App\Lib\In;
 use App\Mail\ResetPasswordMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use PDOException;
 
 class UserController extends Controller
 {
+    private $hasher;
+    private $um;
+    private $prm;
 
-    public function __construct() {
+    public function __construct(User $um, Hasher $hasher, PasswordReset $prm) {
         $this->middleware('api');
         $this->middleware('secure');
+        $this->um = $um;
+        $this->prm = $prm;
+        $this->hasher = $hasher;
     }
 
     /**
@@ -34,7 +41,7 @@ class UserController extends Controller
         //
         $q = $r->input('q','');
         $lq = str_replace(" ", "%", $q);
-        return User::query($lq, 100);
+        return $this->um->search($lq, 100);
     }
 
     /**
@@ -44,50 +51,38 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $r)
-    {
-        $password = Hasher::random(16);
-        $salt = Hasher::salt();
-        $pwd = Hasher::password($salt, $password);
-        $token = Hasher::token();
-        $email = $r->input('email');
-        
+    {   
         try {
-            $id = User::insertGetId([
+            $email = $r->input('email');
+            DB::beginTransaction();
+            $user = $this->um->create([
                 'username' => $r->input('username'),
                 'fname' => $r->input('fname'),
                 'lname' => $r->input('lname'),
                 'email' => $email,
-                'gender' => 'M',//$r->input('gender'),
+                'gender' => $r->input('gender'),
                 'birth' => $r->input('birth'),
                 'role' => $r->input('role'),
-
-                'password' => $pwd,
-                'salt' => $salt,
-                'activated' => 'FALSE',
-
-                'created_at' => In::now()
+                'password' => $r->input('password')
             ]);
 
-            $prid = PasswordReset::insertGetId([
+            $pr = $this->prm->create([
                 'email' => $email,
-                'token' => $token,
-                'expires' => In::passwordResetTokenPeriod(),
-                'created_at' => In::now()
+                'token' => $this->hasher->token()
             ]);
-
-            $user = User::where('id', $id)->first();
-            $pr = PasswordReset::where('id', $prid)->first();
 
             Mail::to($email)->send((new ResetPasswordMail($pr, $user))->createUser());
-
+            DB::commit();
             return [
                 'affected' => 1,
                 'saved' => true,
                 'user' => $user
             ];
         } catch (PDOException $ex) {
+            DB::rollback();
             throw new BadRequestException("Error storing user", 400, $ex);
         } catch (Exception $ex) {
+            DB::rollback();
             throw new BadRequestException("Error storing user", 400, $ex);
         }
     }
@@ -100,9 +95,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return [
-            'user' => User::get($id)
-        ];
+        return $this->um->view($id);
     }
 
     /**
@@ -115,24 +108,17 @@ class UserController extends Controller
     public function update(Request $r, $id)
     {
         try {
-            $affected = User::where('id', $id)
-                ->update([
-                    'username' => $r->input('username'),
-                    'fname' => $r->input('fname'),
-                    'lname' => $r->input('lname'),
-                    'email' => $r->input('email'),
-                    'gender' => $r->input('gender'),
-                    'birth' => $r->input('birth'),
-                    'role' => $r->input('role'),
-                    'updated_at' => In::now()
-                ]
-            );
-            $user = User::get($id);
-            return [
-                'affected' => $affected,
-                'saved' => true,
-                'user' => $user
-            ];
+            $user = $this->um->modify($id, [
+                'username' => $r->input('username'),
+                'fname' => $r->input('fname'),
+                'lname' => $r->input('lname'),
+                'email' => $r->input('email'),
+                'gender' => $r->input('gender'),
+                'birth' => $r->input('birth'),
+                'role' => $r->input('role')
+            ]);
+            
+            return  $user;
         } catch (PDOException $ex) {
             throw new BadRequestException("Error updating user", 400, $ex);
         } catch (Exception $ex) {
@@ -148,16 +134,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $col = 'username';
-        if (is_numeric($id)) $col = 'id';
-        $user = User::get($id);
-        if (!$user) throw new NotFoundException('User not found');
-        $deleted = User::where($col, $id)->delete();
-
-        return [
-            'affected' => $deleted,
-            'deleted' => true,
-            'user' => $user
-        ];
+        return $this->um->erase($id);
     }
 }

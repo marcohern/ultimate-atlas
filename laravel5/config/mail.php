@@ -9,8 +9,8 @@ return [
     'username'   => env('MAIL_USERNAME'),
     'password'   => env('MAIL_PASSWORD'),
     'from'       => [
-        'address' => env('MAIL_FROM_ADDRESS'),
-        'name'    => env('MAIL_FROM_NAME'),
+        'address' => env('MAIL_FROM_ADDRESS','sender@marcohern.com'),
+        'name'    => env('MAIL_FROM_NAME','Ultimate Atlas'),
     ],
 
     'sendmail' => '/usr/sbin/sendmail -bs',

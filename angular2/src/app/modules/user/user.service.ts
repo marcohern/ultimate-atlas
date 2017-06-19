@@ -26,13 +26,13 @@ export class UserService {
 
   public getUser(id: number): Observable<User> {
     return this.rs.get(this.url, id)
-      .map((r: Response) => <User>r.json().user);
+      .map((r: Response) => <User>r.json());
   }
 
-  public deleteUser(id: number): Observable<UserDeleteResponse> {
+  public deleteUser(id: number): Observable<User> {
     console.log('UserService.deleteUser', id);
     return this.rs.delete(this.url, id)
-      .map((r: Response) => <UserDeleteResponse>r.json());
+      .map((r: Response) => <User>r.json());
   }
 
   public saveUser(user: User) {

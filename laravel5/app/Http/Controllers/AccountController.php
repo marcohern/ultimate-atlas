@@ -26,9 +26,18 @@ class AccountController extends Controller
 {
     private $ssp;
 
-    public function __construct() {
+    private $um;
+    private $tm;
+    private $hasher;
+    private $mail;
+
+    public function __construct(User $um, Token $tm, Hasher $hasher, Mail $mail) {
         $this->middleware('api');
         
+        $this->um = $um;
+        $this->tm = $tm;
+        $this->hasher = $hasher;
+        $this->mail = $mail;
     }
 
     /**
@@ -38,7 +47,7 @@ class AccountController extends Controller
     * @return Token
     */
     public function check_token(Request $r) {
-        $token = Token::getToken($r->input('token'));
+        $token = $this->tm->getToken($r->input('token'));
         return $token;
     }
 
@@ -51,46 +60,43 @@ class AccountController extends Controller
     */
     public function activate(Request $r) {
         $token = $r->input('token');
-        $user = User::where('activated_token',$token)->select('id')->first();
+        $user = $this->um->where('activated_token',$token)->select('id')->first();
         if (!$user) throw new NotFoundException("Token invalid.");
 
-        $affected = User::where('id',$user->id)->update([
+        $affected = $this->um->where('id',$user->id)->update([
             'activated_token' => null,
             'activated' => 'TRUE',
             
             'updated_at' => In::now()
         ]);
-        $user = User::get($user->id);
+        $user = $this->um->get($user->id);
         Mail::to($user->email)->send(new SignupActivatedMail($user));
         return $user;
     }
 
     public function signup(Request $r) {
-        $salt = Hasher::salt();
-        $pwd = Hasher::password($salt, $r->input('password'));
 
-        $at = Hasher::token();
+        try {
+
+            DB::beginTransaction();
+            $user = $this->um->create([
+                'username' => $r->input('username'),
+                'fname' => $r->input('fname'),
+                'lname' => $r->input('lname'),
+                'email' => $r->input('email'),
+                'gender' => $r->input('gender'),
+                'birth' => $r->input('birth'),
+                'role' => $r->input('role'),
+                'password' => $this->hasher->random(16)
+            ]);
+
+            Mail::to($user->email)->send(new SignupActivateMail($user));
+            DB::commit();
+        } catch(\Exception $ex) {
+            DB::rollback();
+            throw $ex;
+        }
         
-        $id = User::insertGetId([
-            'username' => $r->input('username'),
-            'fname' => $r->input('fname'),
-            'lname' => $r->input('lname'),
-            'email' => $r->input('email'),
-            'gender' => $r->input('gender'),
-            'birth' => $r->input('birth'),
-            'role' => $r->input('role'),
-
-            'password' => $pwd,
-            'salt' => $salt,
-            'activated' => 'FALSE',
-            'activated_token' => $at,
-
-            'created_at' => In::now()
-        ]);
-
-        $user = User::where('id',$id)->first();
-
-        Mail::to($user->email)->send(new SignupActivateMail($user));
 
         return [
             'user' => $user
@@ -99,9 +105,9 @@ class AccountController extends Controller
 
     public function logout(Request $r) {
         try {
-            $token = Token::getToken($r->header('Token'));
+            $token = $this->tm->getToken($r->header('Token'));
             if ($token) {
-                Token::destroy($token->id);
+                $this->tm->destroy($token->id);
             }
         } catch (NotFoundException $ex) {}
         return ['success' => true];
@@ -111,26 +117,18 @@ class AccountController extends Controller
         $errormsg = "Username or password invalid. Your account may require activation, check your email.";
         $username = $r->input('username');
         $password = $r->input('password');
-
-        $user = User::select(['id','username','password','salt','email'])
-            ->where('username', $username)
-            ->where('activated', 'TRUE')
-            ->first();
-
+        $user = $this->um->getLoginUserByUsername($username);
         if (!$user) {
-            $user =User::select(['id','username','password','salt','email'])
-                ->where('email', $username)
-                ->where('activated', 'TRUE')
-                ->first();
+            $user = $this->um->getLoginUserByEmail($username);
             
             if (!$user) {
                 throw new UnauthorizedException($errormsg);
             }
         }
-        
-        if (Hasher::check($password, $user->salt, $user->password)) {
-            $user = User::get($user->id);
-            $token = Token::create($user->id);
+
+        if ($this->hasher->check($password, $user->salt, $user->password)) {
+            $user = $this->um->view($user->id);
+            $token = $this->tm->create($user->id);
             return ['user' => $user, 'token' => $token];
         } else {
             throw new UnauthorizedException($errormsg);

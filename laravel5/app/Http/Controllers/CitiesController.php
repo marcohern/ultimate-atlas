@@ -8,9 +8,12 @@ use App\Models\City;
 
 class CitiesController extends Controller
 {
-    public function __construct() {
+    private $cim;
+
+    public function __construct(City $cim) {
         $this->middleware('api');
         $this->middleware('secure');
+        $this->cim = $cim;
     }
     /**
      * Display a listing of the resource.
@@ -20,7 +23,7 @@ class CitiesController extends Controller
     public function index(Request $r)
     {
         $state_id = $r->input('state_id');
-        $query = City::select(['id','name','state_id','lat','lng']);
+        $query = $this->cim->select(['id','name','state_id','lat','lng']);
         if (!empty($state_id)) {
             $query->where('state_id',$state_id);
         }
