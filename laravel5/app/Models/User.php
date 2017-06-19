@@ -18,8 +18,8 @@ class User extends Authenticatable
         $this->hasher = App::make(App\Lib\Hasher::class);
     }
 
-    public static function search($q='', $limit=100, $offset=0) {
-        $query = self::select(['id', 'username', 'lname', 'fname', 'email'])
+    public function search($q='', $limit=100, $offset=0) {
+        $query = $this->select(['id', 'username', 'lname', 'fname', 'email'])
             ->latest()->take($limit)->skip($offset);
         if (!empty($q)) {
             $query->where('username', 'LIKE', "%$q%")
@@ -32,7 +32,7 @@ class User extends Authenticatable
     public function view($id) {
         $col = 'username';
         if (is_numeric($id)) $col = 'id';
-        $user = self::where($col, $id)->first();
+        $user = $this->where($col, $id)->first();
          if (!$user) throw new NotFoundException('User not found');
         return $user;
     }

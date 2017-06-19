@@ -39,7 +39,7 @@ class UserController extends Controller
      */
     public function index(Request $r)
     {
-        return $this->um->search($q, 100);
+        return $this->um->search($r->input('q'), 100);
     }
 
     /**
