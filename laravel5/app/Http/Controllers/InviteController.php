@@ -42,10 +42,7 @@ class InviteController extends Controller
                 'role' => $r->input('role')
             ]);
 
-            $pr = $this->prm->create([
-                'token' => $this->hasher->token(),
-                'email' => $r->input('email')
-            ]);
+            $pr = $this->prm->create($r->input('email'));
 
             Mail::to($user->email)->send((new ResetPasswordMail($pr, $user))->invite());
             DB::commit();

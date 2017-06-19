@@ -41,10 +41,10 @@ class StatesController extends Controller
     public function store(Request $r)
     {
         return $this->sm->create([
-            'name' => $r->input('name'),
+            'name'       => $r->input('name'),
             'country_id' => $r->input('country_id'),
-            'lat' => $r->input('lat'),
-            'lng' => $r->input('lng')
+            'lat'        => $r->input('lat'),
+            'lng'        => $r->input('lng')
         ]);
     }
 
@@ -69,10 +69,10 @@ class StatesController extends Controller
     public function update(Request $r, $id)
     {
         return $this->sm->modify($id, [
-            'name' => $r->input('name'),
+            'name'       => $r->input('name'),
             'country_id' => $r->input('country_id'),
-            'lat' => $r->input('lat'),
-            'lng' => $r->input('lng')
+            'lat'        => $r->input('lat'),
+            'lng'        => $r->input('lng')
         ]);
     }
 
