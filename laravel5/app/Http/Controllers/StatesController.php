@@ -27,8 +27,8 @@ class StatesController extends Controller
         return $this->sm->search(
             $r->input('country_id'),
             $r->input('name'),
-            $r->input('l'),
-            $r->input('o')
+            $r->input('l',50),
+            $r->input('o',0)
         );
     }
 

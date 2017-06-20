@@ -89,18 +89,16 @@ class AccountController extends Controller
                 'role' => $r->input('role'),
                 'password' => $this->hasher->random(16)
             ]);
-
+            
             Mail::to($user->email)->send(new SignupActivateMail($user));
             DB::commit();
+            
+            return ['user' => $user];
         } catch(\Exception $ex) {
+            print_r($ex);
             DB::rollback();
             throw $ex;
         }
-        
-
-        return [
-            'user' => $user
-        ];
     }
 
     public function logout(Request $r) {
@@ -133,5 +131,9 @@ class AccountController extends Controller
         } else {
             throw new UnauthorizedException($errormsg);
         }
+    }
+
+    public function version() {
+        return config('version');
     }
 }

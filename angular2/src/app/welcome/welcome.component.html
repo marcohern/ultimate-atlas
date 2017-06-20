@@ -1,3 +1,8 @@
 <div class="jumbotron">
   <h1>Welcome</h1>
+
+  <div>
+    API: v<span>{{ version }}</span>
+    <img *ngIf="loading" src="assets/loaders/spinning-circles.svg" width="16" height="16" alt="Loading version" />
+  </div>
 </div>

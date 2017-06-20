@@ -35,12 +35,13 @@ Route::post('/daily_charts/days','Daily\DailyChartsController@days');
 
 Route::resource('bars', 'Bars\BarsController');
 
-Route::post('/check_token'           ,'AccountController@check_token');
-Route::post('/signup'                ,'AccountController@signup');
-Route::post('/activate'              ,'AccountController@activate');
-Route::post('/login'                 ,'AccountController@login');
-Route::post('/logout'                ,'AccountController@logout');
-Route::get('/get_methods'            ,'AccountController@get_methods');
+Route::post('/check_token','AccountController@check_token');
+Route::post('/signup'     ,'AccountController@signup');
+Route::post('/activate'   ,'AccountController@activate');
+Route::post('/login'      ,'AccountController@login');
+Route::post('/logout'     ,'AccountController@logout');
+Route::get('/get_methods' ,'AccountController@get_methods');
+Route::get('/version'     ,'AccountController@version');
 
 Route::post('/reset-password'       ,'ResetPasswordController@request');
 Route::post('/reset-password/update','ResetPasswordController@update'   );

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { ConfigService, EthnicMethod } from './config.service';
 import { Observable } from 'rxjs/Observable';
+import { Version } from './version';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
@@ -12,6 +13,7 @@ export class RequestService {
   private token: string = null;
   private calling = false;
   private calls = 0;
+  private version:Version = null;
 
   constructor(
     private http: Http,
@@ -154,4 +156,14 @@ export class RequestService {
   }
 
   public isCalling(): boolean { return (this.calls>0); }
+
+  public getVersion():Observable<Version> {
+    return this.filter('/version',{}, false)
+      .do(data => {
+        this.do(data, false);
+        this.version = data;
+        if (data.number) this.version;
+      })
+      .map((r:Response) => <Version>r.json());
+  }
 }

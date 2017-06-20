@@ -30,9 +30,6 @@
       </p>
     </div>
   </ultimate-atlas>
-  <div class="mrc_footer">
-    API: v<span>{{ config('version.number') }}</span>
-  </div>
   <script type="text/javascript" src="inline.bundle.js"></script>
   <script type="text/javascript" src="polyfills.bundle.js"></script>
   <script type="text/javascript" src="styles.bundle.js"></script>

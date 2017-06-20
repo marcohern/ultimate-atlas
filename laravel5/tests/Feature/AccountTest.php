@@ -8,10 +8,11 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Mockery;
 
-use Mail;
+use App\Mail\SignupActivateMail;
 use App\Lib\Hasher;
 use App\Models\Token;
 use App\Models\User;
+use Mail;
 
 class AccountTest extends TestCase
 {
@@ -222,20 +223,35 @@ class AccountTest extends TestCase
     public function testSignup() {
         Mail::fake();
 
+        $this->johnDoe->activated_token = "ACTIVATED_TOKEN";
+        $this->johnDoe->activated = "FALSE";
         $this->um->shouldReceive('create')
-            ->with($this->johnDoeInput)->once()
-            ->andReturn($this->johnDoeLogin);
+            //->with($this->johnDoeInput)
+            ->once()
+            ->andReturn($this->johnDoe);
 
-        $response = $this->json('POST','/api/signup', [
-            "username" => "janedoe",
-            "fname"    => "Jane",
-            "lname"    => "Doe",
-            "email"    => "janedoe@mail.com",
-            "gender"   => "F",
-            "birth"    => "1980-10-15",
-            "role"     => "ADMIN"
-        ], $this->okHeaders);
+        $this->hasher->shouldReceive('random')->once()
+            ->with(16)
+            ->andReturn('RANDOM_STRING');
 
+        $user = [
+            'username' => 'johndoe',
+            'email' => 'johndoe@mail.com',
+            'fname' => 'John',
+            'lname' => 'Doe',
+            'gender' => 'M',
+            'birth' => '1980-10-15'
+        ];
+        /*
+        $ou = (object) $user;
+        Mail::assertSent(SignupActivateMail::class, function($mail) use ($ou) {
+            return true;// $mail->hasTo('johndoe@mail.com');
+        });*/
+
+        $response = $this->json('POST','/api/signup', $user, $this->okHeaders);
+        $response->assertJson([
+            'user' => true
+        ]);
         $response->assertStatus(200);
     }
 }

@@ -15,7 +15,7 @@ class Image extends Model
         'bytes',
     ];
 
-    public function query($limit=10,$offset=0) {
+    public function search($limit=10,$offset=0) {
         $query = $this->where('attached','TRUE');
         $query->take($limit)->skip($offset);
         return $query->get();
@@ -37,20 +37,6 @@ class Image extends Model
         $image = $this->where('id',$id)->select(['type','bytes'])->first();
         if (!$image) throw new NotFoundException('Image not found');
         return $image;
-    }
-
-    public function destroy($id)
-    {
-        $image = $this->view($id);
-        if (!$image) throw new NotFoundException('Image not found');
-        $deleted = self::where('id',$id)->delete();
-        $deleted += self::where('parent_id',$id)->delete();
-
-        return [
-            'affected' => $deleted,
-            'deleted' => true,
-            'image' => $image
-        ];
     }
 
     public function create($imagefpath) {
@@ -207,5 +193,15 @@ class Image extends Model
         }
 
         return $imagedata;
+    }
+
+    public function erase($id) {
+        
+        $image = $this->where('id',$id)->first();
+        if ($image) {
+            $this->where('id',$id)->delete();
+            return $image;
+        }
+        throw new NotFoundException("Image not found");
     }
 }

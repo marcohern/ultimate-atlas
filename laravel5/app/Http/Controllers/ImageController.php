@@ -75,9 +75,11 @@ class ImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $r, $limit=10,$offset=0)
+    public function index(Request $r)
     {
-        return $this->imm->query($limit, $offset);
+        $limit = 0+$r->input('l',10);
+        $offset = 0+$r->input('o',0);
+        return $this->imm->search($limit, $offset);
     }
 
     public function upload(Request $r) {
@@ -129,6 +131,6 @@ class ImageController extends Controller
      */
     public function destroy($id)
     {
-        return $this->imm->destroy($id);
+        return $this->imm->erase($id);
     }
 }
