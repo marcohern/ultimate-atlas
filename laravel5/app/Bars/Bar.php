@@ -11,13 +11,20 @@ use App\Models\Image;
 
 class Bar extends Model
 {
-    public static function query($q='', $city_id=null, $modified="1990-01-01 00:00:00", $limit=10, $offset=0) {
-        $query = self::where('bars.enabled','TRUE')
+    public $table = 'bars';
+    private $imm;
+
+    public function __construct() {
+        $this->imm = App::make(\App\Models\Image::class);
+    }
+
+    public function search($city_id, $q='', $modified="1990-01-01 00:00:00", $limit=10, $offset=0) {
+        $query = $this->take($limit)->skip($offset)
+            ->select(['bars.*','cities.name AS city'])
+            ->where('bars.enabled','TRUE')
             ->where('bars.city_id',$city_id)
-            ->where('bars.modified','>=',$modified);
-        $query->join('cities', 'cities.id', '=', 'bars.city_id');
-        $query->select(['bars.*','cities.name AS city']);
-        $query->take($limit)->from($offset);
+            ->where('bars.modified','>=',$modified)
+            ->join('cities', 'cities.id', '=', 'bars.city_id');
         
         if (!empty($q)) {
             $qw = explode(' ',$q);
@@ -27,14 +34,13 @@ class Bar extends Model
             }
             $query->where('bars.name', 'LIKE', $filter);
         }
-
         return $query->get();
     }
 
-    public static function get($id, $profile='', $density='',$root='') {
+    public function view($id, $profile='', $density='',$root='') {
         $col = 'id';
         if (!is_numeric($id)) $col = 'slug';
-        $bar = self::where($col,$id)->first();
+        $bar = $this->where($col,$id)->first();
         if (!$bar) throw new NotFoundException("Bar not found");
         $slug = $bar['slug'];
         $photos = 0+$bar['photos'];
@@ -59,12 +65,12 @@ class Bar extends Model
         return $bar;
     }
 
-    public static function create($data) {
+    public function create($data) {
 
         $images = $data['images'];
         if (empty($images)) $images = [];
         if (is_string($images)) $images = explode(',',$images);
-        $data['slug'] = self::slugifyUnique($data['name']);
+        $data['slug'] = $this->slugifyUnique($data['name']);
         $data['enabled'] = 'FALSE';
         $data['verified'] = 'FALSE';
         $data['photos'] = count($images);
@@ -75,45 +81,45 @@ class Bar extends Model
         $barx = [];
 
         $id = Bar::insertGetId($data);
-        Image::attach($images, 'bar', $data['slug']);
+        $this->imm->attach($images, 'bar', $data['slug']);
 
-        $bar = Bar::get($id);
+        $bar = $this->view($id);
         return $bar;
     }
 
-    public static function modify($id, $data) {
-        $bar = Bar::where('id',$id)->first();
+    public function modify($id, $data) {
+        $bar = $this->where('id',$id)->first();
         if (!$bar) throw new NotFoundException("Bar not found");
 
         $newImages = $data['images'];
         $oldImages = Image::queryIds('bar',$data['slug']);
         unset($data['images']);
 
-        $data['slug'] = self::slugifyUnique($data['name']);
+        $data['slug'] = $this->slugifyUnique($data['name']);
         $data['updated_at'] = In::now();
         $data['modified'] = In::now();
 
-        $aff = Bar::where('id',$id)->update($data);
+        $aff = $this->where('id',$id)->update($data);
         Image::detach($oldImages);
         Image::attach($newImages);
         
-        $bar = Bar::where('id',$id)->first();
+        $bar = $this->where('id',$id)->first();
         return $bar;
     }
 
-    public static function destroy($id) {
-        $bar = self::where('id',$id)->first();
+    public function erase($id) {
+        $bar = $this->where('id',$id)->first();
         if (!$bar) throw new NotFoundException("Bar not found");
-        Bar::where('id',$id)->delete();
+        $this->where('id',$id)->delete();
         Image::where('domain','bar')->where('slug',$bar)->delete();
         return $bar;
     }
 
-    public static function slugifyUnique($string) {
+    public function slugifyUnique($string) {
         $slug = Slugger::slugify($string);
         $entropy = '';
         $rslug = $slug;
-        while ($r = self::where('slug',$rslug)->select(['slug'])->first()) {
+        while ($r = $this->where('slug',$rslug)->select(['slug'])->first()) {
             $entropy .= Slugger::entropy();
             $rslug = "$entropy-$slug";
         }

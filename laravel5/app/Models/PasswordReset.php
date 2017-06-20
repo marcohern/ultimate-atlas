@@ -13,7 +13,7 @@ class PasswordReset extends Model
     private $hasher;
 
     public function __construct() {
-        $this->hasher = App::make(App\Lib\Hasher::class);
+        $this->hasher = App::make(\App\Lib\Hasher::class);
     }
 
     /**

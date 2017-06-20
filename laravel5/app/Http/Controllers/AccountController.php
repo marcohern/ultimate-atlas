@@ -29,15 +29,13 @@ class AccountController extends Controller
     private $um;
     private $tm;
     private $hasher;
-    private $mail;
 
-    public function __construct(User $um, Token $tm, Hasher $hasher, Mail $mail) {
+    public function __construct(User $um, Token $tm, Hasher $hasher) {
         $this->middleware('api');
         
         $this->um = $um;
         $this->tm = $tm;
         $this->hasher = $hasher;
-        $this->mail = $mail;
     }
 
     /**
@@ -95,7 +93,6 @@ class AccountController extends Controller
             
             return ['user' => $user];
         } catch(\Exception $ex) {
-            print_r($ex);
             DB::rollback();
             throw $ex;
         }

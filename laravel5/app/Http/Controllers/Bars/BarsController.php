@@ -7,10 +7,22 @@ use App\Exceptions\NotFoundException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Bars\Bar;
 
 class BarsController extends Controller
 {
+    private $bm;
+    private $imm;
+
+    public function __construct(
+            \App\Bars\Bar $bm,
+            \App\Models\Image $imm
+    ) {
+        $this->middleware('api');
+        $this->middleware('secure');
+
+        $this->bm = $bm;
+        $this->imm = $imm;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,16 +30,14 @@ class BarsController extends Controller
      */
     public function index(Request $r)
     {
-        $q = $r->input('q');
-        $city_id = $r->input('city_id');
-        $offset = 0+$r->input('offset');
-        $limit = 0+$r->input('limit');
-        $modified = $r->input("modified");
-
-        if (empty($offset)) $offset = 0;
-        if (empty($limit )) $limit  = 10;
-
-        return Bar::query($q, $city_id,$modified, $limit, $offset);
+        
+        $city_id  = $r->input('city_id');
+        $q        = $r->input('q', '');
+        $modified = $r->input("modified", '1990-01-01 00:00:00');
+        $limit    = 0+$r->input('l', 10);
+        $offset   = 0+$r->input('o',  0);
+        
+        return $this->bm->search($city_id, $q, $modified, $limit, $offset);
     }
 
     /**
@@ -38,7 +48,7 @@ class BarsController extends Controller
      */
     public function store(Request $r)
     {
-        return Bar::create([
+        return $this->bm->create([
             'name' => $r->input('name'),
             'description' => $r->input('description'),
             'city_id' => $r->input('city_id'),
@@ -77,7 +87,11 @@ class BarsController extends Controller
      */
     public function show(Request $r, $id)
     {
-        return Bar::get($id, $r->input('p'),$r->input('d'), $r->root());
+        return $this->bm->view($id,
+            $r->input('p'),
+            $r->input('d'),
+            $r->root()
+        );
     }
 
     /**
@@ -89,7 +103,7 @@ class BarsController extends Controller
      */
     public function update(Request $r, $id)
     {
-        return Bar::modify($id, [
+        return $this->bm->modify($id, [
             'name' => $r->input('name'),
             'description' => $r->input('description'),
             'city_id' => $r->input('city_id'),
@@ -125,6 +139,6 @@ class BarsController extends Controller
      */
     public function destroy($id)
     {
-        return Bar::destroy($id);
+        return $this->erase($id);
     }
 }
