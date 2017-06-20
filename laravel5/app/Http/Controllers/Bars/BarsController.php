@@ -139,6 +139,6 @@ class BarsController extends Controller
      */
     public function destroy($id)
     {
-        return $this->erase($id);
+        return $this->bm->erase($id);
     }
 }

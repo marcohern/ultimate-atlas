@@ -187,4 +187,48 @@ class BarTest extends TestCase
         ]);
         $response->assertStatus(200);
     }
+
+    public function testDelete() {
+        $bar = [
+            'id' => 1,
+            'name' => 'Bar Name',
+            'description' => 'Bar Description.',
+            'city_id' => 1234,
+            'user_id' => 9999,
+            'type' => 'bar',
+            'address' => '123 Random St.',
+            'zip' => '123456',
+            'lat' =>   4.5678901,
+            'lng' => -74.5678901,
+            'email' => 'bar@mail.com',
+            'phone1' => '(57) 1 234 5678',
+            'phone2' => '',
+            'mobile' => '',
+            'website' => 'http://bar.com',
+            'contact_name' => 'Barmus Contactus',
+
+            'images' => '1,2,3,4,5,6,7,8',
+            
+            'franhise_id' => null,
+            'plan' => 'copper',
+            'avg_price' => 0.0,
+            'cover' => 10000.0,
+            'color' => 'RED',
+            'lat_ne' =>   4.5678801,
+            'lng_ne' => -74.5678801,
+            'lat_sw' =>   4.5679001,
+            'lng_sw' => -74.5679001
+        ];
+
+        $this->bm->shouldReceive('erase')
+            ->with('1')->once()
+            ->andReturn($bar);
+
+        $response = $this->json('DELETE','/api/bars/1',[],$this->okHeaders);
+        $response->assertJson([
+            'name' => true,
+            'description' => true
+        ]);
+        $response->assertStatus(200);
+    }
 }
