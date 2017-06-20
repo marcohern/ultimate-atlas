@@ -8,6 +8,7 @@ use App\Exceptions\NotFoundException;
 use App\Lib\Slugger;
 use App\Lib\In;
 use App\Models\Image;
+use App;
 
 class Bar extends Model
 {

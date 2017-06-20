@@ -1,0 +1,24 @@
+<form (ngSubmit)="searchBars()">
+  <div class="input-group">
+    <span class="input-group-btn">
+      <a class="btn btn-primary" [routerLink]="['/bar/add']">
+        <i class="glyphicon glyphicon-plus"></i> Add
+      </a>
+    </span>
+    <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}" />
+    <span class="input-group-btn">
+      <button type="submit" class="btn btn-primary">
+        <i class="glyphicon glyphicon-search"></i>
+      </button>
+    </span>
+  </div>
+</form>
+<div class="ua-record-row" *ngFor="let bar of bars; let i = index" [@record]="bar.status">
+  <div class="btn-group btn-group-lg" role="group">
+    <a class="btn btn-danger" (click)="deleteBar(i)"><i class="glyphicon glyphicon-trash"></i></a>
+    <div class="btn btn-primary" [routerLink]="['/bar', bar.id]">
+      <i class="glyphicon glyphicon-pencil"></i>
+      <span>{{bar.name}}</span>
+    </div>
+  </div>
+</div>

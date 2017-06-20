@@ -22,6 +22,7 @@ import { ResetPasswordModule } from './modules/reset-password/reset-password.mod
 import { InviteModule     } from './modules/invite/invite.module';
 import { UserModule       } from './modules/user/user.module';
 import { DailyModule      } from './modules/daily/daily.module';
+import { BarsModule       } from './modules/bars/bars.module';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { DailyModule      } from './modules/daily/daily.module';
     ResetPasswordModule, //Reset a user's password
     UserModule,          //User management
     DailyModule,         //Daily transactions module
+    BarsModule,          //Bars module
 
     //App Routes
     AppRoutes

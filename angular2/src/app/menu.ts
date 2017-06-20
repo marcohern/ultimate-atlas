@@ -10,6 +10,10 @@ export const menu = {
                 { label: 'Accounts'    , route: ['/daily/accs']    },
                 { label: 'Categories'  , route: ['/daily/cats']    },
                 { label: 'History'     , route: ['/daily/history'] }
+            ]},
+            { label: 'Bars', children: [
+                { label: 'List', route: ['/bars'] },
+                { label: 'Details', route: ['/bar/add'] },
             ]}
         ]
     },

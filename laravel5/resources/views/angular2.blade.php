@@ -26,7 +26,7 @@
         <img src="{{ url('assets/loaders/spinning-circles.svg') }}" alt="Loading" width="80" />
       </p>
       <p>
-        Loading <span>{{ config('app.name') }}</span>
+        Loading
       </p>
     </div>
   </ultimate-atlas>
