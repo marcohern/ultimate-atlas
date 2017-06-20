@@ -69,9 +69,9 @@ class AccountController extends Controller
             
             'updated_at' => In::now()
         ]);
-        $user = $this->um->get($user->id);
+        $user = $this->um->view($user->id);
         Mail::to($user->email)->send(new SignupActivatedMail($user));
-        return $user;
+        return ['user' => $user];
     }
 
     public function signup(Request $r) {
@@ -87,7 +87,7 @@ class AccountController extends Controller
                 'gender' => $r->input('gender'),
                 'birth' => $r->input('birth'),
                 'role' => $r->input('role'),
-                'password' => $this->hasher->random(16)
+                'password' => $r->input('password')
             ]);
             
             Mail::to($user->email)->send(new SignupActivateMail($user));

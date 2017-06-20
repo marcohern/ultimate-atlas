@@ -394,7 +394,6 @@ var AuthService = (function () {
             });
         }
         else {
-            console.log("auth.start", "token not found in client, clearing...");
             this.clearToken();
         }
     };
