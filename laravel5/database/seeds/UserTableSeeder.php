@@ -117,12 +117,14 @@ class UserTableSeeder extends Seeder
 ['id'=> 99,'username'=>        'jgreen','fname'=>       'John','lname'=>        'Green','email'=>        'jgreen@mail.com','gender'=>'M','birth'=>'1979-08-11'],
 ['id'=>100,'username'=>        'mtwain','fname'=>       'Mark','lname'=>        'Twain','email'=>        'mtwain@mail.com','gender'=>'M','birth'=>'1984-01-03'],
         ];
+
+        $hasher = new Hasher();
         
         //set missing fields, hash passwords
         for($i=0;$i<count($users);$i++) {
-            $s = Hasher::salt();
+            $s = $hasher->salt();
             $users[$i]['salt'] = $s;
-            $users[$i]['password']=Hasher::password($s, $users[$i]['username']);
+            $users[$i]['password']=$hasher->password($s, $users[$i]['username']);
             $users[$i]['role'] = 'ADMIN';
             $users[$i]['created_at'] = new \Datetime("now");
         }

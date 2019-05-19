@@ -12,7 +12,7 @@ class Country extends Model
 {
     //
     public function search($q='',$limit=10,$offset=0) {
-        $query = $this->take($limit)->skip($offset);
+        $query = $this->take($limit);//->keep($offset);
         if (!empty($q)) $query->where('name', 'LIKE', "%$q%");
         return $query->get();
     }

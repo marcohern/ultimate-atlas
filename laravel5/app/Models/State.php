@@ -12,9 +12,9 @@ class State extends Model
 {
     public function search($country_id, $name='',$limit=10,$offset=0) {
         if (empty($country_id)) throw new BadRequestException("Country ID not specified");
-        $query = $this->where('country_id',$country_id)->take($limit)->from($offset);
+        $query = $this->where('country_id',$country_id)->take($limit)->skip($offset);
         if (!empty($name)) $this->where('name','LIKE',"%$name%");
-        return $query->list();
+        return $query->get();
     }
 
     public function view($id) {
